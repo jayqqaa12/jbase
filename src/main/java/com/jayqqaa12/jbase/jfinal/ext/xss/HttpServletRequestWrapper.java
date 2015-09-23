@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 对HttpServletRequestWrapper重写，为了统一XSS处理 
- * @date 2014-5-5 上午9:10:18
  */
 public class HttpServletRequestWrapper extends javax.servlet.http.HttpServletRequestWrapper{
 

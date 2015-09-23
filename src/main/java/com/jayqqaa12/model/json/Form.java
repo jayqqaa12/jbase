@@ -62,60 +62,7 @@ public class Form
 	}
 	
 	
-	/***
-	 * 生成 many to many sql
-	 * 表默认名称 改为  Class。getSimpleName。toLowerCase
-	 * 根据 主键 关联 
-	 * 
-	 * @param manyClazz1
-	 * @param manyClazz2
-	 */
-//	public String manyToMany(Class<? extends Model> manyClazz1 ,Class<? extends Model> manyClazz2,String midTableName){
-//		
-//		String sql = "";
-//		TableInfo table1 = TableInfoMapping.me().getTableInfo(manyClazz1);
-//		TableInfo table2 = TableInfoMapping.me().getTableInfo(manyClazz2);
-//		String name1 = manyClazz1.getSimpleName().toLowerCase();
-//		String name2 =manyClazz2.getSimpleName().toLowerCase();
-//		
-//		sql+=" select `"+name1+"`.* "+",`"+name2+"`.* " +
-//				" from "+table1.getTableName() +" as `"+name1 +"` join "+midTableName+
-//				" on "+midTableName+"."+name1+"_"+table1.getPrimaryKey()+
-//				"=`"+name1+"`."+table1.getPrimaryKey()+
-//				" join "+table2.getTableName() +" as `"+name2+
-//				"` on "+midTableName+"."+name2+"_"+table2.getPrimaryKey()+
-//				"=`"+name2+"`."+table2.getPrimaryKey();
-//		
-//		return sql;
-//	}
-//	
-	
-	
-	/***
-	 * 生成 one to many sql
-	 * 表默认名称 改为  Class。getSimpleName。toLowerCase
-	 * 根据 主键 关联 
-	 * 
-	 * @param oneClazz
-	 * @param manyclazz
-	 */
-//	public String oneToMany(Class<? extends Model> oneClazz ,Class<? extends Model> manyclazz){
-//		
-//		String sql = "";
-//		TableInfo onetable = TableInfoMapping.me().getTableInfo(oneClazz);
-//		TableInfo manytable = TableInfoMapping.me().getTableInfo(manyclazz);
-//		String oneName = oneClazz.getSimpleName().toLowerCase();
-//		String manyName =manyclazz.getSimpleName().toLowerCase();
-//		
-//		sql+=" select `"+oneName+"`.* "+",`"+manyName+"`.* " +
-//				" from "+onetable.getTableName() +" as `"+oneName +
-//				"` join "+manytable.getTableName()+" as `"+manyName+
-//				"` on `"+oneName+"`."+onetable.getPrimaryKey()+
-//				"=`"+manyName+"`."+manytable.getPrimaryKey();
-//		
-//		return sql;
-//	}
-//	
+ 
 
 	public static Form getForm(String tableName, Controller c, String... params)
 	{
@@ -183,7 +130,6 @@ public class Form
 	 * 手动添加where
 	 * 
 	 * @param where
-	 * @return
 	 */
 	public String addWhere(String where)
 	{
@@ -191,18 +137,7 @@ public class Form
 		return this.where += " " + where;
 	}
 
-	//
-	// /**
-	// * 手动添加where 到getwhere的基础上
-	// *
-	// * @param where
-	// * @return
-	// */
-	// public String getWhere(String where)
-	// {
-	// where += getWhere()+where;
-	// return where;
-	// }
+ 
 
 	public String getFromParm(String key)
 	{
@@ -226,7 +161,6 @@ public class Form
 	/***
 	 * '%Y-%m-%d'
 	 * 
-	 * @return
 	 */
 	public String groupDate()
 	{
@@ -250,9 +184,7 @@ public class Form
 	/***
 	 * 设置自己的where
 	 * 
-	 * @param dg
 	 * @param where
-	 * @return
 	 */
 	public String getWhereAndLimit( String where)
 	{
@@ -316,8 +248,7 @@ public class Form
 	}
 
 	/***
-	 * >=
-	 * 
+	 * 大于等于
 	 * @param key
 	 * @param value
 	 * @return
@@ -329,8 +260,8 @@ public class Form
 	}
 
 	/***
-	 * <=
 	 * 
+	 * 小于等于
 	 * @param key
 	 * @param value
 	 * @return
@@ -342,7 +273,7 @@ public class Form
 	}
 
 	/***
-	 * >
+	 * 大于
 	 * 
 	 * @param key
 	 * @param value
@@ -355,7 +286,7 @@ public class Form
 	}
 
 	/***
-	 * <
+	 * 小于
 	 * 
 	 * @param key
 	 * @param value

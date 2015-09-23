@@ -103,13 +103,7 @@ public class Http
 		return sb.toString();
 	}
 
-	/***
-	 * parm 写错 key=value &
-	 * 
-	 * @param url
-	 * @param data
-	 * @return
-	 */
+ 
 	public String post(String url, String data)
 	{
 		StringBuilder sb = new StringBuilder();

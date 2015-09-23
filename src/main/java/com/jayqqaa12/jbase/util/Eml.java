@@ -9,9 +9,9 @@ import java.util.Properties;
 
 /**
  * JDiy邮件发送工具类.
- * <br/>此类依赖于javax.mail包. 将发送E-mail的代码进行了封装简化.
+ * <p>此类依赖于javax.mail包. 将发送E-mail的代码进行了封装简化.
  *
- * @author 子秋(ziquee)  http://www.jdiy.org
+ * @author 子秋(ziquee)
  */
 @SuppressWarnings("unused")
 public final class Eml {

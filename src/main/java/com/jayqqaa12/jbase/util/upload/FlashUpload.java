@@ -21,6 +21,7 @@ public class FlashUpload
 	 * @param req
 	 * @return
 	 */
+	@SuppressWarnings("restriction")
 	public static String flashUpload(HttpServletRequest req)
 	{
 

@@ -45,6 +45,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public M set(String attr, Object value)
 	{
@@ -64,11 +65,6 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	/**
 	 * 更新 指定 条件 非 id
 	 * 
-	 * @param key
-	 * @param value
-	 * @param w
-	 * @param v
-	 * @return
 	 */
 	public boolean updateByWhere(String key, Object value,String w, Object params)
 	{
@@ -127,8 +123,6 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	/***
 	 * 删除自己的同时 删除 所有 子节点 属性名 必需为pid
 	 * 
-	 * @param para
-	 * @return
 	 */
 	public boolean deleteByIdAndPid(Object id)
 	{

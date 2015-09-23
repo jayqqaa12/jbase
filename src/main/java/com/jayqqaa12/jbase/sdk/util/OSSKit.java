@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.util;
+package com.jayqqaa12.jbase.sdk.util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,12 +15,6 @@ import com.aliyun.oss.model.PutObjectResult;
 
 /**
  * aliyun oss 工具 请 初始化设置好
- * 
- * 
- * <dependency> <groupId>com.aliyun.oss</groupId>
- * <artifactId>aliyun-sdk-oss</artifactId> <version>2.0.5</version>
- * </dependency>
- * 
  * 
  * 
  * @author 12

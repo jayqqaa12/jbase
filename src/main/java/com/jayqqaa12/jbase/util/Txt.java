@@ -87,11 +87,11 @@ public final class Txt
 
 	/**
 	 * 这是一个字符串注入（或叫做字符串模板替换）方法. 在JDiy日志管理中大量应用了此方法.
-	 * 首先定义一个带有一个或多个"{}"占位符的字符串模版，然后占位符处的内容会由后面的参数依次注入替换. <br />
-	 * <strong>下面是一个示例性的代码：</strong><br/>
-	 * String log = "对不起，要更新的字段出错。字段名:{}, 字段值:{}, 错误原因：{}";<br />
-	 * String log2 = Txt.inject(log, "name", "ziquee", "无此字段");<br />
-	 * //执行结果如下：<br />
+	 * 首先定义一个带有一个或多个"{}"占位符的字符串模版，然后占位符处的内容会由后面的参数依次注入替换. 
+	 * <strong>下面是一个示例性的代码：</strong><p>
+	 * String log = "对不起，要更新的字段出错。字段名:{}, 字段值:{}, 错误原因：{}";
+	 * String log2 = Txt.inject(log, "name", "ziquee", "无此字段");
+	 * //执行结果如下：
 	 * log2="对不起，要更新的字段出错。字段名:name, 字段值:ziquee, 错误原因:无此字段";
 	 * 
 	 * @param inputString
@@ -108,11 +108,11 @@ public final class Txt
 
 	/**
 	 * 这是一个字符串注入（或叫做字符串模板替换）方法. 与{@link #inject(String, String...)}
-	 * 不同的是，此方法可以自已定义占位符. <br />
-	 * <strong>下面是一个示例性的代码：</strong><br/>
-	 * String log = "对不起，要更新的字段出错。字段名:?, 字段值:?, 错误原因：?";<br />
-	 * String log2 = Txt.injectBy(log, "?", "name", "ziquee", "无此字段");<br />
-	 * //执行结果如下：<br />
+	 * 不同的是，此方法可以自已定义占位符. 
+	 * <strong>下面是一个示例性的代码：</strong><p>
+	 * String log = "对不起，要更新的字段出错。字段名:?, 字段值:?, 错误原因：?";
+	 * String log2 = Txt.injectBy(log, "?", "name", "ziquee", "无此字段");
+	 * //执行结果如下：
 	 * log2="对不起，要更新的字段出错。字段名:name, 字段值:ziquee, 错误原因:无此字段";
 	 * 
 	 * @param inputString
@@ -177,7 +177,7 @@ public final class Txt
 	}
 
 	/**
-	 * 将字符串按指定的分隔符分割成为一个数组. <br />
+	 * 将字符串按指定的分隔符分割成为一个数组. 
 	 * 与String.split(String s)、StringTokenizer不同的是，此方法将比它们更加高效快速.
 	 * 在需要将字符串split转换为数组时，应该优先使用此方法.
 	 * 
@@ -219,7 +219,7 @@ public final class Txt
 	
 
 	/**
-	 * 此方法将HTML内容转换为普通文本. <br/>
+	 * 此方法将HTML内容转换为普通文本. <p>
 	 * 此方法将通过对正则替换，删除inputString中的HTML标签，并返回纯文本内容．
 	 * 
 	 * @param inputString
@@ -264,8 +264,8 @@ public final class Txt
 	}
 
 	/**
-	 * 将指定的字符串内容进行HTML标签转换过滤. <br />
-	 * 此方法会将内容中的HTML标签转换成普通字符输出以防止非法的HTML代码被执行; 同时此方法自动识别URL地址、邮件地址并为其添加链接.<br />
+	 * 将指定的字符串内容进行HTML标签转换过滤. 
+	 * 此方法会将内容中的HTML标签转换成普通字符输出以防止非法的HTML代码被执行; 同时此方法自动识别URL地址、邮件地址并为其添加链接.
 	 * <strong>注意：</strong> 由在线WEB编辑器添加的内容，不应调用此方法，否则编辑器上传的所有HTML代码将被转换成普通字符输出。
 	 * 
 	 * @param str
@@ -276,7 +276,7 @@ public final class Txt
 	public static String encodeHTML(String str)
 	{
 		String s = str.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\"", "&quot;").replaceAll("'", "&acute; ")
-				.replaceAll("  ", " &nbsp;").replaceAll("\\r\\n", "<br/>").replaceAll("\\n", "<br/>");
+				.replaceAll("  ", " &nbsp;").replaceAll("\\r\\n", "<p>").replaceAll("\\n", "<p>");
 		Txt rep = new Txt(s);
 		rep.replace("http://([%#=&\\?\\./a-zA-Z0-9]+)", "<a href=\"http://$1\" target=\"_blank\">http://$1</a>");
 		rep.replace("([-_a-z0-9]+?)@([-_\\.a-zA-Z0-9]{5,})", "<a href=\"mailto:$1@$2\" target=\"_blank\">$1@$2</a>");
@@ -354,7 +354,7 @@ public final class Txt
 	}
 
 	/**
-	 * 将给定的字符串s转化为一个长整数. 如果s不能转化为一个长整数,则返回0L. <br/>
+	 * 将给定的字符串s转化为一个长整数. 如果s不能转化为一个长整数,则返回0L. <p>
 	 * 程序将通过给定的字符串，从左往右匹配截取数字字符，并将其转化为长整数类型后返回.
 	 * 
 	 * @param s

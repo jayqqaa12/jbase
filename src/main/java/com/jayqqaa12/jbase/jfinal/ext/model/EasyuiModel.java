@@ -37,10 +37,6 @@ public class EasyuiModel<M extends com.jayqqaa12.jbase.jfinal.ext.model.Model<M>
 	 * 
 	 * 这个方法无法 自动 获取 过滤 where 了
 	 * 
-	 * @param sql
-	 * @param dg
-	 * @param f
-	 * @return
 	 */
 	public DataGrid<M> listByDataGrid(DataGrid<M> dg, Form f, String where, Object... params)
 	{

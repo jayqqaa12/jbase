@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.util;
+package com.jayqqaa12.jbase.sdk.util;
 
 import java.io.IOException;
 

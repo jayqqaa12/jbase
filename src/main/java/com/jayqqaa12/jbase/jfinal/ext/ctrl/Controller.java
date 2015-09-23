@@ -109,7 +109,7 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	/**
 	 * fastjson转Map
 	 * 
-	 * 然后 就可以设置 进 model setAttrs（Map<String,Object> map）
+	 * 然后 就可以设置 进 model setAttrs 
 	 * 
 	 * @param json
 	 * @throws UnsupportedEncodingException
@@ -216,28 +216,13 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	}
 
  
-
-	// public void renderBeetl(String view)
-	// {
-	//
-	// render(new BeetlRender(BeetlRenderFactory.groupTemplate, view));
-	// }
-
 	public void renderTop(String url) {
 
 		renderHtml("<html><script> window.open('" + url + "','_top') </script></html>");
 
 	}
 
-	/***
-	 * 
-	 * 什么时候用 gson 呐
-	 * 
-	 * 如果是 原生的 List<Model> 直接返回即可 用 renderJson
-	 * 
-	 * 
-	 * @param obj
-	 */
+ 
 	public void renderGson(Object obj) {
 
 		renderJson(new Gson().toJson(obj));

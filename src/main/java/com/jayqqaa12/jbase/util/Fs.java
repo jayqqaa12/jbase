@@ -172,7 +172,7 @@ public final class Fs{
     }
 
     /**
-     * 清空目录. <br />
+     * 清空目录. 
      * 此方法将删除目录下面的所有子文件夹及文件（当前的目录本身并不会删除）
      *
      * @param dir 要清空的目录.
@@ -184,7 +184,7 @@ public final class Fs{
     }
 
     /**
-     * 清空目录. <br />
+     * 清空目录. 
      * 此方法将删除目录下面的所有子文件夹及文件（当前的目录本身并不会删除）
      *
      * @param dir 要清空的目录的绝对路径地址.
@@ -215,11 +215,11 @@ public final class Fs{
     /**
      * 以classpath为相对根路径，获取资源.
      *
-     * @param relativePath 相对路径地址，例如：<br />
-     *                     a.txt    -  %classpath%/a.txt<br />
-     *                     ./a.txt  -  同上              <br />
-     *                     /a.txt   -  同上              <br />
-     *                     ../a.txt -  %classpath%的上级路径下的a.txt <br />
+     * @param relativePath 相对路径地址，例如：
+     *                     a.txt    -  %classpath%/a.txt
+     *                     ./a.txt  -  同上              
+     *                     /a.txt   -  同上              
+     *                     ../a.txt -  %classpath%的上级路径下的a.txt 
      *                     abc/a.txt-  %classpath%/abc/a.txt
      * @return 该资源的URL对象，可以通过 <b>returnurl.getPath()</b>来获取该资源的真实物理路径(returnurl即此方法返回的URL对象)。
      * @throws java.net.MalformedURLException MalformedURLException
@@ -361,7 +361,7 @@ public final class Fs{
     }
 
     /**
-     * 读取文本文件的内容. <br/>
+     * 读取文本文件的内容. <p>
      * 程序默认以utf-8的编码形式来读取文本文件的内容.
      * 如果文本文件不是utf-8的编码，请使用{@link #readFile(java.io.File, String)}方法指定编码.
      *
@@ -379,7 +379,7 @@ public final class Fs{
 
 
     /**
-     * 将文本内容保存为文件. <br />
+     * 将文本内容保存为文件. 
      * 在保存文件时，(如果上层路径不存在).系统将自动创建其上层目录路径.
      *
      * @param file     要保存的文件.
@@ -412,7 +412,7 @@ public final class Fs{
     }
     
     /**
-     * 将文本内容保存为文件. <br />
+     * 将文本内容保存为文件. 
      * 在保存文件时，(如果上层路径不存在).系统将自动创建其上层目录路径.
      *
      * @param file     要保存的文件.
@@ -439,9 +439,9 @@ public final class Fs{
     }
 
     /**
-     * 将文本内容保存为文件. <br />
+     * 将文本内容保存为文件. 
      * 程序默认以utf-8的编码形式保存文本文件，如要使用其它编码方式保存，
-     * 请使用{@link #writeFile(java.io.File, String, String)}方法.   <br />
+     * 请使用{@link #writeFile(java.io.File, String, String)}方法.   
      * 在保存文件时，(如果上层路径不存在).系统将自动创建其上层目录路径.
      *
      * @param file 要保存的文件.

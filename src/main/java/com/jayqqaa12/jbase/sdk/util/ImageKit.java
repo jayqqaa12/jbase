@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.util;
+package com.jayqqaa12.jbase.sdk.util;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -12,11 +12,6 @@ import javax.imageio.stream.ImageInputStream;
 import com.mortennobel.imagescaling.ResampleOp;
 
 /***
- * please add
- * 
- * <dependency> <groupId>com.mortennobel</groupId>
- * <artifactId>java-image-scaling</artifactId> <version>0.8.5</version>
- * </dependency>
  * 
  * @author 12
  *
@@ -26,22 +21,7 @@ import com.mortennobel.imagescaling.ResampleOp;
 public class ImageKit {
 	private static ImageKit manager = new ImageKit();
 
-	/**
-	 * read image from file, now it can support image type:
-	 * bmp,wbmp,gif,jpge,png
-	 * 
-	 * @param file
-	 * @return BufferedImage
-	 * 
-	 * 
-	 *         <pre>
-	 * BufferedImage image;
-	 * image = ImageUtils.readImage(new File(&quot;myImage.jpg&quot;));
-	 * image = ImageUtils.readImage(new File(&quot;myImage.gif&quot;));
-	 * image = ImageUtils.readImage(new File(&quot;myImage.bmp&quot;));
-	 * image = ImageUtils.readImage(new File(&quot;myImage.png&quot;));
-	 * </pre>
-	 */
+ 
 	public BufferedImage readImage(File file) {
 		BufferedImage image = null;
 		if (file != null && file.isFile() && file.exists()) {
@@ -54,51 +34,23 @@ public class ImageKit {
 		return image;
 	}
 
-	/**
-	 * get the image width
-	 * 
-	 * @param image
-	 * @return image width
-	 */
+ 
 	public double getWidth(BufferedImage image) {
 		return image.getWidth();
 	}
 
-	/**
-	 * get the image height
-	 * 
-	 * @param image
-	 * @return image height
-	 */
+ 
 	public double getHeight(BufferedImage image) {
 		return image.getHeight();
 	}
-
-	/**
-	 * @param image
-	 *            BufferedImage.
-	 * @param width
-	 *            zoom width.
-	 * @param heigth
-	 *            zoom heigth.
-	 * @return BufferedImage
-	 */
+ 
 	public BufferedImage zoom(BufferedImage image, int width, int heigth) {
 		ResampleOp resampleOp = new ResampleOp(width, heigth);
 		BufferedImage tag = resampleOp.filter(image, null);
 		return tag;
 	}
 
-	/**
-	 * 
-	 * @param image
-	 *            BufferedImage
-	 * @param width
-	 *            zoom width.
-	 * @param heigth
-	 *            zoom heigth.
-	 * @return double array.double[0]:width,double[1]:heigth.
-	 */
+ 
 	public double[] zoomSize(BufferedImage image, int width, int heigth) {
 		double[] zoomSize = new double[2];
 		double srcWidth = getWidth(image);
@@ -115,37 +67,13 @@ public class ImageKit {
 		return zoomSize;
 	}
 
-	/**
-	 * 
-	 * Output to file out according to the style<code>BufferedImage</code> If
-	 * can not appoint image or formateName or file out ,do nothing. Now it can
-	 * support image type：bmp,wbmp,jpeg,png.
-	 * 
-	 * @param image
-	 *            BufferedImage.
-	 * @param formatName
-	 *            format name.
-	 * @param out
-	 *            output path.
-	 * @throws IOException
-	 *             IOException
-	 */
+ 
 	public void writeImage(BufferedImage image, String formatName, File file) throws IOException {
 		if (image != null && formatName != null && !"".equals(formatName) && file != null) {
 			ImageIO.write(image, formatName, file);
 		}
 	}
-
-	/***
-	 * 
-	 * @param src
-	 * @param to
-	 * @param w
-	 * @param h
-	 * @param ext
-	 * @return
-	 * @throws IOException
-	 */
+ 
 	public static BufferedImage getCompassImage(String src, int w, int h) throws IOException {
 		BufferedImage image = manager.readImage(new File(src));
 
@@ -159,15 +87,7 @@ public class ImageKit {
 		return manager.zoom(image, (int) size[0], (int) size[1]);
 	}
 
-	/***
-	 * 
-	 * @param src
-	 * @param to
-	 * @param w
-	 * @param h
-	 * @param ext
-	 * @throws IOException
-	 */
+ 
 	public static void compassImage(File src, File to, int w, int h, String ext) throws IOException {
 		BufferedImage image = manager.readImage(src);
 
@@ -181,15 +101,7 @@ public class ImageKit {
 		manager.writeImage(manager.zoom(image, (int) size[0], (int) size[1]), ext, to);
 	}
 
-	/***
-	 * 
-	 * @param src
-	 * @param to
-	 * @param w
-	 * @param h
-	 * @param ext
-	 * @throws IOException
-	 */
+ 
 	public static void compassImage(String src, String to, int w, int h, String ext) throws IOException {
 		compassImage(new File(src), new File(to), w, h, ext);
 	}

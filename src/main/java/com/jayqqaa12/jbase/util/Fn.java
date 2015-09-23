@@ -95,7 +95,7 @@ public class Fn {
     /**
      * 返回添加指定间隔之后的日期时间. 实现类似MSSQL数据库dateadd函数的功能.
      *
-     * @param interval 要添加的间隔的类型，支持以下几种类型：<br />　　Y（年） M（月） D（日） h（时） m（分） s（秒） w(周)
+     * @param interval 要添加的间隔的类型，支持以下几种类型：　　Y（年） M（月） D（日） h（时） m（分） s（秒） w(周)
      * @param number   要添加的间隔数. 如果为正数，将返回参数datetime之后的日期时间；如果为负，将返回datetime之前的日期时间；如果为零，返回datetime本身.
      * @param datetime 指定日期时间.
      * @return 添加指定间隔之后的日期时间
@@ -138,9 +138,9 @@ public class Fn {
     /**
      * 返回两个日期时间之间的间隔.
      * 实现类似MSSQL数据库datediff函数的功能.
-     * <br />如果date1早于date2，将返回正数；如果date1晚于date2, 将返回负数；如果相等，将返回0.
+     * 如果date1早于date2，将返回正数；如果date1晚于date2, 将返回负数；如果相等，将返回0.
      *
-     * @param interval  为返回的间隔的类型. 有以下几种类型：<br />　　Y（年） M（月） D（日） h（时） m（分） s（秒） <br/>
+     * @param interval  为返回的间隔的类型. 有以下几种类型：　　Y（年） M（月） D（日） h（时） m（分） s（秒） <p>
      *                  　　例如：传入D代表查询两个日期之间相距多少天；传入h代表两个日期之间相隔多少小时.
      * @param datetime1 日期时间1.
      * @param datetime2 日期时间2.

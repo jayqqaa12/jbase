@@ -9,7 +9,6 @@ import com.jfinal.kit.StringKit;
 /**
  * 统一XSS处理
  * @author L.cm
- * @date 2014-5-5 上午9:11:10
  */
 public class XssHandler extends Handler
 {

@@ -77,34 +77,6 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	}
  
 
-	/**
-	 * 读取 inputstream string
-	 * 
-	 * @return
-	 */
-	public String getInputStreamString() {
-		StringBuffer sb = new StringBuffer();
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(getRequest().getInputStream(), "utf-8"));
-			String buffer = null;
-			while ((buffer = br.readLine()) != null) {
-				sb.append(buffer);
-			}
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return sb.toString();
-	}
-
-	public <V> V getXml(Class<V> clazz) {
-		return JaxbKit.unmarshal(getInputStreamString(), clazz);
-
-	}
 
 	/**
 	 * fastjson转Map

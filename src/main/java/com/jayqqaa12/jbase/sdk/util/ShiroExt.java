@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.jfinal.ext;
+package com.jayqqaa12.jbase.sdk.util;
 
 
 import java.beans.BeanInfo;

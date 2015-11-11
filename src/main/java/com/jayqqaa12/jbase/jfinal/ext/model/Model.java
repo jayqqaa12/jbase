@@ -16,13 +16,13 @@ import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.plugin.ehcache.CacheKit;
 
 /***
- * 部分 方法 只能用于mysql  
+ * 部分 方法 只能用于mysql
+ * 
  * @author 12
  *
  * @param <M>
  */
-public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends com.jfinal.plugin.activerecord.Model<M>
-{
+public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends com.jfinal.plugin.activerecord.Model<M> {
 
 	private static final long serialVersionUID = 8924183967602127690L;
 
@@ -35,10 +35,8 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	/***
 	 * 反射获取 注解获得 tablename
 	 */
-	public Model()
-	{
-		if (tableName == null)
-		{
+	public Model() {
+		if (tableName == null) {
 			TableBind table = this.getClass().getAnnotation(TableBind.class);
 			if (table != null) tableName = table.tableName();
 		}
@@ -47,56 +45,47 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public M set(String attr, Object value)
-	{
-		if(value instanceof String&&Validate.isEmpty((String)value))  return (M)this;
-		
+	public M set(String attr, Object value) {
+		if (value instanceof String && Validate.isEmpty((String) value)) return (M) this;
+
 		if (value != null) return super.set(attr, value);
-		else  return (M)this;
+		else return (M) this;
 	}
 
-	public boolean update(String key, Object value, Object id)
-	{
+	public boolean update(String key, Object value, Object id) {
 
 		return Db.update("update " + tableName + " set " + key + "=? where id =?", value, id) > 0;
 	}
-	
-	
+
 	/**
 	 * 更新 指定 条件 非 id
 	 * 
 	 */
-	public boolean updateByWhere(String key, Object value,String w, Object params)
-	{
+	public boolean updateByWhere(String key, Object value, String w, Object params) {
 
-		return Db.update("update " + tableName + " set " + key + "=? "+w , value, params) > 0;
-	}
-	
-	
-	
-	public boolean updateAddOneById(String key,Object id) {
-		
-		return Db.update("update " + tableName + " set " + key + " =" + key + "+1 where id =?",id)>0;
-	}
-	
-	public boolean updateSubOneById(String key,Object id) {
-		
-		return Db.update("update " + tableName + " set " + key + " =" + key + "-1 where id =?",id)>0;
+		return Db.update("update " + tableName + " set " + key + "=? " + w, value, params) > 0;
 	}
 
-	public M findByName(String name)
-	{
-		return findFirstByWhere( " where name =? ", name);
+	public boolean updateAddOneById(String key, Object id) {
+
+		return Db.update("update " + tableName + " set " + key + " =" + key + "+1 where id =?", id) > 0;
 	}
-	
-	public M  findFirstByUid(Object id){
-		
+
+	public boolean updateSubOneById(String key, Object id) {
+
+		return Db.update("update " + tableName + " set " + key + " =" + key + "-1 where id =?", id) > 0;
+	}
+
+	public M findByName(String name) {
+		return findFirstByWhere(" where name =? ", name);
+	}
+
+	public M findFirstByUid(Object id) {
+
 		return findFirstByWhere("where user_id=?", id);
 	}
-	
 
-	public boolean checkNameExist(String name)
-	{
+	public boolean checkNameExist(String name) {
 
 		return findFirst("select * from " + tableName + " where name ='" + name + "'") != null;
 
@@ -107,15 +96,13 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * 
 	 * @param attr
 	 */
-	public Model<M> emptyRemove(String attr)
-	{
+	public Model<M> emptyRemove(String attr) {
 		if (get(attr) == null) remove(attr);
 
 		return this;
 	}
 
-	public Model<M> emptyZreo(String attr)
-	{
+	public Model<M> emptyZreo(String attr) {
 		if (get(attr) == null) set(attr, 0);
 		return this;
 	}
@@ -124,14 +111,12 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * 删除自己的同时 删除 所有 子节点 属性名 必需为pid
 	 * 
 	 */
-	public boolean deleteByIdAndPid(Object id)
-	{
+	public boolean deleteByIdAndPid(Object id) {
 		boolean result = deleteById(id);
 
 		List<Model> list = (List<Model>) list("where pid=?", id);
 
-		for (Model m : list)
-		{
+		for (Model m : list) {
 			deleteByIdAndPid(m.getId());
 
 			Db.update("delete from " + tableName + " where pid=? ", id);
@@ -140,8 +125,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		return result;
 	}
 
-	public boolean deleteById(String key, Object value)
-	{
+	public boolean deleteById(String key, Object value) {
 
 		return Db.deleteById(tableName, key, value);
 
@@ -152,8 +136,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * 
 	 * @param ids
 	 */
-	public boolean batchDelete(String ids)
-	{
+	public boolean batchDelete(String ids) {
 		if (Validate.isEmpty(ids)) return false;
 		return Db.update("delete from " + tableName + " where id in (" + ids + ")") > 0;
 
@@ -162,32 +145,24 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	/**
 	 * 根据 id 判断的
 	 */
-	public boolean saveOrUpdate()
-	{
-		if (getId() != null)return update();
+	public boolean saveOrUpdate() {
+		if (getId() != null) return update();
 		else return save();
 	}
 
-	public boolean pidIsChild(Object id, Integer pid)
-	{
+	public boolean pidIsChild(Object id, Integer pid) {
 		boolean result = false;
-		if (pid != null)
-		{
+		if (pid != null) {
 			List<Model> list = (List<Model>) list(" where  pid =?  ", id);
 
 			if (list.size() == 0) result = false;
 
-			for (Model r : list)
-			{
-				if (pid.equals(r.getId()))
-				{
+			for (Model r : list) {
+				if (pid.equals(r.getId())) {
 					result = true;
 					return result;
-				}
-				else
-				{
-					if (pidIsChild(r.getId(), pid))
-					{
+				} else {
+					if (pidIsChild(r.getId(), pid)) {
 						result = true;
 						L.i("result =" + result);
 
@@ -202,23 +177,23 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	}
 
-	public boolean isFind(String sql)
-	{
+	public boolean isFind(String sql) {
 
 		return find(sql).size() > 0;
 	}
 
-	public M findFirstByWhere(String where, Object... params)
-	{
-		List<M> list = list(where, params);
-		if (list.size() > 0) return list.get(0);
+	public M findFirstByWhere(String where, Object... params) {
+		
+		List<M> list = 	listByWhereLimit(where, 1, 1, params);
+		
+		if (list!=null&& list.size() > 0) return list.get(0);
+		
 		else return null;
 	}
 
-	public boolean isFindByWhere(String where, Object... params)
-	{
+	public boolean isFindByWhere(String where, Object... params) {
 
-		return list(where, params).size() > 0;
+		return listByWhereLimit(where,1,1, params).size() > 0;
 	}
 
 	/***
@@ -226,26 +201,22 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * 
 	 * @return
 	 */
-	public List<M> list()
-	{
+	public List<M> list() {
 
 		return find(" select *from " + tableName);
 	}
 
-	public List<M> listOrderBySeq()
-	{
+	public List<M> listOrderBySeq() {
 
 		return list(" order by seq");
 	}
 
-	public List<M> listOrderBySeq(String where, Object... params)
-	{
+	public List<M> listOrderBySeq(String where, Object... params) {
 
 		return list(where + " order by seq", params);
 	}
 
-	public List<M> list(String sql, Form f)
-	{
+	public List<M> list(String sql, Form f) {
 
 		return find(sql + f.getWhere());
 	}
@@ -255,24 +226,20 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * 
 	 * @return
 	 */
-	public List<M> list(String where)
-	{
+	public List<M> list(String where) {
 
 		return find(" select *from " + tableName + " " + where);
 	}
 
-	public List<M> listByCache()
-	{
+	public List<M> listByCache() {
 		return findByCache(" select *from " + tableName);
 	}
 
-	public List<M> listByCache(String key, String where, Object... params)
-	{
+	public List<M> listByCache(String key, String where, Object... params) {
 		return findByCache(key, " select *from " + tableName + " " + where, params);
 	}
 
-	public List<M> listByCache(String where)
-	{
+	public List<M> listByCache(String where) {
 		return findByCache(" select *from " + tableName + " " + where);
 	}
 
@@ -280,8 +247,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * 
 	 * @return
 	 */
-	public List<M> list(String where, Object... params)
-	{
+	public List<M> list(String where, Object... params) {
 
 		return find(" select *from " + tableName + " " + where, params);
 	}
@@ -291,14 +257,12 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * 
 	 * @return
 	 */
-	public List<M> list(int limit)
-	{
+	public List<M> list(int limit) {
 
 		return find(" select *from " + tableName + " limit " + limit);
 	}
 
-	public List<M> listOrderLimit(int limit, String order)
-	{
+	public List<M> listOrderLimit(int limit, String order) {
 
 		return find(" select *from " + tableName + "  order by " + order + " limit " + limit);
 	}
@@ -308,25 +272,21 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * 
 	 * @return
 	 */
-	public List<M> list(int page, int size)
-	{
+	public List<M> list(int page, int size) {
 
 		if (page < 1) page = 1;
 		return find(" select *from " + tableName + " limit " + (page - 1) * size + "," + size);
 	}
-	
-	public List<M> listByWhereLimit(String where ,int page, int size,Object ... param)
-	{
+
+	public List<M> listByWhereLimit(String where, int page, int size, Object... param) {
 		if (page < 1) page = 1;
-		return find("select * from  "+tableName+" " +where +" limit " + (page - 1) * size + "," + size,param);
+		return find("select * from  " + tableName + " " + where + " limit " + (page - 1) * size + "," + size, param);
 	}
 
-	public M findByIdCache(Object id)
-	{
+	public M findByIdCache(Object id) {
 		String sql = "select * from " + tableName + " where id =" + id;
 		M m = CacheKit.get(tableName, sql);
-		if (m == null)
-		{
+		if (m == null) {
 			m = super.findById(id);
 			CacheKit.put(tableName, sql, m);
 		}
@@ -334,8 +294,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		return m;
 	}
 
-	public int deleteAll()
-	{
+	public int deleteAll() {
 
 		return Db.update(" delete from " + tableName + " ");
 	}
@@ -346,59 +305,48 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * @param sql
 	 * @return
 	 */
-	public List<M> findByCache(String sql)
-	{
+	public List<M> findByCache(String sql) {
 
 		return super.findByCache(tableName, sql, sql);
 	}
 
-	public List<M> findByCache(String key, String sql, Object... params)
-	{
+	public List<M> findByCache(String key, String sql, Object... params) {
 		return super.findByCache(tableName, key, sql, params);
 	}
 
-	public M findFirstByCache(String key, String sql, Object... params)
-	{
+	public M findFirstByCache(String key, String sql, Object... params) {
 		List<M> list = super.findByCache(tableName, key, sql, params);
 		if (list.size() > 0) return list.get(0);
 		else return null;
 	}
-	
-	
-	public M findFirstWhereByCache(String key, String where, Object... params)
-	{
-		String sql = "select * from " + tableName +" "+  where ;
-		List<M> list = super.findByCache(tableName, key, sql, params);
-		if (list.size() > 0) return list.get(0);
-		else return null;
-	}
-	
 
-	public boolean saveAndDate()
-	{
+	public M findFirstWhereByCache(String key, String where, Object... params) {
+		String sql = "select * from " + tableName + " " + where;
+		List<M> list = super.findByCache(tableName, key, sql, params);
+		if (list.size() > 0) return list.get(0);
+		else return null;
+	}
+
+	public boolean saveAndDate() {
 
 		return this.setDate("date").save();
 	}
 
-	public boolean saveAndCreateDate()
-	{
+	public boolean saveAndCreateDate() {
 		this.setDate("createdate");
 		return this.save();
 	}
 
-	public boolean updateAndModifyDate()
-	{
+	public boolean updateAndModifyDate() {
 
 		return this.setDate("modifydate").update();
 	}
 
-	public Map<String, Object> getAttrs()
-	{
+	public Map<String, Object> getAttrs() {
 		return super.getAttrs();
 	}
 
-	public M setDate(String date)
-	{
+	public M setDate(String date) {
 		return this.set(date, new Timestamp(System.currentTimeMillis()));
 
 	}
@@ -410,13 +358,11 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * @param attr
 	 * @return
 	 */
-	public List<String> getAttr(String sql, String attr)
-	{
+	public List<String> getAttr(String sql, String attr) {
 
 		List<String> list = new ArrayList<String>();
 
-		for (M t : find(sql))
-		{
+		for (M t : find(sql)) {
 
 			list.add(t.getStr(attr));
 		}
@@ -431,13 +377,11 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * @param attr
 	 * @return
 	 */
-	public List<String> getAttr(String sql, String attr, String... param)
-	{
+	public List<String> getAttr(String sql, String attr, String... param) {
 
 		List<String> list = new ArrayList<String>();
 
-		for (M t : find(sql, param))
-		{
+		for (M t : find(sql, param)) {
 
 			list.add(t.getStr(attr));
 		}
@@ -445,60 +389,56 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	}
 
-	public long getAllCount()
-	{
+	public long getAllCount() {
 
 		return findFirst(" select count(*) as c from " + tableName).getLong("c");
 	}
 
-	public long getCountByWhere(String where)
-	{
-		return findFirst(" select count(*) as c from "+tableName +" " + where).getLong("c");
+	public long getCountByWhere(String where) {
+		return findFirst(" select count(*) as c from " + tableName + " " + where).getLong("c");
 	}
 
-	public long getCountByWhere(String where, Object... params)
-	{
+	public long getCountByWhere(String where, Object... params) {
 		return findFirst(" select count(*) as c from " + tableName + " " + where, params).getLong("c");
 	}
 
-	public long getCount(String sql)
-	{
+	public long getCount(String sql) {
 		sql = Txt.split(sql.toLowerCase(), "from")[1];
 		if (sql.contains("order by")) sql = Txt.split(sql, "order by")[0];
 
 		return findFirst(" select count(*) as c from " + sql).getLong("c");
 	}
 
-	public long getCount(String sql, Object... params)
-	{
-		sql = Txt.split(sql.toLowerCase(), "from")[1];
+	/**
+	 * 可以是 where
+	 * 
+	 * @param sql
+	 * @param params
+	 * @return
+	 */
+	public long getCount(String sql, Object... params) {
+		
+		if (sql.contains("select")) sql = Txt.split(sql.toLowerCase(), "from")[1];
 		if (sql.contains("order by")) sql = Txt.split(sql, "order by")[0];
-		return findFirst(" select count(*) as c from " + sql, params).getLong("c");
+		return findFirst(" select count(*) as c from "+tableName +" " + sql, params).getLong("c");
 	}
 
-	public M putModel(String key, Object value)
-	{
+	public M putModel(String key, Object value) {
 
-		if (value instanceof Model)
-		{
+		if (value instanceof Model) {
 			this.put(key, ((Model) value).getAttrs());
 		}
-		if (value instanceof Record)
-		{
+		if (value instanceof Record) {
 			this.put(key, ((Record) value).getColumns());
 		}
 
-		if (value instanceof List)
-		{
+		if (value instanceof List) {
 			List models = new ArrayList();
-			for (Object obj : (List) value)
-			{
-				if (obj instanceof Model)
-				{
+			for (Object obj : (List) value) {
+				if (obj instanceof Model) {
 					models.add(((Model) obj).getAttrs());
 				}
-				if (obj instanceof Record)
-				{
+				if (obj instanceof Record) {
 					models.add(((Record) obj).getColumns());
 				}
 
@@ -514,26 +454,21 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * 
 	 * @return
 	 */
-	public Long getCount()
-	{
+	public Long getCount() {
 
 		return getLong("count");
 	}
 
-	public Object getId()
-	{
+	public Object getId() {
 		return get("id");
 	}
-	
 
-	public Integer getPid()
-	{
+	public Integer getPid() {
 
 		return getInt("pid");
 	}
 
-	public Integer getType()
-	{
+	public Integer getType() {
 		return getInt("type");
 	}
 
@@ -542,8 +477,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * 
 	 * @return
 	 */
-	public String getName()
-	{
+	public String getName() {
 		return getStr("name");
 	}
 
@@ -552,8 +486,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * 
 	 * @return
 	 */
-	public String getPwd()
-	{
+	public String getPwd() {
 		return getStr("pwd");
 	}
 
@@ -562,8 +495,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * 
 	 * @return
 	 */
-	public String getDes()
-	{
+	public String getDes() {
 
 		return getStr("des");
 	}
@@ -573,42 +505,35 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * 
 	 * @return
 	 */
-	public String getDate()
-	{
+	public String getDate() {
 
 		return getStr("date");
 	}
 
-	public String getCreateDate()
-	{
+	public String getCreateDate() {
 
 		return getStr("createdate");
 
 	}
 
-	public String getModifyDate()
-	{
+	public String getModifyDate() {
 
 		return getStr("modifydate");
 	}
 
-	public String getIcon()
-	{
+	public String getIcon() {
 		return getStr("icon");
 	}
 
-	public String getIconCls()
-	{
+	public String getIconCls() {
 		return getStr("iconCls");
 	}
 
-	public Integer getStatus()
-	{
+	public Integer getStatus() {
 		return getInt("status");
 	}
 
-	public static String sql(String key)
-	{
+	public static String sql(String key) {
 
 		return SqlKit.sql(key);
 	}

@@ -58,15 +58,20 @@ public class JsonController<T> extends Controller<T>
 	}
 	
 
-	public void sendJson(String key, List list)
+	public void sendJson( List list)
 	{
-
-		renderJson(new SendJson(key, list).toJson());
+		setJsonData("data", list);
+		renderJson(json.toJson());
 	}
 	
 	public void sendJson(String key,Object obj){
 		
-		renderJson(new SendJson().setData(key, obj).toJson());
+		renderJson(json.setData(key, obj).toJson());
+	}
+	
+	public void sendJson(String key,List m){
+		json.setData(key, m);
+		renderJson(json.toJson());
 	}
 
 	public void sendJson(int code, SendJson result)
@@ -96,13 +101,15 @@ public class JsonController<T> extends Controller<T>
 	public void sendJson(int code)
 	{
 
-		renderJson(new SendJson(code).toJson());
+		json.code  =code;
+		renderJson(json.toJson());
 	}
 
 	public void sendJson(Model m)
 	{
+		setJsonData(m);
 
-		renderJson(new SendJson(m).toJson());
+		renderJson(json.toJson());
 	}
 	
 	

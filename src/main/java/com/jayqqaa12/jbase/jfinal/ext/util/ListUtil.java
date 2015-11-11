@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.jfinal.ext;
+package com.jayqqaa12.jbase.jfinal.ext.util;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -9,7 +9,7 @@ public abstract class Validator extends com.jfinal.validate.Validator
 	/***
 	 * 默认 error msg
 	 */
-	public static final String ERROR_MSG = "msg";
+	protected static final String ERROR_MSG = "msg";
 
 	protected Controller controller;
 

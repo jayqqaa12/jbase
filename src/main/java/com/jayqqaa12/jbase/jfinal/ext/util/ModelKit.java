@@ -1,6 +1,8 @@
-package com.jayqqaa12.jbase.jfinal.ext.model;
+package com.jayqqaa12.jbase.jfinal.ext.util;
 
 import java.util.List;
+
+import com.jayqqaa12.jbase.jfinal.ext.model.Model;
 
 
 /**

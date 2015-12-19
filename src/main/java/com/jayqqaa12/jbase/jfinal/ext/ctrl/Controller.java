@@ -1,8 +1,5 @@
 package com.jayqqaa12.jbase.jfinal.ext.ctrl;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.ParameterizedType;
 import java.net.URLDecoder;
@@ -15,10 +12,24 @@ import com.google.gson.Gson;
 import com.jayqqaa12.jbase.jfinal.ext.NullParamException;
 import com.jayqqaa12.jbase.util.Validate;
 import com.jayqqaa12.model.json.Form;
-import com.jfinal.ext.kit.JaxbKit;
 import com.jfinal.ext.render.excel.PoiRender;
 import com.jfinal.ext.route.ControllerBind;
 
+
+/**
+ * 
+ * 本工具（jbase）的限制
+ * 
+ * 由于是根据做的项目而慢慢演变的 
+ * 所以并不适合所有项目 使用 
+ * 
+ * 做为本人私人使用 架构比较简陋 bug也挺多  仅供学习 
+ * 
+ * 
+ * @author 12
+ *
+ * @param <T>
+ */
 public class Controller<T> extends com.jfinal.core.Controller {
 
 	ControllerBind controll;
@@ -77,25 +88,10 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	}
  
 
+ 
 
 	/**
-	 * fastjson转Map
-	 * 
-	 * 然后 就可以设置 进 model setAttrs 
-	 * 
-	 * @param json
-	 * @throws UnsupportedEncodingException
-	 */
-	@SuppressWarnings("unchecked")
-	public static Map<String, Object> fastjson2Map(String json) throws UnsupportedEncodingException {
-		json = URLDecoder.decode(json, "utf-8");
-
-		return (Map<String, Object>) JSON.parse(json.substring(json.lastIndexOf("{"), json.indexOf("}") + 1));
-	}
-
-	/**
-	 * 通过传递 to参数来自动返回　HTML 页面 viewpath 需要设置 注解
-	 * 可以解决  跨域等问题
+	 * 通过传递 to参数来自动返回　HTML 页面 viewpath 需要设置 
 	 * 
 	 */
 	public void rh() {
@@ -115,7 +111,6 @@ public class Controller<T> extends com.jfinal.core.Controller {
 			String viewpath = controll.viewPath();
 			setAttr("VIEW_PATH", viewpath);
 			render(viewpath + "/index.html");
-
 		}
 	}
 
@@ -137,13 +132,8 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	}
 
 
-     
-	/***
-	 * 因为 业务 一般比较复杂不实现
-	 * 
-	 */
+   
 	public void delete() {
-		
 	}
 
 	public void list()   {
@@ -153,11 +143,9 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	}
 
 	public void add()  {
-
 	}
 
 	public void edit()   {
-
 	}
 
 	/***
@@ -174,17 +162,6 @@ public class Controller<T> extends com.jfinal.core.Controller {
 		return Form.getForm(tableName, this, "date", "dateStart", "dateEnd", "name", "title", "des", "msg", "url",
 				"icon", "text", "pwd", "status", "type", "createdateStart", "createdateEnd", "modifydateStart",
 				"modifydateEnd", "operation");
-	}
-
-	public void forwardAction(String msg, String url) {
-
-		setAttr("msg", msg);
-		forwardAction(url);
-	}
-
-	public void render(String msg, String url) {
-		setAttr("msg", msg);
-		render(url);
 	}
 
  

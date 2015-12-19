@@ -385,6 +385,7 @@
 			</build>
 			
 			<!--  这是 中央仓库哦 
+			 -->
 			<distributionManagement>
 				<snapshotRepository>
 					<id>oss</id>
@@ -395,9 +396,8 @@
 					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 				</repository>
 			</distributionManagement>
-			 -->
 			
-			<!-- 设置一下 私服 -->
+			<!-- 设置一下 私服
 	<distributionManagement>
 		<repository>
 			<id>nexus-releases</id>
@@ -410,6 +410,7 @@
 			<url>http://218.244.156.128:8081/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
+			 -->
 			
 			
 			

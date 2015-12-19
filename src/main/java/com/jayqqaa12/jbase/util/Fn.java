@@ -6,9 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * JDiy实用函数工具类.
+ *  实用函数工具类.
  *
- * @author 子秋(ziquee)  http://www.jdiy.org
  */
 public class Fn {
     /**

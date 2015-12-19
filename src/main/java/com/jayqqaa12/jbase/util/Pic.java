@@ -11,7 +11,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * JDiy图片操作工具类.
+ * 图片操作工具类.
  * 此类封装简化了图片大小获取/缩放调整，水印等常用功能.
  */
 @SuppressWarnings({"unused"})

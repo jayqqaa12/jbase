@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.util.apk;
+package com.jayqqaa12.jbase.util.android;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -9,10 +9,10 @@ import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import com.sinaapp.msdxblog.apkUtil.entity.ApkInfo;
-import com.sinaapp.msdxblog.apkUtil.utils.ApkUtil;
+import com.sinaapp.msdxblog.apkUtil.ApkInfo;
+import com.sinaapp.msdxblog.apkUtil.ApkUtil;
 
-public class ApkUtils {
+public class ApkKit {
 
 	public static String AAPT_PATH = "/root/android-sdk-linux/build-tools/19.0.1/aapt";
 

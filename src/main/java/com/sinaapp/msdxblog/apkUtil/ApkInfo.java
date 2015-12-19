@@ -1,4 +1,4 @@
-/*     */ package com.sinaapp.msdxblog.apkUtil.entity;
+/*     */ package com.sinaapp.msdxblog.apkUtil;
 /*     */ 
 /*     */ import java.util.ArrayList;
 /*     */ import java.util.HashMap;

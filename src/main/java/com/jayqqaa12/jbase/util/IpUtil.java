@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.jfinal.kit.HttpKit;
 
 /**
  * IP工具类
@@ -48,7 +49,7 @@ public class IpUtil {
 	}
 
 	public static JSONObject getIp(String ip) {
-		String result = new Http().get("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=" + ip);
+		String result = HttpKit.get("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=" + ip);
 		JSONObject obj =  new JSONObject();
 		try {
 			obj = (JSONObject) JSON.parse(result);
@@ -60,7 +61,7 @@ public class IpUtil {
 
 	public static String getIpAddr() {
 
-		String ip = new Http().get("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json");
+		String ip =  HttpKit.get("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json");
 		String info = "";
 
 		JSONObject obj = (JSONObject) JSON.parse(ip);
@@ -72,7 +73,7 @@ public class IpUtil {
 	}
 
 	public static String getIpCity() {
-		String ip = new Http().get("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=");
+		String ip =  HttpKit.get("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=");
 		String info = "";
 		JSONObject obj = (JSONObject) JSON.parse(ip);
 		info += obj.getString("city");
@@ -84,7 +85,7 @@ public class IpUtil {
 
 		String url = "http://api.map.baidu.com/telematics/v3/weather?location=" + location
 				+ "&output=json&ak=640f3985a6437dad8135dae98d775a09";
-		String ip = new Http().get(url);
+		String ip =  HttpKit.get(url);
 
 		String info = "";
 

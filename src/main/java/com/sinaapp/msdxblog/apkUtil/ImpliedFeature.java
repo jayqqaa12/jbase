@@ -1,4 +1,4 @@
-/*    */ package com.sinaapp.msdxblog.apkUtil.entity;
+/*    */ package com.sinaapp.msdxblog.apkUtil;
 /*    */ 
 /*    */ public class ImpliedFeature
 /*    */ {

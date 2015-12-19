@@ -41,10 +41,16 @@ import javax.servlet.http.Part;
 
 import com.google.common.collect.Maps;
 
+/***
+ * 解决controller getModel() 为null 的问题
+ * @author 12 修复
+ *
+ */
 public class MockHttpRequest implements HttpServletRequest {
     private Map<String, Object> attr = Maps.newHashMap();
 
     private Map<String, String> para = Maps.newHashMap();
+    private Map<String, String[]> paraMap = Maps.newHashMap();
 
     private String body;
 
@@ -193,7 +199,7 @@ public class MockHttpRequest implements HttpServletRequest {
 
     @Override
     public Map<String, String[]> getParameterMap() {
-        return null;
+        return paraMap;
     }
 
     @Override
@@ -437,6 +443,7 @@ public class MockHttpRequest implements HttpServletRequest {
 
     public void setParameter(String key, String val) {
         para.put(key, val);
+        paraMap.put(key, getParameterValues(key));//FIXME 数组没有解析
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.jayqqaa12.jbase.jfinal.ext.model;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -164,8 +165,6 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 				} else {
 					if (pidIsChild(r.getId(), pid)) {
 						result = true;
-						L.i("result =" + result);
-
 						return result;
 					}
 				}
@@ -179,21 +178,21 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	public boolean isFind(String sql) {
 
-		return find(sql).size() > 0;
+		return list(1).size() > 0;
 	}
 
 	public M findFirstByWhere(String where, Object... params) {
-		
-		List<M> list = 	listByWhereLimit(where, 1, 1, params);
-		
-		if (list!=null&& list.size() > 0) return list.get(0);
-		
+
+		List<M> list = listByWhereLimit(where, 1, 1, params);
+
+		if (list != null && list.size() > 0) return list.get(0);
+
 		else return null;
 	}
 
 	public boolean isFindByWhere(String where, Object... params) {
 
-		return listByWhereLimit(where,1,1, params).size() > 0;
+		return listByWhereLimit(where, 1, 1, params).size() > 0;
 	}
 
 	/***
@@ -284,14 +283,8 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	}
 
 	public M findByIdCache(Object id) {
-		String sql = "select * from " + tableName + " where id =" + id;
-		M m = CacheKit.get(tableName, sql);
-		if (m == null) {
-			m = super.findById(id);
-			CacheKit.put(tableName, sql, m);
-		}
-
-		return m;
+		
+		return  super.findFirstByCache(tableName, id, "select * from "+ tableName +" where id =?",id);
 	}
 
 	public int deleteAll() {
@@ -314,17 +307,9 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		return super.findByCache(tableName, key, sql, params);
 	}
 
-	public M findFirstByCache(String key, String sql, Object... params) {
-		List<M> list = super.findByCache(tableName, key, sql, params);
-		if (list.size() > 0) return list.get(0);
-		else return null;
-	}
-
 	public M findFirstWhereByCache(String key, String where, Object... params) {
 		String sql = "select * from " + tableName + " " + where;
-		List<M> list = super.findByCache(tableName, key, sql, params);
-		if (list.size() > 0) return list.get(0);
-		else return null;
+		return super.findFirstByCache(tableName, key, sql, params);
 	}
 
 	public boolean saveAndDate() {
@@ -417,10 +402,10 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * @return
 	 */
 	public long getCount(String sql, Object... params) {
-		
+
 		if (sql.contains("select")) sql = Txt.split(sql.toLowerCase(), "from")[1];
 		if (sql.contains("order by")) sql = Txt.split(sql, "order by")[0];
-		return findFirst(" select count(*) as c from "+tableName +" " + sql, params).getLong("c");
+		return findFirst(" select count(*) as c from " + tableName + " " + sql, params).getLong("c");
 	}
 
 	public M putModel(String key, Object value) {
@@ -449,84 +434,22 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		return (M) this;
 	}
 
-	/***
-	 * 取值
-	 * 
-	 * @return
-	 */
-	public Long getCount() {
-
-		return getLong("count");
-	}
-
 	public Object getId() {
 		return get("id");
 	}
 
-	public Integer getPid() {
-
-		return getInt("pid");
+	public Date getDate() {
+		return getDate("date");
 	}
 
-	public Integer getType() {
-		return getInt("type");
-	}
-
-	/***
-	 * return getStr("name");
-	 * 
-	 * @return
-	 */
-	public String getName() {
-		return getStr("name");
-	}
-
-	/***
-	 * return getStr("pwd");
-	 * 
-	 * @return
-	 */
-	public String getPwd() {
-		return getStr("pwd");
-	}
-
-	/***
-	 * return getStr("des");
-	 * 
-	 * @return
-	 */
-	public String getDes() {
-
-		return getStr("des");
-	}
-
-	/***
-	 * return getStr("date");
-	 * 
-	 * @return
-	 */
-	public String getDate() {
-
-		return getStr("date");
-	}
-
-	public String getCreateDate() {
-
-		return getStr("createdate");
+	public Timestamp getCreateDate() {
+		return getTimestamp("createdate");
 
 	}
 
-	public String getModifyDate() {
+	public Timestamp getModifyDate() {
 
-		return getStr("modifydate");
-	}
-
-	public String getIcon() {
-		return getStr("icon");
-	}
-
-	public String getIconCls() {
-		return getStr("iconCls");
+		return getTimestamp("modifydate");
 	}
 
 	public Integer getStatus() {

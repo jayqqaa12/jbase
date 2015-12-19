@@ -9,6 +9,13 @@
    private static final int ERROR = 1;
    private static final int INFO = 4;
    private static final int OUT = 5;
+   
+   
+   
+   
+   
+   
+   
  
    public static void i(Object s)
    {

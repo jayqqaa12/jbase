@@ -203,11 +203,7 @@ public class Sec {
     private Sec(){}
     
     
-    public static void main(String[] args)
-	{
-    	System.out.println(md5("231566qq"));
-		
-	}
+ 
     
 
 }

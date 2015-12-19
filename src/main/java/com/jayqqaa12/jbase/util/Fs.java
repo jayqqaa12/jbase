@@ -19,9 +19,7 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 /**
- * JDiy文件系统操作工具类.
- *
- * @author 子秋(ziquee)  http://www.jdiy.org
+ * 文件系统操作工具类.
  */
 @SuppressWarnings({"unused", "ResultOfMethodCallIgnored"})
 public final class Fs{

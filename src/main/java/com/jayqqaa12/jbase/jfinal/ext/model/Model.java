@@ -1,25 +1,29 @@
 package com.jayqqaa12.jbase.jfinal.ext.model;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.jayqqaa12.jbase.util.L;
 import com.jayqqaa12.jbase.util.Txt;
 import com.jayqqaa12.jbase.util.Validate;
-import com.jayqqaa12.model.easyui.Form;
 import com.jfinal.ext.plugin.sqlinxml.SqlKit;
 import com.jfinal.ext.plugin.tablebind.TableBind;
+import com.jfinal.plugin.activerecord.ActiveRecordException;
 import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
-import com.jfinal.plugin.ehcache.CacheKit;
+import com.jfinal.plugin.activerecord.TableMapping;
 
 /***
- * 部分 方法 只能用于mysql
+ * 
+ * 不支持 联合主键  因为不建议使用
  * 
  * @author 12
+ * 
+ * 升级兼容多种数据库
  *
  * @param <M>
  */
@@ -30,8 +34,9 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	/***
 	 * 用来当 缓存名字 也用来 生成 简单sql
 	 */
-
 	public String tableName;
+
+	private Class<? extends com.jfinal.plugin.activerecord.Model<M>> clazz;
 
 	/***
 	 * 反射获取 注解获得 tablename
@@ -40,98 +45,59 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		if (tableName == null) {
 			TableBind table = this.getClass().getAnnotation(TableBind.class);
 			if (table != null) tableName = table.tableName();
+			
+			Type genericSuperclass = getClass().getGenericSuperclass();
+			
+			try{
+				
+			clazz = (Class<? extends com.jfinal.plugin.activerecord.Model<M>>) ((ParameterizedType) genericSuperclass).getActualTypeArguments()[0];
+			}
+			catch(Exception e){
+				throw new RuntimeException(" Can't new Model must new  extends sub class ");
+			}
 		}
-
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public M set(String attr, Object value) {
-		if (value instanceof String && Validate.isEmpty((String) value)) return (M) this;
-
-		if (value != null) return super.set(attr, value);
-		else return (M) this;
-	}
-
-	public boolean update(String key, Object value, Object id) {
-
-		return Db.update("update " + tableName + " set " + key + "=? where id =?", value, id) > 0;
-	}
+	// ///////////////////////////////////////////////////////////////
 
 	/**
-	 * 更新 指定 条件 非 id
+	 * 更新 指定 条件
 	 * 
 	 */
 	public boolean updateByWhere(String key, Object value, String w, Object params) {
-
+	
+		
 		return Db.update("update " + tableName + " set " + key + "=? " + w, value, params) > 0;
 	}
 
-	public boolean updateAddOneById(String key, Object id) {
+	public boolean update(String key, Object value, Object id) {
+		
+		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
+		
+		 if (idKey == null)
+           throw new ActiveRecordException("You can't update model without Primary Key.");
+		
+		return Db.update("update " + tableName + " set " + key + "=? where "+idKey+" =?", value, id) > 0;
+	}
 
-		return Db.update("update " + tableName + " set " + key + " =" + key + "+1 where id =?", id) > 0;
+	public boolean updateAddOneById(String key, Object id) {
+		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
+		 if (idKey == null)
+	           throw new ActiveRecordException("You can't update model without Primary Key.");
+			
+		return Db.update("update " + tableName + " set " + key + " =" + key + "+1 where "+idKey+" =?", id) > 0;
 	}
 
 	public boolean updateSubOneById(String key, Object id) {
-
-		return Db.update("update " + tableName + " set " + key + " =" + key + "-1 where id =?", id) > 0;
+		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
+		 if (idKey == null)
+	           throw new ActiveRecordException("You can't update model without Primary Key.");
+			
+		return Db.update("update " + tableName + " set " + key + " =" + key + "-1 where "+idKey+" =?", id) > 0;
 	}
 
-	public M findByName(String name) {
-		return findFirstByWhere(" where name =? ", name);
-	}
-
-	public M findFirstByUid(Object id) {
-
-		return findFirstByWhere("where user_id=?", id);
-	}
-
-	public boolean checkNameExist(String name) {
-
-		return findFirst("select * from " + tableName + " where name ='" + name + "'") != null;
-
-	}
-
-	/***
-	 * if empty remove the attr
-	 * 
-	 * @param attr
-	 */
-	public Model<M> emptyRemove(String attr) {
-		if (get(attr) == null) remove(attr);
-
-		return this;
-	}
-
-	public Model<M> emptyZreo(String attr) {
-		if (get(attr) == null) set(attr, 0);
-		return this;
-	}
-
-	/***
-	 * 删除自己的同时 删除 所有 子节点 属性名 必需为pid
-	 * 
-	 */
-	public boolean deleteByIdAndPid(Object id) {
-		boolean result = deleteById(id);
-
-		List<Model> list = (List<Model>) list("where pid=?", id);
-
-		for (Model m : list) {
-			deleteByIdAndPid(m.getId());
-
-			Db.update("delete from " + tableName + " where pid=? ", id);
-		}
-
-		return result;
-	}
-
-	public boolean deleteById(String key, Object value) {
-
-		return Db.deleteById(tableName, key, value);
-
-	}
-
+	
+	
 	/***
 	 * ids 必需为 连续的 1，2，3 这样子
 	 * 
@@ -139,51 +105,45 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 */
 	public boolean batchDelete(String ids) {
 		if (Validate.isEmpty(ids)) return false;
-		return Db.update("delete from " + tableName + " where id in (" + ids + ")") > 0;
-
+		
+		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
+		
+		 if (idKey == null)
+	           throw new ActiveRecordException("You can't update model without Primary Key.");
+			
+		return Db.update("delete from " + tableName + " where "+idKey+" in (" + ids + ")") > 0;
 	}
-
+	
+	
 	/**
-	 * 根据 id 判断的
+	 * 不支持 联合主键
 	 */
-	public boolean saveOrUpdate() {
-		if (getId() != null) return update();
-		else return save();
-	}
+	public boolean deleteById(  Object id) {
 
-	public boolean pidIsChild(Object id, Integer pid) {
-		boolean result = false;
-		if (pid != null) {
-			List<Model> list = (List<Model>) list(" where  pid =?  ", id);
-
-			if (list.size() == 0) result = false;
-
-			for (Model r : list) {
-				if (pid.equals(r.getId())) {
-					result = true;
-					return result;
-				} else {
-					if (pidIsChild(r.getId(), pid)) {
-						result = true;
-						return result;
-					}
-				}
-
-			}
-		}
-
-		return result;
+		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
+		
+		 if (idKey == null)
+	           throw new ActiveRecordException("You can't update model without Primary Key.");
+	
+		return Db.deleteById(tableName, idKey, id);
 
 	}
 
-	public boolean isFind(String sql) {
 
-		return list(1).size() > 0;
+	public M findByIdCache(Object id) {
+		
+		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
+		 if (idKey == null)
+	           throw new ActiveRecordException("You can't update model without Primary Key.");
+			
+		return super.findFirstByCache(tableName, id, "select * from " + tableName + " where "+idKey+" =?", id);
 	}
+
+	
 
 	public M findFirstByWhere(String where, Object... params) {
 
-		List<M> list = listByWhereLimit(where, 1, 1, params);
+		List<M> list = findAllByWhere(where, params);
 
 		if (list != null && list.size() > 0) return list.get(0);
 
@@ -192,100 +152,55 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	public boolean isFindByWhere(String where, Object... params) {
 
-		return listByWhereLimit(where, 1, 1, params).size() > 0;
+		return findAllByWhere(where, params).size() > 0;
 	}
 
 	/***
-	 * 返回全部的数据 比较方便 但不灵活
+	 * 返回全部的数据  
 	 * 
 	 * @return
 	 */
-	public List<M> list() {
+	public List<M> findAll() {
 
 		return find(" select *from " + tableName);
 	}
 
-	public List<M> listOrderBySeq() {
-
-		return list(" order by seq");
-	}
-
-	public List<M> listOrderBySeq(String where, Object... params) {
-
-		return list(where + " order by seq", params);
-	}
-
-	public List<M> list(String sql, Form f) {
-
-		return find(sql + f.getWhere());
-	}
 
 	/***
-	 * 返回全部的数据 比较方便 但不灵活
+	 * 返回全部的数据   可设置where
 	 * 
 	 * @return
 	 */
-	public List<M> list(String where) {
+	public List<M> findAllByWhere(String where) {
 
 		return find(" select *from " + tableName + " " + where);
 	}
-
-	public List<M> listByCache() {
-		return findByCache(" select *from " + tableName);
-	}
-
-	public List<M> listByCache(String key, String where, Object... params) {
-		return findByCache(key, " select *from " + tableName + " " + where, params);
-	}
-
-	public List<M> listByCache(String where) {
-		return findByCache(" select *from " + tableName + " " + where);
-	}
-
+	
+	
 	/***
+	 * 返回全部的数据   可设置where
 	 * 
 	 * @return
 	 */
-	public List<M> list(String where, Object... params) {
+	public List<M> findAllByWhere(String where, Object... params) {
 
 		return find(" select *from " + tableName + " " + where, params);
 	}
+ 
 
-	/***
-	 * 返回全部的数据 比较方便 但不灵活
-	 * 
-	 * @return
-	 */
-	public List<M> list(int limit) {
-
-		return find(" select *from " + tableName + " limit " + limit);
+	public List<M> findAllByCache() {
+		return findByCache(" select *from " + tableName);
 	}
 
-	public List<M> listOrderLimit(int limit, String order) {
-
-		return find(" select *from " + tableName + "  order by " + order + " limit " + limit);
+	public List<M> findAllByCache(String key, String where, Object... params) {
+		return findByCache(key, " select *from " + tableName + " " + where, params);
 	}
 
-	/***
-	 * 返回全部的数据 比较方便 但不灵活
-	 * 
-	 * @return
-	 */
-	public List<M> list(int page, int size) {
-
-		if (page < 1) page = 1;
-		return find(" select *from " + tableName + " limit " + (page - 1) * size + "," + size);
+	public List<M> findAllByCache(String where) {
+		return findByCache(" select *from " + tableName + " " + where);
 	}
 
-	public List<M> listByWhereLimit(String where, int page, int size, Object... param) {
-		if (page < 1) page = 1;
-		return find("select * from  " + tableName + " " + where + " limit " + (page - 1) * size + "," + size, param);
-	}
 
-	public M findByIdCache(Object id) {
-		
-		return  super.findFirstByCache(tableName, id, "select * from "+ tableName +" where id =?",id);
-	}
 
 	public int deleteAll() {
 
@@ -307,93 +222,20 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		return super.findByCache(tableName, key, sql, params);
 	}
 
-	public M findFirstWhereByCache(String key, String where, Object... params) {
+	public M findFirstByCache(String key, String where, Object... params) {
 		String sql = "select * from " + tableName + " " + where;
 		return super.findFirstByCache(tableName, key, sql, params);
 	}
 
-	public boolean saveAndDate() {
-
-		return this.setDate("date").save();
-	}
-
-	public boolean saveAndCreateDate() {
-		this.setDate("createdate");
-		return this.save();
-	}
-
-	public boolean updateAndModifyDate() {
-
-		return this.setDate("modifydate").update();
-	}
-
-	public Map<String, Object> getAttrs() {
-		return super.getAttrs();
-	}
-
-	public M setDate(String date) {
-		return this.set(date, new Timestamp(System.currentTimeMillis()));
-
-	}
-
-	/***
-	 * 把 model 转化为 list 找到其中的单个属性
-	 * 
-	 * @param sql
-	 * @param attr
-	 * @return
-	 */
-	public List<String> getAttr(String sql, String attr) {
-
-		List<String> list = new ArrayList<String>();
-
-		for (M t : find(sql)) {
-
-			list.add(t.getStr(attr));
-		}
-		return list;
-
-	}
-
-	/***
-	 * 把 model 转化为 list 找到其中的单个属性
-	 * 
-	 * @param sql
-	 * @param attr
-	 * @return
-	 */
-	public List<String> getAttr(String sql, String attr, String... param) {
-
-		List<String> list = new ArrayList<String>();
-
-		for (M t : find(sql, param)) {
-
-			list.add(t.getStr(attr));
-		}
-		return list;
-
-	}
-
+	
 	public long getAllCount() {
-
-		return findFirst(" select count(*) as c from " + tableName).getLong("c");
+		return getCount(" ");
 	}
-
-	public long getCountByWhere(String where) {
-		return findFirst(" select count(*) as c from " + tableName + " " + where).getLong("c");
-	}
-
-	public long getCountByWhere(String where, Object... params) {
-		return findFirst(" select count(*) as c from " + tableName + " " + where, params).getLong("c");
-	}
-
+	
 	public long getCount(String sql) {
-		sql = Txt.split(sql.toLowerCase(), "from")[1];
-		if (sql.contains("order by")) sql = Txt.split(sql, "order by")[0];
-
-		return findFirst(" select count(*) as c from " + sql).getLong("c");
+		
+		return getCount(sql,new Object[]{});
 	}
-
 	/**
 	 * 可以是 where
 	 * 
@@ -406,6 +248,87 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		if (sql.contains("select")) sql = Txt.split(sql.toLowerCase(), "from")[1];
 		if (sql.contains("order by")) sql = Txt.split(sql, "order by")[0];
 		return findFirst(" select count(*) as c from " + tableName + " " + sql, params).getLong("c");
+	}
+
+
+	
+	public Page<M> findAll(int page, int size) {
+
+		return paginate(page, size, "select *", "from "+tableName  );
+	}
+
+	/**
+	 * 不需要加 limit  
+	 * @param where
+	 * @param page
+	 * @param size
+	 * @param param
+	 * @return
+	 */
+	public Page<M> findAllByWhere(String where, int page, int size, Object... param) {
+		
+		return paginate(page,size,"select * " , "from "+tableName + " " + where , param);
+	}
+	
+	
+	
+
+	
+	public Page<M> findAllByCache(int page, int size) {
+
+		return paginateByCache(tableName, "findAllByCache"+page+""+size ,page, size, "select *", "from "+tableName  );
+	}
+
+	/**
+	 * 不需要加 limit  
+	 * @param where
+	 * @param page
+	 * @param size
+	 * @param param
+	 * @return
+	 */
+	public Page<M> findAllByCache(String where, int page, int size, Object... param) {
+		
+		return paginateByCache(tableName, "findAllByWhereCache"+page+""+size , page,size,"select * " , "from "+tableName + " " + where , param);
+	}
+	
+	
+	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public M set(String attr, Object value) {
+		if (value instanceof String && Validate.isEmpty((String) value)) return (M) this;
+
+		if (value != null) return super.set(attr, value);
+		else return (M) this;
+	}
+
+	/***
+	 * if empty remove the attr
+	 * 
+	 * @param attr
+	 */
+	public Model<M> emptyRemove(String attr) {
+		if (get(attr) == null) remove(attr);
+
+		return this;
+	}
+
+	public Model<M> emptyZreo(String attr) {
+		if (get(attr) == null) set(attr, 0);
+		return this;
+	}
+
+
+
+	/**
+	 * 根据 id 判断的
+	 */
+	public boolean saveOrUpdate() {
+		if (getId() != null) return update();
+		else return save();
 	}
 
 	public M putModel(String key, Object value) {
@@ -434,26 +357,38 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		return (M) this;
 	}
 
+	/***
+	 * 
+	 * id 为“id”时候用一下 联合主键就算了
+	 * 
+	 * @return
+	 */
 	public Object getId() {
 		return get("id");
 	}
 
-	public Date getDate() {
-		return getDate("date");
+	public boolean saveAndDate() {
+
+		return this.setDate("date").save();
 	}
 
-	public Timestamp getCreateDate() {
-		return getTimestamp("createdate");
-
+	public boolean saveAndCreateDate() {
+		this.setDate("createdate");
+		return this.save();
 	}
 
-	public Timestamp getModifyDate() {
+	public boolean updateAndModifyDate() {
 
-		return getTimestamp("modifydate");
+		return this.setDate("modifydate").update();
 	}
 
-	public Integer getStatus() {
-		return getInt("status");
+	public Map<String, Object> getAttrs() {
+		return super.getAttrs();
+	}
+
+	public M setDate(String date) {
+		return this.set(date, new Timestamp(System.currentTimeMillis()));
+
 	}
 
 	public static String sql(String key) {

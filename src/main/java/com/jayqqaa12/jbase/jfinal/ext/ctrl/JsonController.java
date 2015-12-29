@@ -7,105 +7,105 @@ import com.jayqqaa12.model.json.SendJson;
 
 public class JsonController<T> extends Controller<T>
 {
-	protected SendJson json = new SendJson();
+	private SendJson json = new SendJson();
 	
-	public void renderJsonResult(boolean result) {
+	protected void renderJsonResult(boolean result) {
 		if (result) renderJson200();
 		else renderJson500();
 	}
 
 	
-	public void renderJson500() {
+	protected void renderJson500() {
 		renderJson("{\"code\":500,\"msg\":\"没有任何修改或 服务器错误\"}");
 	}
 
-	public void renderJsonError(String msg) {
+	protected void renderJsonError(String msg) {
 		renderJson("{\"code\":500,\"msg\":\" " + msg + " \"}");
 	}
 
-	public void renderJson200() {
+	protected void renderJson200() {
 		renderJson("{\"code\":200}");
 	}
 
-	public SendJson getJsonObject(){
-		return json;
-	}
-	
-	public void setJsonData(String key, Model m){
+ 
+	protected void setJsonData(String key, Model m){
 		json.setData(key, m);
 	}
 	
 	
-	public void setJsonData(  Model m){
+	protected void setJsonData(  Model m){
 		json.setData("data", m);
 	}
 	
-	public void setJsonData( List list){
+	protected void setJsonData( List list){
 		json.setData("data",list);
 	}
 
 	
-	public void setJsonData( Object obj){
+	protected void setJsonData( Object obj){
 		json.setData("data", obj);
 	}
 	
-	public void setJsonData(String key, List m){
+	protected void setJsonData(String key, List m){
 		json.setData(key, m);
 	}
 	
-	public void setJsonData(String key,Object value){
+	protected void setJsonData(String key,Object value){
 		json.setData(key, value);
 	}
 	
 
-	public void sendJson( List list)
+	protected void sendJson( List list)
 	{
 		setJsonData("data", list);
 		renderJson(json.toJson());
 	}
 	
-	public void sendJson(String key,Object obj){
+	protected void sendJson(String key,Object obj){
 		
 		renderJson(json.setData(key, obj).toJson());
 	}
 	
-	public void sendJson(String key,List m){
+	protected void sendJson(String key,List m){
 		json.setData(key, m);
 		renderJson(json.toJson());
 	}
 
-	public void sendJson(int code, SendJson result)
+	protected void sendJson(int code, SendJson result)
 	{
 		if (code == 200) renderJson(result.toJson());
 		else sendJson(code);
 	}
 
-	public void sendJson(SendJson result)
+	protected void sendJson(SendJson result)
 	{
 		renderJson(result.toJson());
 	}
 
-	public void sendJson()
+	protected void sendJson()
 	{
 		renderJson(json.toJson());
 	}
 
 	
-	public void sendJson(boolean result)
+	protected void sendJson(boolean result)
 	{
 		int code =200;
 		if(!result)code=500;
 		sendJson(code);
 	}
 	
-	public void sendJson(int code)
+	protected void setJsonCode(int code){
+		json.code=code;
+	}
+	
+	protected void sendJson(int code)
 	{
-
-		json.code  =code;
+		setJsonCode(code);
 		renderJson(json.toJson());
 	}
 
-	public void sendJson(Model m)
+	protected void sendJson(Model m)
 	{
 		setJsonData(m);
 

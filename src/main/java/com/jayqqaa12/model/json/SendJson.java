@@ -11,8 +11,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.jayqqaa12.jbase.jfinal.ext.model.Model;
 import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.render.Render;
 
-public class SendJson {
+public class SendJson  {
 	public int code = 200;
 	/**
 	 * 错误描述可写 可不写 可集中在 客户端 判断 code 得出
@@ -59,10 +60,14 @@ public class SendJson {
 		return rst;
 	}
 
+	
+ 
 	@Override
 	public String toString() {
 		return toJson();
 	}
+	
+	
 
 	public SendJson setData(String key, Model m) {
 		this.data.put(key, m.getAttrs());
@@ -89,5 +94,7 @@ public class SendJson {
 		if (attr.size() == 0) data.put(key, list);
 
 	}
+
+
 
 }

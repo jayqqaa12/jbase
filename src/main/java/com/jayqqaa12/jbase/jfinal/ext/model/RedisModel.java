@@ -10,13 +10,18 @@ import com.jfinal.ext.plugin.redis.JedisKit;
  * 
  * 使用redis 作为缓存的 model
  * 
+ * 此类违反  里氏替换 原则  不应修改父类原有功能 
+ * 
+ * 更好的办法为 实现一个抽象接口 来实现不同策略   
+ * 
+ * 
  * @author 12
  *
  */
 public class RedisModel<M extends com.jayqqaa12.jbase.jfinal.ext.model.Model<M>> extends
 		com.jayqqaa12.jbase.jfinal.ext.model.Model<M> {
-	
-//	static final Object[] NULL_PARA_ARRAY = new Object[0];
+
+	private static final long serialVersionUID = 7715592315874069631L;
 
 	private static int DEFALT_CACHE_TIME = 60 * 5;
   
@@ -75,54 +80,6 @@ public class RedisModel<M extends com.jayqqaa12.jbase.jfinal.ext.model.Model<M>>
 	
 	
 	
-//	@Override
-//	public List<M> findByCache(String cacheName, Object key, String sql) {
-//		return findByCache(cacheName, key, sql, NULL_PARA_ARRAY);
-//	}
-
-//	@Override
-//	public M findFirstByCache(String cacheName, Object key, String sql) {
-//
-//		return findFirstByCache(cacheName, key, sql, NULL_PARA_ARRAY);
-//	}
-//
-//	@Override
-//	public M findFirstWhereByCache(String key, String where, Object... params) {
-//		String sql = "select * from " + tableName + " " + where;
-//		return findFirstByCache(tableName, key, sql, params);
-//	}
-//
-//	@Override
-//	public M findByIdCache(Object id) {
-//
-//		return findFirstByCache(tableName, id, "select * from " + tableName + " where id =?", id);
-//
-//	}
-//
-//	@Override
-//	public List<M> findByCache(String sql) {
-//		return findByCache(tableName, sql, sql);
-//	}
-//
-//	@Override
-//	public List<M> findByCache(String key, String sql, Object... params) {
-//		return findByCache(tableName, key, sql, params);
-//	}
-//
-//	@Override
-//	public List<M> listByCache() {
-//		return findByCache(" select *from " + tableName);
-//	}
-//
-//	@Override
-//	public List<M> listByCache(String key, String where, Object... params) {
-//
-//		return findByCache(key, " select *from " + tableName + " " + where, params);
-//	}
-//
-//	@Override
-//	public List<M> listByCache(String where) {
-//		return findByCache(" select *from " + tableName + " " + where);
-//	}
+ 
 
 }

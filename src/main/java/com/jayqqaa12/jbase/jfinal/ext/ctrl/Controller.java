@@ -1,13 +1,9 @@
 package com.jayqqaa12.jbase.jfinal.ext.ctrl;
 
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.ParameterizedType;
-import java.net.URLDecoder;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
-import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.jayqqaa12.jbase.jfinal.ext.NullParamException;
 import com.jayqqaa12.jbase.util.Validate;
@@ -18,13 +14,11 @@ import com.jfinal.ext.route.ControllerBind;
 
 /**
  * 
- * 本工具（jbase）的限制
- * 
- * 由于是根据做的项目而慢慢演变的 
- * 所以并不适合所有项目 使用 
- * 
  * 做为本人私人使用 架构比较简陋 bug也挺多  仅供学习 
  * 
+ * 2013-8-12 
+ * 
+ * 2015-12-23 重新修订
  * 
  * @author 12
  *
@@ -36,6 +30,7 @@ public class Controller<T> extends com.jfinal.core.Controller {
 
 	public Controller() {
 		controll = this.getClass().getAnnotation(ControllerBind.class);
+
 	}
 	
 	

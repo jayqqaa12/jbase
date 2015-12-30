@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.jayqqaa12.jbase.jfinal.ext.model.Model;
 import com.jayqqaa12.model.json.SendJson;
+import com.jfinal.plugin.activerecord.Page;
 
 public class JsonController<T> extends Controller<T>
 {
@@ -46,6 +47,11 @@ public class JsonController<T> extends Controller<T>
 		json.setData("data", obj);
 	}
 	
+	protected void setJsonData( Page page){
+		json.setData("list",page.getList());
+		
+		json.setData("total", page.getTotalRow());
+	}
 	protected void setJsonData(String key, List m){
 		json.setData(key, m);
 	}

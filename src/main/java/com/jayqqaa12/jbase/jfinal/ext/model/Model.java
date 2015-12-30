@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.jayqqaa12.jbase.util.Sec;
 import com.jayqqaa12.jbase.util.Txt;
 import com.jayqqaa12.jbase.util.Validate;
 import com.jfinal.ext.plugin.sqlinxml.SqlKit;
@@ -215,14 +216,14 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 */
 	public List<M> findByCache(String sql) {
 
-		return super.findByCache(tableName, sql, sql);
+		return super.findByCache(tableName, Sec.md5(sql), sql);
 	}
 
 	public List<M> findByCache(String key, String sql, Object... params) {
 		return super.findByCache(tableName, key, sql, params);
 	}
 
-	public M findFirstByCache(String key, String where, Object... params) {
+	public M findFirstByWhereCache(String key, String where, Object... params) {
 		String sql = "select * from " + tableName + " " + where;
 		return super.findFirstByCache(tableName, key, sql, params);
 	}
@@ -265,7 +266,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * @param param
 	 * @return
 	 */
-	public Page<M> findAllByWhere(String where, int page, int size, Object... param) {
+	public Page<M> findAllByWhere(int page, int size,String where,  Object... param) {
 		
 		return paginate(page,size,"select * " , "from "+tableName + " " + where , param);
 	}
@@ -276,7 +277,9 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	
 	public Page<M> findAllByCache(int page, int size) {
 
-		return paginateByCache(tableName, "findAllByCache"+page+""+size ,page, size, "select *", "from "+tableName  );
+		String key = Sec.md5( tableName +"findAllByCache"+page+""+size);
+		
+		return paginateByCache(tableName, key,page, size, "select *", "from "+tableName  );
 	}
 
 	/**
@@ -289,7 +292,9 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 */
 	public Page<M> findAllByCache(String where, int page, int size, Object... param) {
 		
-		return paginateByCache(tableName, "findAllByWhereCache"+page+""+size , page,size,"select * " , "from "+tableName + " " + where , param);
+		String key = Sec.md5( tableName +"findAllByWhereCache"+page+""+size);
+		
+		return paginateByCache(tableName, key, page,size,"select * " , "from "+tableName + " " + where , param);
 	}
 	
 	

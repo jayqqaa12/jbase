@@ -14,12 +14,6 @@ import com.mortennobel.imagescaling.ResampleOp;
 /***
  * 
  * 必需添加
- * 		<dependency>
-			<groupId>com.mortennobel</groupId>
-			<artifactId>java-image-scaling</artifactId>
-			<version>0.8.5</version>
-		</dependency>
-
  * 
  * @author 12
  *

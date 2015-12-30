@@ -329,7 +329,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.zbus</groupId>
 			<artifactId>zbus</artifactId>
@@ -353,7 +352,43 @@
 			<build>
 				<plugins>
 
-				
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>2.9.1</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>2.0.2</version>
+						<configuration>
+							<source>1.6</source>
+							<target>1.6</target>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>2.1.2</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
 
 					<!-- GPG -->
 					<plugin>
@@ -371,8 +406,8 @@
 					</plugin>
 				</plugins>
 			</build>
-			
-			<!--  这是 中央仓库哦 
+
+			<!-- 这是 中央仓库哦 -->
 			<distributionManagement>
 				<snapshotRepository>
 					<id>oss</id>
@@ -383,56 +418,19 @@
 					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 				</repository>
 			</distributionManagement>
-			
-			 -->
-			<!-- 设置一下 私服
-			 -->
-	<distributionManagement>
-		<repository>
-			<id>nexus-releases</id>
-			<name>Nexus Release Repository</name>
-			<url>http://218.244.156.128:8081/nexus/content/repositories/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>nexus-snapshots</id>
-			<name>Nexus Snapshot Repository</name>
-			<url>http://218.244.156.128:8081/nexus/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
-			
-			
-			
+
+			<!-- 设置一下 私服 <distributionManagement> <repository> <id>nexus-releases</id> 
+				<name>Nexus Release Repository</name> <url>http://218.244.156.128:8081/nexus/content/repositories/releases</url> 
+				</repository> <snapshotRepository> <id>nexus-snapshots</id> <name>Nexus Snapshot 
+				Repository</name> <url>http://218.244.156.128:8081/nexus/content/repositories/snapshots</url> 
+				</snapshotRepository> </distributionManagement> -->
+
+
 		</profile>
 	</profiles>
 
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.0.2</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>2.1.2</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>jar-no-fork</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+
 
 
 </project>

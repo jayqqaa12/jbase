@@ -115,6 +115,12 @@ public class Controller<T> extends com.jfinal.core.Controller {
 
 		return (T) super.getModel(modelClass);
 	}
+	
+	public T getNotPreModel() {
+		ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
+		Class modelClass = (Class) pt.getActualTypeArguments()[0];
+		return (T) super.getModel(modelClass,"");
+	}
 
 	public void renderExcel(List<?> data, String fileName, String[] coulms, String[] headers) {
 

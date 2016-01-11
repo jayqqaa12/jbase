@@ -23,10 +23,10 @@ import redis.clients.jedis.Transaction;
 import redis.clients.jedis.Tuple;
 
 import com.jfinal.ext.kit.SerializableKit;
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 
 public class TopicPoducer {
-    protected final Logger logger = Logger.getLogger(getClass());
+    protected final Log logger = Log.getLog(getClass());
 
     private TopicNest topic;
     private TopicNest subscriber;

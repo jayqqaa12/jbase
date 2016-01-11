@@ -18,7 +18,7 @@ package com.jfinal.ext.kit;
 import com.google.common.collect.Lists;
 import com.jayqqaa12.jbase.util.L;
 import com.jfinal.kit.PathKit;
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +29,7 @@ import java.util.jar.JarFile;
 
 public class ClassSearcher {
 
-	protected static final Logger LOG = Logger.getLogger(ClassSearcher.class);
+	protected static final Log LOG = Log.getLog(ClassSearcher.class);
 
 	private static String classpath = PathKit.getRootClassPath();
  
@@ -152,6 +152,8 @@ public class ClassSearcher {
 						classpath + File.separator + scanPackage.replaceAll("\\.", "\\" + File.separator), "*.class"));
 			}
 		}
+		
+		
 		classFileList.addAll(findjarFiles(libDir));
 		
 		

@@ -17,10 +17,10 @@ package com.jfinal.ext.plugin.redis;
 
 import java.io.Serializable;
 
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 
 public class QueueProducer {
-    protected final Logger logger = Logger.getLogger(getClass());
+    protected final Log logger = Log.getLog(getClass());
     String queueName;
 
     private QueueProducer(String queueName) {

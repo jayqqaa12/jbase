@@ -36,10 +36,10 @@ import com.jfinal.config.JFinalConfig;
 import com.jfinal.core.JFinal;
 import com.jfinal.ext.kit.Reflect;
 import com.jfinal.handler.Handler;
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 
 public abstract class ControllerTestCase<T extends JFinalConfig> {
-    protected static final Logger LOG = Logger.getLogger(ControllerTestCase.class);
+    protected static final Log LOG = Log.getLog(ControllerTestCase.class);
     protected static ServletContext servletContext = new MockServletContext();;
     protected static MockHttpRequest request;
     protected static MockHttpResponse response;

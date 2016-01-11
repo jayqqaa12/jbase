@@ -44,7 +44,7 @@ public class KindEditor
 				if (Arrays.asList(FILE_EXT).contains(ext))
 				{
 					String newName = System.currentTimeMillis() + "." + ext;
-					file.getFile().renameTo(new File(file.getSaveDirectory() + "/" + newName));
+					file.getFile().renameTo(new File(file.getUploadPath() + "/" + newName));
 					info.put("url", UPLOAD_PATH + dir + "/" + newName);
 					info.put("error", 0);
 				}

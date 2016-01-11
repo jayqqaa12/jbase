@@ -17,7 +17,7 @@ package com.jfinal.ext.plugin.monogodb;
 
 import java.net.UnknownHostException;
 
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 import com.jfinal.plugin.IPlugin;
 import com.mongodb.MongoClient;
 
@@ -26,7 +26,7 @@ public class MongodbPlugin implements IPlugin {
     private static final String DEFAULT_HOST = "127.0.0.1";
     private static final int DEFAUL_PORT = 27017;
 
-    protected final Logger logger = Logger.getLogger(getClass());
+    protected final Log logger = Log.getLog(getClass());
 
     private MongoClient client;
     private String host;

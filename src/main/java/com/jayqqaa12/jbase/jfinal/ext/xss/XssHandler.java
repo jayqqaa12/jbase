@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jfinal.handler.Handler;
-import com.jfinal.kit.StringKit;
+import com.jfinal.kit.StrKit;
 
 /**
  * 统一XSS处理
@@ -24,7 +24,7 @@ public class XssHandler extends Handler
 	@Override
 	public void handle(String target, HttpServletRequest request, HttpServletResponse response, boolean[] isHandled)
 	{
-		if (target.indexOf(".") > 0 || (StringKit.notBlank(target) && target.startsWith(exclude)))
+		if (target.indexOf(".") > 0 || (StrKit.notBlank(target) && target.startsWith(exclude)))
 		{
 			nextHandler.handle(target, request, response, isHandled);
 		}

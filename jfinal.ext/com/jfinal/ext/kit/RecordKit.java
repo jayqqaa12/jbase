@@ -15,7 +15,7 @@
  */
 package com.jfinal.ext.kit;
 
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 import com.jfinal.plugin.activerecord.*;
 
 import java.sql.Connection;
@@ -26,7 +26,7 @@ import java.util.List;
 
 public class RecordKit {
 
-    protected final static Logger logger = Logger.getLogger(RecordKit.class);
+    protected final static Log logger = Log.getLog(RecordKit.class);
 
     public static Model<?> toModel(Class<? extends Model<?>> clazz, Record record) {
         Model<?> model = null;

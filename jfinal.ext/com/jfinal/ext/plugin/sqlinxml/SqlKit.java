@@ -22,13 +22,14 @@ import java.util.Map;
 
 import com.jfinal.ext.kit.JaxbKit;
 import com.jfinal.kit.PathKit;
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 
 public class SqlKit {
 
-    protected static final Logger LOG = Logger.getLogger(SqlKit.class);
+    protected static final Log LOG = Log.getLog(SqlKit.class);
 
     private static Map<String, String> sqlMap;
+    
 
     public static String sql(String groupNameAndsqlId) {
         if (sqlMap == null) {
@@ -40,9 +41,12 @@ public class SqlKit {
     static void clearSqlMap() {
         sqlMap.clear();
     }
+    
 
     static void init() {
         sqlMap = new HashMap<String, String>();
+        
+        
         File file = new File(PathKit.getRootClassPath());
         File[] files = file.listFiles(new FileFilter() {
 

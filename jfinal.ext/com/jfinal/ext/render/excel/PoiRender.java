@@ -16,7 +16,7 @@
 package com.jfinal.ext.render.excel;
 
 import com.jfinal.ext.kit.excel.PoiExporter;
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 import com.jfinal.render.Render;
 import com.jfinal.render.RenderException;
 
@@ -27,7 +27,7 @@ import java.util.List;
 @SuppressWarnings("serial")
 public class PoiRender extends Render {
 
-    protected final Logger LOG = Logger.getLogger(getClass());
+    protected final Log LOG = Log.getLog(getClass());
     private final static String CONTENT_TYPE = "application/msexcel;charset=" + getEncoding();
     private List<?>[] data;
     private String[][] headers;

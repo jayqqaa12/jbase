@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.ArrayUtils;
+
 import com.jayqqaa12.jbase.util.Sec;
 import com.jayqqaa12.jbase.util.Txt;
 import com.jayqqaa12.jbase.util.Validate;
@@ -20,11 +22,11 @@ import com.jfinal.plugin.activerecord.TableMapping;
 
 /***
  * 
- * 不支持 联合主键  因为不建议使用
+ * 不支持 联合主键 因为不建议使用
  * 
  * @author 12
  * 
- * 升级兼容多种数据库
+ *         升级兼容多种数据库
  *
  * @param <M>
  */
@@ -32,30 +34,20 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	private static final long serialVersionUID = 8924183967602127690L;
 
-	/***
-	 * 用来当 缓存名字 也用来 生成 简单sql
-	 */
-	public String tableName;
-
 	private Class<? extends com.jfinal.plugin.activerecord.Model<M>> clazz;
 
-	/***
-	 * 反射获取 注解获得 tablename
-	 */
+	public String TABLENAME;
 	public Model() {
-		if (tableName == null) {
-			TableBind table = this.getClass().getAnnotation(TableBind.class);
-			if (table != null) tableName = table.tableName();
-			
-			Type genericSuperclass = getClass().getGenericSuperclass();
-			
-			try{
-				
-			clazz = (Class<? extends com.jfinal.plugin.activerecord.Model<M>>) ((ParameterizedType) genericSuperclass).getActualTypeArguments()[0];
-			}
-			catch(Exception e){
-				throw new RuntimeException(" Can't new Model must new  extends sub class ");
-			}
+
+		Type genericSuperclass = getClass().getGenericSuperclass();
+
+		try {
+
+			clazz = (Class<? extends com.jfinal.plugin.activerecord.Model<M>>) ((ParameterizedType) genericSuperclass)
+					.getActualTypeArguments()[0];
+			TABLENAME=TableMapping.me().getTable(clazz).getName();
+		} catch (Exception e) {
+			throw new RuntimeException(" Can't new Model must new  extends sub class ");
 		}
 	}
 
@@ -65,40 +57,38 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * 更新 指定 条件
 	 * 
 	 */
-	public boolean updateByWhere(String key, Object value, String w, Object params) {
-	
+	public boolean updateByWhere(String key, Object value, String w, Object... params) {
+
 		
-		return Db.update("update " + tableName + " set " + key + "=? " + w, value, params) > 0;
+		Object[] p = ArrayUtils.addAll(new Object[] { value }, params);
+
+		return Db.update("update " + TABLENAME + " set " + key + "=? " + w, p) > 0;
 	}
 
 	public boolean update(String key, Object value, Object id) {
 		
 		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
-		
-		 if (idKey == null)
-           throw new ActiveRecordException("You can't update model without Primary Key.");
-		
-		return Db.update("update " + tableName + " set " + key + "=? where "+idKey+" =?", value, id) > 0;
+
+		if (idKey == null) throw new ActiveRecordException("You can't update model without Primary Key.");
+
+		return Db.update("update " + TABLENAME + " set " + key + "=? where " + idKey + " =?", value, id) > 0;
 	}
 
 	public boolean updateAddOneById(String key, Object id) {
 		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
-		 if (idKey == null)
-	           throw new ActiveRecordException("You can't update model without Primary Key.");
-			
-		return Db.update("update " + tableName + " set " + key + " =" + key + "+1 where "+idKey+" =?", id) > 0;
+		if (idKey == null) throw new ActiveRecordException("You can't update model without Primary Key.");
+
+		
+		return Db.update("update " + TABLENAME + " set " + key + " =" + key + "+1 where " + idKey + " =?", id) > 0;
 	}
 
 	public boolean updateSubOneById(String key, Object id) {
 		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
-		 if (idKey == null)
-	           throw new ActiveRecordException("You can't update model without Primary Key.");
-			
-		return Db.update("update " + tableName + " set " + key + " =" + key + "-1 where "+idKey+" =?", id) > 0;
+		if (idKey == null) throw new ActiveRecordException("You can't update model without Primary Key.");
+
+		return Db.update("update " + TABLENAME + " set " + key + " =" + key + "-1 where " + idKey + " =?", id) > 0;
 	}
 
-	
-	
 	/***
 	 * ids 必需为 连续的 1，2，3 这样子
 	 * 
@@ -106,41 +96,37 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 */
 	public boolean batchDelete(String ids) {
 		if (Validate.isEmpty(ids)) return false;
+
 		
 		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
-		
-		 if (idKey == null)
-	           throw new ActiveRecordException("You can't update model without Primary Key.");
-			
-		return Db.update("delete from " + tableName + " where "+idKey+" in (" + ids + ")") > 0;
+
+		if (idKey == null) throw new ActiveRecordException("You can't update model without Primary Key.");
+
+		return Db.update("delete from " + TABLENAME + " where " + idKey + " in (" + ids + ")") > 0;
 	}
-	
-	
+
 	/**
 	 * 不支持 联合主键
 	 */
-	public boolean deleteById(  Object id) {
+	public boolean deleteById(Object id) {
+
+		
 
 		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
-		
-		 if (idKey == null)
-	           throw new ActiveRecordException("You can't update model without Primary Key.");
-	
-		return Db.deleteById(tableName, idKey, id);
+
+		if (idKey == null) throw new ActiveRecordException("You can't update model without Primary Key.");
+
+		return Db.deleteById(TABLENAME, idKey, id);
 
 	}
-
 
 	public M findByIdCache(Object id) {
-		
-		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
-		 if (idKey == null)
-	           throw new ActiveRecordException("You can't update model without Primary Key.");
-			
-		return super.findFirstByCache(tableName, id, "select * from " + tableName + " where "+idKey+" =?", id);
-	}
 
-	
+		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
+		if (idKey == null) throw new ActiveRecordException("You can't update model without Primary Key.");
+
+		return super.findFirstByCache(TABLENAME, id, "select * from " + TABLENAME + " where " + idKey + " =?", id);
+	}
 
 	public M findFirstByWhere(String where, Object... params) {
 
@@ -157,55 +143,56 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	}
 
 	/***
-	 * 返回全部的数据  
+	 * 返回全部的数据
 	 * 
 	 * @return
 	 */
 	public List<M> findAll() {
 
-		return find(" select *from " + tableName);
+		
+		return find(" select *from " + TABLENAME);
 	}
 
-
 	/***
-	 * 返回全部的数据   可设置where
+	 * 返回全部的数据 可设置where
 	 * 
 	 * @return
 	 */
 	public List<M> findAllByWhere(String where) {
 
-		return find(" select *from " + tableName + " " + where);
+		
+		return find(" select *from " + TABLENAME + " " + where);
 	}
-	
-	
+
 	/***
-	 * 返回全部的数据   可设置where
+	 * 返回全部的数据 可设置where
 	 * 
 	 * @return
 	 */
 	public List<M> findAllByWhere(String where, Object... params) {
 
-		return find(" select *from " + tableName + " " + where, params);
+		
+		return find(" select *from " + TABLENAME + " " + where, params);
 	}
- 
 
 	public List<M> findAllByCache() {
-		return findByCache(" select *from " + tableName);
+		return findByCache(" select *from " + TABLENAME);
 	}
 
 	public List<M> findAllByCache(String key, String where, Object... params) {
-		return findByCache(key, " select *from " + tableName + " " + where, params);
+		return findByCache(key, " select *from " + TABLENAME + " " + where, params);
 	}
 
 	public List<M> findAllByCache(String where) {
-		return findByCache(" select *from " + tableName + " " + where);
+
+		
+		return findByCache(" select *from " + TABLENAME + " " + where);
 	}
-
-
 
 	public int deleteAll() {
 
-		return Db.update(" delete from " + tableName + " ");
+		
+		return Db.update(" delete from " + TABLENAME + " ");
 	}
 
 	/**
@@ -216,27 +203,31 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 */
 	public List<M> findByCache(String sql) {
 
-		return super.findByCache(tableName, Sec.md5(sql), sql);
+		
+		return super.findByCache(TABLENAME, Sec.md5(sql), sql);
 	}
 
 	public List<M> findByCache(String key, String sql, Object... params) {
-		return super.findByCache(tableName, key, sql, params);
+
+		
+		return super.findByCache(TABLENAME, key, sql, params);
 	}
 
 	public M findFirstByWhereCache(String key, String where, Object... params) {
-		String sql = "select * from " + tableName + " " + where;
-		return super.findFirstByCache(tableName, key, sql, params);
+		String sql = "select * from " + TABLENAME + " " + where;
+		return super.findFirstByCache(TABLENAME, key, sql, params);
 	}
 
-	
 	public long getAllCount() {
 		return getCount(" ");
 	}
-	
+
 	public long getCount(String sql) {
+
 		
-		return getCount(sql,new Object[]{});
+		return getCount(sql, new Object[] {});
 	}
+
 	/**
 	 * 可以是 where
 	 * 
@@ -246,44 +237,51 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 */
 	public long getCount(String sql, Object... params) {
 
+		
 		if (sql.contains("select")) sql = Txt.split(sql.toLowerCase(), "from")[1];
 		if (sql.contains("order by")) sql = Txt.split(sql, "order by")[0];
-		return findFirst(" select count(*) as c from " + tableName + " " + sql, params).getLong("c");
+		return findFirst(" select count(*) as c from " + TABLENAME + " " + sql, params).getLong("c");
 	}
 
-
-	
 	public Page<M> findAll(int page, int size) {
 
-		return paginate(page, size, "select *", "from "+tableName  );
+		
+		return paginate(page, size, "select *", "from " + TABLENAME);
+	}
+
+	public Page<M> findAll(int page, int size, String sql, Object... param) {
+
+		
+		return paginate(page, size, sql, param);
 	}
 
 	/**
-	 * 不需要加 limit  
+	 * 不需要加 limit
+	 * 
 	 * @param where
 	 * @param page
 	 * @param size
 	 * @param param
 	 * @return
 	 */
-	public Page<M> findAllByWhere(int page, int size,String where,  Object... param) {
-		
-		return paginate(page,size,"select * " , "from "+tableName + " " + where , param);
-	}
-	
-	
-	
+	public Page<M> findAllByWhere(int page, int size, String where, Object... param) {
 
-	
+		
+
+		return paginate(page, size, "select * from " + TABLENAME + " " + where, param);
+	}
+
 	public Page<M> findAllByCache(int page, int size) {
 
-		String key = Sec.md5( tableName +"findAllByCache"+page+""+size);
 		
-		return paginateByCache(tableName, key,page, size, "select *", "from "+tableName  );
+		String key = Sec.md5(TABLENAME + "findAllByCache" + page + "" + size);
+
+		return paginateByCache(TABLENAME, key, page, size, "select * from " + TABLENAME);
 	}
 
 	/**
-	 * 不需要加 limit  
+	 * 不需要加 limit
+	 * 
 	 * @param where
 	 * @param page
 	 * @param size
@@ -291,16 +289,15 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * @return
 	 */
 	public Page<M> findAllByCache(String where, int page, int size, Object... param) {
+
 		
-		String key = Sec.md5( tableName +"findAllByWhereCache"+page+""+size);
-		
-		return paginateByCache(tableName, key, page,size,"select * " , "from "+tableName + " " + where , param);
+		String key = Sec.md5(TABLENAME + "findAllByWhereCache" + page + "" + size);
+
+		return paginateByCache(TABLENAME, key, page, size, "select *from " + TABLENAME + " " + where, param);
 	}
-	
-	
+
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public M set(String attr, Object value) {
@@ -326,8 +323,6 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		return this;
 	}
 
-
-
 	/**
 	 * 根据 id 判断的
 	 */
@@ -343,6 +338,10 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		}
 		if (value instanceof Record) {
 			this.put(key, ((Record) value).getColumns());
+		}
+
+		if (value instanceof Page) {
+			value = ((Page) value).getList();
 		}
 
 		if (value instanceof List) {
@@ -373,7 +372,6 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	}
 
 	public boolean saveAndDate() {
-
 		return this.setDate("date").save();
 	}
 
@@ -391,9 +389,8 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		return super.getAttrs();
 	}
 
-	public M setDate(String date) {
+	private M setDate(String date) {
 		return this.set(date, new Timestamp(System.currentTimeMillis()));
-
 	}
 
 	public static String sql(String key) {

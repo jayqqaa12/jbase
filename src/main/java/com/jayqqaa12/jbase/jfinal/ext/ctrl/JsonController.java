@@ -60,6 +60,12 @@ public class JsonController<T> extends Controller<T>
 		json.setData(key, value);
 	}
 	
+	
+	protected void sendJson( Page page)
+	{
+		setJsonData(page);
+		renderJson(json.toJson());
+	}
 
 	protected void sendJson( List list)
 	{

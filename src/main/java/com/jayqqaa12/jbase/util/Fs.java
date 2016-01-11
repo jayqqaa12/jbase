@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 import java.util.Properties;
 
@@ -27,7 +28,51 @@ public final class Fs{
     private Fs() {
     }
     
-    
+	public static void down(File f, String url) {
+		byte[] buffer = new byte[8 * 1024];
+		URL u;
+		URLConnection connection = null;
+		try {
+			u = new URL(url);
+			connection = u.openConnection();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return;
+		}
+		connection.setReadTimeout(100000);
+		InputStream is = null;
+		FileOutputStream fos = null;
+		try {
+			f.createNewFile();
+			is = connection.getInputStream();
+			fos = new FileOutputStream(f);
+			int len = 0;
+			while ((len = is.read(buffer)) != -1) {
+				fos.write(buffer, 0, len);
+			}
+
+		} catch (Exception e) {
+			f.delete();
+		} finally {
+			if (fos != null) {
+				try {
+					fos.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+			}
+			if (is != null) {
+				try {
+					is.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
     final static List<String> getAllFiles(File dir,List<String> list) {
 
 		try {

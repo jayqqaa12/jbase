@@ -23,10 +23,10 @@ import java.util.concurrent.TimeUnit;
 import javax.jms.IllegalStateException;
 
 import com.google.common.collect.Maps;
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 
 public class QueueConsumer {
-    final Logger LOG = Logger.getLogger(getClass());
+    final Log LOG = Log.getLog(getClass());
 
     static final String SEPARATER = "-";
     static final String PROCESSINGLIST = SEPARATER + "processing";

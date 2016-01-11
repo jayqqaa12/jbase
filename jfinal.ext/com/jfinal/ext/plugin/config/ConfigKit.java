@@ -25,11 +25,11 @@ import java.util.regex.Pattern;
 import com.google.common.collect.Maps;
 import com.jfinal.ext.kit.ResourceKit;
 import com.jfinal.kit.PathKit;
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 
 public class ConfigKit {
 
-    protected final static Logger LOG = Logger.getLogger(ConfigKit.class);
+    protected final static Log LOG = Log.getLog(ConfigKit.class);
 
     private static List<String> includeResources;
 

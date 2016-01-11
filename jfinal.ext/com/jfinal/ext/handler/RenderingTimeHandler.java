@@ -19,14 +19,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jfinal.handler.Handler;
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 
 /**
  * <a href = http://www.oschina.net/question/173052_62229 />
  */
 public class RenderingTimeHandler extends Handler {
 
-    protected final Logger logger = Logger.getLogger(getClass());
+    protected final Log logger = Log.getLog(getClass());
 
     @Override
     public void handle(String target, HttpServletRequest request, HttpServletResponse response, boolean[] isHandled) {

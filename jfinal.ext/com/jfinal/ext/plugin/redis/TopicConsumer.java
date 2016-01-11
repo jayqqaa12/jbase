@@ -21,10 +21,10 @@ import java.util.concurrent.TimeUnit;
 
 import redis.clients.jedis.Tuple;
 
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 
 public class TopicConsumer {
-    protected final Logger logger = Logger.getLogger(getClass());
+    protected final Log logger = Log.getLog(getClass());
 
     private TopicNest topic;
     private TopicNest subscriber;

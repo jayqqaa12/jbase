@@ -24,7 +24,7 @@ import com.jfinal.config.Routes;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.kit.ClassSearcher;
 import com.jfinal.kit.StrKit;
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 
 public class AutoBindRoutes extends Routes {
 
@@ -37,7 +37,7 @@ public class AutoBindRoutes extends Routes {
 
     private List<String> includeJars = Lists.newArrayList();
 
-    protected final Logger logger = Logger.getLogger(getClass());
+    protected final Log logger = Log.getLog(getClass());
 
     private String suffix = "Controller";
 

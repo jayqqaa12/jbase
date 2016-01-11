@@ -1,6 +1,7 @@
 package com.jayqqaa12.jbase.sdk.util;
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.zbus.broker.Broker;
 import org.zbus.broker.BrokerConfig;
@@ -11,25 +12,42 @@ import org.zbus.rpc.RpcProcessor;
 import org.zbus.rpc.direct.Service;
 import org.zbus.rpc.direct.ServiceConfig;
 
-public class ZbusKit {
-	private static String directAddr = "127.0.0.1:15555";
+import com.google.common.collect.Maps;
 
-	public static void setDirectRpcAddr(String addr) {
-		directAddr = addr;
+public class ZbusKit {
+	
+	public static Map<String,String> addrMaps= Maps.newHashMap();
+
+	public static void setDirectRpcAddr(String key,String addr) {
+		addrMaps.put(key, addr);
 	}
 
-	public static <T> T invokeSync(Class<T> clazz, String method, Object... args) {
+	
+	/***
+	 * 非 HA 
+	 * @param key
+	 * @param clazz
+	 * @param method
+	 * @param args
+	 * @return
+	 */
+	public static <T> T invokeSync(String key, Class<T> clazz, String method, Object... args) {
 
 		Broker broke = null;
 		try {
+			String addr =addrMaps.get(key);
+			
+			if(addr==null)  throw new RuntimeException("must set setDirectRpcAddr()  before invoke");
+			
 			BrokerConfig brokerConfig = new BrokerConfig();
-			brokerConfig.setServerAddress(directAddr);
+			brokerConfig.setServerAddress(addr);
 			broke = new SingleBroker(brokerConfig);
 			RpcInvoker rpc = new RpcInvoker(broke);
 			rpc.setTimeout(15000);
 			return rpc.invokeSync(clazz, method, args);
 			
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new RpcException(e.getMessage(), e.getCause());
 		} finally {
 			try {
@@ -43,7 +61,7 @@ public class ZbusKit {
 	}
 
 	/**
-	 * 启动 driect rpc 服务器
+	 * 启动 driect rpc 服务器  非 HA 
 	 * 
 	 * 
 	 * @param module

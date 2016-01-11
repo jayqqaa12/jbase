@@ -28,12 +28,12 @@ import com.jfinal.ext.kit.excel.PoiImporter;
 import com.jfinal.ext.kit.excel.Rule;
 import com.jfinal.ext.kit.excel.filter.RowFilter;
 import com.jfinal.kit.StrKit;
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 import com.jfinal.plugin.activerecord.Model;
 
 public abstract class ExcelUploadInterceptor<M extends Model<?>> extends PrototypeInterceptor {
 
-    protected final Logger LOG = Logger.getLogger(getClass());
+    protected final Log LOG = Log.getLog(getClass());
 
     private Class clazz;
 

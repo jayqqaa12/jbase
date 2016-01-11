@@ -13,7 +13,7 @@ import org.jsoup.nodes.TextNode;
 import org.jsoup.parser.Tag;
 import org.jsoup.safety.Whitelist;
 
-import com.jfinal.kit.StringKit;
+import com.jfinal.kit.StrKit;
 
 public class HtmlFilter {
 	
@@ -63,10 +63,10 @@ public class HtmlFilter {
 	
 	// 对关键字加上颜色
 	public static String markKeywods (String keywords, String target) {
-		if (StringKit.notBlank(keywords)) {
+		if (StrKit.notBlank(keywords)) {
 			String[] arr = keywords.split(" ");
 			for (String s : arr) {
-				if (StringKit.notBlank(s)) {
+				if (StrKit.notBlank(s)) {
 					String temp = "<span class=\"highlight\">" + s + "</span>";
 					if(temp!=null)
 						target = target.replaceAll(s, temp);

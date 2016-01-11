@@ -70,7 +70,7 @@ public class OSSKit {
 	public static String uploadFile(String fileName, String path, boolean isImg) throws OSSException, ClientException,
 			FileNotFoundException {
 
-		return uploadFile(fileName, path, false, null);
+		return uploadFile(fileName, path, isImg, null);
 	}
 
 	// 上传文件
@@ -97,6 +97,7 @@ public class OSSKit {
 		String url = getUrl(fileName);
 
 		if (url != null) url = url.replace(buketName + ".", "").replace(endponit, imgDomainUrl);
+		if (url != null) url = url.replace(domainUrl, imgDomainUrl);
 
 		return url;
 	}

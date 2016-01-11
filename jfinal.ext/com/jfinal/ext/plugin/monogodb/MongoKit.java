@@ -22,7 +22,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.mongodb.BasicDBObject;
@@ -34,7 +34,7 @@ import com.mongodb.MongoClient;
 
 public class MongoKit {
 
-    protected static Logger logger = Logger.getLogger(MongoKit.class);
+    protected static Log logger = Log.getLog(MongoKit.class);
 
     private static MongoClient client;
     private static DB defaultDb;

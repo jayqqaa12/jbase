@@ -19,7 +19,7 @@ import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 import com.jfinal.plugin.activerecord.*;
 import org.apache.commons.codec.binary.Hex;
 
@@ -32,7 +32,7 @@ import java.util.concurrent.ConcurrentMap;
 
 public abstract class ModelFingerprint<M extends ModelFingerprint<M>> extends ModelExt<M> {
 
-    private static Logger LOG = Logger.getLogger(ModelFingerprint.class);
+    private static Log LOG = Log.getLog(ModelFingerprint.class);
 
     private String fingerprintColumnLabel = "fingerprint";
 

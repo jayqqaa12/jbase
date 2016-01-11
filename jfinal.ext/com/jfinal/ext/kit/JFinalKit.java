@@ -17,14 +17,14 @@ package com.jfinal.ext.kit;
 
 import com.google.common.collect.Lists;
 import com.jfinal.config.*;
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 import com.jfinal.plugin.IPlugin;
 
 import java.util.List;
 
 public class JFinalKit {
 
-    protected static final Logger LOG = Logger.getLogger(JFinalKit.class);
+    protected static final Log LOG = Log.getLog(JFinalKit.class);
 
     static {
         init();

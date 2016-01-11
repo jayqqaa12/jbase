@@ -18,14 +18,14 @@ package com.jfinal.ext.plugin.config;
 import java.util.List;
 
 import com.google.common.collect.Lists;
-import com.jfinal.log.Logger;
+import com.jfinal.log.Log;
 import com.jfinal.plugin.IPlugin;
 
 public class ConfigPlugin implements IPlugin {
 
     static String suffix = "txt";
 
-    protected final Logger logger = Logger.getLogger(getClass());
+    protected final Log logger = Log.getLog(getClass());
 
     private final List<String> includeResources = Lists.newArrayList();
 

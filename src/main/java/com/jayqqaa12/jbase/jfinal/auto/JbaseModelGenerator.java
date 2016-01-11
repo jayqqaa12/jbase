@@ -22,7 +22,7 @@ public class JbaseModelGenerator extends ModelGenerator {
 	}
 
 	@Override
-	protected void genBaseModel(TableMeta tableMeta) {
+	protected void genModelContent(TableMeta tableMeta) {
 		StringBuilder ret = new StringBuilder();
 		genPackage(tableMeta, ret);
 		genImport(tableMeta, ret);

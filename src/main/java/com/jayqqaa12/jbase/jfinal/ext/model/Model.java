@@ -37,6 +37,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	private Class<? extends com.jfinal.plugin.activerecord.Model<M>> clazz;
 
 	public String TABLENAME;
+
 	public Model() {
 
 		Type genericSuperclass = getClass().getGenericSuperclass();
@@ -45,7 +46,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 			clazz = (Class<? extends com.jfinal.plugin.activerecord.Model<M>>) ((ParameterizedType) genericSuperclass)
 					.getActualTypeArguments()[0];
-			TABLENAME=TableMapping.me().getTable(clazz).getName();
+			TABLENAME = TableMapping.me().getTable(clazz).getName();
 		} catch (Exception e) {
 			throw new RuntimeException(" Can't new Model must new  extends sub class ");
 		}
@@ -59,14 +60,13 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 */
 	public boolean updateByWhere(String key, Object value, String w, Object... params) {
 
-		
 		Object[] p = ArrayUtils.addAll(new Object[] { value }, params);
 
 		return Db.update("update " + TABLENAME + " set " + key + "=? " + w, p) > 0;
 	}
 
 	public boolean update(String key, Object value, Object id) {
-		
+
 		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
 
 		if (idKey == null) throw new ActiveRecordException("You can't update model without Primary Key.");
@@ -78,7 +78,6 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
 		if (idKey == null) throw new ActiveRecordException("You can't update model without Primary Key.");
 
-		
 		return Db.update("update " + TABLENAME + " set " + key + " =" + key + "+1 where " + idKey + " =?", id) > 0;
 	}
 
@@ -97,7 +96,6 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	public boolean batchDelete(String ids) {
 		if (Validate.isEmpty(ids)) return false;
 
-		
 		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
 
 		if (idKey == null) throw new ActiveRecordException("You can't update model without Primary Key.");
@@ -109,8 +107,6 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * 不支持 联合主键
 	 */
 	public boolean deleteById(Object id) {
-
-		
 
 		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
 
@@ -138,8 +134,10 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	}
 
 	public boolean isFindByWhere(String where, Object... params) {
+		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
+		if (idKey == null) throw new ActiveRecordException("You can't update model without Primary Key.");
 
-		return findAllByWhere(where, params).size() > 0;
+		return find(" select " + idKey + " from " + TABLENAME + " " + where, params).size() > 0;
 	}
 
 	/***
@@ -149,7 +147,6 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 */
 	public List<M> findAll() {
 
-		
 		return find(" select *from " + TABLENAME);
 	}
 
@@ -160,7 +157,6 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 */
 	public List<M> findAllByWhere(String where) {
 
-		
 		return find(" select *from " + TABLENAME + " " + where);
 	}
 
@@ -171,7 +167,6 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 */
 	public List<M> findAllByWhere(String where, Object... params) {
 
-		
 		return find(" select *from " + TABLENAME + " " + where, params);
 	}
 
@@ -185,13 +180,11 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	public List<M> findAllByCache(String where) {
 
-		
 		return findByCache(" select *from " + TABLENAME + " " + where);
 	}
 
 	public int deleteAll() {
 
-		
 		return Db.update(" delete from " + TABLENAME + " ");
 	}
 
@@ -203,13 +196,11 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 */
 	public List<M> findByCache(String sql) {
 
-		
 		return super.findByCache(TABLENAME, Sec.md5(sql), sql);
 	}
 
 	public List<M> findByCache(String key, String sql, Object... params) {
 
-		
 		return super.findByCache(TABLENAME, key, sql, params);
 	}
 
@@ -224,7 +215,6 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	public long getCount(String sql) {
 
-		
 		return getCount(sql, new Object[] {});
 	}
 
@@ -237,7 +227,6 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 */
 	public long getCount(String sql, Object... params) {
 
-		
 		if (sql.contains("select")) sql = Txt.split(sql.toLowerCase(), "from")[1];
 		if (sql.contains("order by")) sql = Txt.split(sql, "order by")[0];
 		return findFirst(" select count(*) as c from " + TABLENAME + " " + sql, params).getLong("c");
@@ -245,13 +234,11 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	public Page<M> findAll(int page, int size) {
 
-		
 		return paginate(page, size, "select *", "from " + TABLENAME);
 	}
 
 	public Page<M> findAll(int page, int size, String sql, Object... param) {
 
-		
 		return paginate(page, size, sql, param);
 	}
 
@@ -266,14 +253,11 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 */
 	public Page<M> findAllByWhere(int page, int size, String where, Object... param) {
 
-		
-
 		return paginate(page, size, "select * from " + TABLENAME + " " + where, param);
 	}
 
 	public Page<M> findAllByCache(int page, int size) {
 
-		
 		String key = Sec.md5(TABLENAME + "findAllByCache" + page + "" + size);
 
 		return paginateByCache(TABLENAME, key, page, size, "select * from " + TABLENAME);
@@ -290,7 +274,6 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 */
 	public Page<M> findAllByCache(String where, int page, int size, Object... param) {
 
-		
 		String key = Sec.md5(TABLENAME + "findAllByWhereCache" + page + "" + size);
 
 		return paginateByCache(TABLENAME, key, page, size, "select *from " + TABLENAME + " " + where, param);

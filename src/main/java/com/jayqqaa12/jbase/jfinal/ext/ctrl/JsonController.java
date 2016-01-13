@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.jayqqaa12.jbase.jfinal.ext.model.Model;
 import com.jayqqaa12.model.json.SendJson;
+import com.jfinal.kit.Ret;
 import com.jfinal.plugin.activerecord.Page;
 
 public class JsonController<T> extends Controller<T>
@@ -64,6 +65,14 @@ public class JsonController<T> extends Controller<T>
 	protected void sendJson( Page page)
 	{
 		setJsonData(page);
+		renderJson(json.toJson());
+	}
+	
+	
+ 
+	protected void sendJson( Ret ret)
+	{
+		json.setData(ret.getData());
 		renderJson(json.toJson());
 	}
 

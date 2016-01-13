@@ -13,7 +13,7 @@ import com.jayqqaa12.jbase.jfinal.ext.model.Model;
 import com.jfinal.plugin.activerecord.Record;
 import com.jfinal.render.Render;
 
-public class SendJson  {
+public class SendJson {
 	public int code = 200;
 	/**
 	 * 错误描述可写 可不写 可集中在 客户端 判断 code 得出
@@ -25,6 +25,10 @@ public class SendJson  {
 	public SendJson(Model model) {
 		if (model != null) this.data = model.getAttrs();
 
+	}
+
+	public static SendJson create() {
+		return new SendJson();
 	}
 
 	public SendJson(String key, List list) {
@@ -39,8 +43,6 @@ public class SendJson  {
 
 		this.code = code;
 	}
-	
- 
 
 	public String toJson() {
 		if (data.size() == 0) data = null;
@@ -50,26 +52,22 @@ public class SendJson  {
 		/**
 		 * 只有一个 data 这时候就 去掉一层
 		 */
-		if (data != null && data.size() == 1 ) {
+		if (data != null && data.size() == 1) {
 			JSONObject json = JSONObject.parseObject(rst);
 			Object data = json.getJSONObject("data").get("data");
-			if (data != null){
+			if (data != null) {
 				json.put("data", data);
-				rst =json.toJSONString();
+				rst = json.toJSONString();
 			}
 		}
 
 		return rst;
 	}
 
-	
- 
 	@Override
 	public String toString() {
 		return toJson();
 	}
-	
-	
 
 	public SendJson setData(String key, Model m) {
 		this.data.put(key, m.getAttrs());
@@ -97,6 +95,18 @@ public class SendJson  {
 
 	}
 
+	public void setData(Map<Object, Object> data) {
 
+		for (Object key : data.keySet()) {
+
+			Object o = data.get(key);
+
+			if (o instanceof Model) this.data.put(key, ((Model) o).getAttrs());
+			else if (o instanceof Record) this.data.put(key, ((Record) o).getColumns());
+			else this.data.put(key, o);
+
+		}
+
+	}
 
 }

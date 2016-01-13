@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.jayqqaa12.jbase.jfinal.ext.NullParamException;
 import com.jayqqaa12.jbase.util.Validate;
 import com.jayqqaa12.model.json.Form;
+import com.jfinal.core.Injector;
 import com.jfinal.ext.render.excel.PoiRender;
 import com.jfinal.ext.route.ControllerBind;
 
@@ -108,18 +109,48 @@ public class Controller<T> extends com.jfinal.core.Controller {
 			render(viewpath + "/index.html");
 		}
 	}
+	
+	
+ 
+	/**
+	 * 这个方法跟jfinal的 不一样
+	 * 
+	 * 不同之处 如果 数据库里没有这个字段 就不会放入 model
+	 * 
+	 */
+	@Override
+	public <M> M getModel(Class<M> modelClass) {
+		return (M)com.jayqqaa12.jbase.jfinal.ext.ctrl.Injector.injectModel(modelClass, getRequest(), false);
+	}
+
+	/**
+	 * 这个方法跟jfinal的 不一样
+	 * 
+	 * 不同之处 如果 数据库里没有这个字段 就不会放入 model
+	 * 
+	 */
+	@Override
+	public <M> M getModel(Class<M> modelClass, String modelName) {
+		return (M)com.jayqqaa12.jbase.jfinal.ext.ctrl.Injector.injectModel(modelClass, modelName, getRequest(), false);
+	}
+	
+	
+	@Override
+	public <M> M getModel(Class<M> modelClass, boolean skipConvertError) {
+		return (M)com.jayqqaa12.jbase.jfinal.ext.ctrl.Injector.injectModel(modelClass, getRequest(), skipConvertError);
+	}
 
 	public T getModel() {
 		ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
-		Class modelClass = (Class) pt.getActualTypeArguments()[0];
+		Class  modelClass = (Class ) pt.getActualTypeArguments()[0];
 
-		return (T) super.getModel(modelClass);
+		return (T) this.getModel(modelClass);
 	}
 	
 	public T getNotPreModel() {
 		ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
-		Class modelClass = (Class) pt.getActualTypeArguments()[0];
-		return (T) super.getModel(modelClass,"");
+		Class  modelClass = (Class ) pt.getActualTypeArguments()[0];
+		return (T) this.getModel(modelClass,"");
 	}
 
 	public void renderExcel(List<?> data, String fileName, String[] coulms, String[] headers) {

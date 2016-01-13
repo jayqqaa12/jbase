@@ -4,7 +4,7 @@
 
 	<groupId>com.jayqqaa12</groupId>
 	<artifactId>jbase</artifactId>
-	<version>2.9.5</version>
+	<version>2.9.6</version>
 	<packaging>jar</packaging>
 	<name>jbase</name>
 	<description>jbase is base of Java Web Framework  </description>
@@ -251,13 +251,20 @@
 		</dependency>
 
 
+      
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
-			<version>2.2.1</version>
+			<version>2.7.2</version>
 			<scope>provided</scope>
 		</dependency>
-
+     	<dependency>
+			<groupId>de.ruedigermoeller</groupId>
+			<artifactId>fst</artifactId>
+			<version>2.29</version>
+			<scope>provided</scope>
+		</dependency>
+		
 
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>

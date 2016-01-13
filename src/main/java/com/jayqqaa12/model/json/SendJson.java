@@ -39,6 +39,8 @@ public class SendJson  {
 
 		this.code = code;
 	}
+	
+ 
 
 	public String toJson() {
 		if (data.size() == 0) data = null;
@@ -48,7 +50,7 @@ public class SendJson  {
 		/**
 		 * 只有一个 data 这时候就 去掉一层
 		 */
-		if (data != null && data.size() == 1) {
+		if (data != null && data.size() == 1 ) {
 			JSONObject json = JSONObject.parseObject(rst);
 			Object data = json.getJSONObject("data").get("data");
 			if (data != null){

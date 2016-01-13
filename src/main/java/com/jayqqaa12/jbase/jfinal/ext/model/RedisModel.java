@@ -5,6 +5,8 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.jfinal.ext.plugin.redis.JedisKit;
+import com.jfinal.plugin.redis.Cache;
+import com.jfinal.plugin.redis.Redis;
 
 /**
  * 
@@ -37,14 +39,15 @@ public class RedisModel<M extends com.jayqqaa12.jbase.jfinal.ext.model.Model<M>>
 	@Override
 	public List<M> findByCache(String cacheName, Object key, String sql, Object... paras) {
 
-		String k = keyToString(key);
 
 		List<M> result = null;
-		String json = JedisKit.get(k);
+		String json = Redis.use().get(key);
+		
 		if (json != null) result = new Gson().fromJson(json, new TypeToken<List<M>>() {}.getType());
 		if (result == null) {
 			result = find(sql, paras);
-			JedisKit.set(k, new Gson().toJson(result), DEFALT_CACHE_TIME);
+			
+			Redis.use().setex(key, DEFALT_CACHE_TIME,new Gson().toJson(result));
 		}
 		return result;
 	}
@@ -56,28 +59,16 @@ public class RedisModel<M extends com.jayqqaa12.jbase.jfinal.ext.model.Model<M>>
 	@Override
 	public M findFirstByCache(String cacheName, Object key, String sql, Object... paras) {
 
-		String k = keyToString(key);
-
-		M result = null;
-		if (k != null) JedisKit.get(k);
+		M result =Redis.use().get(key);
 
 		if (result == null) {
 			result = findFirst(sql, paras);
-			JedisKit.set(k, result, DEFALT_CACHE_TIME);
+			Redis.use().setex(key,DEFALT_CACHE_TIME, result );
 		}
 		return result;
 	}
 
-	private String keyToString(Object key) {
-		String k = null;
-
-		if (key instanceof String) k = (String) key;
-		if (key instanceof Integer) k = key + "";
-		if (key instanceof Long) k = key + "";
-
-		return k;
-	}
-	
+ 
 	
 	
  

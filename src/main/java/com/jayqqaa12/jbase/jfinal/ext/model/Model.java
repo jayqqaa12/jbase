@@ -46,7 +46,9 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 			clazz = (Class<? extends com.jfinal.plugin.activerecord.Model<M>>) ((ParameterizedType) genericSuperclass)
 					.getActualTypeArguments()[0];
-			TABLENAME = TableMapping.me().getTable(clazz).getName();
+
+			if (TableMapping.me().getTable(clazz) != null) TABLENAME = TableMapping.me().getTable(clazz).getName();
+
 		} catch (Exception e) {
 			throw new RuntimeException(" Can't new Model must new  extends sub class ");
 		}

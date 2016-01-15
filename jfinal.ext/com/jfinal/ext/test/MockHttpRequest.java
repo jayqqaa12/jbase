@@ -257,19 +257,19 @@ public class MockHttpRequest implements HttpServletRequest {
     @Override
     public String getRealPath(String arg0) {
 
-        return null;
+        return "/";
     }
 
     @Override
     public String getRemoteAddr() {
 
-        return null;
+        return "127.0.0.1";
     }
 
     @Override
     public String getRemoteHost() {
 
-        return null;
+        return "127.0.0.1";
     }
 
     @Override
@@ -281,7 +281,7 @@ public class MockHttpRequest implements HttpServletRequest {
     @Override
     public String getRemoteUser() {
 
-        return null;
+        return "TEST";
     }
 
     @Override

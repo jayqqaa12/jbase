@@ -98,10 +98,10 @@ public class SendJson {
 	public void setData(Map<Object, Object> data) {
 
 		for (Object key : data.keySet()) {
-
 			Object o = data.get(key);
-
-			if (o instanceof Model) this.data.put(key, ((Model) o).getAttrs());
+			
+			if(o instanceof List)  this.setData((String)key,(List)o);
+			else if (o instanceof Model) this.data.put(key, ((Model) o).getAttrs());
 			else if (o instanceof Record) this.data.put(key, ((Record) o).getColumns());
 			else this.data.put(key, o);
 

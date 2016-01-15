@@ -32,10 +32,10 @@ public class IpUtil {
 		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
 			ip = request.getRemoteAddr();
 		}
-		if (ip.equals("0:0:0:0:0:0:0:1")) {
+		if (ip!=null&&ip.equals("0:0:0:0:0:0:0:1")) {
 			ip = "127.0.0.1";
 		}
-		if (ip.split(",").length > 1) {
+		if (ip!=null&&ip.split(",").length > 1) {
 			ip = ip.split(",")[0];
 		}
 		return ip;

@@ -118,6 +118,15 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	}
 
+	public boolean deleteByWhere(String where, Object... param) {
+
+		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
+
+		if (idKey == null) throw new ActiveRecordException("You can't update model without Primary Key.");
+
+		return Db.update("delete from " + TABLENAME + " " + where, param) > 0;
+	}
+
 	public M findByIdCache(Object id) {
 
 		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];

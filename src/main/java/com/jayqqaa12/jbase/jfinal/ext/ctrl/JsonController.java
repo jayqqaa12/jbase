@@ -36,10 +36,12 @@ public class JsonController<T> extends Controller<T>
 	
 	
 	protected void setJsonData(  Model m){
+		
 		json.setData("data", m);
 	}
 	
 	protected void setJsonData( List list){
+		
 		json.setData("data",list);
 	}
 
@@ -49,6 +51,7 @@ public class JsonController<T> extends Controller<T>
 	}
 	
 	protected void setJsonData( Page page){
+		if(page==null)return;
 		json.setData("list",page.getList());
 		
 		json.setData("total", page.getTotalRow());
@@ -72,6 +75,8 @@ public class JsonController<T> extends Controller<T>
  
 	protected void sendJson( Ret ret)
 	{
+		if(ret==null)return;
+		
 		json.setData(ret.getData());
 		renderJson(json.toJson());
 	}

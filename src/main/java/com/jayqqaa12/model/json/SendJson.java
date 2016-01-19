@@ -70,18 +70,20 @@ public class SendJson {
 	}
 
 	public SendJson setData(String key, Model m) {
+		if(m==null)return this;
 		this.data.put(key, m.getAttrs());
 
 		return this;
 	}
 
 	public SendJson setData(String key, Object value) {
+		if(value==null)return this;
 		this.data.put(key, value);
 		return this;
 	}
 
-	public void setData(String key, List list) {
-		if (list == null) return;
+	public SendJson setData(String key, List list) {
+		if (list == null) return this;
 		List<Map> attr = new ArrayList<Map>();
 
 		for (Object o : list) {
@@ -93,6 +95,8 @@ public class SendJson {
 
 		if (attr.size() == 0) data.put(key, list);
 
+		
+		return this;
 	}
 
 	public void setData(Map<Object, Object> data) {

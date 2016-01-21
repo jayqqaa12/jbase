@@ -7,16 +7,14 @@ import com.jayqqaa12.model.json.SendJson;
 import com.jfinal.kit.Ret;
 import com.jfinal.plugin.activerecord.Page;
 
-public class JsonController<T> extends Controller<T>
-{
+public class JsonController<T> extends Controller<T> {
 	private SendJson json = new SendJson();
-	
+
 	protected void renderJsonResult(boolean result) {
 		if (result) renderJson200();
 		else renderJson500();
 	}
 
-	
 	protected void renderJson500() {
 		renderJson("{\"code\":500,\"msg\":\"没有任何修改或 服务器错误\"}");
 	}
@@ -29,119 +27,98 @@ public class JsonController<T> extends Controller<T>
 		renderJson("{\"code\":200}");
 	}
 
- 
-	protected void setJsonData(String key, Model m){
+	protected void setJsonData(String key, Model m) {
 		json.setData(key, m);
-	}
-	
-	
-	protected void setJsonData(  Model m){
-		
-		json.setData("data", m);
-	}
-	
-	protected void setJsonData( List list){
-		
-		json.setData("data",list);
 	}
 
-	
-	protected void setJsonData( Object obj){
+	protected void setJsonData(Model m) {
+
+		json.setData("data", m);
+	}
+
+	protected void setJsonData(List list) {
+
+		json.setData("data", list);
+	}
+
+	protected void setJsonData(Object obj) {
 		json.setData("data", obj);
 	}
-	
-	protected void setJsonData( Page page){
-		if(page==null)return;
-		json.setData("list",page.getList());
-		
-		json.setData("total", page.getTotalRow());
+
+	protected void setJsonData(Page page) {
+		if (page != null) {
+			json.setData("list", page.getList());
+			json.setData("total", page.getTotalRow());
+		} else json.code = 500;
 	}
-	protected void setJsonData(String key, List m){
+
+	protected void setJsonData(String key, List m) {
 		json.setData(key, m);
 	}
-	
-	protected void setJsonData(String key,Object value){
+
+	protected void setJsonData(String key, Object value) {
 		json.setData(key, value);
 	}
-	
-	
-	protected void sendJson( Page page)
-	{
+
+	protected void sendJson(Page page) {
 		setJsonData(page);
 		renderJson(json.toJson());
 	}
-	
-	
- 
-	protected void sendJson( Ret ret)
-	{
-		if(ret==null)return;
-		
-		json.setData(ret.getData());
+
+	protected void sendJson(Ret ret) {
+		if (ret != null) json.setData(ret.getData());
+		else json.code = 500;
+
 		renderJson(json.toJson());
 	}
 
-	protected void sendJson( List list)
-	{
+	protected void sendJson(List list) {
 		setJsonData("data", list);
 		renderJson(json.toJson());
 	}
-	
-	protected void sendJson(String key,Object obj){
-		
+
+	protected void sendJson(String key, Object obj) {
+
 		renderJson(json.setData(key, obj).toJson());
 	}
-	
-	protected void sendJson(String key,List m){
+
+	protected void sendJson(String key, List m) {
 		json.setData(key, m);
 		renderJson(json.toJson());
 	}
 
-	protected void sendJson(int code, SendJson result)
-	{
+	protected void sendJson(int code, SendJson result) {
 		if (code == 200) renderJson(result.toJson());
 		else sendJson(code);
 	}
 
-	protected void sendJson(SendJson result)
-	{
+	protected void sendJson(SendJson result) {
 		renderJson(result.toJson());
 	}
 
-	protected void sendJson()
-	{
+	protected void sendJson() {
 		renderJson(json.toJson());
 	}
 
-	
-	protected void sendJson(boolean result)
-	{
-		int code =200;
-		if(!result)code=500;
+	protected void sendJson(boolean result) {
+		int code = 200;
+		if (!result) code = 500;
 		sendJson(code);
 	}
-	
-	protected void setJsonCode(int code){
-		json.code=code;
+
+	protected void setJsonCode(int code) {
+		json.code = code;
 	}
-	
-	protected void sendJson(int code)
-	{
+
+	protected void sendJson(int code) {
 		setJsonCode(code);
 		renderJson(json.toJson());
 	}
 
-	protected void sendJson(Model m)
-	{
+	protected void sendJson(Model m) {
 		setJsonData(m);
 
 		renderJson(json.toJson());
 	}
-	
-	
-	
-	
- 
-	
 
 }

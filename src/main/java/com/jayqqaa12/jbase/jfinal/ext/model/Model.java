@@ -59,6 +59,13 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	// ///////////////////////////////////////////////////////////////
 
+	
+	public void deletePastData(String key) {
+		
+		loadTableName();
+		Db.update(" delete from "+TABLENAME+" where "+key+" <curdate() - interval 1 month ");
+	}
+	
 	/**
 	 * 更新 指定 条件
 	 * 

@@ -13,7 +13,6 @@ import com.jayqqaa12.jbase.util.Sec;
 import com.jayqqaa12.jbase.util.Txt;
 import com.jayqqaa12.jbase.util.Validate;
 import com.jfinal.ext.plugin.sqlinxml.SqlKit;
-import com.jfinal.ext.plugin.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.ActiveRecordException;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;

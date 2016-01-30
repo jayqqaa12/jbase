@@ -308,20 +308,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public M set(String attr, Object value) {
-		if (value instanceof String && Validate.isEmpty((String) value)) return (M) this;
-
-		if (value != null) return super.set(attr, value);
-		else return (M) this;
-	}
-
-	public M setNull(String attr) {
-		super.set(attr, null);
-		return (M) this;
-	}
-
+ 
 	/***
 	 * if empty remove the attr
 	 * 

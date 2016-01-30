@@ -360,27 +360,6 @@
 
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<version>2.9.1</version>
-						<configuration>
-							<aggregate>true</aggregate>
-							<charset>UTF-8</charset>
-							<encoding>UTF-8</encoding>
-							<docencoding>UTF-8</docencoding>
-						</configuration>
-						<executions>
-							<execution>
-								<id>attach-javadocs</id>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-
-
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
 						<version>2.0.2</version>
 						<configuration>
@@ -403,8 +382,6 @@
 						</executions>
 					</plugin>
 
-
-					<!-- GPG  上传中央仓库 才需要签名
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
@@ -418,36 +395,58 @@
 							</execution>
 						</executions>
 					</plugin>
-					-->
-					
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>2.9.1</version>
+						<configuration>
+							<aggregate>true</aggregate>
+							<charset>UTF-8</charset>
+							<encoding>UTF-8</encoding>
+							<docencoding>UTF-8</docencoding>
+						</configuration>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
 				</plugins>
 			</build>
 
-			<!-- 这是 中央仓库哦 <distributionManagement> <snapshotRepository> <id>oss</id> 
-				<url>https://oss.sonatype.org/content/repositories/snapshots/</url> </snapshotRepository> 
-				<repository> <id>oss</id> <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url> 
-				</repository> </distributionManagement> -->
-
-
-			<!-- 设置一下 私服 -->
 			<distributionManagement>
-				<repository>
-					<id>nexus-releases</id>
-					<name>Nexus Release Repository</name>
-					<url>http://218.244.156.128:8081/nexus/content/repositories/releases</url>
-				</repository>
 				<snapshotRepository>
-					<id>nexus-snapshots</id>
-					<name>Nexus Snapshot 
-				Repository</name>
-					<url>http://218.244.156.128:8081/nexus/content/repositories/snapshots</url>
+					<id>oss</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
 				</snapshotRepository>
+				<repository>
+					<id>oss</id>
+					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+				</repository>
 			</distributionManagement>
+
+
 		</profile>
 	</profiles>
 
-
-
+	<!-- 设置一下 私服 -->
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<name>Nexus Release Repository</name>
+			<url>http://218.244.156.128:8081/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>Nexus Snapshot 
+				Repository</name>
+			<url>http://218.244.156.128:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 
 </project>

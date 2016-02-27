@@ -17,11 +17,20 @@ import com.google.common.collect.Maps;
 public class ZbusKit {
 	
 	public static Map<String,String> addrMaps= Maps.newHashMap();
-
+	
+	public static int DEFAULT_TIMEOUT=15* 1000;
+	
 	public static void setDirectRpcAddr(String key,String addr) {
 		addrMaps.put(key, addr);
 	}
 
+	
+	public static <T> T invokeSync(String key, Class<T> clazz,String method , Object... args) {
+		
+		return invokeSync(key,DEFAULT_TIMEOUT, clazz, method, args);
+	}
+
+	
 	
 	/***
 	 * 非 HA 
@@ -31,7 +40,7 @@ public class ZbusKit {
 	 * @param args
 	 * @return
 	 */
-	public static <T> T invokeSync(String key, Class<T> clazz, String method, Object... args) {
+	public static <T> T invokeSync(String key, int timeout,Class<T> clazz, String method, Object... args) {
 
 		Broker broke = null;
 		try {
@@ -43,7 +52,7 @@ public class ZbusKit {
 			brokerConfig.setServerAddress(addr);
 			broke = new SingleBroker(brokerConfig);
 			RpcInvoker rpc = new RpcInvoker(broke);
-			rpc.setTimeout(15000);
+			rpc.setTimeout(timeout);
 			return rpc.invokeSync(clazz, method, args);
 			
 		} catch (Exception e) {

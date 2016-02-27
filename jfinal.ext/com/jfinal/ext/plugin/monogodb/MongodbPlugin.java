@@ -17,53 +17,59 @@ package com.jfinal.ext.plugin.monogodb;
 
 import java.net.UnknownHostException;
 
+import com.jfinal.kit.StrKit;
 import com.jfinal.log.Log;
 import com.jfinal.plugin.IPlugin;
 import com.mongodb.MongoClient;
 
 public class MongodbPlugin implements IPlugin {
-    
-    private static final String DEFAULT_HOST = "127.0.0.1";
-    private static final int DEFAUL_PORT = 27017;
 
-    protected final Log logger = Log.getLog(getClass());
+	private static final String DEFAULT_HOST = "127.0.0.1";
+	private static final int DEFAUL_PORT = 27017;
 
-    private MongoClient client;
-    private String host;
-    private int port;
-    private String database;
+	protected final Log logger = Log.getLog(getClass());
 
-    public MongodbPlugin(String database) {
-        this.host = DEFAULT_HOST;
-        this.port = DEFAUL_PORT;
-        this.database = database;
-    }
+	private MongoClient client;
+	private String host;
+	private int port;
+	private String database;
+	private String user, pwd;
 
-    public MongodbPlugin(String host, int port, String database) {
-        this.host = host;
-        this.port = port;
-        this.database = database;
-    }
+	public MongodbPlugin(String database) {
+		this.host = DEFAULT_HOST;
+		this.port = DEFAUL_PORT;
+		this.database = database;
+	}
 
-    @Override
-    public boolean start() {
+	public MongodbPlugin(String host, int port, String database) {
+		this.host = host;
+		this.port = port;
+		this.database = database;
+	}
 
-        try {
-            client = new MongoClient(host, port);
-        } catch (UnknownHostException e) {
-            throw new RuntimeException("can't connect mongodb, please check the host and port:" + host + "," + port, e);
-        }
+	@Override
+	public boolean start() {
 
-        MongoKit.init(client, database);
-        return true;
-    }
+		try {
+			client = new MongoClient(host, port);
 
-    @Override
-    public boolean stop() {
-        if (client != null) {
-            client.close();
-        }
-        return true;
-    }
+		} catch (UnknownHostException e) {
+			throw new RuntimeException("can't connect mongodb, please check the host and port:" + host + "," + port, e);
+		}
+
+		MongoKit.init(client, database);
+
+		if (StrKit.notBlank(user, pwd)) MongoKit.getDB().authenticate(user, pwd.toCharArray());
+
+		return true;
+	}
+
+	@Override
+	public boolean stop() {
+		if (client != null) {
+			client.close();
+		}
+		return true;
+	}
 
 }

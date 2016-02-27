@@ -4,7 +4,6 @@
 
 	<groupId>com.jayqqaa12</groupId>
 	<artifactId>jbase</artifactId>
-	<version>2.9.7</version>
 	<packaging>jar</packaging>
 	<name>jbase</name>
 	<description>jbase is base of Java Web Framework  </description>
@@ -493,4 +492,5 @@
 
 
 
+	<version>2.9.8</version>
 </project>

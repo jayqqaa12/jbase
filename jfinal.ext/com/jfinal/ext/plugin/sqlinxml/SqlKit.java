@@ -43,7 +43,7 @@ public class SqlKit {
     }
     
 
-    static void init() {
+   public static void init() {
         sqlMap = new HashMap<String, String>();
         
         

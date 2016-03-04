@@ -15,7 +15,6 @@
  */
 package com.jfinal.ext.plugin.monogodb;
 
-import java.net.UnknownHostException;
 import java.util.Arrays;
 
 import com.jfinal.kit.StrKit;
@@ -26,11 +25,10 @@ import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 
+/**
+ * 12 modfiy
+ */
 public class MongodbPlugin implements IPlugin {
-
-	private static final String DEFAULT_HOST = "127.0.0.1";
-	private static final int DEFAUL_PORT = 27017;
-	private static final String DEFUAL_DB = "admin";
 
 	protected final Log logger = Log.getLog(getClass());
 
@@ -38,13 +36,11 @@ public class MongodbPlugin implements IPlugin {
 	private String host;
 	private int port;
 	private String database;
-	private String user, pwd;
-	private String replSet;
+	private String url;
 
-	public MongodbPlugin(String database) {
-		this.host = DEFAULT_HOST;
-		this.port = DEFAUL_PORT;
-		this.database = database;
+	public MongodbPlugin(String url, String database) {
+		this.url = url;
+		this.database=database;
 	}
 
 	public MongodbPlugin(String host, int port, String database) {
@@ -53,22 +49,13 @@ public class MongodbPlugin implements IPlugin {
 		this.database = database;
 	}
 
-	public MongodbPlugin(String host, int port, String database, String user, String pwd, String replSet) {
-		this(host, port, database);
-		this.user = user;
-		this.pwd = pwd;
-		this.replSet = replSet;
-	}
+ 
 
 	@Override
 	public boolean start() {
 
-		if (StrKit.notBlank(user, pwd)) {
-			MongoCredential credential = MongoCredential.createMongoCRCredential(user, DEFUAL_DB, pwd.toCharArray());
-
-			MongoClientOptions options = MongoClientOptions.builder().requiredReplicaSetName(replSet)
-					.socketTimeout(2000).build();
-			client = new MongoClient(new ServerAddress(host, port), Arrays.asList(credential),options);
+	  if (StrKit.notBlank(url)) {
+			client = new MongoClient(url);
 		} else {
 			client = new MongoClient(host, port);
 		}

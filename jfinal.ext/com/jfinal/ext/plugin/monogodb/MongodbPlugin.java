@@ -16,11 +16,14 @@
 package com.jfinal.ext.plugin.monogodb;
 
 import java.net.UnknownHostException;
+import java.util.Arrays;
 
 import com.jfinal.kit.StrKit;
 import com.jfinal.log.Log;
 import com.jfinal.plugin.IPlugin;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 
 public class MongodbPlugin implements IPlugin {
 
@@ -46,26 +49,31 @@ public class MongodbPlugin implements IPlugin {
 		this.port = port;
 		this.database = database;
 	}
-	
-	public MongodbPlugin(String host, int port, String database,String user,String pwd) {
-		this(host,port,database);
-		this.user=user;
-		this.pwd=pwd;
+
+	public MongodbPlugin(String host, int port, String database, String user, String pwd) {
+		this(host, port, database);
+		this.user = user;
+		this.pwd = pwd;
 	}
 
 	@Override
 	public boolean start() {
 
 		try {
-			client = new MongoClient(host, port);
+
+			if (StrKit.notBlank(user, pwd)) {
+				MongoCredential credential = MongoCredential.createMongoCRCredential(user, database, pwd.toCharArray());
+				client = new MongoClient(new ServerAddress(host, port), Arrays.asList(credential));
+			}
+			else {
+				client = new MongoClient( host,port );
+			}
 
 		} catch (UnknownHostException e) {
 			throw new RuntimeException("can't connect mongodb, please check the host and port:" + host + "," + port, e);
 		}
 
 		MongoKit.init(client, database);
-
-		if (StrKit.notBlank(user, pwd)) MongoKit.getDB().authenticate(user, pwd.toCharArray());
 
 		return true;
 	}

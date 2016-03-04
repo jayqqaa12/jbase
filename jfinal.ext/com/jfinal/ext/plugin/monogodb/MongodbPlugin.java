@@ -29,6 +29,7 @@ public class MongodbPlugin implements IPlugin {
 
 	private static final String DEFAULT_HOST = "127.0.0.1";
 	private static final int DEFAUL_PORT = 27017;
+	private static final String DEFUAL_DB="admin";
 
 	protected final Log logger = Log.getLog(getClass());
 
@@ -62,7 +63,7 @@ public class MongodbPlugin implements IPlugin {
 		try {
 
 			if (StrKit.notBlank(user, pwd)) {
-				MongoCredential credential = MongoCredential.createMongoCRCredential(user, database, pwd.toCharArray());
+				MongoCredential credential = MongoCredential.createMongoCRCredential(user, DEFUAL_DB, pwd.toCharArray());
 				client = new MongoClient(new ServerAddress(host, port), Arrays.asList(credential));
 			}
 			else {

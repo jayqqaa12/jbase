@@ -22,6 +22,7 @@ import com.jfinal.kit.StrKit;
 import com.jfinal.log.Log;
 import com.jfinal.plugin.IPlugin;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 
@@ -29,7 +30,7 @@ public class MongodbPlugin implements IPlugin {
 
 	private static final String DEFAULT_HOST = "127.0.0.1";
 	private static final int DEFAUL_PORT = 27017;
-	private static final String DEFUAL_DB="admin";
+	private static final String DEFUAL_DB = "admin";
 
 	protected final Log logger = Log.getLog(getClass());
 
@@ -38,6 +39,7 @@ public class MongodbPlugin implements IPlugin {
 	private int port;
 	private String database;
 	private String user, pwd;
+	private String replSet;
 
 	public MongodbPlugin(String database) {
 		this.host = DEFAULT_HOST;
@@ -51,27 +53,24 @@ public class MongodbPlugin implements IPlugin {
 		this.database = database;
 	}
 
-	public MongodbPlugin(String host, int port, String database, String user, String pwd) {
+	public MongodbPlugin(String host, int port, String database, String user, String pwd, String replSet) {
 		this(host, port, database);
 		this.user = user;
 		this.pwd = pwd;
+		this.replSet = replSet;
 	}
 
 	@Override
 	public boolean start() {
 
-		try {
+		if (StrKit.notBlank(user, pwd)) {
+			MongoCredential credential = MongoCredential.createMongoCRCredential(user, DEFUAL_DB, pwd.toCharArray());
 
-			if (StrKit.notBlank(user, pwd)) {
-				MongoCredential credential = MongoCredential.createMongoCRCredential(user, DEFUAL_DB, pwd.toCharArray());
-				client = new MongoClient(new ServerAddress(host, port), Arrays.asList(credential));
-			}
-			else {
-				client = new MongoClient( host,port );
-			}
-
-		} catch (UnknownHostException e) {
-			throw new RuntimeException("can't connect mongodb, please check the host and port:" + host + "," + port, e);
+			MongoClientOptions options = MongoClientOptions.builder().requiredReplicaSetName(replSet)
+					.socketTimeout(2000).build();
+			client = new MongoClient(new ServerAddress(host, port), Arrays.asList(credential),options);
+		} else {
+			client = new MongoClient(host, port);
 		}
 
 		MongoKit.init(client, database);

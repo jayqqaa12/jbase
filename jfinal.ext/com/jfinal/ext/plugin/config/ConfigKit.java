@@ -45,14 +45,11 @@ public class ConfigKit {
 
 	private static boolean dev = false;
 
-	public void setDev(boolean dev) {
-		this.dev = dev;
+	public static void setDev(boolean dev) {
+		ConfigKit.dev = dev;
 	}
 
-	public boolean getDev() {
-		return dev;
-	}
-
+ 
 	/**
 	 * @param includeResources
 	 * @param excludeResources

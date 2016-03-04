@@ -15,15 +15,11 @@
  */
 package com.jfinal.ext.plugin.monogodb;
 
-import java.util.Arrays;
-
 import com.jfinal.kit.StrKit;
 import com.jfinal.log.Log;
 import com.jfinal.plugin.IPlugin;
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientOptions;
-import com.mongodb.MongoCredential;
-import com.mongodb.ServerAddress;
+import com.mongodb.MongoClientURI;
 
 /**
  * 12 modfiy
@@ -55,7 +51,7 @@ public class MongodbPlugin implements IPlugin {
 	public boolean start() {
 
 	  if (StrKit.notBlank(url)) {
-			client = new MongoClient(url);
+			client = new MongoClient(new MongoClientURI(url));
 		} else {
 			client = new MongoClient(host, port);
 		}

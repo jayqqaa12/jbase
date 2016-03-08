@@ -12,6 +12,8 @@ public abstract class Validator extends com.jfinal.validate.Validator
 	protected static final String ERROR_MSG = "msg";
 
 	protected Controller controller;
+	
+	protected boolean isError=false;
 
 	protected void validate(Controller c)
 	{
@@ -35,6 +37,7 @@ public abstract class Validator extends com.jfinal.validate.Validator
 
 	protected void addError(String errorMessage)
 	{
+		isError=true;
 		super.addError(ERROR_MSG, errorMessage);
 	}
 

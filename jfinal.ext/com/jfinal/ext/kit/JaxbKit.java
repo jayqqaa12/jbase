@@ -32,7 +32,7 @@ public class JaxbKit {
 
     /**
      * 
-     * string -> object
+     * string  to object
      * 
      * @param src
      * @param clazz
@@ -63,7 +63,7 @@ public class JaxbKit {
     }
 
     /**
-     * object -> string
+     * object to string
      */
     public static String marshal(Object jaxbElement) {
         StringWriter sw ;

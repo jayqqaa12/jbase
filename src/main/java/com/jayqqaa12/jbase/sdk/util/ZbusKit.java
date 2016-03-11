@@ -30,11 +30,7 @@ public class ZbusKit {
 	
 	/***
 	 * 非 HA 
-	 * @param key
-	 * @param clazz
-	 * @param method
-	 * @param args
-	 * @return
+ 
 	 */
 	public static <T> T invokeSync(String addr, int timeout,Class<T> clazz, String method, Object... args) {
 

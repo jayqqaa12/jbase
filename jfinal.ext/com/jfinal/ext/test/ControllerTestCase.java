@@ -32,6 +32,7 @@ import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Throwables;
 import com.google.common.io.Files;
+import com.jayqqaa12.jbase.jfinal.ext.JbaseConfig;
 import com.jfinal.config.JFinalConfig;
 import com.jfinal.core.JFinal;
 import com.jfinal.ext.kit.Reflect;
@@ -53,6 +54,8 @@ public abstract class ControllerTestCase<T extends JFinalConfig> {
     private Class<? extends JFinalConfig> config;
 
     private static void initConfig(Class<JFinal> clazz, JFinal me, ServletContext servletContext, JFinalConfig config) {
+    	if(config instanceof JbaseConfig) ((JbaseConfig) config).openTestMode();
+    	
         Reflect.on(me).call("init", config, servletContext);
     }
 

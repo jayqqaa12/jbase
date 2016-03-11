@@ -21,9 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.jfinal.handler.Handler;
 import com.jfinal.log.Log;
 
-/**
- * <a href = http://www.oschina.net/question/173052_62229 />
- */
+ 
 public class RenderingTimeHandler extends Handler {
 
     protected final Log logger = Log.getLog(getClass());

@@ -84,7 +84,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 		return Db.update("update " + TABLENAME + " set " + key + "=? where " + idKey + " =?", value, id) > 0;
 	}
-
+ 
 	public boolean updateAddOneById(String key, Object id) {
 		loadTableName();
 		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
@@ -93,6 +93,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		return Db.update("update " + TABLENAME + " set " + key + " =" + key + "+1 where " + idKey + " =?", id) > 0;
 	}
 
+	 
 	public boolean updateSubOneById(String key, Object id) {
 		loadTableName();
 		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];

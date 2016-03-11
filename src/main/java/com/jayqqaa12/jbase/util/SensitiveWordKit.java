@@ -12,6 +12,10 @@ import com.jfinal.kit.PathKit;
 /***
  * 网上抄的 修改一下
  * 
+ * 敏感词过滤工具  先 init 敏感词库 然后就可以用了
+ * 
+ * DFA 算法 效率还不错 
+ * 
  * @author 12
  *
  */

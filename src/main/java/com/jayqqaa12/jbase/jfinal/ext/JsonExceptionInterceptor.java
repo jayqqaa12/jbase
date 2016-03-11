@@ -1,7 +1,9 @@
 package com.jayqqaa12.jbase.jfinal.ext;
 
+import com.jayqqaa12.model.json.SendJson;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
+import com.jfinal.core.Controller;
 
 /***
  * 
@@ -12,30 +14,37 @@ import com.jfinal.aop.Invocation;
  */
 public class JsonExceptionInterceptor implements Interceptor {
 
-	private String key = "/";
-	
+	protected String key = "/";
+
 	public JsonExceptionInterceptor() {
 	}
+
 	public JsonExceptionInterceptor(String key) {
 		this.key = key;
 	}
 
 	@Override
-	public void intercept(Invocation ai) {
-		String url = ai.getActionKey();
-
-		if (url.contains(key) ) {
-			try {
-				ai.invoke();
-			} catch (NullParamException e) {
-				ai.getController().renderJson("{\"code\":404,\"data\":{}}");
-				e.printStackTrace();
-			} catch (Exception e) {
-				ai.getController().renderJson("{\"code\":500,\"data\":{}}");
-				e.printStackTrace();
-			}
-		}
-		else ai.invoke();
+	public void intercept(Invocation inv) {
+		String url = inv.getActionKey();
+		if (url.contains(key)) trycatch(inv);
+		else inv.invoke();
 	}
- 
+	
+	protected void addError(Invocation inv,int code){
+		inv.getController().renderJson(new SendJson(code).toJson());
+	}
+
+	protected void trycatch(Invocation inv) {
+		try {
+			inv.invoke();
+		} catch (NullParamException e) {
+			addError(inv,404);
+			e.printStackTrace();
+		} catch (Exception e) {
+			addError(inv,500);
+			e.printStackTrace();
+		}
+	}
+
+
 }

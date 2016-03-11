@@ -5,16 +5,14 @@ import com.jayqqaa12.model.json.SendJson;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.StrKit;
 
-public class JsonValidator extends Validator
+public abstract class JsonValidator extends Validator
 {
 	protected static final String ERROR_MSG = "code";
 
 	protected void addError(int code )
 	{
 		super.addError("code", code+"");
-		
 	}
-	
 	
 	protected void validateRequiredString(String field, int errorCode) {
 		String value = controller.getPara(field);
@@ -24,9 +22,7 @@ public class JsonValidator extends Validator
 	protected void validateString(String field, int minLen, int maxLen, int errorCode)
 	{
 		validateStringValue(controller.getPara(field), minLen, maxLen, errorCode);
-		
 	}
-	
  
 	private void validateStringValue(String value, int minLen, int maxLen, int errorCode) {
 		if (StrKit.isBlank(value)) {
@@ -44,4 +40,5 @@ public class JsonValidator extends Validator
 		
 	}
 
+ 
 }

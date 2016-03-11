@@ -10,22 +10,11 @@ import com.jfinal.plugin.activerecord.Page;
 public class JsonController<T> extends Controller<T> {
 	private SendJson json = new SendJson();
 
-	protected void renderJsonResult(boolean result) {
-		if (result) renderJson200();
-		else renderJson500();
-	}
 
-	protected void renderJson500() {
-		renderJson("{\"code\":500,\"msg\":\"没有任何修改或 服务器错误\"}");
-	}
-
-	protected void renderJsonError(String msg) {
+	protected void sendJsonError(String msg) {
 		renderJson("{\"code\":500,\"msg\":\" " + msg + " \"}");
 	}
-
-	protected void renderJson200() {
-		renderJson("{\"code\":200}");
-	}
+ 
 
 	protected void setJsonData(String key, Model m) {
 		json.setData(key, m);

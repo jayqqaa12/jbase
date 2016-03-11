@@ -10,17 +10,6 @@ public abstract class Validator extends com.jfinal.validate.Validator
 	 * 默认 error msg
 	 */
 	protected static final String ERROR_MSG = "msg";
-
-	protected Controller controller;
-	
-	protected boolean isError=false;
-
-	protected void validate(Controller c)
-	{
-
-		this.controller = c;
-
-	}
 	
 	
 	protected boolean isEmpty(String key){
@@ -37,7 +26,6 @@ public abstract class Validator extends com.jfinal.validate.Validator
 
 	protected void addError(String errorMessage)
 	{
-		isError=true;
 		super.addError(ERROR_MSG, errorMessage);
 	}
 

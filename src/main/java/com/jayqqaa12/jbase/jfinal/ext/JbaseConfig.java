@@ -107,6 +107,10 @@ public abstract class JbaseConfig extends JFinalConfig {
 
 	}
 
+	/**
+	 * 默认配置文件 shiro.ini
+	 * @param me
+	 */
 	protected void addShiroPlugin(Plugins me) {
 
 		useShiro = true;

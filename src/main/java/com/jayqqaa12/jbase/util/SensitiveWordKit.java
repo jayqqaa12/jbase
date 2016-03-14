@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import com.jayqqaa12.jbase.jfinal.ext.NullParamException;
+import com.jayqqaa12.jbase.jfinal.ext.exception.NullParamException;
 import com.jfinal.kit.PathKit;
 
 /***

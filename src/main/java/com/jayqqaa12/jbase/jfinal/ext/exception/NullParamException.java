@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.jfinal.ext;
+package com.jayqqaa12.jbase.jfinal.ext.exception;
 
 public class NullParamException extends RuntimeException {
 	

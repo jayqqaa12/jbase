@@ -1,9 +1,8 @@
-package com.jayqqaa12.jbase.jfinal.ext;
+package com.jayqqaa12.jbase.jfinal.ext.exception;
 
 import com.jayqqaa12.model.json.SendJson;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
-import com.jfinal.core.Controller;
 
 /***
  * 
@@ -29,22 +28,36 @@ public class JsonExceptionInterceptor implements Interceptor {
 		if (url.contains(key)) trycatch(inv);
 		else inv.invoke();
 	}
-	
-	protected void addError(Invocation inv,int code){
+
+	protected void addError(Invocation inv, int code) {
 		inv.getController().renderJson(new SendJson(code).toJson());
 	}
 
-	protected void trycatch(Invocation inv) {
+	private void trycatch(Invocation inv) {
 		try {
 			inv.invoke();
 		} catch (NullParamException e) {
-			addError(inv,404);
+			addError(inv, 404);
 			e.printStackTrace();
 		} catch (Exception e) {
-			addError(inv,500);
-			e.printStackTrace();
+			handleErrorCodeException(inv, e);
 		}
 	}
 
+	private void handleErrorCodeException(Invocation inv, Exception e) {
+
+		if (e instanceof ErrorCodeException) {
+			addError(inv, ((ErrorCodeException) e).getErrorCode());
+		} else {
+			handleError(inv,e);
+		}
+	}
+	
+	
+
+	protected void handleError(Invocation inv, Exception e) {
+		addError(inv, 500);
+		e.printStackTrace();
+	}
 
 }

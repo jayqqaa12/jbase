@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.google.gson.Gson;
-import com.jayqqaa12.jbase.jfinal.ext.NullParamException;
+import com.jayqqaa12.jbase.jfinal.ext.exception.NullParamException;
 import com.jayqqaa12.jbase.util.Validate;
 import com.jayqqaa12.model.json.Form;
 import com.jfinal.core.Injector;

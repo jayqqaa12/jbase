@@ -63,7 +63,6 @@ public abstract class JbaseConfig extends JFinalConfig {
 	 * 
 	 * 在配置文件 xx.txt 设置如下参数即可 db.url 数据库地址 db.user 数据库名称 db.pwd 数据库密码
 	 * 
-	 * @return
 	 */
 	protected IDataSourceProvider addDruidPlugin(Plugins me) {
 
@@ -94,7 +93,6 @@ public abstract class JbaseConfig extends JFinalConfig {
 	 * 
 	 * 在配置文件 xx.txt 设置如下参数即可 mongo.url 数据库地址 格式是 mongodb:// mongo.db 数据库名称
 	 * 
-	 * @return
 	 */
 	protected void addMongoPlugin(Plugins me) {
 		// redis
@@ -124,7 +122,6 @@ public abstract class JbaseConfig extends JFinalConfig {
 	 * 在配置文件 xx.txt 设置如下参数即可 redis.db 数据库名称 redis.host 数据库地址 数据库名称 redis.pwd
 	 * 数据库密码
 	 * 
-	 * @return
 	 */
 	protected void addRedisPlugin(Plugins me) {
 		// redis

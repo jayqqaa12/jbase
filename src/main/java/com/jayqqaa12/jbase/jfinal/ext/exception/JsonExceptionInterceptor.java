@@ -1,5 +1,7 @@
 package com.jayqqaa12.jbase.jfinal.ext.exception;
 
+import org.zbus.rpc.RpcException;
+
 import com.jayqqaa12.model.json.SendJson;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
@@ -7,6 +9,10 @@ import com.jfinal.aop.Invocation;
 /***
  * 
  * 使用 api 接口的时候用
+ * 基于约定
+ * 
+ * 404 NullParamException
+ * 505 RpcException
  * 
  * @author 12
  *
@@ -39,6 +45,9 @@ public class JsonExceptionInterceptor implements Interceptor {
 		} catch (NullParamException e) {
 			addError(inv, 404);
 			e.printStackTrace();
+		} catch (RpcException e) {
+			addError(inv, 505);
+			e.printStackTrace();
 		} catch (Exception e) {
 			handleErrorCodeException(inv, e);
 		}
@@ -49,11 +58,9 @@ public class JsonExceptionInterceptor implements Interceptor {
 		if (e instanceof ErrorCodeException) {
 			addError(inv, ((ErrorCodeException) e).getErrorCode());
 		} else {
-			handleError(inv,e);
+			handleError(inv, e);
 		}
 	}
-	
-	
 
 	protected void handleError(Invocation inv, Exception e) {
 		addError(inv, 500);

@@ -1,7 +1,6 @@
 package com.jayqqaa12.jbase.sdk.util;
 
 import java.io.IOException;
-import java.util.Map;
 
 import org.zbus.broker.Broker;
 import org.zbus.broker.BrokerConfig;
@@ -11,8 +10,6 @@ import org.zbus.rpc.RpcInvoker;
 import org.zbus.rpc.RpcProcessor;
 import org.zbus.rpc.direct.Service;
 import org.zbus.rpc.direct.ServiceConfig;
-
-import com.google.common.collect.Maps;
 
 public class ZbusKit {
 	
@@ -44,14 +41,14 @@ public class ZbusKit {
 			rpc.setTimeout(timeout);
 			return rpc.invokeSync(clazz, method, args);
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RpcException(e.getMessage(), e.getCause());
+		} catch (IOException e) {
+			
+			throw new RpcException(e.getMessage());
+			
 		} finally {
 			try {
 				if (broke != null) broke.close();
 			} catch (IOException e) {
-				e.printStackTrace();
 			}
 
 		}

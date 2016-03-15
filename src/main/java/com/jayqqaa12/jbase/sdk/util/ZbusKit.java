@@ -1,6 +1,7 @@
 package com.jayqqaa12.jbase.sdk.util;
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.zbus.broker.Broker;
 import org.zbus.broker.BrokerConfig;
@@ -11,52 +12,50 @@ import org.zbus.rpc.RpcProcessor;
 import org.zbus.rpc.direct.Service;
 import org.zbus.rpc.direct.ServiceConfig;
 
+import com.google.common.collect.Maps;
+
 public class ZbusKit {
-	
-	
-	public static int DEFAULT_TIMEOUT=15* 1000;
-	
- 
-	
-	public static <T> T invokeSync(String key, Class<T> clazz,String method , Object... args) {
-		
-		return invokeSync(key,DEFAULT_TIMEOUT, clazz, method, args);
+
+	public static int DEFAULT_TIMEOUT = 15 * 1000;
+
+	private static Map<String, Broker> map = Maps.newConcurrentMap();
+
+	public static <T> T invokeSync(String key, Class<T> clazz, String method, Object... args) {
+
+		return invokeSync(key, DEFAULT_TIMEOUT, clazz, method, args);
 	}
 
-	
-	
-	/***
-	 * 非 HA 
- 
-	 */
-	public static <T> T invokeSync(String addr, int timeout,Class<T> clazz, String method, Object... args) {
+	public static Broker getBroker(String addr) throws IOException {
 
-		Broker broke = null;
-		try {
-			
+		if (map.get(addr) == null) {
 			BrokerConfig brokerConfig = new BrokerConfig();
 			brokerConfig.setServerAddress(addr);
-			broke = new SingleBroker(brokerConfig);
-			RpcInvoker rpc = new RpcInvoker(broke);
+			Broker broke = new SingleBroker(brokerConfig);
+			map.put(addr, broke);
+			return broke;
+		} else return map.get(addr);
+	}
+
+	/***
+	 * 非 HA
+	 */
+	public static <T> T invokeSync(String addr, int timeout, Class<T> clazz, String method, Object... args) {
+		
+		RpcInvoker rpc;
+		try {
+			rpc = new RpcInvoker(getBroker(addr));
 			rpc.setTimeout(timeout);
 			return rpc.invokeSync(clazz, method, args);
-			
 		} catch (IOException e) {
-			
-			throw new RpcException(e.getMessage());
-			
-		} finally {
-			try {
-				if (broke != null) broke.close();
-			} catch (IOException e) {
-			}
 
+			throw new RpcException(e);
 		}
+		
 
 	}
 
 	/**
-	 * 启动 driect rpc 服务器  非 HA 
+	 * 启动 driect rpc 服务器 非 HA
 	 * 
 	 * 
 	 * @param module

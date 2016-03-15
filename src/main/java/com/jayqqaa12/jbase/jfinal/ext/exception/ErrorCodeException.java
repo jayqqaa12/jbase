@@ -2,12 +2,17 @@ package com.jayqqaa12.jbase.jfinal.ext.exception;
 
 public class ErrorCodeException extends RuntimeException {
 
-	private int code;
+	protected int code;
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 692099006894911532L;
+
+	
+	public ErrorCodeException(Throwable cause) {
+		super(cause);
+	}
 
 	public ErrorCodeException(int code) {
 		this.code = code;

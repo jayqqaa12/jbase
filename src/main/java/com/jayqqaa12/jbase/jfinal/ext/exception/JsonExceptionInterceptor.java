@@ -42,12 +42,6 @@ public class JsonExceptionInterceptor implements Interceptor {
 	private void trycatch(Invocation inv) {
 		try {
 			inv.invoke();
-		} catch (NullParamException e) {
-			addError(inv, 404);
-			e.printStackTrace();
-		} catch (RpcException e) {
-			addError(inv, 505);
-			e.printStackTrace();
 		} catch (Exception e) {
 			handleErrorCodeException(inv, e);
 		}

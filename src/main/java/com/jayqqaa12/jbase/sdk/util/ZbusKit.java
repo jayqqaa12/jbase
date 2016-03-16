@@ -66,7 +66,7 @@ public class ZbusKit {
 
 		try {
 			ServiceConfig config = new ServiceConfig();
-			// config.thriftServer = "0.0.0.0:25555";
+			config.serverPort=15555;
 			config.messageProcessor = new RpcProcessor(module);
 			new Service(config).start();
 		} catch (Exception e) {

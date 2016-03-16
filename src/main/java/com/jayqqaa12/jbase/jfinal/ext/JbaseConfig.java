@@ -3,6 +3,7 @@ package com.jayqqaa12.jbase.jfinal.ext;
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
 import com.jayqqaa12.jbase.sdk.util.OSSKit;
+import com.jayqqaa12.jbase.util.IpUtil;
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
 import com.jfinal.config.Interceptors;
@@ -40,6 +41,7 @@ public abstract class JbaseConfig extends JFinalConfig {
 	private boolean useShiro;
 
 	private Routes routes;
+	private boolean isTestServer;
 
 	static {
 		String osName = System.getProperty("os.name");
@@ -59,6 +61,68 @@ public abstract class JbaseConfig extends JFinalConfig {
 	}
 
 	/**
+	 * 设置 测试服务器 当验证 ip 为 测试服务器的时候 就自动设置为测试模式
+	 * 
+	 * @param addr
+	 */
+	public void setTestServer(String ip) {
+
+		String IP = IpUtil.getEth1InetIP();
+		if (ip.equals(IP)) isTestServer = true;
+	}
+	
+	public boolean isTestServer(){
+		return isTestServer;
+	}
+	
+	/**
+	 * 测试的时候打开 切换为开发模式
+	 */
+	public static void openTestMode() {
+		isDev = true;
+	}
+
+	public void configConstant(Constants me) {
+		if(isTestServer()) openTestMode();
+
+		ConfigKit.setDev(isDevMode());
+
+		new ConfigPlugin(".*.txt").reload(false).start();
+		me.setDevMode(isDevMode());
+		SqlReporter.setLog(isDevMode());
+	}
+
+	/**
+	 * 默认开启了自动路由
+	 */
+	public void configRoute(Routes me) {
+		routes = me;
+		// 自动扫描 建议用注解
+		AutoBindRoutes abr = new AutoBindRoutes().autoScan(false);
+		me.add(abr);
+	}
+
+	@Override
+	public void configInterceptor(Interceptors me) {
+
+		if (useShiro) me.add(new ShiroInterceptor());
+
+	}
+
+	@Override
+	public void configHandler(Handlers me) {
+		// 计算每个page 运行时间
+		if (isDevMode()) me.add(new RenderingTimeHandler());
+
+		if (isDevMode() && useDruid) me.add(new DruidStatViewHandler("/druid"));
+	}
+	
+	
+
+	
+	
+
+	/**
 	 * 默认配置名称 基于约定
 	 * 
 	 * 在配置文件 xx.txt 设置如下参数即可 db.url 数据库地址 db.user 数据库名称 db.pwd 数据库密码
@@ -68,8 +132,7 @@ public abstract class JbaseConfig extends JFinalConfig {
 
 		useDruid = true;
 
-		DruidPlugin dbPlugin = new DruidPlugin(getConfigStr("db.url"), getConfigStr("db.user"),
-				getConfigStr("db.pwd"));
+		DruidPlugin dbPlugin = new DruidPlugin(getConfigStr("db.url"), getConfigStr("db.user"), getConfigStr("db.pwd"));
 		// 设置 状态监听与 sql防御
 		WallFilter wall = new WallFilter();
 		wall.setDbType(getConfigStr("db.type"));
@@ -107,6 +170,7 @@ public abstract class JbaseConfig extends JFinalConfig {
 
 	/**
 	 * 默认配置文件 shiro.ini
+	 * 
 	 * @param me
 	 */
 	protected void addShiroPlugin(Plugins me) {
@@ -125,8 +189,7 @@ public abstract class JbaseConfig extends JFinalConfig {
 	 */
 	protected void addRedisPlugin(Plugins me) {
 		// redis
-		me.add(new RedisPlugin(getConfigStr("redis.db"), getConfigStr("redis.host"), ConfigKit
-				.getStr("redis.pwd")));
+		me.add(new RedisPlugin(getConfigStr("redis.db"), getConfigStr("redis.host"), ConfigKit.getStr("redis.pwd")));
 
 	}
 
@@ -139,45 +202,7 @@ public abstract class JbaseConfig extends JFinalConfig {
 		me.add(new QuartzPlugin("job.properties"));
 	}
 
-	/**
-	 * 测试的时候打开 切换为开发模式
-	 */
-	public static void openTestMode() {
-		isDev = true;
-	}
 
-	public void configConstant(Constants me) {
-
-		ConfigKit.setDev(isDevMode());
-
-		new ConfigPlugin(".*.txt").reload(false).start();
-		me.setDevMode(isDevMode());
-		SqlReporter.setLog(isDevMode());
-	}
-
-	/**
-	 * 默认开启了自动路由
-	 */
-	public void configRoute(Routes me) {
-		routes = me;
-		// 自动扫描 建议用注解
-		AutoBindRoutes abr = new AutoBindRoutes().autoScan(false);
-		me.add(abr);
-	}
-
-	@Override
-	public void configInterceptor(Interceptors me) {
-
-		if (useShiro) me.add(new ShiroInterceptor());
-
-	}
-
-	@Override
-	public void configHandler(Handlers me) {
-		// 计算每个page 运行时间
-		if (isDevMode()) me.add(new RenderingTimeHandler());
-
-		if (isDevMode() && useDruid) me.add(new DruidStatViewHandler("/druid"));
-	}
+	
 
 }

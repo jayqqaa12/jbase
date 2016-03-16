@@ -6,7 +6,6 @@ import java.util.Map;
 import org.zbus.broker.Broker;
 import org.zbus.broker.BrokerConfig;
 import org.zbus.broker.SingleBroker;
-import org.zbus.rpc.RpcException;
 import org.zbus.rpc.RpcInvoker;
 import org.zbus.rpc.RpcProcessor;
 import org.zbus.rpc.direct.Service;
@@ -42,7 +41,7 @@ public class ZbusKit {
 	 */
 	public static <T> T invokeSync(String addr, int timeout, Class<T> clazz, String method, Object... args) {
 
-		try {
+		try { 
 			
 			RpcInvoker rpc = new RpcInvoker(getBroker(addr));
 			rpc.setTimeout(timeout);

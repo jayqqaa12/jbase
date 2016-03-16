@@ -137,6 +137,7 @@ public abstract class ControllerTestCase<T extends JFinalConfig> {
     }
 
     public ControllerTestCase<T> post(File bodyFile) {
+    	request.setContentType("multipart/form-data");
         this.bodyFile = bodyFile;
         return this;
     }

@@ -53,6 +53,8 @@ public class MockHttpRequest implements HttpServletRequest {
     private Map<String, String[]> paraMap = Maps.newHashMap();
 
     private String body;
+    
+    private String contentType;
 
     public MockHttpRequest(String body) {
         this.body = body;
@@ -63,6 +65,8 @@ public class MockHttpRequest implements HttpServletRequest {
 
         return false;
     }
+    
+    
 
     @Override
     public AsyncContext getAsyncContext() {
@@ -100,7 +104,11 @@ public class MockHttpRequest implements HttpServletRequest {
     @Override
     public String getContentType() {
 
-        return null;
+        return contentType;
+    }
+    
+    public void setContentType(String contentType){
+    	this.contentType=contentType;
     }
 
     @Override
@@ -329,7 +337,7 @@ public class MockHttpRequest implements HttpServletRequest {
     @Override
     public String getServerName() {
 
-        return null;
+        return "TEST SERVER";
     }
 
     @Override

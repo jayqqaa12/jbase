@@ -62,8 +62,6 @@ public abstract class JbaseConfig extends JFinalConfig {
 
 	/**
 	 * 设置 测试服务器 当验证 ip 为 测试服务器的时候 就自动设置为测试模式
-	 * 
-	 * @param addr
 	 */
 	public void setTestServer(String ip) {
 

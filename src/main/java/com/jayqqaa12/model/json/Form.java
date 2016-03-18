@@ -9,8 +9,8 @@ import java.util.Set;
 import org.apache.commons.lang.StringUtils;
 
 import com.jayqqaa12.jbase.util.Txt;
-import com.jayqqaa12.jbase.util.Validate;
 import com.jfinal.core.Controller;
+import com.jfinal.kit.StrKit;
 
 /***
  * 
@@ -58,7 +58,7 @@ public class Form
 	public Form(String tableName)
 	{
 		this();
-		if (!Validate.isEmpty(tableName)) this.tableName = tableName;
+		if (StrKit.notBlank(tableName)) this.tableName = tableName;
 	}
 	
 	
@@ -199,7 +199,7 @@ public class Form
 
 	public String getWhere()
 	{
-		if (!Validate.isEmpty(tableName) && !tableName.contains(".")) tableName += ".";
+		if (StrKit.notBlank(tableName) && !tableName.contains(".")) tableName += ".";
 		where = " where 1=1 ";
 
 		for (String key : fromMap.keySet())
@@ -231,7 +231,7 @@ public class Form
 
 	public String sort(String sortName, String sortOrder)
 	{
-		if (Validate.isEmpty(sortName)) return "";
+		if (StrKit.notBlank(sortName)) return "";
 		else return " order by " + sortName + " " + sortOrder;
 	}
 

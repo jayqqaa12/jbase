@@ -3,16 +3,16 @@ package com.jayqqaa12.jbase.jfinal.ext.model;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.ArrayUtils;
 
+import com.google.common.collect.Lists;
 import com.jayqqaa12.jbase.util.Sec;
 import com.jayqqaa12.jbase.util.Txt;
-import com.jayqqaa12.jbase.util.Validate;
 import com.jfinal.ext.plugin.sqlinxml.SqlKit;
+import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.ActiveRecordException;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Page;
@@ -84,7 +84,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 		return Db.update("update " + TABLENAME + " set " + key + "=? where " + idKey + " =?", value, id) > 0;
 	}
- 
+
 	public boolean updateAddOneById(String key, Object id) {
 		loadTableName();
 		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
@@ -93,7 +93,6 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		return Db.update("update " + TABLENAME + " set " + key + " =" + key + "+1 where " + idKey + " =?", id) > 0;
 	}
 
-	 
 	public boolean updateSubOneById(String key, Object id) {
 		loadTableName();
 		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
@@ -108,7 +107,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * @param ids
 	 */
 	public boolean batchDelete(String ids) {
-		if (Validate.isEmpty(ids)) return false;
+		if (StrKit.isBlank(ids)) return false;
 		loadTableName();
 
 		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
@@ -309,7 +308,6 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
- 
 	/***
 	 * if empty remove the attr
 	 * 
@@ -336,22 +334,15 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	public M putModel(String key, Object value) {
 
-		if (value instanceof Model) {
-			this.put(key, ((Model) value).getAttrs());
-		}
-		if (value instanceof Record) {
-			this.put(key, ((Record) value).getColumns());
-		}
-
-		if (value instanceof Page) {
-			value = ((Page) value).getList();
-		}
+		if (value instanceof Model) this.put(key, ((Model<?>) value).getAttrs());
+		if (value instanceof Record) this.put(key, ((Record) value).getColumns());
+		if (value instanceof Page) value = ((Page<?>) value).getList();
 
 		if (value instanceof List) {
-			List models = new ArrayList();
-			for (Object obj : (List) value) {
+			List models = Lists.newArrayList();
+			for (Object obj : (List ) value) {
 				if (obj instanceof Model) {
-					models.add(((Model) obj).getAttrs());
+					models.add(((Model<?>) obj).getAttrs());
 				}
 				if (obj instanceof Record) {
 					models.add(((Record) obj).getColumns());

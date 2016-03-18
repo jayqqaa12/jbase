@@ -14,8 +14,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import com.jayqqaa12.jbase.util.Txt;
-import com.jayqqaa12.jbase.util.Validate;
 import com.jfinal.core.Controller;
+import com.jfinal.kit.StrKit;
 import com.jfinal.upload.UploadFile;
 
 public class KindEditor
@@ -36,7 +36,7 @@ public class KindEditor
 			String dir = c.getPara("dir");
 			 file = c.getFiles(c.getRequest().getRealPath(UPLOAD_PATH + dir)).get(0);
 
-			if (file.getFile().exists() && !Validate.isEmpty(dir))
+			if (file.getFile().exists() && StrKit.notBlank(dir))
 			{
 
 				String ext = Txt.getExt(file.getFileName());

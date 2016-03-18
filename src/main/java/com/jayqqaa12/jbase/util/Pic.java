@@ -13,6 +13,8 @@ import javax.imageio.ImageIO;
 /**
  * 图片操作工具类.
  * 此类封装简化了图片大小获取/缩放调整，水印等常用功能.
+ * 
+ * png 会变黑
  */
 @SuppressWarnings({"unused"})
 public final class Pic{

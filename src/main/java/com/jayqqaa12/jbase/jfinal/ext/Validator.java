@@ -1,7 +1,7 @@
 package com.jayqqaa12.jbase.jfinal.ext;
 
-import com.jayqqaa12.jbase.util.Validate;
 import com.jfinal.core.Controller;
+import com.jfinal.kit.StrKit;
 
 public abstract class Validator extends com.jfinal.validate.Validator
 {
@@ -14,7 +14,7 @@ public abstract class Validator extends com.jfinal.validate.Validator
 	
 	protected boolean isEmpty(String key){
 		
-		return Validate.isEmpty(controller.getPara(key));
+		return StrKit.isBlank(controller.getPara(key));
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public abstract class Validator extends com.jfinal.validate.Validator
 		else
 		{
 			String value = controller.getPara(field);
-			if (!Validate.isEmpty(value)) super.validateEmail(field, ERROR_MSG, "email 格式错误 请重新输入");
+			if (StrKit.notBlank(value)) super.validateEmail(field, ERROR_MSG, "email 格式错误 请重新输入");
 		}
 
 	}

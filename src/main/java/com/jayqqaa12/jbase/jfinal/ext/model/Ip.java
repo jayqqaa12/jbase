@@ -2,6 +2,7 @@ package com.jayqqaa12.jbase.jfinal.ext.model;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.jayqqaa12.jbase.jfinal.ext.exception.NullParamException;
 import com.jayqqaa12.jbase.jfinal.ext.model.Model;
 import com.jayqqaa12.jbase.util.IpUtil;
 import com.jfinal.ext.plugin.tablebind.TableBind;
@@ -48,7 +49,7 @@ public class Ip extends Model<Ip>
 
 	public void save(JSONObject json,String ip)
 	{
-		if(json==null) return ;
+		if(json==null)   throw new NullParamException();
 		
 		if(json.getString("start").equals("-1")){
 			

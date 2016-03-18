@@ -6,11 +6,10 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import com.jayqqaa12.jbase.jfinal.ext.exception.NullParamException;
-import com.jayqqaa12.jbase.util.Validate;
 import com.jayqqaa12.model.json.Form;
-import com.jfinal.core.Injector;
 import com.jfinal.ext.render.excel.PoiRender;
 import com.jfinal.ext.route.ControllerBind;
+import com.jfinal.kit.StrKit;
 
 
 /**
@@ -37,7 +36,7 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	
 	public String getParaNotNull(String name)  {
 		String str= super.getPara(name);
-		if(str ==null || Validate.isEmpty(str)) throw new NullParamException();
+		if(str ==null || StrKit.isBlank(str)) throw new NullParamException();
 		return str;
 	}
 	
@@ -95,7 +94,7 @@ public class Controller<T> extends com.jfinal.core.Controller {
 		if (controll != null) viewpath = controll.viewPath();
 		String to = getPara("to");
 		keepPara();
-		if (!Validate.isEmpty(to)) render(viewpath + "/" + to + ".html");
+		if (StrKit.notBlank(to)) render(viewpath + "/" + to + ".html");
 	}
 
 	/***

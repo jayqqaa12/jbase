@@ -15,6 +15,12 @@ import org.zbus.rpc.direct.ServiceConfig;
 import com.google.common.collect.Maps;
 import com.jayqqaa12.jbase.jfinal.ext.exception.JbaseRPCException;
 
+/***
+ * 简单包装
+ * 
+ * @author 12
+ *
+ */
 public class ZbusKit {
 
 	public static int DEFAULT_TIMEOUT = 15 * 1000;

@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import sun.misc.BASE64Decoder;
 
 import com.jayqqaa12.jbase.util.Fs;
-import com.jayqqaa12.jbase.util.L;
 
 public class FlashUpload
 {

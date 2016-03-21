@@ -1,6 +1,6 @@
 package com.jayqqaa12.jbase.jfinal.ext.exception;
 
-public class JbaseRPCException extends ErrorCodeException {
+public class JbaseRPCException extends JbaseErrorCodeException {
 
 	public JbaseRPCException(Throwable cause) {
 		super(cause);

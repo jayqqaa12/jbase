@@ -49,8 +49,8 @@ public class JsonExceptionInterceptor implements Interceptor {
 
 	private void handleErrorCodeException(Invocation inv, Exception e) {
 
-		if (e instanceof ErrorCodeException) {
-			addError(inv, ((ErrorCodeException) e).getErrorCode());
+		if (e instanceof JbaseErrorCodeException) {
+			addError(inv, ((JbaseErrorCodeException) e).getErrorCode());
 		} else {
 			handleError(inv, e);
 		}

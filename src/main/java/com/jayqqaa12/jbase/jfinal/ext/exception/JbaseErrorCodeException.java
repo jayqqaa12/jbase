@@ -1,6 +1,6 @@
 package com.jayqqaa12.jbase.jfinal.ext.exception;
 
-public class ErrorCodeException extends RuntimeException {
+public class JbaseErrorCodeException extends RuntimeException {
 
 	protected int code;
 
@@ -10,15 +10,15 @@ public class ErrorCodeException extends RuntimeException {
 	private static final long serialVersionUID = 692099006894911532L;
 
 	
-	public ErrorCodeException(Throwable cause) {
+	public JbaseErrorCodeException(Throwable cause) {
 		super(cause);
 	}
 
-	public ErrorCodeException(int code) {
+	public JbaseErrorCodeException(int code) {
 		this.code = code;
 	}
 
-	public ErrorCodeException(int code, String msg) {
+	public JbaseErrorCodeException(int code, String msg) {
 		super(msg);
 		this.code = code;
 	}

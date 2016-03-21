@@ -9,6 +9,7 @@ import java.util.Map;
 import org.apache.commons.lang.ArrayUtils;
 
 import com.google.common.collect.Lists;
+import com.jayqqaa12.jbase.jfinal.ext.exception.NullModelException;
 import com.jayqqaa12.jbase.util.Sec;
 import com.jayqqaa12.jbase.util.Txt;
 import com.jfinal.ext.plugin.sqlinxml.SqlKit;
@@ -43,8 +44,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 		try {
 
-			clazz = (Class<? extends com.jfinal.plugin.activerecord.Model<M>>) ((ParameterizedType) genericSuperclass)
-					.getActualTypeArguments()[0];
+			clazz = (Class<? extends com.jfinal.plugin.activerecord.Model<M>>) ((ParameterizedType) genericSuperclass).getActualTypeArguments()[0];
 			loadTableName();
 		} catch (Exception e) {
 			throw new RuntimeException(" Can't new Model must new  extends sub class ");
@@ -53,8 +53,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	private void loadTableName() {
 
-		if (clazz != null && TableMapping.me().getTable(clazz) != null) TABLENAME = TableMapping.me().getTable(clazz)
-				.getName();
+		if (clazz != null && TableMapping.me().getTable(clazz) != null) TABLENAME = TableMapping.me().getTable(clazz).getName();
 	}
 
 	// ///////////////////////////////////////////////////////////////
@@ -130,6 +129,12 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	}
 
+	public M findByIdNotNull(Object idValue) {
+		M m = findById(idValue);
+		if (m == null) throw new NullModelException();
+		return m;
+	}
+
 	public boolean deleteByWhere(String where, Object... param) {
 		loadTableName();
 		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
@@ -154,6 +159,15 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		if (list != null && list.size() > 0) return list.get(0);
 
 		else return null;
+	}
+
+	public M findFirstByWhereNotNull(String where, Object... params) {
+
+		List<M> list = findAllByWhere(where, params);
+
+		if (list != null && list.size() > 0) return list.get(0);
+
+		else throw new NullModelException();
 	}
 
 	public boolean isFindByWhere(String where, Object... params) {
@@ -340,7 +354,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 		if (value instanceof List) {
 			List models = Lists.newArrayList();
-			for (Object obj : (List ) value) {
+			for (Object obj : (List) value) {
 				if (obj instanceof Model) {
 					models.add(((Model<?>) obj).getAttrs());
 				}
@@ -353,6 +367,22 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		}
 
 		return (M) this;
+	}
+
+	/**
+	 * @param key
+	 * @return
+	 */
+	public boolean isNull(String key) {
+		return getAttrs().get(key) == null;
+	}
+
+	/**
+	 * @param key
+	 * @return
+	 */
+	public boolean notNull(String key) {
+		return getAttrs().get(key) != null;
 	}
 
 	/***

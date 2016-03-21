@@ -50,7 +50,7 @@ public class IpUtil {
 
 	public static String getIpByMobile(HttpServletRequest request) {
 		String ip = request.getRemoteAddr();
-		if (ip != null && (ip.equals("127.0.0.1") || ip.startsWith("192")||ip.startsWith("0:0:"))) ip = getIp(request);
+		if (ip != null && (ip.equals("127.0.0.1") || ip.startsWith("192")||ip.startsWith("100")||ip.startsWith("0:0:"))) ip = getIp(request);
 
 		return ip;
 	}

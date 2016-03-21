@@ -2,6 +2,7 @@ package com.jayqqaa12.jbase.jfinal.ext;
 
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
+import com.jayqqaa12.jbase.jfinal.ext.exception.NullParamException;
 import com.jayqqaa12.jbase.sdk.util.OSSKit;
 import com.jayqqaa12.jbase.util.IpUtil;
 import com.jfinal.config.Constants;
@@ -19,6 +20,7 @@ import com.jfinal.ext.plugin.shiro.ShiroInterceptor;
 import com.jfinal.ext.plugin.shiro.ShiroPlugin;
 import com.jfinal.ext.plugin.sqlinxml.SqlInXmlPlugin;
 import com.jfinal.ext.route.AutoBindRoutes;
+import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.IDataSourceProvider;
 import com.jfinal.plugin.activerecord.SqlReporter;
@@ -56,8 +58,14 @@ public abstract class JbaseConfig extends JFinalConfig {
 	}
 
 	public String getConfigStr(String key) {
+		
+		String str =ConfigKit.getStr(key);
+		
+		System.out.println("key="+key +" config="+ str);
 
-		return ConfigKit.getStr(key);
+		if(StrKit.isBlank(str)) throw new NullPointerException("config "+key +" is null please write to config file");
+		
+		return str.trim();
 	}
 
 	/**
@@ -136,6 +144,7 @@ public abstract class JbaseConfig extends JFinalConfig {
 		wall.setDbType(getConfigStr("db.type"));
 		dbPlugin.addFilter(wall);
 		dbPlugin.addFilter(new StatFilter());
+		
 		me.add(dbPlugin);
 
 		me.add(new SqlInXmlPlugin());

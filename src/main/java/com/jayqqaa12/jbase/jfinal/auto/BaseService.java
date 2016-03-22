@@ -20,12 +20,20 @@ import java.util.List;
 import com.jayqqaa12.jbase.jfinal.ext.model.Model;
 import com.jfinal.plugin.activerecord.Page;
 
+
+/***
+ * 与业务相关写在service 层
+ * 
+ * @author 12
+ *
+ * @param <M>
+ */
 public class BaseService<M extends Model> {
 
-	protected Model dao;
+	protected M dao;
 	
 
-	protected BaseService setDao(Model dao){
+	protected BaseService<?> setDao(M dao){
 		this.dao=dao;
 		return this;
 	}
@@ -64,6 +72,11 @@ public class BaseService<M extends Model> {
 	public List<M> findAllByCache() {
 
 		return dao.findAllByCache();
+	}
+	
+	
+	protected String sql(String key){
+		return dao.sql(key);
 	}
 
 }

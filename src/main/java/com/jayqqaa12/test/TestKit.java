@@ -1,4 +1,4 @@
-package com.jayqqaa12.test.kit;
+package com.jayqqaa12.test;
 
 
 import java.util.Map;

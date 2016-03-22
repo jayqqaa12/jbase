@@ -348,6 +348,13 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>4.0.28.Final</version>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 
 
@@ -451,7 +458,7 @@
 							</execution>
 						</executions>
 					</plugin>
-					
+
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>

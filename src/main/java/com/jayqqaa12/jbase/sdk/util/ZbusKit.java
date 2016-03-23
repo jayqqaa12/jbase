@@ -7,6 +7,7 @@ import org.zbus.broker.Broker;
 import org.zbus.broker.BrokerConfig;
 import org.zbus.broker.SingleBroker;
 import org.zbus.rpc.RpcException;
+import org.zbus.rpc.RpcFactory;
 import org.zbus.rpc.RpcInvoker;
 import org.zbus.rpc.RpcProcessor;
 import org.zbus.rpc.direct.Service;
@@ -32,6 +33,17 @@ public class ZbusKit {
 		return invokeSync(key, DEFAULT_TIMEOUT, clazz, method, args);
 	}
 
+	public static <T> T getServer(String addr, Class<T> clazz) {
+
+		try {
+			return (T) new RpcFactory(getBroker(addr)).getService(clazz);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new JbaseRPCException(e);
+		}
+
+	}
+
 	public static Broker getBroker(String addr) throws IOException {
 
 		if (brokes.get(addr) == null) {
@@ -39,6 +51,7 @@ public class ZbusKit {
 			brokerConfig.setServerAddress(addr);
 			Broker broke = new SingleBroker(brokerConfig);
 			brokes.put(addr, broke);
+
 			return broke;
 		} else return brokes.get(addr);
 	}
@@ -72,7 +85,7 @@ public class ZbusKit {
 
 		try {
 			ServiceConfig config = new ServiceConfig();
-			config.serverPort=15555;
+			config.serverPort = 15555;
 			config.messageProcessor = new RpcProcessor(module);
 			new Service(config).start();
 		} catch (Exception e) {

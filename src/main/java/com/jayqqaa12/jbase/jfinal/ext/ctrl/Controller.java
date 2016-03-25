@@ -42,8 +42,6 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	
 	/**
 	 * 必需不能为null 的参数用这个 方法获取
-	 * @param name
-	 * @return
 	 */
 	public Integer getParaToIntNotNull(String name)  {
 		Integer str= super.getParaToInt(name);
@@ -53,8 +51,6 @@ public class Controller<T> extends com.jfinal.core.Controller {
  
 	/**
 	 * 必需不能为null 的参数用这个 方法获取
-	 * @param name
-	 * @return
 	 */
 	public Long getParaToLongNotNull(String name)  {
 		Long str= super.getParaToLong(name);
@@ -63,8 +59,6 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	}
 	/**
 	 * 必需不能为null 的参数用这个 方法获取
-	 * @param name
-	 * @return
 	 */
 	public Boolean getParaToBooleanNotNull(String name)  {
 		Boolean str= super.getParaToBoolean(name);
@@ -73,8 +67,6 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	}
 	/**
 	 * 必需不能为null 的参数用这个 方法获取
-	 * @param name
-	 * @return
 	 */
 	public Date getParaToDateNotNull(String name) {
 		Date str= super.getParaToDate(name);
@@ -149,7 +141,7 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	public T getNotPreModel() {
 		ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
 		Class  modelClass = (Class ) pt.getActualTypeArguments()[0];
-		return (T) this.getModel(modelClass,"");
+		return (T) this.getModel(modelClass, "");
 	}
 
 	public void renderExcel(List<?> data, String fileName, String[] coulms, String[] headers) {
@@ -186,7 +178,6 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	 * 
 	 * 这是常用的几种
 	 * 
-	 * @return
 	 */
 	public Form getFrom(String tableName) {
 
@@ -208,6 +199,34 @@ public class Controller<T> extends com.jfinal.core.Controller {
 		renderJson(new Gson().toJson(obj));
 	}
 
- 
+
+
+
+	/**
+	 * 当前页 p
+	 * 默认值1
+	 * 基于约定
+	 */
+	protected  int p(){
+		return getParaToInt("p",1);
+	}
+
+	/**
+	 * 页数 c
+	 * 默认值10
+	 * 基于约定
+	 */
+	protected  int c(){
+		return getParaToInt("c",10);
+	}
+
+
+	protected  String uid(){
+		return getPara("uid");
+	}
+
+	protected  String uidNotNull(){
+		return getParaNotNull("uid");
+	}
 
 }

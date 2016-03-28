@@ -7,10 +7,10 @@ package com.jayqqaa12.jbase.jfinal.ext.exception;
  */
 public class NullModelException  extends JbaseErrorCodeException{
 
-	public NullModelException( ) {
-		super(405);
-	}
-
 	private static final long serialVersionUID = 1L;
+
+	public NullModelException( ) {
+		super(ErrorCode.NULL_MODE_ERROR);
+	}
 
 }

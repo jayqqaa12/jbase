@@ -46,6 +46,11 @@ public class BaseService<M extends Model> {
         return (M) dao.findById(id);
     }
 
+    public M findByIdCache(Object id) {
+        return (M) dao.findByIdCache(id);
+    }
+
+
     public List<M> findAll() {
         return dao.findAll();
     }
@@ -60,6 +65,10 @@ public class BaseService<M extends Model> {
 
     public boolean deleteAll() {
         return dao.deleteAll() > 0;
+    }
+
+    public boolean deleteById(Object id){
+        return  dao.deleteById(id);
     }
 
     public Long getAllCount() {

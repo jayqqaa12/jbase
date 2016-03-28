@@ -11,18 +11,26 @@ public class JbaseErrorCodeException extends RuntimeException {
 
 	
 	public JbaseErrorCodeException(Throwable cause) {
+
 		super(cause);
+		this.code=500;
 	}
 
 	public JbaseErrorCodeException(int code) {
 		this.code = code;
 	}
 
+
+
 	public JbaseErrorCodeException(int code, String msg) {
 		super(msg);
 		this.code = code;
 	}
-	
+
+	public JbaseErrorCodeException(ErrorCode error) {
+		this(error.code,error.msg);
+	}
+
 	public int getErrorCode(){
 		
 		return code;

@@ -166,7 +166,6 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		List<M> list = findAllByWhere(where, params);
 
 		if (list != null && list.size() > 0) return list.get(0);
-
 		else throw new NullModelException();
 	}
 

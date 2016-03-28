@@ -1,5 +1,6 @@
 package com.jayqqaa12.jbase.jfinal.ext.exception;
 
+import com.jayqqaa12.jbase.jfinal.ext.JbaseConfig;
 import org.zbus.rpc.RpcException;
 
 import com.jayqqaa12.model.json.SendJson;
@@ -7,13 +8,8 @@ import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 
 /***
- * 
  * 使用 api 接口的时候用
- * 基于约定
- * 
- * 404 NullParamException
- * 505 RpcException
- * 
+ *
  * @author 12
  *
  */
@@ -35,8 +31,8 @@ public class JsonExceptionInterceptor implements Interceptor {
 		else inv.invoke();
 	}
 
-	protected void addError(Invocation inv, int code) {
-		inv.getController().renderJson(new SendJson(code).toJson());
+	protected void addError(Invocation inv, int code,String msg) {
+		inv.getController().renderJson(new SendJson(code,msg).toJson());
 	}
 
 	private void trycatch(Invocation inv) {
@@ -50,14 +46,17 @@ public class JsonExceptionInterceptor implements Interceptor {
 	private void handleErrorCodeException(Invocation inv, Exception e) {
 
 		if (e instanceof JbaseErrorCodeException) {
-			addError(inv, ((JbaseErrorCodeException) e).getErrorCode());
+
+			addError(inv, ((JbaseErrorCodeException) e).getErrorCode(),((JbaseErrorCodeException) e).getMessage());
+
+			if(JbaseConfig.isDevMode()) e.printStackTrace();
 		} else {
 			handleError(inv, e);
 		}
 	}
 
 	protected void handleError(Invocation inv, Exception e) {
-		addError(inv, 500);
+		addError(inv, ErrorCode.SERVER_ERROR.code,e.getMessage());
 		e.printStackTrace();
 	}
 

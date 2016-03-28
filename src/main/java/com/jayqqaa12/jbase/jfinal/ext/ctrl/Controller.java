@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.jayqqaa12.jbase.jfinal.ext.exception.ErrorCode;
 import com.jayqqaa12.jbase.jfinal.ext.exception.NullParamException;
 import com.jayqqaa12.model.json.Form;
 import com.jfinal.ext.render.excel.PoiRender;
@@ -36,16 +37,22 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	
 	public String getParaNotNull(String name)  {
 		String str= super.getPara(name);
-		if(str ==null || StrKit.isBlank(str)) throw new NullParamException();
+		if(str ==null || StrKit.isBlank(str)) return throwNullParam(name);
 		return str;
 	}
-	
+
+	private String throwNullParam(String name) {
+
+		throw new NullParamException(ErrorCode.NULL_PARAM_ERROR.code,
+				ErrorCode.NULL_PARAM_ERROR.msg+" "+name);
+	}
+
 	/**
 	 * 必需不能为null 的参数用这个 方法获取
 	 */
 	public Integer getParaToIntNotNull(String name)  {
 		Integer str= super.getParaToInt(name);
-		if(str ==null ) throw new NullParamException();
+		if(str ==null ) throwNullParam(name);
 		return str;
 	}
  
@@ -54,7 +61,7 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	 */
 	public Long getParaToLongNotNull(String name)  {
 		Long str= super.getParaToLong(name);
-		if(str ==null  ) throw new NullParamException();
+		if(str ==null  ) throwNullParam(name);
 		return str;
 	}
 	/**
@@ -62,7 +69,7 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	 */
 	public Boolean getParaToBooleanNotNull(String name)  {
 		Boolean str= super.getParaToBoolean(name);
-		if(str ==null  ) throw new NullParamException();
+		if(str ==null  ) throwNullParam(name);
 		return str;
 	}
 	/**
@@ -70,7 +77,7 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	 */
 	public Date getParaToDateNotNull(String name) {
 		Date str= super.getParaToDate(name);
-		if(str ==null  ) throw new NullParamException();
+		if(str ==null  ) throwNullParam(name);
 		return str;
 	}
  
@@ -208,7 +215,7 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	 * 基于约定
 	 */
 	protected  int p(){
-		return getParaToInt("p",1);
+		return getParaToInt("p", 1);
 	}
 
 	/**
@@ -217,16 +224,9 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	 * 基于约定
 	 */
 	protected  int c(){
-		return getParaToInt("c",10);
+		return getParaToInt("c", 10);
 	}
 
 
-	protected  String uid(){
-		return getPara("uid");
-	}
-
-	protected  String uidNotNull(){
-		return getParaNotNull("uid");
-	}
 
 }

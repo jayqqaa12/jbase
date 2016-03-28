@@ -44,6 +44,11 @@ public class SendJson {
 		this.code = code;
 	}
 
+	public SendJson(int code,String msg) {
+		this.code = code;
+		this.msg=msg;
+	}
+
 	public String toJson() {
 		if (data!=null&&data.size() == 0) data = null;
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();

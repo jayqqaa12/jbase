@@ -6,7 +6,10 @@ public class NullParamException extends JbaseErrorCodeException {
 
 	public NullParamException() {
 		
-		super(404,"Plase check  send param  not is null");
+		super(ErrorCode.NULL_PARAM_ERROR);
 	}
 
+	public NullParamException(int code, String s) {
+		super(code,s);
+	}
 }

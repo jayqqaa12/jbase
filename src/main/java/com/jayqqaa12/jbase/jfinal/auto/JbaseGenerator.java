@@ -44,6 +44,7 @@ public class JbaseGenerator extends Generator {
 		
 		String remark=columnMeta.remarks;
 		if(StrKit.notBlank(remark)){
+
 			remark = "\t/**\n" + "\t* "+remark+" \n" + "\t*/\n";
 		}
 		

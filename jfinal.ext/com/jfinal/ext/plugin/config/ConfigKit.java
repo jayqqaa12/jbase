@@ -45,6 +45,8 @@ public class ConfigKit {
 
 	private static boolean dev = false;
 
+	public static boolean isDev(){return  dev;}
+
 	public static void setDev(boolean dev) {
 		ConfigKit.dev = dev;
 	}

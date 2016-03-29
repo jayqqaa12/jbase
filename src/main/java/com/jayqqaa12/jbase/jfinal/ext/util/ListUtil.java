@@ -8,10 +8,13 @@ import com.jfinal.plugin.activerecord.Record;
 
 /***
  * for jfinal
+ *
+ * 改用 jdk8 就够了
  * 
  * @author 12
  * 
  */
+@Deprecated
 public class ListUtil
 {
 	

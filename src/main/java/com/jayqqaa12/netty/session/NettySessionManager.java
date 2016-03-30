@@ -44,7 +44,7 @@ public class NettySessionManager {
 		return sessions.get(account);
 	}
 
-	public synchronized void removeSession(String account) {
+	public   void removeSession(String account) {
 
 		synchronized (account) {
 			NettySession session = sessions.remove(account);

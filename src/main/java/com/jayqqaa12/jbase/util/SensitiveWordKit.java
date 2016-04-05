@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import com.jayqqaa12.jbase.jfinal.ext.exception.NullParamException;
 import com.jfinal.kit.PathKit;
 
 /***
@@ -25,7 +24,7 @@ public class SensitiveWordKit {
 	public static final int MIN_MATCH_TYPE = 1; // 最小匹配规则
 	public static final int MAX_MATCH_TYPE = 2; // 最大匹配规则
 	
-	public static  int  defult_match = MIN_MATCH_TYPE;
+	public static final int  DEFUAT_MATCH = MIN_MATCH_TYPE;
 	/**
 	 * 构造函数，初始化敏感词库
 	 */
@@ -39,7 +38,7 @@ public class SensitiveWordKit {
 	 * 判断文字是否包含敏感字符
 	 * 
 	 */
-	public static boolean isContaintSensitiveWord(String txt, int matchType) {
+	public static boolean isContaintSensitiveWord(String txt ) {
 		boolean flag = false;
 		for (int i = 0; i < txt.length(); i++) {
 			int matchFlag =   CheckSensitiveWord(txt, i); // 判断是否包含敏感字符
@@ -121,7 +120,7 @@ public class SensitiveWordKit {
 				matchFlag++; // 找到相应key，匹配标识+1
 				if ("1".equals(nowMap.get("isEnd"))) { // 如果为最后一个匹配规则,结束循环，返回匹配标识数
 					flag = true; // 结束标志位为true
-					if ( defult_match == MIN_MATCH_TYPE) { // 最小规则，直接返回,最大规则还需继续查找
+					if ( DEFUAT_MATCH == MIN_MATCH_TYPE) { // 最小规则，直接返回,最大规则还需继续查找
 						break;
 					}
 				}

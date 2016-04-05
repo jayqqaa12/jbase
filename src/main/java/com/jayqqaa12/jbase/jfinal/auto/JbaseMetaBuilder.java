@@ -59,7 +59,7 @@ public class JbaseMetaBuilder extends MetaBuilder {
                 rs.close();
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            LogKit.error(e.getMessage(), e);
         } finally {
             if (conn != null)
                 try {

@@ -1,11 +1,6 @@
 package com.jayqqaa12.jbase.util.android;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -14,19 +9,17 @@ import com.sinaapp.msdxblog.apkUtil.ApkUtil;
 
 public class ApkKit {
 
-	public static String AAPT_PATH = "/root/android-sdk-linux/build-tools/19.0.1/aapt";
+	public static  String AAPT_PATH = "/root/android-sdk-linux/build-tools/19.0.1/aapt";
 
 	public static void setAaptPath(String path) {
 		AAPT_PATH = path;
 	}
 
 	public static ApkInfo getApkInfo(String apkPath) throws Exception {
-		ApkInfo apkInfo = null;
 		ApkUtil apk = new ApkUtil();
 		if (AAPT_PATH != null) apk.setmAaptPath(AAPT_PATH);
-		apkInfo = apk.getApkInfo(apkPath);
 
-		return apkInfo;
+		return  apk.getApkInfo(apkPath);
 	}
 
 	/***
@@ -52,7 +45,7 @@ public class ApkKit {
 	 * @param fileName
 	 * @return
 	 */
-	public static InputStream extractFileFromApk(String apkpath, String fileName) {
+	private static ZipFile extractFileFromApk(String apkpath, String fileName) {
 		try {
 			ZipFile zFile = new ZipFile(apkpath);
 			ZipEntry entry = zFile.getEntry(fileName);
@@ -62,16 +55,18 @@ public class ApkKit {
 			entry.isDirectory();
 			entry.getSize();
 			entry.getMethod();
-			InputStream stream = zFile.getInputStream(entry);
-			return stream;
+			return zFile;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 		return null;
 	}
 	
-	public static void extractFileFromApk(String apkpath, String fileName, String outputPath) throws Exception {
-		InputStream is = extractFileFromApk(apkpath, fileName);
+	public static void extractFileFromApk(String apkpath, String fileName, String outputPath) throws IOException {
+		ZipFile zFile  = extractFileFromApk(apkpath, fileName);
+
+		InputStream is= zFile.getInputStream(zFile.getEntry(fileName));
 		
 		File file = new File(outputPath);
 		BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file), 1024);

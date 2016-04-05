@@ -34,7 +34,9 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	private static final long serialVersionUID = 8924183967602127690L;
 
-	private Class<? extends com.jfinal.plugin.activerecord.Model<M>> clazz;
+	private final Class<? extends com.jfinal.plugin.activerecord.Model<M>> clazz;
+
+
 
 	public String TABLENAME;
 
@@ -142,6 +144,13 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		if (idKey == null) throw new ActiveRecordException("You can't update model without Primary Key.");
 
 		return Db.update("delete from " + TABLENAME + " " + where, param) > 0;
+	}
+
+
+	public M findByIdCacheNotNull(Object idValue) {
+		M m = findByIdCache(idValue);
+		if (m == null) throw new NullModelException();
+		return m;
 	}
 
 	public M findByIdCache(Object id) {

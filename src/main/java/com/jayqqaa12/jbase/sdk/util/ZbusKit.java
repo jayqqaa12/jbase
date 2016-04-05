@@ -44,7 +44,7 @@ public class ZbusKit {
 
 	}
 
-	public static Broker getBroker(String addr) throws IOException {
+	public synchronized static  Broker getBroker(String addr) throws IOException {
 
 		if (brokes.get(addr) == null) {
 			BrokerConfig brokerConfig = new BrokerConfig();

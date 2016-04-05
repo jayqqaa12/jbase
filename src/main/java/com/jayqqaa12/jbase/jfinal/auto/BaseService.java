@@ -28,6 +28,7 @@ import com.jfinal.plugin.activerecord.Page;
  * @author 12
  */
 public class BaseService<M extends Model> {
+	
 
     protected M dao;
 
@@ -67,6 +68,10 @@ public class BaseService<M extends Model> {
         return dao.deleteAll() > 0;
     }
 
+    public boolean batchDelete(String ids)
+    {
+    	return dao.batchDelete(ids);
+    }
     public boolean deleteById(Object id){
         return  dao.deleteById(id);
     }
@@ -74,6 +79,11 @@ public class BaseService<M extends Model> {
     public Long getAllCount() {
         return dao.getAllCount();
     }
+    
+    public Long getCount(String sql) {
+        return dao.getCount(sql);
+    }
+
 
     public List<M> findAllByCache() {
         return dao.findAllByCache();

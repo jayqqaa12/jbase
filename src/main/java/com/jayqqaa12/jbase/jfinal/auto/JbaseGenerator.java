@@ -47,6 +47,7 @@ public class JbaseGenerator extends Generator {
 
 			remark = "\t/**\n" + "\t* "+remark+" \n" + "\t*/\n";
 		}
+		else remark="";
 		
 		return remark;
 	}

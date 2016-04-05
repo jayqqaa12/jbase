@@ -24,14 +24,13 @@ public class XssHandler extends Handler
 	@Override
 	public void handle(String target, HttpServletRequest request, HttpServletResponse response, boolean[] isHandled)
 	{
-		if (target.indexOf(".") > 0 || (StrKit.notBlank(target) && target.startsWith(exclude)))
+		if (target.indexOf(".") >= 0 || (StrKit.notBlank(target) && target.startsWith(exclude)))
 		{
 			nextHandler.handle(target, request, response, isHandled);
 		}
 		else
 		{
-			request = new HttpServletRequestWrapper(request);
-			nextHandler.handle(target, request, response, isHandled);
+			nextHandler.handle(target, new HttpServletRequestWrapper(request), response, isHandled);
 		}
 	}
 }

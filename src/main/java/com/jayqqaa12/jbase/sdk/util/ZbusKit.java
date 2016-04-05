@@ -24,7 +24,7 @@ import com.jayqqaa12.jbase.jfinal.ext.exception.JbaseRPCException;
  */
 public class ZbusKit {
 
-	public static int DEFAULT_TIMEOUT = 15 * 1000;
+	public static final int DEFAULT_TIMEOUT = 15 * 1000;
 
 	private static Map<String, Broker> brokes = Maps.newConcurrentMap();
 

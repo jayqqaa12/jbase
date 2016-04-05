@@ -29,7 +29,7 @@ public class Ip extends Model<Ip>
 {
 	private static final long serialVersionUID = -3901846514758691907L;
 
-	public static Ip dao = new Ip();
+	public static final Ip dao = new Ip();
 
 	public Ip findIp(String ipStr)
 	{

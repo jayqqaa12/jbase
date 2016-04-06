@@ -1,6 +1,7 @@
 package com.jfinal.ext.interceptor.syslog;
 
 import com.jfinal.core.Controller;
+import com.jfinal.kit.LogKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import org.apache.commons.beanutils.BeanUtils;
@@ -16,11 +17,11 @@ public class DefaultLogProccesor implements LogProcessor {
             map = BeanUtils.describe(sysLog);
             map.remove("class");
         } catch (Exception e) {
-            e.printStackTrace();
+            LogKit.error(e.getMessage(), e);
         }
         Record record = new Record();
         record.setColumns(map);
-        System.out.println(record);
+//        System.out.println(record);
 //        Db.save("syslog", record);
     }
 

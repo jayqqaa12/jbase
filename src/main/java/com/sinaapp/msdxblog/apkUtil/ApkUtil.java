@@ -1,5 +1,7 @@
 package com.sinaapp.msdxblog.apkUtil;
 
+import com.jfinal.kit.LogKit;
+
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.IOException;
@@ -139,7 +141,7 @@ public class ApkUtil
 			c.close();
 		} catch (IOException e)
 		{
-			e.printStackTrace();
+			LogKit.error(e.getMessage(), e);
 		}
 	}
 

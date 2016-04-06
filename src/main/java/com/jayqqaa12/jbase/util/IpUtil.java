@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.kit.HttpKit;
+import com.jfinal.kit.LogKit;
 
 /**
  * IP工具类
@@ -135,13 +136,13 @@ public class IpUtil {
 			int end = webContent.indexOf("]");
 			return webContent.substring(start, end);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogKit.error(e.getMessage(), e);
 		} finally {
 			if (ins != null) {
 				try {
 					ins.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					LogKit.error(e.getMessage(), e);
 				}
 			}
 		}

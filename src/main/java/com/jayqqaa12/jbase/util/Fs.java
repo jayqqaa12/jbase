@@ -133,7 +133,7 @@ public final class Fs {
                 try {
                     fos.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LogKit.error(e.getMessage(), e);
                 }
 
             }
@@ -141,7 +141,7 @@ public final class Fs {
                 try {
                     is.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LogKit.error(e.getMessage(), e);
                 }
             }
         }
@@ -319,7 +319,7 @@ public final class Fs {
         try {
             properties.load(getResource(resource).openStream());
         } catch (IOException e) {
-            e.printStackTrace();
+            LogKit.error(e.getMessage(), e);
         }
         return properties;
     }
@@ -510,7 +510,7 @@ public final class Fs {
                 if (null != osw) osw.close();
                 if (null != fos) fos.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                LogKit.error(e.getMessage(), e);
             }
         }
     }
@@ -535,7 +535,7 @@ public final class Fs {
             try {
                 if (null != fos) fos.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                LogKit.error(e.getMessage(), e);
             }
         }
     }
@@ -658,15 +658,15 @@ public final class Fs {
 
 
             return true;
-        } catch (Exception ioe) {
-            ioe.printStackTrace();
+        } catch (Exception e) {
+            LogKit.error(e.getMessage(), e);
             return true;
         } finally {
             try {
                 if (is != null) is.close();
                 if (fs != null) fs.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                LogKit.error(e.getMessage(), e);
             }
         }
 

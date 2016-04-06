@@ -1,5 +1,7 @@
 package com.jayqqaa12.jbase.util;
 
+import com.jfinal.kit.LogKit;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,7 +26,7 @@ public class DateUtil
 			cd.add(5, 1);
 		} catch (ParseException e)
 		{
-			e.printStackTrace();
+			LogKit.error(e.getMessage(), e);
 		}
 
 		return sdf.format(cd.getTime());
@@ -49,7 +51,7 @@ public class DateUtil
 			cd.add(5, add);
 		} catch (ParseException e)
 		{
-			e.printStackTrace();
+			LogKit.error(e.getMessage(), e);
 		}
 
 		return sdf.format(cd.getTime());
@@ -108,7 +110,7 @@ public class DateUtil
 			date[3] = sec;
 		} catch (ParseException e)
 		{
-			e.printStackTrace();
+			LogKit.error(e.getMessage(), e);
 		}
 
 		return date;

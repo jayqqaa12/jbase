@@ -1,6 +1,8 @@
 package com.jayqqaa12.jbase.util;
 
 
+import com.jfinal.kit.LogKit;
+
 import java.security.Key;
 import java.security.MessageDigest;
 import java.security.Security;
@@ -76,7 +78,7 @@ public class Sec {
             byte[] encrypted = cipher.doFinal(message.getBytes());
             return byteArr2HexStr(encrypted);
         } catch (Exception e) {
-        	e.printStackTrace();
+            LogKit.error(e.getMessage(), e);
         	return null;
         }
     }
@@ -140,9 +142,8 @@ public class Sec {
         try{  
             md5 = MessageDigest.getInstance("MD5");  
         }catch (Exception e){  
-            System.out.println(e.toString());  
-            e.printStackTrace();  
-            return "";  
+            LogKit.debug(e.getMessage(),e);
+            return "";
         }  
         char[] charArray = inStr.toCharArray();  
         byte[] byteArray = new byte[charArray.length];  

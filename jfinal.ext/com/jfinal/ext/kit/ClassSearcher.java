@@ -23,6 +23,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 import com.google.common.collect.Lists;
+import com.jfinal.kit.LogKit;
 import com.jfinal.kit.PathKit;
 import com.jfinal.log.Log;
 
@@ -200,14 +201,14 @@ public class ClassSearcher {
 								}
 							}
 						} catch (IOException e) {
-							e.printStackTrace();
+							LogKit.error(e.getMessage(), e);
 						} finally {
 							try {
 								if (localJarFile != null) {
 									localJarFile.close();
 								}
 							} catch (IOException e) {
-								e.printStackTrace();
+								LogKit.error(e.getMessage(), e);
 							}
 						}
 					}

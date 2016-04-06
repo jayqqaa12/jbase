@@ -3,6 +3,7 @@ package com.jayqqaa12.jbase.sdk.util;
 import java.io.IOException;
 import java.util.Map;
 
+import com.jfinal.kit.LogKit;
 import org.zbus.broker.Broker;
 import org.zbus.broker.BrokerConfig;
 import org.zbus.broker.SingleBroker;
@@ -38,7 +39,7 @@ public class ZbusKit {
 		try {
 			return (T) new RpcFactory(getBroker(addr)).getService(clazz);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogKit.error(e.getMessage(), e);
 			throw new JbaseRPCException(e);
 		}
 
@@ -89,7 +90,7 @@ public class ZbusKit {
 			config.messageProcessor = new RpcProcessor(module);
 			new Service(config).start();
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogKit.error(e.getMessage(), e);
 		}
 	}
 

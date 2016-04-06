@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import com.jfinal.kit.LogKit;
 import com.sinaapp.msdxblog.apkUtil.ApkInfo;
 import com.sinaapp.msdxblog.apkUtil.ApkUtil;
 
@@ -57,7 +58,7 @@ public class ApkKit {
 			entry.getMethod();
 			return zFile;
 		} catch (IOException e) {
-			e.printStackTrace();
+			LogKit.error(e.getMessage(), e);
 		}
 
 		return null;

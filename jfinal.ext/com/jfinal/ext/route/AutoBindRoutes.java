@@ -22,6 +22,7 @@ import com.google.common.collect.Lists;
 import com.jfinal.config.Routes;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.kit.ClassSearcher;
+import com.jfinal.kit.LogKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.log.Log;
 
@@ -85,7 +86,7 @@ public class AutoBindRoutes extends Routes {
         ControllerBind controllerBind = null;
         controllerClasses.addAll(includeClasses);
         
-        System.out.println("search controller class " + controllerClasses);
+        LogKit.info("search controller class " + controllerClasses);
         
         for (Class controller : controllerClasses) {
             if (excludeClasses.contains(controller)) {

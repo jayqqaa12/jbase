@@ -6,6 +6,7 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.jayqqaa12.jbase.jfinal.ext.exception.JbaseErrorCodeException;
 import com.jayqqaa12.model.json.SendJson;
+import com.jfinal.kit.LogKit;
 
 public class TestKit {
 
@@ -37,7 +38,7 @@ public class TestKit {
 
 	public static void assertError(String rst,int code)    {
 
-		System.out.println(rst);
+		LogKit.error(rst);
 
 		if (rst == null) throw new  RuntimeException("ERROR SERVICE RESULT IS NULL");
 

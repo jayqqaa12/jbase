@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
+import com.jfinal.kit.LogKit;
 import com.mortennobel.imagescaling.ResampleOp;
 
 /***
@@ -30,7 +31,7 @@ public class ImageKit {
 			try {
 				image = ImageIO.read(file);
 			} catch (IOException e) {
-				e.printStackTrace();
+				LogKit.error(e.getMessage(),e);
 			}
 		}
 		return image;

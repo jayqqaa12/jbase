@@ -202,7 +202,7 @@ public final class Pic {
             width = w;
             height = h;
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            LogKit.error(e.getMessage(), e);
         }
         return this;
     }
@@ -226,7 +226,7 @@ public final class Pic {
             g.drawImage(image, 0, 0, w, h, null);
             image = image1;
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            LogKit.error(e.getMessage(), e);
         }
         width = w;
         height = h;
@@ -249,7 +249,7 @@ public final class Pic {
             ImageIO.write(image, ext, out);
             out.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            LogKit.error(e.getMessage(), e);
         }
     }
 

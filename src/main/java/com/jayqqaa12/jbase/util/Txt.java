@@ -1,5 +1,7 @@
 package com.jayqqaa12.jbase.util;
 
+import com.jfinal.kit.LogKit;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -516,7 +518,7 @@ public final class Txt
 		} catch (Exception e)
 		{
 
-			e.printStackTrace();
+			LogKit.error(e.getMessage(), e);
 			return null;
 		}
 

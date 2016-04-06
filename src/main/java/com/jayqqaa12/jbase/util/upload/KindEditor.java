@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.jayqqaa12.jbase.util.Txt;
 import com.jfinal.core.Controller;
+import com.jfinal.kit.LogKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.upload.UploadFile;
 
@@ -62,10 +63,10 @@ public class KindEditor
 			}
 		} catch (Exception e)
 		{
-			e.printStackTrace();
+			LogKit.error(e.getMessage(), e);
 			info.put("error", 1);
 			info.put("message", "上传文件不符合标准");
-			if(file.getFile().exists())file.getFile().delete();
+			if(file!=null&&file.getFile().exists())file.getFile().delete();
 		}
 
 		return info;

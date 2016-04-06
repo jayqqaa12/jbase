@@ -1,6 +1,7 @@
 package com.jayqqaa12.jbase.jfinal.ext.exception;
 
 import com.jayqqaa12.jbase.jfinal.ext.JbaseConfig;
+import com.jfinal.kit.LogKit;
 import org.zbus.rpc.RpcException;
 
 import com.jayqqaa12.model.json.SendJson;
@@ -49,15 +50,18 @@ public class JsonExceptionInterceptor implements Interceptor {
 
 			addError(inv, ((JbaseErrorCodeException) e).getErrorCode(),((JbaseErrorCodeException) e).getMessage());
 
-			if(JbaseConfig.isDevMode()) e.printStackTrace();
+			if(JbaseConfig.isDevMode()) LogKit.debug(e.getMessage(),e);
 		} else {
 			handleError(inv, e);
 		}
 	}
 
 	protected void handleError(Invocation inv, Exception e) {
+
+		LogKit.error(e.getMessage(),e);
 		addError(inv, ErrorCode.SERVER_ERROR.code,e.getMessage());
-		e.printStackTrace();
+
+
 	}
 
 }

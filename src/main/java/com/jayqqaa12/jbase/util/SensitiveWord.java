@@ -1,4 +1,6 @@
 package com.jayqqaa12.jbase.util;
+import com.jfinal.kit.LogKit;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -21,7 +23,7 @@ public class SensitiveWord {
              //将敏感词库加入到HashMap中
              addSensitiveWordToHashMap(keyWordSet);
          } catch (Exception e) {
-             e.printStackTrace();
+             LogKit.error(e.getMessage(), e);
          }
     }
      

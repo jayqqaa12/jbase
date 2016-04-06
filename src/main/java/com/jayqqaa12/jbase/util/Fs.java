@@ -647,13 +647,13 @@ public final class Fs {
         int byteread;
         toFile.getParentFile().mkdirs();
 
-        InputStream inStream = null;
+        InputStream is = null;
         FileOutputStream fs = null;
         try {
-            inStream = new FileInputStream(fromFile.getPath()); // 读入原文件
+            is = new FileInputStream(fromFile.getPath()); // 读入原文件
             fs = new FileOutputStream(toFile.getPath());
             byte[] buffer = new byte[1444];
-            while ((byteread = inStream.read(buffer)) != -1)
+            while ((byteread = is.read(buffer)) != -1)
                 fs.write(buffer, 0, byteread);
 
 
@@ -663,8 +663,7 @@ public final class Fs {
             return true;
         } finally {
             try {
-
-                if (inStream != null) inStream.close();
+                if (is != null) is.close();
                 if (fs != null) fs.close();
             } catch (IOException e) {
                 e.printStackTrace();

@@ -9,15 +9,15 @@ import com.sinaapp.msdxblog.apkUtil.ApkUtil;
 
 public class ApkKit {
 
-	public static  String AAPT_PATH = "/root/android-sdk-linux/build-tools/19.0.1/aapt";
+	private static  String aaptPath = "/root/android-sdk-linux/build-tools/19.0.1/aapt";
 
 	public static void setAaptPath(String path) {
-		AAPT_PATH = path;
+		aaptPath = path;
 	}
 
 	public static ApkInfo getApkInfo(String apkPath) throws Exception {
 		ApkUtil apk = new ApkUtil();
-		if (AAPT_PATH != null) apk.setmAaptPath(AAPT_PATH);
+		if (aaptPath != null) apk.setmAaptPath(aaptPath);
 
 		return  apk.getApkInfo(apkPath);
 	}

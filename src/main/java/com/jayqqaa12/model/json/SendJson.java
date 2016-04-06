@@ -1,17 +1,15 @@
 package com.jayqqaa12.model.json;
 
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.jayqqaa12.jbase.jfinal.ext.model.Model;
+import com.jfinal.plugin.activerecord.Record;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.alibaba.fastjson.JSONObject;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.jayqqaa12.jbase.jfinal.ext.model.Model;
-import com.jfinal.plugin.activerecord.Record;
-import com.jfinal.render.Render;
 
 public class SendJson {
 	public int code = 200;
@@ -36,7 +34,6 @@ public class SendJson {
 	}
 
 	public SendJson() {
-
 	}
 
 	public SendJson(int code) {
@@ -59,9 +56,9 @@ public class SendJson {
 		 */
 		if (data != null && data.size() == 1) {
 			JSONObject json = JSONObject.parseObject(rst);
-			Object data = json.getJSONObject("data").get("data");
-			if (data != null) {
-				json.put("data", data);
+			Object jsonData = json.getJSONObject("data").get("data");
+			if (jsonData != null) {
+				json.put("data", jsonData);
 				rst = json.toJSONString();
 			}
 		}
@@ -98,7 +95,7 @@ public class SendJson {
 		}
 		data.put(key, attr);
 
-		if (attr.size() == 0) data.put(key, list);
+		if (attr.isEmpty()) data.put(key, list);
 
 		
 		return this;
@@ -106,9 +103,10 @@ public class SendJson {
 
 	public void setData(Map<Object, Object> data) {
 
-		for (Object key : data.keySet()) {
-			Object o = data.get(key);
-			
+		for (Map.Entry<Object,Object> entry : data.entrySet()) {
+			Object key =entry.getKey();
+			Object o =entry.getValue();
+
 			if(o instanceof List)  this.setData((String)key,(List)o);
 			else if (o instanceof Model) this.data.put(key, ((Model) o).getAttrs());
 			else if (o instanceof Record) this.data.put(key, ((Record) o).getColumns());

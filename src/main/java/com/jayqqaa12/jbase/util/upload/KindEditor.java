@@ -65,7 +65,7 @@ public class KindEditor
 			e.printStackTrace();
 			info.put("error", 1);
 			info.put("message", "上传文件不符合标准");
-			if(file!=null)file.getFile().delete();
+			if(file.getFile().exists())file.getFile().delete();
 		}
 
 		return info;

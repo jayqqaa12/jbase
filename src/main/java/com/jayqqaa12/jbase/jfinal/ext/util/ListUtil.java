@@ -12,6 +12,7 @@ import com.jfinal.plugin.activerecord.Record;
  * 改用 jdk8 就够了
  * 
  * @author 12
+ * @deprecated
  * 
  */
 @Deprecated

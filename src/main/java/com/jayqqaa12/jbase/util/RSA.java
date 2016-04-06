@@ -326,7 +326,7 @@ public abstract class RSA
 			return new String(data);
 		} catch (Exception ex)
 		{
-			LOGGER.error(String.format("\"%s\" Decryption failed. Cause: %s", new Object[] { encrypttext, ex.getCause().getMessage() }));
+			LOGGER.error(String.format("\"%s\" Decryption failed. Cause: %s", encrypttext, ex.getCause().getMessage()  ));
 		}
 		return null;
 	}
@@ -345,7 +345,7 @@ public abstract class RSA
 			LOGGER.error("keyPair cannot be null.");
 		} catch (Exception ex)
 		{
-			LOGGER.error(String.format("\"%s\" Decryption failed. Cause: %s", new Object[] { encrypttext, ex.getMessage() }));
+			LOGGER.error(String.format("\"%s\" Decryption failed. Cause: %s",  encrypttext, ex.getMessage()   ));
 		}
 		return null;
 	}

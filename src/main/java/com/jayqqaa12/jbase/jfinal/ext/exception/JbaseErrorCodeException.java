@@ -2,12 +2,9 @@ package com.jayqqaa12.jbase.jfinal.ext.exception;
 
 public class JbaseErrorCodeException extends RuntimeException {
 
-	protected int code;
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 692099006894911532L;
+
+	private int code;
 
 	
 	public JbaseErrorCodeException(Throwable cause) {
@@ -32,7 +29,6 @@ public class JbaseErrorCodeException extends RuntimeException {
 	}
 
 	public int getErrorCode(){
-		
 		return code;
 	}
 }

@@ -165,7 +165,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 		List<M> list = findAllByWhere(where, params);
 
-		if (list != null && list.size() > 0) return list.get(0);
+		if (list != null && !list.isEmpty()) return list.get(0);
 
 		else return null;
 	}
@@ -174,7 +174,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 		List<M> list = findAllByWhere(where, params);
 
-		if (list != null && list.size() > 0) return list.get(0);
+		if (list != null && !list.isEmpty()) return list.get(0);
 		else throw new NullModelException();
 	}
 
@@ -183,7 +183,7 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		String idKey = TableMapping.me().getTable(clazz).getPrimaryKey()[0];
 		if (idKey == null) throw new ActiveRecordException("You can't update model without Primary Key.");
 
-		return find(" select " + idKey + " from " + TABLENAME + " " + where, params).size() > 0;
+		return !find(" select " + idKey + " from " + TABLENAME + " " + where, params).isEmpty() ;
 	}
 
 	/***

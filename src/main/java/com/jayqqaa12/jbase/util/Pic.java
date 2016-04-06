@@ -1,14 +1,13 @@
 package com.jayqqaa12.jbase.util;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
+import com.jfinal.kit.LogKit;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 /**
  * 图片操作工具类.
@@ -33,9 +32,6 @@ public final class Pic{
      */
     public Pic(File file){
         this.file = file;
-//        if (!this.file.exists()) throw new IOException("file is not exists");
-
-//        if (this.file.isDirectory()) throw new IOException(" file is directory");
 
         String fn = file.getName().toLowerCase();
         opacityType = fn.endsWith(".png") || fn.endsWith("gif") ?
@@ -44,9 +40,9 @@ public final class Pic{
         try {
             src = ImageIO.read(this.file);
         } catch (IllegalArgumentException e) {
-        	e.printStackTrace();
+            LogKit.error(e.getMessage(),e);
         } catch (IOException e) {
-        	e.printStackTrace();
+            LogKit.error(e.getMessage(), e);
         }
         width = src.getWidth(null);
         height = src.getHeight(null);
@@ -68,9 +64,9 @@ public final class Pic{
         try {
             src = ImageIO.read(file);
         } catch (IllegalArgumentException e) {
-        	e.printStackTrace();
+            LogKit.error(e.getMessage(),e);
         } catch (IOException e) {
-        	e.printStackTrace();
+            LogKit.error(e.getMessage(),e);
         }
         int ww = src.getWidth(null);
         int hh = src.getHeight(null);

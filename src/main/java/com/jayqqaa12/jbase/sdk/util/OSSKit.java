@@ -1,17 +1,16 @@
 package com.jayqqaa12.jbase.sdk.util;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.Date;
-
 import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.OSSException;
 import com.aliyun.oss.model.GetObjectRequest;
 import com.aliyun.oss.model.ObjectMetadata;
-import com.aliyun.oss.model.PutObjectResult;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.Date;
 
 /**
  * aliyun oss 工具 请 初始化设置好
@@ -49,7 +48,7 @@ public class OSSKit {
 		return client;
 	}
 
-	private static void downloadFile(String key, String filename) throws OSSException, ClientException {
+	public static void downloadFile(String key, String filename) throws OSSException, ClientException {
 		if (client == null) throw new OSSException("OssKit must init before use");
 
 		client.getObject(new GetObjectRequest(buketName, key), new File(filename));

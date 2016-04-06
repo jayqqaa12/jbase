@@ -162,21 +162,7 @@ public class Controller<T> extends com.jfinal.core.Controller {
 	}
 
 
-   
-	public void delete() {
-	}
 
-	public void list()   {
-	}
-
-	public void saveOrUpdate()   {
-	}
-
-	public void add()  {
-	}
-
-	public void edit()   {
-	}
 
 	/***
 	 * 通常用来组装 serach form

@@ -20,7 +20,7 @@ import com.jfinal.upload.UploadFile;
 
 public class KindEditor
 {
-	public static String[] FILE_EXT = { "gif","jpg", "jpeg", "png", "bmp", "swf", "flv", "swf", "flv", "mp3", "wav", "wma", "wmv", "mid",
+	public static final String[] FILE_EXT = { "gif","jpg", "jpeg", "png", "bmp", "swf", "flv", "swf", "flv", "mp3", "wav", "wma", "wmv", "mid",
 			"avi", "mpg", "asf", "rm", "rmvb", " doc", "docx", "xls", "xlsx", "ppt", "htm", "html", "txt", "zip", "rar", "gz", "bz2" };
 	/***
 	 * 指定上传地址

@@ -143,28 +143,7 @@ public class ApkUtil
 		}
 	}
 
-	public static void main(String[] args)
-	{
-		try
-		{
-			String demo = "D:/works/app/ApplicationAssistant.apk";
-			if (args.length > 0)
-			{
-				if ((args[0].equals("-version")) || (args[0].equals("-v")))
-				{
-					System.out.println("ApkUtil   -by Geek_Soledad");
-					System.out.println("Version:" + Version.getVersion());
-					return;
-				}
-				demo = args[0];
-			}
-			ApkInfo apkInfo = new ApkUtil().getApkInfo(demo);
-			System.out.println(apkInfo);
-		} catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
+
 
 	public String getmAaptPath()
 	{

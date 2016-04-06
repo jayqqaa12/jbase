@@ -19,6 +19,7 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.Properties;
 
+import com.jfinal.kit.LogKit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -74,10 +75,12 @@ public final class Fs {
 
 	public static byte[] getBytesFromFile(File f) {
 		if (f == null) {
-			return null;
+			return new byte[0];
 		}
+
+		FileInputStream stream =null;
 		try {
-			FileInputStream stream = new FileInputStream(f);
+			  stream = new FileInputStream(f);
 			ByteArrayOutputStream out = new ByteArrayOutputStream(1000);
 			byte[] b = new byte[1000];
 			int n;
@@ -87,9 +90,17 @@ public final class Fs {
 			out.close();
 			return out.toByteArray();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LogKit.error(e.getMessage(),e);
 		}
-		return null;
+		finally {
+			if(stream!=null) try {
+				stream.close();
+			} catch (IOException e) {
+				LogKit.error(e.getMessage(),e);
+			}
+		}
+
+		return new byte[0];
 	}
 
 	public static void down(File f, String url) {
@@ -101,7 +112,7 @@ public final class Fs {
 			connection = u.openConnection();
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			LogKit.error(e.getMessage(), e);
 			return;
 		}
 		connection.setReadTimeout(100000);

@@ -1,8 +1,5 @@
 package com.jayqqaa12.jbase.util;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -11,7 +8,7 @@ import java.util.Set;
  
  
 public class SensitiveWord {
-    private String ENCODING = "utf8";    //字符编码
+    private  String  ENCODING = "utf8";    //字符编码
     @SuppressWarnings("rawtypes")
     public Map sensitiveWordMap;
 	private String filename;
@@ -23,7 +20,6 @@ public class SensitiveWord {
              Set<String> keyWordSet = readSensitiveWordFile();
              //将敏感词库加入到HashMap中
              addSensitiveWordToHashMap(keyWordSet);
-             //spring获取application，然后application.setAttribute("sensitiveWordMap",sensitiveWordMap);
          } catch (Exception e) {
              e.printStackTrace();
          }
@@ -106,7 +102,7 @@ public class SensitiveWord {
      * @param filename 词库文件
      */
     @SuppressWarnings("resource")
-    private Set<String> readSensitiveWordFile( ) throws Exception{
+    private Set<String> readSensitiveWordFile( ) throws  Exception{
         Set<String> set = null;
         File file = new File(filename);    //读取文件
         InputStreamReader read = new InputStreamReader(new FileInputStream(file),ENCODING);
@@ -120,7 +116,7 @@ public class SensitiveWord {
                 }
             }
             else{         //不存在抛出异常信息
-                throw new Exception("敏感词库文件不存在");
+                throw new FileNotFoundException("敏感词库文件不存在");
             }
         } catch (Exception e) {
             throw e;

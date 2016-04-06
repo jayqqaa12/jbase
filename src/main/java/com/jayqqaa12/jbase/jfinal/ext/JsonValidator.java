@@ -6,10 +6,10 @@ import com.jfinal.core.Controller;
 import com.jfinal.kit.StrKit;
 
 public abstract class JsonValidator extends Validator {
-	protected static final String ERROR_MSG = "code";
+	private static final String ERROR_MSG = "code";
 
 	protected void addError(int code) {
-		super.addError("code", code + "");
+		super.addError(ERROR_MSG, code + "");
 	}
 
 	protected void validateRequiredString(String field, int errorCode) {
@@ -32,7 +32,7 @@ public abstract class JsonValidator extends Validator {
 	@Override
 	protected void handleError(Controller c) {
 
-		String code = c.getAttr("code");
+		String code = c.getAttr(ERROR_MSG);
 
 		if (StrKit.notBlank(code)) c.renderJson(new SendJson(Integer.parseInt(code)).toJson());
 

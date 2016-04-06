@@ -9,17 +9,16 @@ import sun.misc.BASE64Decoder;
 
 import com.jayqqaa12.jbase.util.Fs;
 
+/***
+ * 配合 flash upload 插件 使用
+ *
+ */
 public class FlashUpload
 {
 	
 	public static final  String PATH="/upload/image/";
 	
-	/***
-	 * 配合 flash upload 插件 使用
-	 * 
-	 * @param req
-	 * @return
-	 */
+
 	@SuppressWarnings("restriction")
 	public static String flashUpload(HttpServletRequest req)
 	{

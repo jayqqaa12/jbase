@@ -54,7 +54,6 @@ public class JbaseGenerator extends Generator {
 
 	public JbaseGenerator(DataSource dataSource, BaseModelGenerator baseModelGenerator) {
 		super(dataSource, baseModelGenerator);
-		// TODO Auto-generated constructor stub
 	}
 
 	public JbaseGenerator(DataSource dataSource, String baseModelPackageName, String baseModelOutputDir,
@@ -79,7 +78,7 @@ public class JbaseGenerator extends Generator {
 		List<TableMeta> tableMetas = metaBuilder.build();
 		
 		
-		if (tableMetas.size() == 0) {
+		if (tableMetas.isEmpty()) {
 			System.out.println("TableMeta 数量为 0，不生成任何文件");
 			return;
 		}

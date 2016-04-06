@@ -33,7 +33,7 @@ public class BaseService<M extends Model> {
     protected M dao;
 
 
-    protected BaseService<? extends  Model> setDao(M dao) {
+    protected BaseService  setDao(M dao) {
         this.dao = dao;
         return this;
     }

@@ -39,11 +39,11 @@ import com.jfinal.plugin.redis.RedisPlugin;
  */
 public abstract class JbaseConfig extends JFinalConfig {
     private static boolean isDev;
+    private static boolean isTestServer;
     private boolean useDruid;
-    private boolean useShiro;
 
+    private boolean useShiro;
     private Routes routes;
-    private boolean isTestServer;
 
     static {
         String mode = System.getProperty("MODE");
@@ -52,6 +52,7 @@ public abstract class JbaseConfig extends JFinalConfig {
             String osName = System.getProperty("os.name");
             isDev = osName.indexOf("Windows") != -1;
         } else if (mode.equals("TEST")) openTestMode();
+        else if (mode.equals("TEST_SERVER")) isTestServer = true;
 
 
         if (StrKit.isBlank(System.getProperty("LOGDIR"))) {
@@ -75,7 +76,6 @@ public abstract class JbaseConfig extends JFinalConfig {
 
         return str.trim();
     }
-
 
 
     public boolean isTestServer() {

@@ -46,7 +46,7 @@ public abstract class JbaseConfig extends JFinalConfig {
     private Routes routes;
 
     static {
-        String mode = System.getProperty("MODE");
+        String mode = System.getenv("MODE");
 
         if (StrKit.isBlank(mode)) {
             String osName = System.getProperty("os.name");
@@ -54,8 +54,7 @@ public abstract class JbaseConfig extends JFinalConfig {
         } else if (mode.equals("TEST")) openTestMode();
         else if (mode.equals("TEST_SERVER")) isTestServer = true;
 
-
-        if (StrKit.isBlank(System.getProperty("LOGDIR"))) {
+        if (StrKit.isBlank(System.getenv("LOGDIR"))) {
             if (isDevMode()) System.setProperty("LOGDIR", "c:/");
             else System.setProperty("LOGDIR", "/log");// linux
         }

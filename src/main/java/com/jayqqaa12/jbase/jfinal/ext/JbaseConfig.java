@@ -51,8 +51,8 @@ public abstract class JbaseConfig extends JFinalConfig {
         if (StrKit.isBlank(mode)) {
             String osName = System.getProperty("os.name");
             isDev = osName.indexOf("Windows") != -1;
-        } else if (mode.equals("TEST")) openTestMode();
-        else if (mode.equals("TEST_SERVER")) isTestServer = true;
+        } else if ("TEST".equals(mode)) openTestMode();
+        else if ("TEST_SERVER".equals(mode)) isTestServer = true;
 
         if (StrKit.isBlank(System.getenv("LOGDIR"))) {
             if (isDevMode()) System.setProperty("LOGDIR", "c:/");

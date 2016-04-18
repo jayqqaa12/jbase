@@ -55,7 +55,7 @@ public final class Fs {
         int bufferSize = 1024;
         byte[] buffer = new byte[bufferSize];
         int length = -1;
-		/* 循环将流输出 */
+        /* 循环将流输出 */
         while ((length = inputStream.read(buffer)) != -1) {
             ds.write(buffer, 0, length);
         }
@@ -63,7 +63,7 @@ public final class Fs {
         ds.writeBytes(twoHyphens + boundary + twoHyphens + end);
         inputStream.close();
         ds.flush();
-		/* 读取响应 */
+        /* 读取响应 */
         BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
         StringBuffer stringBuffer = new StringBuffer();
         String str = "";
@@ -77,29 +77,18 @@ public final class Fs {
         if (f == null) {
             return new byte[0];
         }
-
-        FileInputStream stream = null;
-        try {
-            stream = new FileInputStream(f);
-            ByteArrayOutputStream out = new ByteArrayOutputStream(1000);
+        try (FileInputStream stream = new FileInputStream(f);
+             ByteArrayOutputStream out = new ByteArrayOutputStream(1000);) {
             byte[] b = new byte[1000];
             int n;
             while ((n = stream.read(b)) != -1)
                 out.write(b, 0, n);
-            stream.close();
-            out.close();
             return out.toByteArray();
         } catch (IOException e) {
             LogKit.error(e.getMessage(), e);
-        } finally {
-            if (stream != null) try {
-                stream.close();
-            } catch (IOException e) {
-                LogKit.error(e.getMessage(), e);
-            }
+            return new byte[0];
         }
 
-        return new byte[0];
     }
 
     public static void down(File f, String url) {
@@ -109,18 +98,16 @@ public final class Fs {
         try {
             u = new URL(url);
             connection = u.openConnection();
+            f.createNewFile();
 
         } catch (Exception e) {
             LogKit.error(e.getMessage(), e);
             return;
         }
         connection.setReadTimeout(100000);
-        InputStream is = null;
-        FileOutputStream fos = null;
-        try {
-            f.createNewFile();
-            is = connection.getInputStream();
-            fos = new FileOutputStream(f);
+
+        try (InputStream is = connection.getInputStream();
+             FileOutputStream fos = new FileOutputStream(f);) {
             int len = 0;
             while ((len = is.read(buffer)) != -1) {
                 fos.write(buffer, 0, len);
@@ -128,22 +115,6 @@ public final class Fs {
 
         } catch (Exception e) {
             f.delete();
-        } finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                } catch (IOException e) {
-                    LogKit.error(e.getMessage(), e);
-                }
-
-            }
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    LogKit.error(e.getMessage(), e);
-                }
-            }
         }
     }
 
@@ -448,23 +419,15 @@ public final class Fs {
      */
     public static String readFile(File file, String encoding) throws IOException {
         StringBuilder contents = new StringBuilder();
-        BufferedReader reader = null;
-        try {
-            if (encoding == null || "".equals(encoding)) encoding = "utf-8";
-            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), encoding));
+        if (encoding == null || "".equals(encoding)) encoding = "utf-8";
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), encoding));) {
             String text;
             while ((text = reader.readLine()) != null) {
                 contents.append(text).append(System.getProperty("line.separator"));
             }
-        } finally {
-            try {
-                if (reader != null) {
-                    reader.close();
-                }
-            } catch (IOException ignore) {
-            }
+            return contents.toString();
         }
-        return contents.toString();
     }
 
     /**
@@ -497,21 +460,12 @@ public final class Fs {
      * @since 这是JDiy-1.9及后续版本新增的方法.
      */
     public static void writeFile(File file, String str, String encoding) throws IOException {
-        FileOutputStream fos = null;
-        OutputStreamWriter osw = null;
-        try {
+
+        try (FileOutputStream fos = new FileOutputStream(file);
+             OutputStreamWriter osw = new OutputStreamWriter(fos, encoding);) {
             if (!file.getParentFile().exists()) file.getParentFile().mkdirs();
-            fos = new FileOutputStream(file);
-            osw = new OutputStreamWriter(fos, encoding);
             osw.write(str);
             osw.flush();
-        } finally {
-            try {
-                if (null != osw) osw.close();
-                if (null != fos) fos.close();
-            } catch (IOException e) {
-                LogKit.error(e.getMessage(), e);
-            }
         }
     }
 
@@ -526,17 +480,9 @@ public final class Fs {
      * @since 这是JDiy-1.9及后续版本新增的方法.
      */
     public static void writeFile(File file, byte[] b) throws IOException {
-        FileOutputStream fos = null;
-        try {
-            if (!file.getParentFile().exists()) file.getParentFile().mkdirs();
-            fos = new FileOutputStream(file);
+        if (!file.getParentFile().exists()) file.getParentFile().mkdirs();
+        try (FileOutputStream fos = new FileOutputStream(file);) {
             fos.write(b);
-        } finally {
-            try {
-                if (null != fos) fos.close();
-            } catch (IOException e) {
-                LogKit.error(e.getMessage(), e);
-            }
         }
     }
 
@@ -647,11 +593,9 @@ public final class Fs {
         int byteread;
         toFile.getParentFile().mkdirs();
 
-        InputStream is = null;
-        FileOutputStream fs = null;
-        try {
-            is = new FileInputStream(fromFile.getPath()); // 读入原文件
-            fs = new FileOutputStream(toFile.getPath());
+        try (InputStream is = new FileInputStream(fromFile.getPath());
+             FileOutputStream fs = new FileOutputStream(toFile.getPath());) {
+
             byte[] buffer = new byte[1444];
             while ((byteread = is.read(buffer)) != -1)
                 fs.write(buffer, 0, byteread);
@@ -661,13 +605,6 @@ public final class Fs {
         } catch (Exception e) {
             LogKit.error(e.getMessage(), e);
             return true;
-        } finally {
-            try {
-                if (is != null) is.close();
-                if (fs != null) fs.close();
-            } catch (IOException e) {
-                LogKit.error(e.getMessage(), e);
-            }
         }
 
     }

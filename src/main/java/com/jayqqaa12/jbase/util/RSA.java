@@ -38,9 +38,6 @@ public abstract class RSA
 {
 	private static final Logger LOGGER = LoggerFactory.getLogger(RSA.class);
 
-	private static final String ALGORITHOM = "RSA";
-	private static final String RSA_PAIR_FILENAME = "/__RSA_PAIR.txt";
-	private static final int KEY_SIZE = 1024;
 	private static final Provider DEFAULT_PROVIDER = new BouncyCastleProvider();
 
 	private static KeyPairGenerator keyPairGen = null;

@@ -28,13 +28,12 @@ import com.jfinal.plugin.activerecord.Page;
  * @author 12
  */
 public class BaseService<M extends Model> {
-	
 
     protected M dao;
 
-
     protected BaseService  setDao(M dao) {
         this.dao = dao;
+
         return this;
     }
 

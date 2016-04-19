@@ -20,6 +20,12 @@ import com.mortennobel.imagescaling.ResampleOp;
  *
  */
 
+
+/**
+ * 用别的吧
+ * @deprecated
+ *
+ */
 @Deprecated
 public class ImageKit {
 	private static ImageKit manager = new ImageKit();
@@ -117,7 +123,9 @@ public class ImageKit {
 			ImageReader reader = iter.next();
 			iis.close();
 			return reader.getFormatName();
-		} catch (IOException e) {}
+		} catch (IOException e) {
+			LogKit.error(e.getMessage(),e);
+		}
 		return null;
 	}
 

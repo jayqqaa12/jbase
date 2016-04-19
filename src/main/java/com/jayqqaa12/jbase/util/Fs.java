@@ -56,7 +56,7 @@ public final class Fs {
         byte[] buffer = new byte[bufferSize];
         int length = -1;
         /* 循环将流输出 */
-        while ((length = inputStream.read(buffer)) != -1) {
+        while (( length = inputStream.read(buffer)) != -1) {
             ds.write(buffer, 0, length);
         }
         ds.writeBytes(end);

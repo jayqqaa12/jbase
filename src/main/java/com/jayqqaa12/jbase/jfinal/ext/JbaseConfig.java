@@ -155,7 +155,7 @@ public abstract class JbaseConfig extends JFinalConfig {
      */
     protected ActiveRecordPlugin addActiveRecordPlugin(Plugins me, IDataSourceProvider dataSource) {
         ActiveRecordPlugin arp = new ActiveRecordPlugin(dataSource);
-       if(isDevMode())  arp.setShowSql(true);
+       if(isDevMode()&&!isTestServer()  )  arp.setShowSql(true);
         me.add(arp);
 
         return arp;

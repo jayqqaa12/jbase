@@ -31,7 +31,7 @@ public class HttpServletRequestWrapper extends javax.servlet.http.HttpServletReq
 	public String[] getParameterValues(String name) {
 		String[] values = super.getParameterValues(name);
 		if (null == values){
-			return null;
+			return new String[]{};
 		}
 		String[] newValues  = new String[values.length];
 		for (int i = 0; i < values.length; i++) {
@@ -46,7 +46,7 @@ public class HttpServletRequestWrapper extends javax.servlet.http.HttpServletReq
 	@Override
 	public Map<String, String[]> getParameterMap() {
 		
-		Map<String, String[]> temp = new HashMap<String, String[]>();
+		Map<String, String[]> temp = new HashMap<>();
 		Map<String, String[]> paraMap = super.getParameterMap();
 		// 对于paraMap为空的直接return
 		if (null == paraMap || paraMap.isEmpty()) {

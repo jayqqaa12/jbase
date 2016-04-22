@@ -21,6 +21,7 @@ public abstract class JsonValidator extends Validator {
 		validateStringValue(controller.getPara(field), minLen, maxLen, errorCode);
 	}
 
+
 	private void validateStringValue(String value, int minLen, int maxLen, int errorCode) {
 		if (StrKit.isBlank(value)) {
 			addError(errorCode);

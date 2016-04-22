@@ -135,9 +135,7 @@ public abstract class JbaseConfig extends JFinalConfig {
 
         DruidPlugin dbPlugin = new DruidPlugin(getConfigStr("db.url"), getConfigStr("db.user"), getConfigStr("db.pwd"));
         // 设置 状态监听与 sql防御
-        WallFilter wall = new WallFilter();
-        wall.setDbType(getConfigStr("db.type"));
-        dbPlugin.addFilter(wall);
+        dbPlugin.addFilter(new WallFilter());
         dbPlugin.addFilter(new StatFilter());
 
         me.add(dbPlugin);
@@ -147,9 +145,19 @@ public abstract class JbaseConfig extends JFinalConfig {
         return dbPlugin;
     }
 
+
+    /**
+     * 默认是mysql 方言
+     *
+     * @param me
+     * @param dataSource
+     * @return
+     */
     protected ActiveRecordPlugin addActiveRecordPlugin(Plugins me, IDataSourceProvider dataSource) {
         ActiveRecordPlugin arp = new ActiveRecordPlugin(dataSource);
+       if(isDevMode())  arp.setShowSql(true);
         me.add(arp);
+
         return arp;
     }
 

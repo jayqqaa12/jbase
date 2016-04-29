@@ -46,8 +46,16 @@ public class BaseService<M extends Model> {
         return (M) dao.findById(id);
     }
 
+    public M findByIdNotNull(Object id) {
+        return (M) dao.findByIdNotNull(id);
+    }
+
     public M findByIdCache(Object id) {
         return (M) dao.findByIdCache(id);
+    }
+
+    public M findByIdCacheNotNull(Object id) {
+        return (M) dao.findByIdCacheNotNull(id);
     }
 
 

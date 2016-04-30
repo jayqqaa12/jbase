@@ -2,15 +2,8 @@ package com.jayqqaa12.jbase.jfinal.ext;
 
 import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.wall.WallFilter;
-import com.jayqqaa12.jbase.jfinal.ext.exception.NullParamException;
-import com.jayqqaa12.jbase.sdk.util.OSSKit;
-import com.jayqqaa12.jbase.util.IpUtil;
-import com.jfinal.config.Constants;
-import com.jfinal.config.Handlers;
-import com.jfinal.config.Interceptors;
-import com.jfinal.config.JFinalConfig;
-import com.jfinal.config.Plugins;
-import com.jfinal.config.Routes;
+import com.jayqqaa12.jbase.jfinal.ext.exception.JsonErrorRender;
+import com.jfinal.config.*;
 import com.jfinal.ext.handler.RenderingTimeHandler;
 import com.jfinal.ext.plugin.config.ConfigKit;
 import com.jfinal.ext.plugin.config.ConfigPlugin;
@@ -29,6 +22,8 @@ import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.druid.DruidStatViewHandler;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.plugin.redis.RedisPlugin;
+import com.jfinal.render.IErrorRenderFactory;
+import com.jfinal.render.Render;
 
 /***
  * 默认开启了自动路由
@@ -44,6 +39,8 @@ public abstract class JbaseConfig extends JFinalConfig {
 
     private boolean useShiro;
     private Routes routes;
+
+
 
     static {
         String mode = System.getenv("MODE");
@@ -98,6 +95,23 @@ public abstract class JbaseConfig extends JFinalConfig {
         SqlReporter.setLog(isDevMode());
     }
 
+
+
+    /**
+     * 设置http错误以 json 形式返回
+     * @param me
+     */
+    protected void addJsonErrorRender(Constants me) {
+
+        me.setErrorRenderFactory(new IErrorRenderFactory() {
+            @Override
+            public Render getRender(int errorCode, String view) {
+                return new JsonErrorRender(errorCode);
+            }
+        });
+    }
+
+
     /**
      * 默认开启了自动路由
      */
@@ -106,6 +120,7 @@ public abstract class JbaseConfig extends JFinalConfig {
         // 自动扫描 建议用注解
         AutoBindRoutes abr = new AutoBindRoutes().autoScan(false);
         me.add(abr);
+
     }
 
     @Override
@@ -155,7 +170,7 @@ public abstract class JbaseConfig extends JFinalConfig {
      */
     protected ActiveRecordPlugin addActiveRecordPlugin(Plugins me, IDataSourceProvider dataSource) {
         ActiveRecordPlugin arp = new ActiveRecordPlugin(dataSource);
-       if(isDevMode()&&!isTestServer()  )  arp.setShowSql(true);
+        if (isDevMode() && !isTestServer()) arp.setShowSql(true);
         me.add(arp);
 
         return arp;

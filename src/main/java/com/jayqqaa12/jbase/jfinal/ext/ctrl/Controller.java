@@ -15,7 +15,7 @@ import com.jfinal.kit.StrKit;
 
 /**
  * 
- * 做为本人私人使用 架构比较简陋 bug也挺多  仅供学习 
+ * 做为本人使用 架构比较简陋  仅供学习
  * 
  * 2013-8-12 
  * 
@@ -166,7 +166,9 @@ public class Controller<T> extends com.jfinal.core.Controller {
 
 	/***
 	 * 通常用来组装 serach form
-	 * 
+	 *
+	 * 基于约定
+	 *
 	 * tableName 用来 过滤多表
 	 * 
 	 * 这是常用的几种

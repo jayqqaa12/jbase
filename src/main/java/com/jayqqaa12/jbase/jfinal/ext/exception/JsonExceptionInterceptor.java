@@ -50,7 +50,7 @@ public class JsonExceptionInterceptor implements Interceptor {
 
 			addError(inv, ((JbaseErrorCodeException) e).getErrorCode(),((JbaseErrorCodeException) e).getMessage());
 
-			if(JbaseConfig.isDevMode()) LogKit.debug(e.getMessage(),e);
+			if(JbaseConfig.isDevMode()) LogKit.error(e.getMessage(),e);
 		} else {
 			handleError(inv, e);
 		}

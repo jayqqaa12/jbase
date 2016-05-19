@@ -15,28 +15,80 @@
  */
 package com.jayqqaa12.jbase.jfinal.auto;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.jayqqaa12.jbase.jfinal.ext.model.Model;
+import com.jfinal.kit.LogKit;
 import com.jfinal.plugin.activerecord.Page;
 
 
 /***
  * 与业务相关写在service 层
  *
- * @param <M>
  * @author 12
  */
 public class BaseService<M extends Model> {
 
     protected M dao;
 
-    protected BaseService  setDao(M dao) {
-        this.dao = dao;
+    private static Map<Class<? extends BaseService>, BaseService> INSTANCE_MAP = new HashMap<>();
 
+    protected BaseService setDao(M dao) {
+        this.dao = dao;
         return this;
     }
 
+    public BaseService() {
+
+        Type genericSuperclass = getClass().getGenericSuperclass();
+        try {
+            Class<Model> 	clazz = (Class<Model>) ((ParameterizedType) genericSuperclass).getActualTypeArguments()[0];
+            dao = (M)Model.me(clazz);
+        } catch (Exception e) {
+        }
+
+        Field[] fields = this.getClass().getDeclaredFields();
+        for (int i = 0; i < fields.length; i++) {
+            Field field = fields[i];
+            Class clazz = field.getType();
+            if (Model.class.isAssignableFrom(clazz) && clazz != Model.class) {
+                try {
+                    if (!field.isAccessible()) {
+                        field.setAccessible(true);
+                    }
+                    field.set(this, Model.me(clazz));
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException();
+                }
+            }
+        }
+
+    }
+
+
+    public static <Ser extends BaseService> Ser me(Class<Ser> clazz) {
+
+        Ser service = (Ser) INSTANCE_MAP.get(clazz);
+        if (service == null) {
+            try {
+                synchronized (clazz) {
+                    service = clazz.newInstance();
+                    INSTANCE_MAP.put(clazz, service);
+                }
+            } catch (InstantiationException e) {
+            } catch (IllegalAccessException e) {
+            }
+        }
+
+
+        return service;
+    }
 
     public Page<M> findAll(int p, int c) {
         return dao.findAll(p, c);
@@ -75,18 +127,18 @@ public class BaseService<M extends Model> {
         return dao.deleteAll() > 0;
     }
 
-    public boolean batchDelete(String ids)
-    {
-    	return dao.batchDelete(ids);
+    public boolean batchDelete(String ids) {
+        return dao.batchDelete(ids);
     }
-    public boolean deleteById(Object id){
-        return  dao.deleteById(id);
+
+    public boolean deleteById(Object id) {
+        return dao.deleteById(id);
     }
 
     public Long getAllCount() {
         return dao.getAllCount();
     }
-    
+
     public Long getCount(String sql) {
         return dao.getCount(sql);
     }

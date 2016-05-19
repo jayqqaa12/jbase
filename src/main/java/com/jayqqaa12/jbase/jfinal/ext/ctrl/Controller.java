@@ -1,16 +1,18 @@
 package com.jayqqaa12.jbase.jfinal.ext.ctrl;
 
-import java.lang.reflect.ParameterizedType;
-import java.util.Date;
-import java.util.List;
-
 import com.google.gson.Gson;
+import com.jayqqaa12.jbase.jfinal.auto.BaseService;
 import com.jayqqaa12.jbase.jfinal.ext.exception.ErrorCode;
 import com.jayqqaa12.jbase.jfinal.ext.exception.NullParamException;
 import com.jayqqaa12.model.json.Form;
 import com.jfinal.ext.render.excel.PoiRender;
 import com.jfinal.ext.route.ControllerBind;
 import com.jfinal.kit.StrKit;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -29,10 +31,29 @@ public class Controller<T> extends com.jfinal.core.Controller {
 
 	ControllerBind controll;
 
+
 	public Controller() {
 		controll = this.getClass().getAnnotation(ControllerBind.class);
 
+		Field[] fields = this.getClass().getDeclaredFields();
+		for (int i = 0; i < fields.length; i++) {
+			Field field = fields[i];
+			Class clazz = field.getType();
+			if (BaseService.class.isAssignableFrom(clazz) && clazz != BaseService.class) {
+				try {
+					if (!field.isAccessible()) {
+						field.setAccessible(true);
+					}
+					field.set(this,BaseService.me(clazz));
+				} catch (IllegalAccessException e) {
+					throw new RuntimeException();
+				}
+			}
+		}
 	}
+
+
+
 	
 	
 	public String getParaNotNull(String name)  {

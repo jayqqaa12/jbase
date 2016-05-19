@@ -3,6 +3,7 @@ package com.jayqqaa12.jbase.jfinal.ext.model;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,9 +37,28 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 
 	private final Class<? extends com.jfinal.plugin.activerecord.Model<M>> clazz;
 
-
-
 	public String TABLENAME;
+
+	private static Map<Class<? extends Model>, Model> INSTANCE_MAP = new HashMap<>();
+
+	public static <Mel extends Model> Mel me(Class<Mel> clazz) {
+		Mel model = (Mel) INSTANCE_MAP.get(clazz);
+		if (model == null) {
+			try {
+				synchronized(clazz) {
+					model = clazz.newInstance();
+					INSTANCE_MAP.put(clazz, model);
+				}
+			} catch (InstantiationException e) {
+			} catch (IllegalAccessException e) {
+			}
+		}
+
+		return model;
+	}
+
+
+
 
 	public Model() {
 

@@ -14,6 +14,9 @@ public class JsonController<T> extends Controller<T> {
 	private  static final   int serviceError =    ErrorCode.SERVER_ERROR.code;
 
 
+
+
+
 	protected void sendJsonError(String msg) {
 		renderJson("{\"code\":500,\"msg\":\" " + msg + " \"}");
 	}

@@ -23,8 +23,6 @@ public class TestKit {
 	/**
 	 * 默认断言 200
 	 * @param rst
-	 * @throws Exception
-	 * @throws ServiceErrorException
 	 */
 	public static void assertError(String rst)     {
 		assertError(rst,200);

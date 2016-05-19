@@ -6,9 +6,10 @@
 	<artifactId>jbase</artifactId>
 	<packaging>jar</packaging>
 	<name>jbase</name>
+	<version>3.0.3</version>
+
 	<description>jbase is base of Java Web Framework  </description>
 	<url>https://github.com/jayqqaa12/jbase</url>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -500,5 +501,4 @@
 
 
 
-	<version>3.0.2</version>
 </project>

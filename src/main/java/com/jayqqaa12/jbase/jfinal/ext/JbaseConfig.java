@@ -1,7 +1,5 @@
 package com.jayqqaa12.jbase.jfinal.ext;
 
-import com.alibaba.druid.filter.stat.StatFilter;
-import com.alibaba.druid.wall.WallFilter;
 import com.jayqqaa12.jbase.jfinal.ext.exception.JsonErrorRender;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.RenderingTimeHandler;
@@ -149,12 +147,8 @@ public abstract class JbaseConfig extends JFinalConfig {
         useDruid = true;
 
         DruidPlugin dbPlugin = new DruidPlugin(getConfigStr("db.url"), getConfigStr("db.user"), getConfigStr("db.pwd"));
-        // 设置 状态监听与 sql防御
-        dbPlugin.addFilter(new WallFilter());
-        dbPlugin.addFilter(new StatFilter());
-
+        dbPlugin.setFilters("stat,wall");
         me.add(dbPlugin);
-
         me.add(new SqlInXmlPlugin());
 
         return dbPlugin;
@@ -219,11 +213,25 @@ public abstract class JbaseConfig extends JFinalConfig {
     /**
      * 默认配置文件 job.properties
      *
+     * quartz 2.0 以上版本
+     *
      * @param me
      */
     protected void addQuartzPlugin(Plugins me) {
         me.add(new QuartzPlugin("job.properties"));
     }
+    /**
+     * 默认配置文件 job.properties
+     *
+     * quartz 2.0 以下版本
+     *
+     * @param me
+     */
+    protected  void  addQuartzPluginVersion1(Plugins me){
 
+        QuartzPlugin quartzPlugin = new QuartzPlugin("job.properties");
+        quartzPlugin.version(QuartzPlugin.VERSION_1);//指定Quartz版本
+        me.add(quartzPlugin);
+    }
 
 }

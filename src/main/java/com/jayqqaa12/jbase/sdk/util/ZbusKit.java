@@ -19,7 +19,7 @@ import com.jayqqaa12.jbase.jfinal.ext.exception.JbaseRPCException;
 
 /***
  * 简单包装
- * 
+ *
  * @author 12
  *
  */
@@ -50,11 +50,11 @@ public class ZbusKit {
 		if (brokes.get(addr) == null) {
 			BrokerConfig brokerConfig = new BrokerConfig();
 			brokerConfig.setServerAddress(addr);
-			Broker broke = new SingleBroker(brokerConfig);
-			brokes.put(addr, broke);
+            SingleBroker broke = new SingleBroker(brokerConfig);
+			brokes.putIfAbsent(addr, broke);
+        }
 
-			return broke;
-		} else return brokes.get(addr);
+        return brokes.get(addr);
 	}
 
 	/***
@@ -78,8 +78,8 @@ public class ZbusKit {
 
 	/**
 	 * 启动 driect rpc 服务器 非 HA
-	 * 
-	 * 
+	 *
+	 *
 	 * @param module
 	 */
 	public static void startDirectRpcService(Object... module) {

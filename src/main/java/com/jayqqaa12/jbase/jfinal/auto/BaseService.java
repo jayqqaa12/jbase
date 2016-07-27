@@ -27,11 +27,14 @@ import com.jfinal.plugin.activerecord.Page;
 
 /***
  * 与业务相关写在service 层
- *
  * @author 12
  */
 public class BaseService<M extends Model> {
 
+   /***
+   * test sonar
+   *
+   */
     protected M dao;
 
     private static Map<Class<? extends BaseService>, BaseService> INSTANCE_MAP = new HashMap<>();

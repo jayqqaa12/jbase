@@ -512,21 +512,16 @@
     </build>
 
 
+
     <!-- 设置一下 私服 -->
     <distributionManagement>
         <repository>
             <id>nexus-releases</id>
             <name>Nexus Release Repository</name>
-            <url>http://115.29.187.86:18081/content/repositories/releases</url>
+            <url>http://dev.esongbai.xyz/nexus/content/repositories/releases/</url>
         </repository>
-        <snapshotRepository>
-            <id>nexus-snapshots</id>
-            <name>Nexus Snapshot
-                Repository
-            </name>
-            <url>http://115.29.187.86:18081/content/repositories/snapshots</url>
-        </snapshotRepository>
     </distributionManagement>
+
 
 
     <profiles>

@@ -1,16 +1,12 @@
 package com.jayqqaa12.jbase.web.spring.auth;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.SpringProperties;
-import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -20,14 +16,12 @@ import java.util.concurrent.TimeUnit;
  */
 public class UserUtil implements ApplicationContextAware {
 	public static final String SESSION_USER_ID_PREFIX = "_session_user:";
-	public static final String REDIS_HOST_CHANNEL_KEY = "uhost_channel";
 	static ThreadLocal<Integer> userIds = new ThreadLocal<>();
 	static ThreadLocal<String> hosts = new ThreadLocal<>();
 	static ValueOperations<String, Integer> _userIds;
 	public static int expiredSeconds = 24 * 3600;
 	static ApplicationContext ctx;
 	static SpringProperties prop = null;
-	static final String LOAD_HOST_CHANNEL_URL = "sys.host_channel.url";
 
 	public void setExpiredSeconds(int seconds) {
 		if (seconds > 0)
@@ -36,7 +30,6 @@ public class UserUtil implements ApplicationContextAware {
 
 	public void setCache(RedisTemplate redisTemplate) {
 		_userIds = redisTemplate.opsForValue();
-		host_channels = redisTemplate.opsForHash();
 	}
 
 

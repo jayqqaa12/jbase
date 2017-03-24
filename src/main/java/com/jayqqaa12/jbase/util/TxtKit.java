@@ -1,6 +1,5 @@
 package com.jayqqaa12.jbase.util;
 
-import com.jfinal.kit.LogKit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -508,17 +507,13 @@ public final class TxtKit
 	 */
 	public static String getExt(String fileName)
 	{
-
 		try
 		{
 			String[] exts = TxtKit.split(fileName, ".");
-			
 			return  exts[exts.length - 1];
 
 		} catch (Exception e)
 		{
-
-			LogKit.error(e.getMessage(), e);
 			return null;
 		}
 

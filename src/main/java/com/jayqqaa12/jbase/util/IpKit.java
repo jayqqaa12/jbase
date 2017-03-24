@@ -2,12 +2,9 @@ package com.jayqqaa12.jbase.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.jfinal.kit.HttpKit;
 import org.apache.commons.lang3.StringUtils;
-import org.bouncycastle.util.IPAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.net.URL;
@@ -165,7 +162,7 @@ public class IpKit {
     public static boolean isInnerIP(String ipAddress) {
         if (StringUtils.isBlank(ipAddress))
             return false;
-        if (!IPAddress.isValid(ipAddress))
+        if (!isValid(ipAddress))
             return false;
         long ipNum = getIpNum(ipAddress);
         /**
@@ -191,6 +188,100 @@ public class IpKit {
 
         long ipNum = a * 256 * 256 * 256 + b * 256 * 256 + c * 256 + d;
         return ipNum;
+    }
+
+
+
+
+    public static boolean isValid(String var0) {
+        return isValidIPv4(var0) || isValidIPv6(var0);
+    }
+
+
+
+    public static boolean isValidIPv4(String var0) {
+        if(var0.length() == 0) {
+            return false;
+        } else {
+            int var2 = 0;
+            String var3 = var0 + ".";
+            int var5 = 0;
+
+            while(true) {
+                int var4;
+                if(var5 < var3.length() && (var4 = var3.indexOf(46, var5)) > var5) {
+                    if(var2 == 4) {
+                        return false;
+                    }
+
+                    int var1;
+                    try {
+                        var1 = Integer.parseInt(var3.substring(var5, var4));
+                    } catch (NumberFormatException var7) {
+                        return false;
+                    }
+
+                    if(var1 >= 0 && var1 <= 255) {
+                        var5 = var4 + 1;
+                        ++var2;
+                        continue;
+                    }
+
+                    return false;
+                }
+
+                return var2 == 4;
+            }
+        }
+    }
+
+    public static boolean isValidIPv6(String var0) {
+        if(var0.length() == 0) {
+            return false;
+        } else {
+            int var2 = 0;
+            String var3 = var0 + ":";
+            boolean var4 = false;
+
+            int var5;
+            for(int var6 = 0; var6 < var3.length() && (var5 = var3.indexOf(58, var6)) >= var6; ++var2) {
+                if(var2 == 8) {
+                    return false;
+                }
+
+                if(var6 != var5) {
+                    String var7 = var3.substring(var6, var5);
+                    if(var5 == var3.length() - 1 && var7.indexOf(46) > 0) {
+                        if(!isValidIPv4(var7)) {
+                            return false;
+                        }
+
+                        ++var2;
+                    } else {
+                        int var1;
+                        try {
+                            var1 = Integer.parseInt(var3.substring(var6, var5), 16);
+                        } catch (NumberFormatException var9) {
+                            return false;
+                        }
+
+                        if(var1 < 0 || var1 > '\uffff') {
+                            return false;
+                        }
+                    }
+                } else {
+                    if(var5 != 1 && var5 != var3.length() - 1 && var4) {
+                        return false;
+                    }
+
+                    var4 = true;
+                }
+
+                var6 = var5 + 1;
+            }
+
+            return var2 == 8 || var4;
+        }
     }
 
     private static boolean isInner(long userIp, long begin, long end) {

@@ -1,7 +1,9 @@
 package com.jayqqaa12.jbase.web.spring.auth;
 
 
+import com.jayqqaa12.jbase.exception.ErrorCode;
 import com.jayqqaa12.jbase.util.IpKit;
+import com.jayqqaa12.jbase.util.Resp;
 import com.jayqqaa12.jbase.web.spring.auth.annotation.InnerOnly;
 import com.jayqqaa12.jbase.web.spring.auth.annotation.LimitLess;
 import org.apache.commons.lang3.StringUtils;
@@ -44,9 +46,9 @@ public class AuthInteceptor extends HandlerInterceptorAdapter {
 		if (less==null) {
 			response.setContentType("text/json;charset=UTF-8");
 			if(!StringUtils.isBlank(userToken)){
-//				response.getWriter().print(JSON.toJSONString(ErrorCode.UNAUTHORIZED));
+				response.getWriter().print(Resp.create(ErrorCode.UNAUTHORIZED).toJson());
 			}else{
-//				response.getWriter().print(JSON.toJSONString(ErrorCode.UNAUTHORIZED));
+				response.getWriter().print(Resp.create(ErrorCode.UNAUTHORIZED).toJson());
 			}
 			return false;
 		}

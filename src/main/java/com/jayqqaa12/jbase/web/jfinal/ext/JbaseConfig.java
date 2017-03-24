@@ -1,6 +1,6 @@
 package com.jayqqaa12.jbase.web.jfinal.ext;
 
-import com.jayqqaa12.jbase.web.jfinal.ext.render.JsonErrorRender;
+import com.jayqqaa12.jbase.web.jfinal.ext.exception.JsonErrorRender;
 import com.jfinal.config.*;
 import com.jfinal.ext.handler.RenderingTimeHandler;
 import com.jfinal.ext.plugin.config.ConfigKit;

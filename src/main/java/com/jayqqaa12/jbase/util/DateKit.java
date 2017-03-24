@@ -1,6 +1,8 @@
 package com.jayqqaa12.jbase.util;
 
-import com.jfinal.kit.LogKit;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -17,6 +19,7 @@ import java.util.Date;
 @Deprecated
 public class DateKit
 {
+	private static final Logger LOG = LoggerFactory.getLogger(DateKit.class);
 	public static final String HH_MM_SS = "HH:mm:ss";
 	public static final String YYYY_MM_DD = "yyyy-MM-dd";
 	public static final String MM_DD = "MM-dd";
@@ -33,7 +36,7 @@ public class DateKit
 			cd.add(5, 1);
 		} catch (ParseException e)
 		{
-			LogKit.error(e.getMessage(), e);
+			LOG.error(e.getMessage(), e);
 		}
 
 		return sdf.format(cd.getTime());
@@ -58,7 +61,7 @@ public class DateKit
 			cd.add(5, add);
 		} catch (ParseException e)
 		{
-			LogKit.error(e.getMessage(), e);
+			LOG.error(e.getMessage(), e);
 		}
 
 		return sdf.format(cd.getTime());
@@ -117,7 +120,7 @@ public class DateKit
 			date[3] = sec;
 		} catch (ParseException e)
 		{
-			LogKit.error(e.getMessage(), e);
+			LOG.error(e.getMessage(), e);
 		}
 
 		return date;

@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.web.jfinal.ext.render;
+package com.jayqqaa12.jbase.web.jfinal.ext.exception;
 import com.jayqqaa12.jbase.exception.ErrorCode;
 import com.jayqqaa12.jbase.web.jfinal.ext.model.vo.SendJson;
 import com.jfinal.render.Render;

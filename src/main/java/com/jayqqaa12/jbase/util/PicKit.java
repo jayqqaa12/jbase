@@ -1,6 +1,8 @@
 package com.jayqqaa12.jbase.util;
 
-import com.jfinal.kit.LogKit;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -17,6 +19,8 @@ import java.io.IOException;
  */
 @SuppressWarnings({"unused"})
 public final class PicKit {
+
+    private static final Logger LOG = LoggerFactory.getLogger(PicKit.class);
     private int width = 0;
     private int height = 0;
     private File file;
@@ -41,9 +45,9 @@ public final class PicKit {
         try {
             src = ImageIO.read(this.file);
         } catch (IllegalArgumentException e) {
-            LogKit.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } catch (IOException e) {
-            LogKit.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         }
         width = src.getWidth(null);
         height = src.getHeight(null);
@@ -112,9 +116,9 @@ public final class PicKit {
             g.dispose();
 
         } catch (IllegalArgumentException e) {
-            LogKit.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } catch (IOException e) {
-            LogKit.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         }
 
         return this;
@@ -202,7 +206,7 @@ public final class PicKit {
             width = w;
             height = h;
         } catch (IllegalArgumentException e) {
-            LogKit.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         }
         return this;
     }
@@ -226,7 +230,7 @@ public final class PicKit {
             g.drawImage(image, 0, 0, w, h, null);
             image = image1;
         } catch (IllegalArgumentException e) {
-            LogKit.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         }
         width = w;
         height = h;
@@ -249,7 +253,7 @@ public final class PicKit {
             ImageIO.write(image, ext, out);
             out.close();
         } catch (IOException e) {
-            LogKit.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         }
     }
 

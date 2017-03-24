@@ -301,47 +301,47 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 		return paginate(page, size, "select *", "from " + TABLENAME);
 	}
 
-	public Page<M> findAll(int page, int size, String sql, Object... param) {
-
-		return paginate(page, size, sql, param);
-	}
-
-	/**
-	 * 不需要加 limit
-	 * 
-	 * @param where
-	 * @param page
-	 * @param size
-	 * @param param
-	 * @return
-	 */
-	public Page<M> findAllByWhere(int page, int size, String where, Object... param) {
-		loadTableName();
-		return paginate(page, size, "select * from " + TABLENAME + " " + where, param);
-	}
-
-	public Page<M> findAllByCache(int page, int size) {
-		loadTableName();
-		String key = SecKit.md5(TABLENAME + "findAllByCache" + page + "" + size);
-
-		return paginateByCache(TABLENAME, key, page, size, "select * from " + TABLENAME);
-	}
-
-	/**
-	 * 不需要加 limit
-	 * 
-	 * @param where
-	 * @param page
-	 * @param size
-	 * @param param
-	 * @return
-	 */
-	public Page<M> findAllByCache(String where, int page, int size, Object... param) {
-		loadTableName();
-		String key = SecKit.md5(TABLENAME + "findAllByWhereCache" + page + "" + size);
-
-		return paginateByCache(TABLENAME, key, page, size, "select *from " + TABLENAME + " " + where, param);
-	}
+//	public Page<M> findAll(int page, int size, String sql, Object... param) {
+//
+//		return paginate(page, size, sql, param);
+//	}
+//
+//	/**
+//	 * 不需要加 limit
+//	 *
+//	 * @param where
+//	 * @param page
+//	 * @param size
+//	 * @param param
+//	 * @return
+//	 */
+//	public Page<M> findAllByWhere(int page, int size, String where, Object... param) {
+//		loadTableName();
+//		return paginate(page, size, "select * from " + TABLENAME + " " + where, param);
+//	}
+//
+//	public Page<M> findAllByCache(int page, int size) {
+//		loadTableName();
+//		String key = SecKit.md5(TABLENAME + "findAllByCache" + page + "" + size);
+//
+//		return paginateByCache(TABLENAME, key, page, size, "select * from " + TABLENAME);
+//	}
+//
+//	/**
+//	 * 不需要加 limit
+//	 *
+//	 * @param where
+//	 * @param page
+//	 * @param size
+//	 * @param param
+//	 * @return
+//	 */
+//	public Page<M> findAllByCache(String where, int page, int size, Object... param) {
+//		loadTableName();
+//		String key = SecKit.md5(TABLENAME + "findAllByWhereCache" + page + "" + size);
+//
+//		return paginateByCache(TABLENAME, key, page, size, "select *from " + TABLENAME + " " + where, param);
+//	}
 
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

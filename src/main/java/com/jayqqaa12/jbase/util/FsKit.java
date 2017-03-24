@@ -1,6 +1,8 @@
 package com.jayqqaa12.jbase.util;
 
-import com.jfinal.kit.LogKit;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -17,6 +19,8 @@ import static java.io.File.separator;
  */
 @SuppressWarnings({"unused", "ResultOfMethodCallIgnored"})
 public final class FsKit {
+    
+    private static final Logger LOG = LoggerFactory.getLogger(FsKit.class);
 
     private FsKit() {
     }
@@ -74,7 +78,7 @@ public final class FsKit {
                 out.write(b, 0, n);
             return out.toByteArray();
         } catch (IOException e) {
-            LogKit.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
             return new byte[0];
         }
 
@@ -90,7 +94,7 @@ public final class FsKit {
             f.createNewFile();
 
         } catch (Exception e) {
-            LogKit.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
             return;
         }
         connection.setReadTimeout(100000);
@@ -279,7 +283,7 @@ public final class FsKit {
         try {
             properties.load(getResource(resource).openStream());
         } catch (IOException e) {
-            LogKit.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         }
         return properties;
     }
@@ -592,7 +596,7 @@ public final class FsKit {
 
             return true;
         } catch (Exception e) {
-            LogKit.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
             return true;
         }
 

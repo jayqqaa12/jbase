@@ -91,8 +91,5 @@ public class TokenUtil {
         return null;
     }
 
-    public static void main(String[] args) {
-        String token1 = new String(Base64.decodeBase64("12".getBytes()));
-        System.out.println(token1);
-    }
+
 }

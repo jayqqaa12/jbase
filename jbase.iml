@@ -24,6 +24,9 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework:spring-web:4.2.5.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework:spring-jms:4.2.5.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework:spring-messaging:4.2.5.RELEASE" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework.data:spring-data-redis:1.6.4.RELEASE" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework:spring-oxm:4.1.9.RELEASE" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:jcl-over-slf4j:1.7.13" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework.amqp:spring-rabbit:1.6.8.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework.retry:spring-retry:1.1.5.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.rabbitmq:http-client:1.0.0.RELEASE" level="project" />
@@ -41,7 +44,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.jetty:jetty-continuation:8.1.8.v20121106" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.jetty:jetty-http:8.1.8.v20121106" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.jetty:jetty-io:8.1.8.v20121106" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: com.jfinal:jfinal:2.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.jfinal:jfinal:2.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: cglib:cglib-nodep:3.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.jfinal:cos:26Dec2008" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.jsoup:jsoup:1.7.3" level="project" />

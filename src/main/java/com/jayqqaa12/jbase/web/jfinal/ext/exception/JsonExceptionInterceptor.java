@@ -1,5 +1,7 @@
-package com.jayqqaa12.jbase.exception;
+package com.jayqqaa12.jbase.web.jfinal.ext.exception;
 
+import com.jayqqaa12.jbase.exception.ErrorCode;
+import com.jayqqaa12.jbase.exception.JbaseErrorCodeException;
 import com.jayqqaa12.jbase.web.jfinal.ext.JbaseConfig;
 import com.jayqqaa12.jbase.web.jfinal.ext.model.vo.SendJson;
 import com.jfinal.aop.Interceptor;

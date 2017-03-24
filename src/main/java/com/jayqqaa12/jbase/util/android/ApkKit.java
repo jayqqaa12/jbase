@@ -5,8 +5,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import com.jfinal.kit.LogKit;
-import com.sinaapp.msdxblog.apkUtil.ApkInfo;
-import com.sinaapp.msdxblog.apkUtil.ApkUtil;
 
 public class ApkKit {
 

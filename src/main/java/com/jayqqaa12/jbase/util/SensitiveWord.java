@@ -1,16 +1,17 @@
 package com.jayqqaa12.jbase.util;
 
-import com.jfinal.kit.LogKit;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 
 public class SensitiveWord {
+
+    private static final Logger LOG = LoggerFactory.getLogger(SensitiveWord.class);
+
     private String ENCODING = "utf8";    //字符编码
     @SuppressWarnings("rawtypes")
     public Map sensitiveWordMap;
@@ -24,7 +25,7 @@ public class SensitiveWord {
             //将敏感词库加入到HashMap中
             addSensitiveWordToHashMap(keyWordSet);
         } catch (Exception e) {
-            LogKit.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         }
     }
 

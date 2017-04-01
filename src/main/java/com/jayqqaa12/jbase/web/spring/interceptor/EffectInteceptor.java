@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.web.spring.auth;
+package com.jayqqaa12.jbase.web.spring.interceptor;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

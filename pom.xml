@@ -115,6 +115,14 @@
 
 
 
+        <!-- kisso -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>kisso</artifactId>
+            <version>3.6.11</version>
+            <scope>provided</scope>
+        </dependency>
+
 
         <!-- jfinal -->
         <dependency>
@@ -285,6 +293,7 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.6</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

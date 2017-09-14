@@ -6,7 +6,7 @@
 package com.jayqqaa12.jbase.util;
 
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -243,12 +243,6 @@ public class HttpKit {
             }
 
         }
-    }
-
-    /** @deprecated */
-    @Deprecated
-    public static String readIncommingRequestData(HttpServletRequest request) {
-        return readData(request);
     }
 
     private class TrustAnyTrustManager implements X509TrustManager {

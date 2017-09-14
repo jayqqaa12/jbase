@@ -1,12 +1,10 @@
-package com.jayqqaa12.jbase.jfinal.ext.xss;
+package com.jayqqaa12.jbase.web.jfinal.ext.xss;
 
-
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * 对HttpServletRequestWrapper重写，为了统一XSS处理 

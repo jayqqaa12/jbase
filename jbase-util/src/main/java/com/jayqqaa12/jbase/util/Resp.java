@@ -1,9 +1,7 @@
 package com.jayqqaa12.jbase.util;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.alibaba.fastjson.JSON;
 import com.jayqqaa12.jbase.exception.ErrorCode;
-import com.jayqqaa12.jbase.web.jfinal.ext.model.Model;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,16 +20,16 @@ public class Resp {
 
     public Map data = new HashMap();
 
-    public static Resp create() {
+    public static Resp of() {
         return new Resp();
     }
 
-    public static Resp create(int code) {
+    public static Resp of(int code) {
         return new Resp();
     }
 
 
-    public static Resp create(ErrorCode code) {
+    public static Resp of(ErrorCode code) {
         return new Resp(code.code,code.msg);
     }
 
@@ -52,8 +50,8 @@ public class Resp {
 
     public String toJson() {
         if (data != null && data.size() == 0) data = null;
-        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
-        String rst = gson.toJson(this);
+//        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+        String rst = JSON.toJSONString(this);
         return rst;
     }
 
@@ -62,11 +60,11 @@ public class Resp {
         return toJson();
     }
 
-    public Resp setData(String key, Model m) {
-        if (m == null) return this;
-        this.data.put(key, m.getAttrs());
-        return this;
-    }
+//    public Resp setData(String key, Model m) {
+//        if (m == null) return this;
+//        this.data.put(key, m.getAttrs());
+//        return this;
+//    }
 
     public Resp setData(String key, Object value) {
         if (value == null) return this;

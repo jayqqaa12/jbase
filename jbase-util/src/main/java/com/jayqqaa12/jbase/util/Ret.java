@@ -9,11 +9,11 @@ public class Ret {
     public Ret() {
     }
 
-    public static Ret create() {
+    public static Ret of() {
         return new Ret();
     }
 
-    public static Ret create(Object key, Object value) {
+    public static Ret of(Object key, Object value) {
         return (new Ret()).put(key, value);
     }
 

@@ -1,8 +1,6 @@
 package com.jayqqaa12.jbase.web.jfinal.ext.model.vo;
 
 import com.alibaba.fastjson.JSONObject;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.jayqqaa12.jbase.web.jfinal.ext.model.Model;
 import com.jfinal.plugin.activerecord.Record;
 
@@ -48,9 +46,8 @@ public class SendJson {
 
 	public String toJson() {
 		if (data!=null&&data.size() == 0) data = null;
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
-		String rst = gson.toJson(this);
-
+//		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+		String rst = JSONObject.toJSONString(this);
 		/**
 		 * 只有一个 data 这时候就 去掉一层
 		 */

@@ -1,16 +1,10 @@
 package com.jayqqaa12.jbase.web.jfinal.ext.model.vo;
 
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
-import org.apache.commons.lang.StringUtils;
-
 import com.jayqqaa12.jbase.util.TxtKit;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.StrKit;
+
+import java.util.*;
 
 /***
  * 
@@ -209,7 +203,7 @@ public class Form
 			
 			if(key.contains(".")) namespace="";
 			
-			if (StringUtils.isNotBlank(value))
+			if (value!=null&&!"".equals(value))
 			{
 				if ("dateStart".equals(key)) gteq(namespace + "date", quotation(value));
 				else if ("dateEnd".equals(key)) lteq(namespace + "date", quotation(value));

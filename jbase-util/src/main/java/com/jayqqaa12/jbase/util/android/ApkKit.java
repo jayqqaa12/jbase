@@ -1,13 +1,16 @@
 package com.jayqqaa12.jbase.util.android;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import com.jfinal.kit.LogKit;
 
 public class ApkKit {
-
+	private static final Logger LOG = LoggerFactory.getLogger(ApkKit.class);
+	
 	private static  String aaptPath = "/root/android-sdk-linux/build-tools/19.0.1/aapt";
 
 	public static void setAaptPath(String path) {
@@ -56,7 +59,7 @@ public class ApkKit {
 			entry.getMethod();
 			return zFile;
 		} catch (IOException e) {
-			LogKit.error(e.getMessage(), e);
+			LOG.error(e.getMessage(), e);
 		}
 
 		return null;

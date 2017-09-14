@@ -1,6 +1,6 @@
 package com.jayqqaa12.jbase.web.spring.interceptor;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -99,6 +99,7 @@ public abstract class ValidateInterceptor extends HandlerInterceptorAdapter {
 
     public boolean assertEmail(String  field) {
         String value = request.getParameter(field);
+
         if (!StringUtils.isEmpty(value)) {
             Matcher matcher = EMAIL_PATTERN.matcher(value);
             return matcher.matches();

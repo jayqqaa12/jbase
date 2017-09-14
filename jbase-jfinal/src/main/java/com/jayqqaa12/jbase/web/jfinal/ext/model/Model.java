@@ -1,13 +1,12 @@
 package com.jayqqaa12.jbase.web.jfinal.ext.model;
 
 import com.google.common.collect.Lists;
+import com.jayqqaa12.jbase.exception.NullModelException;
 import com.jayqqaa12.jbase.util.SecKit;
 import com.jayqqaa12.jbase.util.TxtKit;
-import com.jayqqaa12.jbase.exception.NullModelException;
 import com.jfinal.ext.plugin.sqlinxml.SqlKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.*;
-import org.apache.commons.lang.ArrayUtils;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -85,12 +84,12 @@ public class Model<M extends com.jfinal.plugin.activerecord.Model<M>> extends co
 	 * 更新 指定 条件
 	 * 
 	 */
-	public boolean updateByWhere(String key, Object value, String w, Object... params) {
-		loadTableName();
-		Object[] p = ArrayUtils.addAll(new Object[] { value }, params);
-
-		return Db.update("update " + TABLENAME + " set " + key + "=? " + w, p) > 0;
-	}
+//	public boolean updateByWhere(String key, Object value, String w, Object... params) {
+//		loadTableName();
+//		Object[] p = ArrayUtils.addAll(new Object[] { value }, params);
+//
+//		return Db.update("update " + TABLENAME + " set " + key + "=? " + w, p) > 0;
+//	}
 
 	public boolean update(String key, Object value, Object id) {
 		loadTableName();

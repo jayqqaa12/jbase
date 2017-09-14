@@ -19,7 +19,7 @@ import static java.io.File.separator;
  */
 @SuppressWarnings({"unused", "ResultOfMethodCallIgnored"})
 public final class FsKit {
-    
+
     private static final Logger LOG = LoggerFactory.getLogger(FsKit.class);
 
     private FsKit() {
@@ -49,7 +49,7 @@ public final class FsKit {
         byte[] buffer = new byte[bufferSize];
         int length = -1;
         /* 循环将流输出 */
-        while (( length = inputStream.read(buffer)) != -1) {
+        while ((length = inputStream.read(buffer)) != -1) {
             ds.write(buffer, 0, length);
         }
         ds.writeBytes(end);
@@ -111,7 +111,7 @@ public final class FsKit {
         }
     }
 
-    final static List<String> getAllFiles(File dir, List<String> list) {
+    public final static List<String> getAllFiles(File dir, List<String> list) {
 
         try {
             File[] fs = dir.listFiles();

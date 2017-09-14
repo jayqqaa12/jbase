@@ -1,5 +1,4 @@
-package com.jayqqaa12.jbase.jfinal.ext.xss;
-
+package com.jayqqaa12.jbase.web.jfinal.ext.xss;
 
 import java.util.List;
 

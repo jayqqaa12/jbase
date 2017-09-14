@@ -1,9 +1,9 @@
 package com.jayqqaa12.jbase.web.jfinal.ext.ctrl;
 
-import com.google.gson.Gson;
-import com.jayqqaa12.jbase.web.jfinal.ext.auto.BaseService;
+import com.alibaba.fastjson.JSON;
 import com.jayqqaa12.jbase.exception.ErrorCode;
 import com.jayqqaa12.jbase.exception.NullParamException;
+import com.jayqqaa12.jbase.web.jfinal.ext.auto.BaseService;
 import com.jayqqaa12.jbase.web.jfinal.ext.model.vo.Form;
 import com.jfinal.ext.render.excel.PoiRender;
 import com.jfinal.ext.route.ControllerBind;
@@ -212,7 +212,7 @@ public class Controller<T> extends com.jfinal.core.Controller {
  
 	public void renderGson(Object obj) {
 
-		renderJson(new Gson().toJson(obj));
+		renderJson(JSON.toJSONString(obj));
 	}
 
 

@@ -1,21 +1,21 @@
 package com.jayqqaa12.jbase.web.jfinal.ext.util;
 
-import java.util.Map;
-
-import com.google.gson.Gson;
+import com.alibaba.fastjson.JSON;
 import com.jayqqaa12.jbase.exception.JbaseErrorCodeException;
 import com.jayqqaa12.jbase.web.jfinal.ext.model.vo.SendJson;
+
+import java.util.Map;
 
 public class TestKit {
 
 	public static Map<String, Object> parseData(String rst) {
 
-		SendJson json = new Gson().fromJson(rst, SendJson.class);
+		SendJson json = JSON.parseObject(rst, SendJson.class);
 		return json.data;
 	}
 
 	public static int parse(String result) {
-		SendJson json = new Gson().fromJson(result, SendJson.class);
+		SendJson json = JSON.parseObject(result, SendJson.class);
 		return json.code;
 	}
 

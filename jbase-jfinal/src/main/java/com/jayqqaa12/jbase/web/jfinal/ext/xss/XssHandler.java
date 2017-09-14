@@ -1,10 +1,10 @@
-package com.jayqqaa12.jbase.jfinal.ext.xss;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+package com.jayqqaa12.jbase.web.jfinal.ext.xss;
 
 import com.jfinal.handler.Handler;
 import com.jfinal.kit.StrKit;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 统一XSS处理

@@ -2,7 +2,8 @@ package com.jayqqaa12.jbase.util.sdk;
 
 import com.google.common.collect.Maps;
 import com.jayqqaa12.jbase.exception.JbaseRPCException;
-import com.jfinal.kit.LogKit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.zbus.broker.Broker;
 import org.zbus.broker.BrokerConfig;
 import org.zbus.broker.SingleBroker;
@@ -24,6 +25,7 @@ import java.util.Map;
  */
 public class ZbusKit {
 
+	private static final Logger LOG = LoggerFactory.getLogger(ZbusKit.class);
 	public static final int DEFAULT_TIMEOUT = 15 * 1000;
 
 	private static Map<String, Broker> brokes = Maps.newConcurrentMap();
@@ -38,7 +40,7 @@ public class ZbusKit {
 		try {
 			return (T) new RpcFactory(getBroker(addr)).getService(clazz);
 		} catch (Exception e) {
-			LogKit.error(e.getMessage(), e);
+			LOG.error(e.getMessage(), e);
 			throw new JbaseRPCException(e);
 		}
 
@@ -89,7 +91,7 @@ public class ZbusKit {
 			config.messageProcessor = new RpcProcessor(module);
 			new Service(config).start();
 		} catch (Exception e) {
-			LogKit.error(e.getMessage(), e);
+			LOG.error(e.getMessage(), e);
 		}
 	}
 

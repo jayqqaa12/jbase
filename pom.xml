@@ -9,10 +9,13 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
+
+    <jbase-util-version>1.0.0</jbase-util-version>
+
     <modules>
-        <module>../jbase-util</module>
-        <module>../jbase-jfinal</module>
-        <module>../jbase-spring</module>
+        <module>jbase-util</module>
+        <module>jbase-jfinal</module>
+        <module>jbase-spring</module>
       
     </modules>
 

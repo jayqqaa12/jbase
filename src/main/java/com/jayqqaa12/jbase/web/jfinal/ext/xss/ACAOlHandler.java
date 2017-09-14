@@ -1,9 +1,9 @@
-package com.jayqqaa12.jbase.jfinal.ext.xss;
+package com.jayqqaa12.jbase.web.jfinal.ext.xss;
+
+import com.jfinal.handler.Handler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.jfinal.handler.Handler;
 
 public class ACAOlHandler extends Handler {
  

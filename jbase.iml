@@ -53,6 +53,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.jfinal:jfinal:2.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: cglib:cglib-nodep:3.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.jfinal:cos:26Dec2008" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.belerweb:pinyin4j:2.5.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.jsoup:jsoup:1.7.3" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.mail:mail:1.4.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.activation:activation:1.1" level="project" />
@@ -97,9 +98,9 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.curator:curator-recipes:2.9.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.curator:curator-framework:2.9.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.curator:curator-client:2.9.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.zookeeper:zookeeper:3.4.6" level="project" />
-    <orderEntry type="library" name="Maven: jline:jline:0.9.94" level="project" />
-    <orderEntry type="library" name="Maven: io.netty:netty:3.7.0.Final" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.zookeeper:zookeeper:3.4.6" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: jline:jline:0.9.94" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: io.netty:netty:3.7.0.Final" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: de.ruedigermoeller:fst:2.29" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.fasterxml.jackson.core:jackson-core:2.5.3" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.javassist:javassist:3.19.0-GA" level="project" />

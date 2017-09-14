@@ -12,6 +12,7 @@
     <url>https://github.com/jayqqaa12/jbase</url>
 
     <properties>
+        <jbase-util-version>1.0.0</jbase-util-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-version>4.2.5.RELEASE</spring-version>
         <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>

@@ -10,7 +10,6 @@
     <packaging>pom</packaging>
 
 
-    <jbase-util-version>1.0.0</jbase-util-version>
 
     <modules>
         <module>jbase-util</module>

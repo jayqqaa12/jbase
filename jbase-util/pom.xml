@@ -6,7 +6,7 @@
     <artifactId>jbase-util</artifactId>
     <packaging>jar</packaging>
     <name>jbase-util</name>
-    <version>${jbase-util-version}</version>
+    <version>1.0.0</version>
 
     <description>jbase is base of Java Web Framework</description>
     <url>https://github.com/jayqqaa12/jbase</url>

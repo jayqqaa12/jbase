@@ -3,39 +3,45 @@ package com.jayqqaa12.jbase.util;
 import com.alibaba.fastjson.JSON;
 import com.jayqqaa12.jbase.exception.ErrorCode;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 /**
  * 返回的统一json格式
  * Created by 12 on 2017/3/24.
  */
-public class Resp {
-    public int code = 200;
+public class Resp<T> {
+    private int code = 200;
     /**
      * 错误描述可写 可不写 可集中在 客户端 判断 code 得出
      */
-    public String msg;
+    private String msg="ok";
 
-    public Map data = new HashMap();
+    private T data;
+
 
     public static Resp of() {
         return new Resp();
     }
 
     public static Resp of(int code) {
-        return new Resp();
+        return new Resp(code);
+    }
+
+    public static Resp of(Object object) {
+        return new Resp(object);
+    }
+
+    public static Resp of(Optional optional) {
+
+        return new Resp(optional.get());
     }
 
 
     public static Resp of(ErrorCode code) {
-        return new Resp(code.code,code.msg);
+        return new Resp(code.code, code.msg);
     }
 
-    public Resp(String key, List list) {
-        setData(key, list);
-    }
+
     private Resp() {
     }
 
@@ -43,14 +49,22 @@ public class Resp {
         this.code = code;
     }
 
+    public Resp(T data) {
+        this.data = data;
+    }
+
     public Resp(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }
 
+    public Resp(int code, String msg, T data) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+    }
+
     public String toJson() {
-        if (data != null && data.size() == 0) data = null;
-//        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
         String rst = JSON.toJSONString(this);
         return rst;
     }
@@ -60,33 +74,28 @@ public class Resp {
         return toJson();
     }
 
-//    public Resp setData(String key, Model m) {
-//        if (m == null) return this;
-//        this.data.put(key, m.getAttrs());
-//        return this;
-//    }
 
-    public Resp setData(String key, Object value) {
-        if (value == null) return this;
-        this.data.put(key, value);
-        return this;
+    public T getData() {
+        return data;
     }
 
-    public Resp setData(String key, List list) {
-        if (list == null) return this;
-        data.put(key, list);
-        return this;
+    public void setData(T data) {
+        this.data = data;
     }
 
-    public void setData(Map<Object, Object> data) {
-
-        for (Map.Entry<Object, Object> entry : data.entrySet()) {
-            Object key = entry.getKey();
-            Object o = entry.getValue();
-            this.data.put(key, o);
-        }
-
+    public int getCode() {
+        return code;
     }
 
+    public void setCode(int code) {
+        this.code = code;
+    }
 
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 }

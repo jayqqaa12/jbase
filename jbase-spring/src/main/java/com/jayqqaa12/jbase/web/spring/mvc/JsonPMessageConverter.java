@@ -3,7 +3,7 @@ package com.jayqqaa12.jbase.web.spring.mvc;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.jayqqaa12.jbase.web.spring.interceptor.EffectInteceptor;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 

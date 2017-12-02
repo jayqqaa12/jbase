@@ -32,7 +32,7 @@ import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Throwables;
 import com.google.common.io.Files;
-import com.jayqqaa12.jbase.web.jfinal.ext.JbaseConfig;
+import com.jayqqaa12.jbase.jfinal.ext.JbaseConfig;
 import com.jfinal.config.JFinalConfig;
 import com.jfinal.core.JFinal;
 import com.jfinal.ext.kit.Reflect;

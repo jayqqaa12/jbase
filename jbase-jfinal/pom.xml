@@ -11,6 +11,12 @@
     <description>jbase is base of Java Web Framework</description>
     <url>https://github.com/jayqqaa12/jbase</url>
 
+    <parent>
+        <groupId>com.jayqqaa12</groupId>
+        <artifactId>jbase</artifactId>
+        <version>1.0.0</version>
+    </parent>
+    
     <properties>
         <jbase-util-version>1.0.0</jbase-util-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

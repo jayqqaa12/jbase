@@ -69,8 +69,8 @@
         <!-- j2cache beat  -->
         <dependency>
             <groupId>com.jayqqaa12</groupId>
-            <artifactId>j2cache</artifactId>
-            <version>1.6.6</version>
+            <artifactId>jbase-cache</artifactId>
+            <version>0.9.0</version>
         </dependency>
 
 
@@ -240,17 +240,6 @@
 
         </plugins>
     </build>
-
-
-
-    <!-- 设置一下 私服 -->
-    <distributionManagement>
-        <repository>
-            <id>nexus-releases</id>
-            <name>Nexus Release Repository</name>
-            <url>http://dev.esongbai.xyz/nexus/content/repositories/releases/</url>
-        </repository>
-    </distributionManagement>
 
 
 

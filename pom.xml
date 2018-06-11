@@ -19,4 +19,22 @@
     </modules>
 
 
+    <repositories>
+        <repository>
+            <id>nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>http://dev.esongbai.xyz/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>http://dev.esongbai.xyz/nexus/content/groups/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    
+
 </project>

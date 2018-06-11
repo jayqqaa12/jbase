@@ -8,6 +8,12 @@
     <name>jbase-util</name>
     <version>1.0.0</version>
 
+    <parent>
+        <groupId>com.jayqqaa12</groupId>
+        <artifactId>jbase</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
     <description>jbase is base of Java Web Framework</description>
     <url>https://github.com/jayqqaa12/jbase</url>
 
@@ -61,8 +67,6 @@
             <artifactId>guava</artifactId>
             <version>23.0</version>
         </dependency>
-
-
 
 
         <dependency>
@@ -178,8 +182,6 @@
         </dependency>
 
 
-
-
         <dependency>
             <groupId>org.zbus</groupId>
             <artifactId>zbus</artifactId>
@@ -270,6 +272,7 @@
         </repository>
     </distributionManagement>
 
+ 
 
     <profiles>
 

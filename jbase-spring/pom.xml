@@ -6,7 +6,7 @@
     <artifactId>jbase-spring</artifactId>
     <packaging>jar</packaging>
     <name>jbase-spring</name>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <description>jbase is base of Java Web Framework</description>
     <url>https://github.com/jayqqaa12/jbase</url>

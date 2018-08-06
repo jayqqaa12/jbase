@@ -160,7 +160,6 @@ public class ConfigKit {
 	}
 
 	public static void set(String key, String val) {
-		// TODO
 		throw new RuntimeException("I do not know how to do it now..");
 	}
 

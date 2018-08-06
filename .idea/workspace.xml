@@ -2,58 +2,58 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7f3f18e-0ef4-41d4-bd0d-96223af4461f" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/interceptor/EffectInteceptor.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/jbase-jfinal.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/JbaseConfig.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/JbaseConfig.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/JsonValidator.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/JsonValidator.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/Validator.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/Validator.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/auto/BaseService.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/auto/BaseService.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/auto/JbaseBaseModelGenerator.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/auto/JbaseBaseModelGenerator.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/auto/JbaseGenerator.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/auto/JbaseGenerator.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/auto/JbaseMappingKitGenerator.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/auto/JbaseMappingKitGenerator.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/auto/JbaseMetaBuilder.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/auto/JbaseMetaBuilder.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/auto/JbaseModelGenerator.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/auto/JbaseModelGenerator.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/auto/JbaseServiceGenerator.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/auto/JbaseServiceGenerator.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/ctrl/Controller.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/ctrl/Controller.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/ctrl/Injector.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/ctrl/Injector.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/ctrl/JsonController.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/ctrl/JsonController.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/exception/JsonErrorRender.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/exception/JsonErrorRender.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/exception/JsonExceptionInterceptor.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/exception/JsonExceptionInterceptor.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/model/Ip.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/model/Ip.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/model/Model.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/model/Model.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/model/vo/Form.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/model/vo/Form.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/model/vo/SendJson.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/model/vo/SendJson.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/util/ListUtil.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/util/ListUtil.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/util/TestKit.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/util/TestKit.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/xss/ACAOlHandler.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/xss/ACAOlHandler.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/xss/HtmlFilter.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/xss/HtmlFilter.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/xss/HttpServletRequestWrapper.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/xss/HttpServletRequestWrapper.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/xss/XssHandler.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/xss/XssHandler.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jfinal/ext/test/ControllerTestCase.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jfinal/ext/test/ControllerTestCase.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-spring/jbase-spring.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/jbase-spring/pom.xml" afterPath="$PROJECT_DIR$/jbase-spring/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/distributelock/AbstractLock.java" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/AbstractLock.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/distributelock/CuratorLock.java" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/CuratorLock.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/distributelock/DistributeLock.java" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/DistributeLock.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/distributelock/DistributeLockFactory.java" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/DistributeLockFactory.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/distributelock/annontation/SpelKeyGenerator.java" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/annontation/SpelKeyGenerator.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/distributelock/annontation/ZKLock.java" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/annontation/ZKLock.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/distributelock/annontation/ZKLockAspect.java" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/annontation/ZKLockAspect.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/interceptor/EffectInteceptor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/interceptor/Interceptor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/interceptor/ValidateInterceptor.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/mvc/JsonPMessageConverter.java" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/JsonPMessageConverter.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/mvc/JsonpResponseAdvice.java" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/JsonpResponseAdvice.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/mvc/SuperController.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/jbase-util/jbase-util.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/jbase-util/pom.xml" afterPath="$PROJECT_DIR$/jbase-util/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/BusinessException.java" afterPath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/BusinessException.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/JbaseErrorCodeException.java" afterPath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/JbaseErrorCodeException.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/NullModelException.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/exception/NullModelException.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/NullParamException.java" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/exception/NullParamException.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/Pinyin4jHelper.java" afterPath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/PinyinKit.java" />
-      <change beforePath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/ShortUrlHelper.java" afterPath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/ShortUrlKit.java" />
-      <change beforePath="$PROJECT_DIR$/jbase.iml" afterPath="" />
+      <change afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/interceptor/EffectInteceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/jbase-jfinal.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/JbaseConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/JbaseConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/JsonValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/JsonValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/Validator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/auto/BaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/auto/BaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/auto/JbaseBaseModelGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/auto/JbaseBaseModelGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/auto/JbaseGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/auto/JbaseGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/auto/JbaseMappingKitGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/auto/JbaseMappingKitGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/auto/JbaseMetaBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/auto/JbaseMetaBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/auto/JbaseModelGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/auto/JbaseModelGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/auto/JbaseServiceGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/auto/JbaseServiceGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/ctrl/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/ctrl/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/ctrl/Injector.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/ctrl/Injector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/ctrl/JsonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/ctrl/JsonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/exception/JsonErrorRender.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/exception/JsonErrorRender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/exception/JsonExceptionInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/exception/JsonExceptionInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/model/Ip.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/model/Ip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/model/vo/Form.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/model/vo/Form.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/model/vo/SendJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/model/vo/SendJson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/util/ListUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/util/ListUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/util/TestKit.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/util/TestKit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/xss/ACAOlHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/xss/ACAOlHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/xss/HtmlFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/xss/HtmlFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/xss/HttpServletRequestWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/xss/HttpServletRequestWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/web/jfinal/ext/xss/XssHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/xss/XssHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jfinal/ext/test/ControllerTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jfinal/ext/test/ControllerTestCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-spring/jbase-spring.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-spring/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-spring/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/distributelock/AbstractLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/AbstractLock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/distributelock/CuratorLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/CuratorLock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/distributelock/DistributeLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/DistributeLock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/distributelock/DistributeLockFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/DistributeLockFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/distributelock/annontation/SpelKeyGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/annontation/SpelKeyGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/distributelock/annontation/ZKLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/annontation/ZKLock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/distributelock/annontation/ZKLockAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/annontation/ZKLockAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/interceptor/EffectInteceptor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/interceptor/Interceptor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/interceptor/ValidateInterceptor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/mvc/JsonPMessageConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/JsonPMessageConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/mvc/JsonpResponseAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/JsonpResponseAdvice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/web/spring/mvc/SuperController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-util/jbase-util.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-util/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-util/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/BusinessException.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/BusinessException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/JbaseErrorCodeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/JbaseErrorCodeException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/NullModelException.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/exception/NullModelException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/NullParamException.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/exception/NullParamException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/Pinyin4jHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/PinyinKit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/ShortUrlHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/ShortUrlKit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jbase.iml" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/jbase-util/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -66,21 +66,126 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="message_common.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/resources/message_common.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2176">
+              <caret line="128" column="46" lean-forward="true" selection-start-line="128" selection-start-column="46" selection-end-line="128" selection-end-column="46" />
+            </state>
+          </provider>
+          <provider editor-type-id="ResourceBundle" />
+        </entry>
+      </file>
+      <file leaf-file-name="RespCode.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/RespCode.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1349">
+              <caret line="108" column="15" lean-forward="true" selection-start-line="108" selection-start-column="15" selection-end-line="108" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Resp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/Resp.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FastJsonConverter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/converter/FastJsonConverter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OrdinalToEnumConverterFactory.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/converter/OrdinalToEnumConverterFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UploadConfiguration.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/helper/UploadConfiguration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/jbase-spring/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2026">
+              <caret line="133" column="61" lean-forward="true" selection-start-line="133" selection-start-column="61" selection-end-line="133" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PageableDeserializer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/serialize/json/PageableDeserializer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="message_common_en.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/resources/message_common_en.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1892" />
+          </provider>
+          <provider editor-type-id="ResourceBundle" />
+        </entry>
+      </file>
+      <file leaf-file-name="message_common_zh_HK.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/resources/message_common_zh_HK.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1909" />
+          </provider>
+          <provider editor-type-id="ResourceBundle" />
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
+    <findStrings>
+      <find>setValue</find>
+      <find>serializeError</find>
+      <find>tokenizeToStringArray</find>
+    </findStrings>
     <dirStrings>
       <dir>D:\git\jbase\jbase-spring\src\main\java\com\jayqqaa12\jbase\spring\mvc\converter</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GradleLocalSettings">
-    <option name="externalProjectsViewState">
-      <projects_view />
-    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -100,7 +205,6 @@
         <option value="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/config/MybatisPlusConfig.java" />
         <option value="$PROJECT_DIR$/jbase-spring/pom.xml" />
         <option value="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/interceptor/EffectInteceptor.java" />
-        <option value="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/config/MvcConfig.java" />
         <option value="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zookeeper/ZookeeperConfiguration.java" />
         <option value="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/config/RedisConfig.java" />
         <option value="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/config/RedisJsonSerializer.java" />
@@ -111,6 +215,25 @@
         <option value="$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/exception/JbaseErrorCodeException.java" />
         <option value="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/JbaseErrorCodeException.java" />
         <option value="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/BusinessException.java" />
+        <option value="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/utils/base/BeanUtil.java" />
+        <option value="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/SecKit.java" />
+        <option value="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/RSACryptUtil.java" />
+        <option value="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/config/MvcConfig.java" />
+        <option value="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/utils/base/ClassUtil.java" />
+        <option value="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/utils/base/DateFormatUtil.java" />
+        <option value="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/RegularKit.java" />
+        <option value="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/http/IpUtil.java" />
+        <option value="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/http/IpKit.java" />
+        <option value="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/util/DateFormatUtil.java" />
+        <option value="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/DateFormatUtil.java" />
+        <option value="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/DateFormatKit.java" />
+        <option value="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/concurrent/Executors.java" />
+        <option value="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/Executors.java" />
+        <option value="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/handler/CustomExceptionHandler.java" />
+        <option value="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/util/StringUtil.java" />
+        <option value="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/http/HeaderKit.java" />
+        <option value="$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/handler/ApiVersionRequestMappingHandlerMapping.java" />
+        <option value="$PROJECT_DIR$/jbase-spring/src/main/resources/message_common.properties" />
       </list>
     </option>
   </component>
@@ -122,35 +245,28 @@
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
-      <expand />
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="jbase" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+      </expand>
       <select />
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="793" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -160,52 +276,34 @@
             </path>
             <path>
               <item name="jbase" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jbase" type="462c0819:PsiDirectoryNode" />
-              <item name="jbase-spring" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jbase" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jbase" type="462c0819:PsiDirectoryNode" />
-              <item name="jbase-spring" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jbase" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jbase" type="462c0819:PsiDirectoryNode" />
-              <item name="jbase-spring" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jbase" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jbase" type="462c0819:PsiDirectoryNode" />
-              <item name="jbase-spring" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.jayqqaa12.jbase.util" />
       <recent name="com.jayqqaa12.jbase.spring.boot.config" />
       <recent name="com.jayqqaa12.jbase.spring.interceptor" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/jbase-spring/src/main" />
+      <recent name="$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception" />
       <recent name="D:\git\jbase\jbase-spring\src\main\java\com\jayqqaa12\jbase\spring\mvc" />
       <recent name="D:\git\jbase\jbase-spring\src\main\java\com\jayqqaa12\jbase\spring" />
     </key>
@@ -224,28 +322,12 @@
   </component>
   <component name="RunManager">
     <configuration default="true" type="Applet" factoryName="Applet">
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <module />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" />
@@ -255,20 +337,11 @@
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="singleModule" />
       </option>
-      <envs />
       <patterns />
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -297,15 +370,9 @@
       <properties />
       <listeners />
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file id="idea.log" enabled="true" />
-    </configuration>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -315,42 +382,77 @@
       <option name="presentableId" value="Default" />
       <updated>1512184391655</updated>
       <workItem from="1512184392794" duration="3233000" />
+      <workItem from="1533107763892" duration="700000" />
+      <workItem from="1533286829860" duration="10000" />
+      <workItem from="1533287258764" duration="450000" />
+      <workItem from="1533289434526" duration="6535000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3233000" />
+    <option name="totallyTimeSpent" value="10928000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="793" extended-state="0" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" weight="0.3266187" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="bottom" id="Java Enterprise" order="7" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="7" side_tool="true" visible="true" weight="0.32902297" />
+      <window_info anchor="right" id="Maven Projects" order="3" weight="0.3297568" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3275862" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Designer" order="2" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2639485" />
+      <window_info anchor="right" id="Bean Validation" order="3" />
+      <window_info id="Web" order="2" side_tool="true" />
+      <window_info anchor="right" id="Database" order="3" weight="0.3297568" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3275862" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info id="Web" order="2" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="4" weight="0.3297568" />
+      <window_info anchor="bottom" id="Run" order="3" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2532189" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info id="Designer" order="3" />
+      <window_info anchor="bottom" id="Spring" order="8" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="right" id="Bean Validation" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32934782" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="right" id="Maven Projects" order="7" visible="true" weight="0.3297568" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -358,526 +460,387 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="rebuild" />
+    <option name="LAST_COMMIT_MESSAGE" value="rebuild" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/annontation/SpelKeyGenerator.java">
+    <entry file="file://$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/BusinessException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="255">
+          <caret line="17" column="59" lean-forward="true" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="59" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/annontation/ZKLock.java">
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/encrypt/PasswordEncryptUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="18" lean-forward="false" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
-          <folding />
+        <state relative-caret-position="138">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/annontation/ZKLockAspect.java">
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/encrypt/RSACryptUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="-2378">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/AbstractLock.java">
+    <entry file="file://$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/SecKit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="13" column="22" lean-forward="false" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-          <folding />
+        <state relative-caret-position="-440">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/CuratorLock.java">
+    <entry file="file://$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/RSACryptKit.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/i18n/LocaleKit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="255">
+          <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/DistributeLock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="17" lean-forward="false" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/lock/DistributeLockFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/properties/internal/ZookeeperLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/EnableAutoCommons.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="28" column="23" lean-forward="true" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/SuperController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1034">
-          <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/interceptor/ValidateInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="17" column="22" lean-forward="false" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/interceptor/Interceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/JsonpResponseAdvice.java">
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/exception/BusinessException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
-          <folding />
+          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/JsonPMessageConverter.java">
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/exception/ResolveMsgException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/exception/RetryException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="18" lean-forward="true" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/RegularKit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/converter/StringToDateConverter.java">
+    <entry file="file://$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/http/IpKit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="-2082">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/converter/DateToStringConverter.java">
+    <entry file="file://$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/http/IpUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="-1295">
+          <caret line="59" column="44" lean-forward="true" selection-start-line="59" selection-start-column="44" selection-end-line="59" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/UserUtil.java">
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/util/ClassUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="4" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/UUIDGenKit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/DateFormatKit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/EnableCache.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-          <folding />
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/TokenUtil.java">
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/EnableBasic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="37" column="33" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="255">
+          <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/base/Profiles.java">
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/EnableAliyun.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="153">
+          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/concurrent/DreamThreadFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="24" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/Executors.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/annotation/ApiVersion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/annotation/LimitLess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/helper/upload/ImageHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/helper/upload/AliyunOssHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/annotation/InnerOnly.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/handler/GlobalExceptionHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/util/http/HeaderKit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="99" column="30" lean-forward="true" selection-start-line="99" selection-start-column="30" selection-end-line="99" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/handler/CustomExceptionHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="85" column="36" lean-forward="true" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_171.jdk/Contents/Home/src.zip!/java/util/StringTokenizer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="102" column="6" selection-start-line="102" selection-start-column="6" selection-end-line="102" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-core/4.3.11.RELEASE/spring-core-4.3.11.RELEASE.jar!/org/springframework/util/StringUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="527" column="27" selection-start-line="527" selection-start-column="27" selection-end-line="527" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/util/StringUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="108" column="27" selection-start-line="108" selection-start-column="27" selection-end-line="108" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2400#2401#0" expanded="true" />
+            <element signature="e#2467#2468#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/handler/ApiVersionCondition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="127" column="29" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3571#3572#0" expanded="true" />
+            <element signature="e#3622#3623#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/handler/ApiVersionRequestMappingHandlerMapping.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/base/ConfigOrdered.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="102">
+          <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/config/RestConfig.java">
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/config/MybatisConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="99" column="20" lean-forward="false" selection-start-line="99" selection-start-column="20" selection-end-line="99" selection-end-column="20" />
-          <folding />
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/config/MybatisPlusConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="9" lean-forward="false" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state relative-caret-position="102">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/config/MvcConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="65" column="59" lean-forward="true" selection-start-line="65" selection-start-column="59" selection-end-line="65" selection-end-column="59" />
+        <state relative-caret-position="-859">
+          <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/config/JmsConfig.java">
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/resources/message_common_zh_CN.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="ResourceBundle" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/resources/message_common_zh_TW.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="ResourceBundle" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/resources/message_common_ko.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="ResourceBundle" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/resources/message_common_ja.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="-1829" />
+      </provider>
+      <provider editor-type-id="ResourceBundle" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/resources/message_common_en.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1892" />
+      </provider>
+      <provider editor-type-id="ResourceBundle" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/resources/message_common_zh_HK.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1909" />
+      </provider>
+      <provider editor-type-id="ResourceBundle" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/resources/message_common.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2176">
+          <caret line="128" column="46" lean-forward="true" selection-start-line="128" selection-start-column="46" selection-end-line="128" selection-end-column="46" />
         </state>
       </provider>
+      <provider editor-type-id="ResourceBundle" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/ZookeeperConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="36" column="57" lean-forward="true" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/internal/ZookeeperProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/zk/internal/ZookeeperBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/jayqqaa12/j2cache/1.6.6/j2cache-1.6.6.jar!/com/jayqqaa12/j2cache/core/J2Cache.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding>
-            <marker date="1509933783968" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1509933783968" expanded="false" signature="150:294" ph="..." />
-            <marker date="1509933783968" expanded="true" signature="526:533" ph="{}" />
-            <marker date="1509933783968" expanded="false" signature="569:580" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="593:599" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="633:644" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="656:662" ph=" }" />
-            <marker date="1509933783968" expanded="true" signature="748:847" ph="{...}" />
-            <marker date="1509933783968" expanded="true" signature="948:1029" ph="{...}" />
-            <marker date="1509933783968" expanded="true" signature="1140:1318" ph="{...}" />
-            <marker date="1509933783968" expanded="true" signature="1413:1489" ph="{...}" />
-            <marker date="1509933783968" expanded="true" signature="1599:1657" ph="{...}" />
-            <marker date="1509933783968" expanded="true" signature="1781:1979" ph="{...}" />
-            <marker date="1509933783968" expanded="true" signature="2047:2128" ph="{...}" />
-            <marker date="1509933783968" expanded="true" signature="2211:2274" ph="{...}" />
-            <marker date="1509933783968" expanded="true" signature="2358:2422" ph="{...}" />
-            <marker date="1509933783968" expanded="true" signature="2506:2572" ph="{...}" />
-            <marker date="1509933783968" expanded="true" signature="2657:2724" ph="{...}" />
-            <marker date="1509933783968" expanded="false" signature="2780:2791" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="2823:2829" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="2870:2881" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="2905:2911" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="2968:2979" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="3014:3020" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="3062:3073" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="3100:3106" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="3163:3174" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="3209:3215" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="3257:3268" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="3295:3301" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="3355:3366" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="3396:3402" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="3471:3482" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="3520:3526" ph=" }" />
-            <marker date="1509933783968" expanded="true" signature="3576:3653" ph="{...}" />
-            <marker date="1509933783968" expanded="true" signature="3718:3811" ph="{...}" />
-            <marker date="1509933783968" expanded="true" signature="3889:4000" ph="{...}" />
-            <marker date="1509933783968" expanded="false" signature="4050:4061" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="4087:4093" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="4158:4169" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="4203:4209" ph=" }" />
-            <marker date="1509933783968" expanded="true" signature="4288:4347" ph="{...}" />
-            <marker date="1509933783968" expanded="false" signature="4403:4414" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="4449:4455" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="4511:4522" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="4557:4563" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="4618:4629" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="4660:4666" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="4736:4747" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="4786:4792" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="4847:4858" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="4888:4894" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="4950:4961" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="4992:4998" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="5068:5079" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="5120:5126" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="5197:5208" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="5250:5256" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="5326:5337" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="5378:5384" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="5455:5466" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="5508:5514" ph=" }" />
-            <marker date="1509933783968" expanded="true" signature="5594:5656" ph="{...}" />
-            <marker date="1509933783968" expanded="false" signature="5712:5723" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="5783:5789" ph=" }" />
-            <marker date="1509933783968" expanded="true" signature="5858:5942" ph="{...}" />
-            <marker date="1509933783968" expanded="true" signature="6012:6097" ph="{...}" />
-            <marker date="1509933783968" expanded="false" signature="6149:6160" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="6191:6197" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="6249:6260" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="6291:6297" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="6355:6366" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="6394:6400" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="6443:6454" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="6474:6480" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="6545:6556" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="6585:6591" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="6641:6652" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="6673:6679" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="6724:6735" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="6757:6763" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="6795:6806" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="6822:6828" ph=" }" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/jayqqaa12/j2cache/1.6.6/j2cache-1.6.6.jar!/com/jayqqaa12/j2cache/serializer/JsonCacheSerializer.class">
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/serialize/json/PageableDeserializer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <marker date="1509933783968" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1509933783968" expanded="true" signature="156:284" ph="..." />
-            <marker date="1509933783968" expanded="true" signature="496:503" ph="{}" />
-            <marker date="1509933783968" expanded="false" signature="529:540" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="554:560" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="599:610" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="647:653" ph=" }" />
-            <marker date="1509933783968" expanded="false" signature="698:709" ph=" { " />
-            <marker date="1509933783968" expanded="false" signature="781:787" ph=" }" />
-            <marker date="1509933783968" expanded="true" signature="800:1234" ph="{...}" />
-          </folding>
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/config/RedisConfig.java">
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/RespCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="26" column="38" lean-forward="false" selection-start-line="26" selection-start-column="38" selection-end-line="26" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="1349">
+          <caret line="108" column="15" lean-forward="true" selection-start-line="108" selection-start-column="15" selection-end-line="108" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/base/RedisJsonSerializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/base/JmsMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/boot/base/JmsJsonConvertor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/GlobalExceptionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="18" lean-forward="false" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/interceptor/EffectInteceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="32" column="36" lean-forward="true" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/interceptor/AuthInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="38" column="27" lean-forward="false" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/exception/NullParamException.java">
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/Resp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/exception/JsonExceptionInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/exception/NullModelException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/util/TestKit.java">
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/converter/FastJsonConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="53" lean-forward="true" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
-          <folding />
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/model/vo/Form.java">
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/converter/OrdinalToEnumConverterFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="136">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/model/Ip.java">
+    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/helper/UploadConfiguration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="119">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/model/Model.java">
+    <entry file="file://$PROJECT_DIR$/jbase-spring/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/model/vo/SendJson.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-745">
-          <caret line="21" column="35" lean-forward="true" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/BusinessException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="55" lean-forward="false" selection-start-line="5" selection-start-column="55" selection-end-line="5" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/JbaseRPCException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/JbaseErrorCodeException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-util/src/main/java/com/jayqqaa12/jbase/exception/ErrorCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="45" lean-forward="true" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-jfinal/src/main/java/com/jayqqaa12/jbase/jfinal/ext/Validator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-99">
-          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jbase-spring/src/main/java/com/jayqqaa12/jbase/spring/mvc/CustomExceptionHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="37" column="7" lean-forward="false" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
-          <folding />
+        <state relative-caret-position="2026">
+          <caret line="133" column="61" lean-forward="true" selection-start-line="133" selection-start-column="61" selection-end-line="133" selection-end-column="61" />
         </state>
       </provider>
     </entry>
@@ -898,7 +861,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>No facets are configured</last-edited>
+          <last-edited>Spring</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -933,10 +896,12 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
+          <last-edited>jbase-spring</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
@@ -956,6 +921,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
+          <last-edited>Maven: antlr:antlr:2.7.7</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

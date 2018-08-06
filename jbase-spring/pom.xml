@@ -19,44 +19,19 @@
     </parent>
 
     <properties>
+        <java.version>1.8</java.version>
         <jbase-util-version>1.0.0</jbase-util-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
         <spring-cloud.version>Dalston.SR4</spring-cloud.version>
         <zookeeper-version>3.4.6</zookeeper-version>
-        <netty-version>4.1.1.Final</netty-version>
         <mybatisplus-spring-boot-starter.version>1.0.4</mybatisplus-spring-boot-starter.version>
         <mybatisplus.version>2.1.0</mybatisplus.version>
         <fastjson-version>1.2.38</fastjson-version>
     </properties>
 
-    
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
-
-
-    <developers>
-        <developer>
-            <name>12shu</name>
-            <email>476335667@qq.com</email>
-        </developer>
-    </developers>
-    
-
-    <scm>
-        <connection>scm:git:git@github.com:jayqqaa12/jbase.git</connection>
-        <developerConnection>scm:git:git@github.com:jayqqaa12/jbase.git</developerConnection>
-        <url>git@github.com:jayqqaa12/jbase.git</url>
-    </scm>
-
 
     <dependencies>
-
 
 
         <dependency>
@@ -73,7 +48,7 @@
             <version>0.9.0</version>
         </dependency>
 
-
+ 
         <dependency>
             <groupId>com.jayqqaa12</groupId>
             <artifactId>jbase-util</artifactId>
@@ -89,10 +64,6 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-activemq</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
@@ -118,6 +89,33 @@
         </dependency>
 
 
+        <!--spring cloud base-->
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-ribbon</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix</artifactId>
+        </dependency>
+
 
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -126,30 +124,18 @@
         </dependency>
 
 
-        <!-- MP 核心库 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatisplus-spring-boot-starter</artifactId>
+            <version>${mybatisplus-spring-boot-starter.version}</version>
+        </dependency>
+
+
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus</artifactId>
-            <version>2.1.1</version>
-            <scope>provided</scope>
+            <version>${mybatisplus.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-engine-core</artifactId>
-            <version>2.0</version>
-            <scope>provided</scope>
-        </dependency>
-
-
-        <!-- kisso -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>kisso</artifactId>
-            <version>3.6.11</version>
-            <scope>provided</scope>
-        </dependency>
-
 
 
         <!-- zookeeper -->
@@ -160,7 +146,6 @@
             <version>2.9.1</version>
             <scope>provided</scope>
         </dependency>
-
 
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
@@ -183,7 +168,66 @@
             <scope>provided</scope>
         </dependency>
 
+
+        <!-- Commons 依赖 -->
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.10</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <!--aliyun-->
+
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+            <version>2.2.3</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>3.0.7</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-green</artifactId>
+            <version>3.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+
     </dependencies>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
     <build>
@@ -240,7 +284,6 @@
 
         </plugins>
     </build>
-
 
 
     <profiles>

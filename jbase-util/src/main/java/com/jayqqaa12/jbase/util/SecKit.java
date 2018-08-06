@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.security.MessageDigest;
@@ -19,6 +20,7 @@ import java.security.Security;
 public class SecKit {
 
     private static final Logger LOG = LoggerFactory.getLogger(SecKit.class);
+    static final String CIPHER_ALGORITHM_CBC = "AES/CBC/PKCS5Padding";
 
     /**
      * AES算法密钥生成器.
@@ -33,14 +35,14 @@ public class SecKit {
             // Generate the secret key specs.
             SecretKey key = keyGenerator.generateKey();
             byte[] raw = key.getEncoded();
-            return byteArr2HexStr(raw);
+            return byte2Str(raw);
         } catch (Exception e) {
             return "";
         }
     }
 
     /**
-     * 使用AES算法解密字符串. 
+     * 使用AES算法解密字符串.
      * AES加密算法（美国国家标准局倡导的AES即将作为新标准取代DES）
      * @param encrypted 要解密的字符串
      * @param rawKey 密钥字符串, 要求为一个32位(或64位，或128位)的16进制数的字符串,否则会出错.
@@ -49,17 +51,21 @@ public class SecKit {
      * @see #AESEncrypt(String, String)
      */
     public static String AESDecrypt(String encrypted, String rawKey){
-        byte[] tmp = hexStr2ByteArr(encrypted);
-        byte[] key = hexStr2ByteArr(rawKey);
+        byte[] tmp = Str2Byte(encrypted);
+        byte[] key = Str2Byte(rawKey);
         try {
             SecretKeySpec sks = new SecretKeySpec(key, "AES");
-            Cipher cipher = Cipher.getInstance("AES");
-            cipher.init(Cipher.DECRYPT_MODE, sks);
+            Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM_CBC);
+            cipher.init(Cipher.DECRYPT_MODE, sks,new IvParameterSpec(getIV()));
             byte[] decrypted = cipher.doFinal(tmp);
             return new String(decrypted);
         } catch (Exception e) {
         	return null;
         }
+    }
+
+    static byte[] getIV() {
+        return Str2Byte("7634f7c34c02805afd241dec53b7fa53");
     }
 
     /**
@@ -71,18 +77,20 @@ public class SecKit {
      * @see #AESDecrypt(String, String)
      */
     public static String AESEncrypt(String message, String rawKey){
-        byte[] key = hexStr2ByteArr(rawKey);
+        byte[] key = Str2Byte(rawKey);
         try {
             SecretKeySpec sks = new SecretKeySpec(key, "AES");
-            Cipher cipher = Cipher.getInstance("AES");
-            cipher.init(Cipher.ENCRYPT_MODE, sks);
+            Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM_CBC);
+            cipher.init(Cipher.ENCRYPT_MODE, sks,new IvParameterSpec(getIV()));
             byte[] encrypted = cipher.doFinal(message.getBytes());
-            return byteArr2HexStr(encrypted);
+
+            return  byte2Str(encrypted);
         } catch (Exception e) {
             LOG.error(e.getMessage(), e);
         	return null;
         }
     }
+
 
     /**
      * 使用DES算法解密字符串. 
@@ -101,9 +109,8 @@ public class SecKit {
             Key key = new SecretKeySpec(arrB, "DES");// 生成密钥
             Cipher cipher = Cipher.getInstance("DES");
             cipher.init(Cipher.DECRYPT_MODE, key);
-            return new String(cipher.doFinal(hexStr2ByteArr(encrypted)));
+            return new String(cipher.doFinal(Str2Byte(encrypted)));
         } catch (Exception e) {
-        	
         	return null;
         }
     }
@@ -125,7 +132,7 @@ public class SecKit {
             Key key = new SecretKeySpec(arrB, "DES");// 生成密钥
             Cipher cipher = Cipher.getInstance("DES");
             cipher.init(Cipher.ENCRYPT_MODE, key);
-            return byteArr2HexStr(cipher.doFinal(message.getBytes()));
+            return byte2Str(cipher.doFinal(message.getBytes()));
         } catch (Exception e) {
 
         	return null;
@@ -173,7 +180,7 @@ public class SecKit {
      */
     public static String MD5Encrypt(String message, int length){
         try {
-            java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+            MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(message.getBytes());
             byte b[] = md.digest();
             int i;
@@ -199,7 +206,7 @@ public class SecKit {
      * @param buf Array of bytes to convert to hex string
      * @return Generated hex string
      */
-    private static String byteArr2HexStr(byte[] buf) {
+    private static String byte2Str(byte[] buf) {
         StringBuilder sb = new StringBuilder(buf.length * 2);
         int i;
         for (i = 0; i < buf.length; i++) {
@@ -211,11 +218,11 @@ public class SecKit {
     }
 
     /**
-     * 将表示16进制值的字符串转换为byte数组， 和public static String byteArr2HexStr(byte[] buf)互为可逆的转换过程
+     * 将表示16进制值的字符串转换为byte数组， 和public static String byte2Str(byte[] buf)互为可逆的转换过程
      * @param src 需要转换的字符串
      * @return 转换后的byte数组
      */
-    private static byte[] hexStr2ByteArr(String src) {
+    private static byte[] Str2Byte(String src) {
         if (src.length() < 1) {
             return null;
         }
@@ -228,6 +235,21 @@ public class SecKit {
         }
         return encrypted;
     }
+
+
+//    private static String byte2Str(byte[] buf) {
+//
+//        return Base64.getEncoder().encodeToString(buf);
+//    }
+//
+//    /**
+//     * 将表示16进制值的字符串转换为byte数组， 和public static String byte2Str(byte[] buf)互为可逆的转换过程
+//     * @param src 需要转换的字符串
+//     * @return 转换后的byte数组
+//     */
+//    private static byte[] Str2Byte(String src) {
+//        return  Base64.getDecoder().decode(src);
+//    }
 
     private SecKit(){}
     

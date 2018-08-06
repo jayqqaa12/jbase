@@ -1,6 +1,7 @@
 package com.jayqqaa12.jbase.spring.boot.config;
 
-import com.jayqqaa12.jbase.spring.boot.base.RedisJsonSerializer;
+import com.jayqqaa12.jbase.spring.serialize.RedisJsonSerializer;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -14,6 +15,7 @@ import java.net.UnknownHostException;
  * Created by 12 on 2017/6/1.
  */
 @Configuration
+@ConditionalOnClass(RedisTemplate.class)
 public class RedisConfig {
 
 

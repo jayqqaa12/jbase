@@ -42,7 +42,6 @@ public class AutoTableBindPlugin extends ActiveRecordPlugin {
 	private String libDir;
 
     
-  //TODO 多数据源
     public AutoTableBindPlugin(DataSource dataSource) {
         this(dataSource, SimpleNameStyles.DEFAULT);
     }

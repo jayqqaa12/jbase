@@ -2,7 +2,7 @@ package com.jayqqaa12.jbase.jfinal.ext.model;
 
 import com.alibaba.fastjson.JSONObject;
 import com.jayqqaa12.jbase.jfinal.ext.exception.NullParamException;
-import com.jayqqaa12.jbase.util.IpKit;
+import com.jayqqaa12.jbase.util.http.IpKit;
 import com.jfinal.ext.plugin.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Db;
 

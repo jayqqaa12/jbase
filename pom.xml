@@ -9,13 +9,11 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
-
-
     <modules>
         <module>jbase-util</module>
         <module>jbase-jfinal</module>
         <module>jbase-spring</module>
-      
+        <module>jbase-cache</module>
     </modules>
 
 

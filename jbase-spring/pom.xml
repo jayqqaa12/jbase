@@ -20,13 +20,12 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <jbase-util-version>1.0.0</jbase-util-version>
+        <jbase-util-version>1.0.1</jbase-util-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-cloud.version>Dalston.SR4</spring-cloud.version>
         <zookeeper-version>3.4.6</zookeeper-version>
-        <mybatisplus-spring-boot-starter.version>1.0.4</mybatisplus-spring-boot-starter.version>
-        <mybatisplus.version>2.1.0</mybatisplus.version>
+        <mybatisplus-spring-boot-starter.version>2.3</mybatisplus-spring-boot-starter.version>
         <fastjson-version>1.2.38</fastjson-version>
     </properties>
 
@@ -46,6 +45,7 @@
             <groupId>com.jayqqaa12</groupId>
             <artifactId>jbase-cache</artifactId>
             <version>0.9.0</version>
+            <scope>provided</scope>
         </dependency>
 
  
@@ -64,14 +64,6 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -86,6 +78,17 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
 
@@ -126,17 +129,13 @@
 
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatisplus-spring-boot-starter</artifactId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatisplus-spring-boot-starter.version}</version>
+            <scope>provided</scope>
         </dependency>
 
 
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus</artifactId>
-            <version>${mybatisplus.version}</version>
-        </dependency>
-
+     
 
         <!-- zookeeper -->
 
@@ -150,7 +149,7 @@
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
-            <version>3.4.6</version>
+            <version>3.4.8</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>

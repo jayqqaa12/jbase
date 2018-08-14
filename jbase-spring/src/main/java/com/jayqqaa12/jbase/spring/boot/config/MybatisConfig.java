@@ -24,8 +24,7 @@ public class MybatisConfig {
     @PostConstruct
     public void specialTypeHandlerRegistry() {
         TypeHandlerRegistry typeHandlerRegistry = sqlSessionFactory.getConfiguration().getTypeHandlerRegistry();
-        //FIXME 修改后看看是否生效
-        typeHandlerRegistry.register(EnumOrdinalTypeHandler.class);
-        
+        typeHandlerRegistry.setDefaultEnumTypeHandler(EnumOrdinalTypeHandler.class);
+
     }
 }

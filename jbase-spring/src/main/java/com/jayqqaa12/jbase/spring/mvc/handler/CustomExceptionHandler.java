@@ -1,6 +1,6 @@
 package com.jayqqaa12.jbase.spring.mvc.handler;
 
-import com.jayqqaa12.j2cache.util.LockException;
+import com.jayqqaa12.jbase.exception.LockException;
 import com.jayqqaa12.jbase.spring.exception.BusinessException;
 import com.jayqqaa12.jbase.spring.exception.RetryException;
 import com.jayqqaa12.jbase.spring.mvc.Resp;
@@ -83,7 +83,7 @@ public class CustomExceptionHandler {
         AtomicInteger index = new AtomicInteger();
         for (StackTraceElement element : ex.getStackTrace()) {
 
-          
+
             sb.append("\t\tat ").append(element.getClassName()).append(".").append(element.getMethodName());
 
             if (element.getLineNumber() >= 0) {

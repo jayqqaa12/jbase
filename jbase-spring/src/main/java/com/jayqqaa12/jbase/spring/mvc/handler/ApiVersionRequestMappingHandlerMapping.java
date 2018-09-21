@@ -2,11 +2,15 @@ package com.jayqqaa12.jbase.spring.mvc.handler;
 
 
 import com.jayqqaa12.jbase.spring.mvc.annotation.ApiVersion;
-import com.jayqqaa12.jbase.spring.util.StringUtil;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.StringTokenizer;
 
 
 public class ApiVersionRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
@@ -47,9 +51,9 @@ public class ApiVersionRequestMappingHandlerMapping extends RequestMappingHandle
 
         ApiVersionCondition.CompareVersion compareVersion = new ApiVersionCondition.CompareVersion();
 
-        if (StringUtil.isNotEmpty(rangeVersion)) {
+        if (!StringUtils.isEmpty(rangeVersion)) {
 
-            String[] coms = StringUtil.tokenizeToStringArray(rangeVersion);
+            String[] coms = tokenizeToStringArray(rangeVersion);
 
             for (String s : coms) {
 
@@ -61,8 +65,8 @@ public class ApiVersionRequestMappingHandlerMapping extends RequestMappingHandle
                         throw new IllegalArgumentException("api version[" + s + "] is not allow");
                     }
 
-                    int start = StringUtil.isEmpty(range[0]) ? 1 : Integer.parseInt(range[0]);
-                    int end = StringUtil.isEmpty(range[1]) ? Integer.MAX_VALUE : Integer.parseInt(range[1]);
+                    int start = StringUtils.isEmpty(range[0]) ? 1 : Integer.parseInt(range[0]);
+                    int end = StringUtils.isEmpty(range[1]) ? Integer.MAX_VALUE : Integer.parseInt(range[1]);
 
                     compareVersion.addRange(start, end);
                 } else {
@@ -76,5 +80,32 @@ public class ApiVersionRequestMappingHandlerMapping extends RequestMappingHandle
         return compareVersion;
     }
 
+
+    public String[] tokenizeToStringArray(String str) {
+        return tokenizeToStringArray(str, ";,", true, true);
+    }
+
+    public String[] tokenizeToStringArray(String str, String delimiters, boolean trimTokens, boolean ignoreEmptyTokens) {
+
+        if (str == null) {
+            return new String[0];
+        }
+        StringTokenizer st = new StringTokenizer(str, delimiters);
+        List tokens = new ArrayList();
+        while (st.hasMoreTokens()) {
+            String token = st.nextToken();
+            if (trimTokens) {
+                token = token.trim();
+            }
+            if (!ignoreEmptyTokens || token.length() > 0) {
+                tokens.add(token);
+            }
+        }
+        return toStringArray(tokens);
+    }
+
+    public String[] toStringArray(Collection<String> collection) {
+        return collection == null ? null :  collection.toArray(new String[collection.size()]);
+    }
 
 }

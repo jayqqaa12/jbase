@@ -1,6 +1,5 @@
 package com.jayqqaa12.jbase.spring.exception;
 
-import com.jayqqaa12.jbase.spring.mvc.RespCode;
 import com.jayqqaa12.jbase.spring.mvc.i18n.LocaleKit;
 
 /**
@@ -16,15 +15,7 @@ public class BusinessException extends RuntimeException {
         this(code, LocaleKit.MSG_PREFIX + code, null);
     }
 
-    public BusinessException(String msg) {
-        this(RespCode.SERVER_ERROR, msg, null);
-    }
-
-    public BusinessException(int code, String msg) {
-        this(code, msg, null);
-    }
-
-    public BusinessException(int code, String msg, Throwable e) {
+    BusinessException(int code, String msg, Throwable e) {
         super(msg, e);
         this.code = code;
         this.msg = msg;

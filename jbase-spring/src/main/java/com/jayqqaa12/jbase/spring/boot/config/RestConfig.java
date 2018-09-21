@@ -38,7 +38,7 @@ public class RestConfig {
                             response.getHeaders(), getResponseBody(response), getCharset(response));
                 case SERVER_ERROR:
                     JSONObject jsonObject = JSON.parseObject(new String(getResponseBody(response)));
-                    throw new BusinessException(jsonObject.getInteger("code"), jsonObject.getString("msg"));
+                    throw new BusinessException(jsonObject.getInteger("code"));
                 default:
                     throw new RestClientException("Unknown status code [" + statusCode + "]");
             }

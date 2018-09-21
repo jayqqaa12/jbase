@@ -1,7 +1,6 @@
 package com.jayqqaa12.jbase.util;
 
 import com.alibaba.fastjson.JSON;
-import com.jayqqaa12.jbase.exception.ErrorCode;
 
 import java.util.Optional;
 
@@ -37,9 +36,6 @@ public class Resp<T> {
     }
 
 
-    public static Resp of(ErrorCode code) {
-        return new Resp(code.code, code.msg);
-    }
 
 
     private Resp() {

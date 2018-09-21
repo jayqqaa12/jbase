@@ -6,7 +6,7 @@
     <artifactId>jbase-util</artifactId>
     <packaging>jar</packaging>
     <name>jbase-util</name>
-    <version>1.0.1</version>
+    <version>${jbase.util.version}</version>
 
     <parent>
         <groupId>com.jayqqaa12</groupId>
@@ -14,47 +14,15 @@
         <version>1.0.0</version>
     </parent>
 
-    <description>jbase is base of Java Web Framework</description>
-    <url>https://github.com/jayqqaa12/jbase</url>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-version>4.2.5.RELEASE</spring-version>
-        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
-    </properties>
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
-
-
-    <developers>
-        <developer>
-            <name>12shu</name>
-            <email>476335667@qq.com</email>
-        </developer>
-    </developers>
-
-    <scm>
-        <connection>scm:git:git@github.com:jayqqaa12/jbase.git</connection>
-        <developerConnection>scm:git:git@github.com:jayqqaa12/jbase.git</developerConnection>
-        <url>git@github.com:jayqqaa12/jbase.git</url>
-    </scm>
-
 
     <dependencies>
-
 
         <!-- 必备的jar 自动导入 -->
 
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.38</version>
         </dependency>
-
 
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -148,14 +116,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bctsp-jdk16</artifactId>
-            <version>1.46</version>
-            <type>pom.sig</type>
-            <scope>provided</scope>
-        </dependency>
-
+      
 
         <!-- log -->
 
@@ -173,22 +134,8 @@
             <scope>provided</scope>
         </dependency>
 
-
-        <dependency>
-            <groupId>com.aliyun.oss</groupId>
-            <artifactId>aliyun-sdk-oss</artifactId>
-            <version>2.0.3</version>
-            <scope>provided</scope>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.zbus</groupId>
-            <artifactId>zbus</artifactId>
-            <version>6.2.9</version>
-            <scope>provided</scope>
-        </dependency>
-
+ 
+ 
 
         <dependency>
             <groupId>com.mortennobel</groupId>
@@ -205,134 +152,9 @@
         </dependency>
 
     </dependencies>
-
-
-    <build>
-
-
-        <plugins>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.1.2</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>1.7</version>
-                <executions>
-                    <execution>
-                        <id>add-source</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <!-- 我们可以通过在这里添加多个source节点，来添加任意多个源文件夹 -->
-                                <source>${basedir}/jfinal.ext</source>
-                            </sources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-        </plugins>
-    </build>
-
-
-    <!-- 设置一下 私服 -->
-    <distributionManagement>
-        <repository>
-            <id>nexus-releases</id>
-            <name>Nexus Release Repository</name>
-            <url>http://dev.esongbai.xyz/nexus/content/repositories/releases/</url>
-        </repository>
-    </distributionManagement>
-
  
 
-    <profiles>
 
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.5</version>
-                        <executions>
-                            <execution>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.9.1</version>
-                        <configuration>
-                            <aggregate>true</aggregate>
-                            <charset>UTF-8</charset>
-                            <encoding>UTF-8</encoding>
-                            <docencoding>UTF-8</docencoding>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                </plugins>
-            </build>
-
-            <distributionManagement>
-                <snapshotRepository>
-                    <id>oss</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-                </snapshotRepository>
-                <repository>
-                    <id>oss</id>
-                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                </repository>
-            </distributionManagement>
-
-
-        </profile>
-    </profiles>
 
 
 </project>

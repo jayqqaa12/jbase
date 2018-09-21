@@ -1,8 +1,10 @@
 package com.jayqqaa12.jbase.spring.boot;
 
 
+import com.jayqqaa12.jbase.spring.boot.config.FlywayConfig;
 import com.jayqqaa12.jbase.spring.boot.config.MybatisConfig;
 import com.jayqqaa12.jbase.spring.boot.config.MybatisPlusConfig;
+import com.jayqqaa12.jbase.spring.boot.config.RabbitConfig;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -15,7 +17,10 @@ import java.lang.annotation.*;
 @Documented
 @Import({
         MybatisPlusConfig.class,
-        MybatisConfig.class
+        MybatisConfig.class,
+        FlywayConfig.class,
+        RabbitConfig.class,
+
 })
 @EnableAsync(proxyTargetClass = true)
 @EnableTransactionManagement

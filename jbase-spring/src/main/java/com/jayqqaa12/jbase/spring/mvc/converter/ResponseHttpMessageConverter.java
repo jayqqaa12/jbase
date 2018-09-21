@@ -44,7 +44,7 @@ public class ResponseHttpMessageConverter extends AbstractHttpMessageConverter<O
         Integer code=obj.getInteger("code");
 
         if (code!=null&&code != RespCode.SUCCESS) {
-            throw new BusinessException(code ,obj.getString("msg"));
+            throw new BusinessException(code );
         }
         return JSON.parseObject(body,clazz);
     }

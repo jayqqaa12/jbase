@@ -9,19 +9,83 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.10.RELEASE</version>
+    </parent>
+
+
     <modules>
         <module>jbase-util</module>
-        <module>jbase-jfinal</module>
         <module>jbase-spring</module>
         <module>jbase-cache</module>
     </modules>
+
+    <properties>
+        <jbase.util.version>1.0.2</jbase.util.version>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring-cloud.version>Dalston.SR5</spring-cloud.version>
+        <zookeeper-version>3.4.6</zookeeper-version>
+        <mybatisplus-spring-boot-starter.version>2.3</mybatisplus-spring-boot-starter.version>
+        <fastjson-version>1.2.38</fastjson-version>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson-version}</version>
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
 
 
     <repositories>
         <repository>
             <id>nexus</id>
             <name>Team Nexus Repository</name>
-            <url>http://dev.esongbai.xyz/nexus/content/groups/public/</url>
+            <url>http://47.99.107.143:8081/nexus/content/groups/public/</url>
         </repository>
     </repositories>
 
@@ -29,10 +93,26 @@
         <pluginRepository>
             <id>nexus</id>
             <name>Team Nexus Repository</name>
-            <url>http://dev.esongbai.xyz/nexus/content/groups/public/</url>
+            <url>http://47.99.107.143:8081/nexus/content/groups/public/</url>
         </pluginRepository>
     </pluginRepositories>
 
-    
+
+    <distributionManagement>
+            <repository>
+                <id>nexus</id>
+                <url>
+                    http://47.99.107.143:8081/nexus/content/repositories/releases/
+                </url>
+            </repository>
+            <snapshotRepository>
+                <id>nexus</id>
+                <url>
+                    http://47.99.107.143:8081/nexus/content/repositories/snapshots/
+                </url>
+            </snapshotRepository>
+
+    </distributionManagement>
+
 
 </project>

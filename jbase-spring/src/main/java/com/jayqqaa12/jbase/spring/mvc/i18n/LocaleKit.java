@@ -1,11 +1,11 @@
 package com.jayqqaa12.jbase.spring.mvc.i18n;
 
-import com.jayqqaa12.jbase.spring.util.StringUtil;
 import org.springframework.beans.factory.config.PlaceholderConfigurerSupport;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.util.PropertyPlaceholderHelper;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,7 +44,7 @@ public class LocaleKit {
 
     public static String resolverOrGet(int code, String message, Object... args) {
 
-        if (StringUtil.isEmpty(message)) {
+        if (StringUtils.isEmpty(message)) {
             return resolverOrGet(MSG_PREFIX + code, args);
         } else {
             return resolverOrGet(message, args);

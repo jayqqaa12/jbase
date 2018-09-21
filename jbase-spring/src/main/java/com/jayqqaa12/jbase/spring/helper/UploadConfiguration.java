@@ -1,6 +1,5 @@
 package com.jayqqaa12.jbase.spring.helper;
 
-import com.jayqqaa12.jbase.spring.boot.EnableConfig;
 import com.jayqqaa12.jbase.spring.helper.upload.AliyunOssHelper;
 import com.jayqqaa12.jbase.spring.helper.upload.AuthenticationHelper;
 import com.jayqqaa12.jbase.spring.helper.upload.ImageHelper;
@@ -11,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 
 
 @Configuration
-@EnableConfig
 public class UploadConfiguration {
 
 

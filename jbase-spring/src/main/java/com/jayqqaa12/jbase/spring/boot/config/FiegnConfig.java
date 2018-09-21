@@ -47,7 +47,7 @@ public class FiegnConfig {
                     String body = Util.toString(response.body().asReader());
                     Resp req = JSON.parseObject(body, Resp.class);
                     if (req.getCode() != RespCode.SUCCESS) {
-                        return new BusinessException(req.getCode(), req.getMsg());
+                        return new BusinessException(req.getCode());
                     }
                 }
             } catch (IOException e) {

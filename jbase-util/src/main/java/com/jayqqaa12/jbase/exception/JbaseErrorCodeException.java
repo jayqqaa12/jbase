@@ -23,9 +23,6 @@ public class JbaseErrorCodeException extends RuntimeException {
         this.code = code;
     }
 
-    public JbaseErrorCodeException(ErrorCode error) {
-        this(error.code, error.msg);
-    }
 
     public int getErrorCode() {
         return code;

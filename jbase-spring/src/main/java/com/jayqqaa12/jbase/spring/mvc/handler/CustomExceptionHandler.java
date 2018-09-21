@@ -4,6 +4,7 @@ import com.jayqqaa12.jbase.exception.LockException;
 import com.jayqqaa12.jbase.spring.exception.BusinessException;
 import com.jayqqaa12.jbase.spring.exception.RetryException;
 import com.jayqqaa12.jbase.spring.mvc.Resp;
+import com.jayqqaa12.jbase.spring.mvc.RespCode;
 import com.jayqqaa12.jbase.spring.mvc.i18n.LocaleKit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +29,7 @@ public class CustomExceptionHandler {
     @ExceptionHandler(SQLException.class)
     public Resp handleException(SQLException e) {
         logger.error("操作数据库出现异常:", e);
-        return Resp.response(HttpStatus.INTERNAL_SERVER_ERROR.value(), LocaleKit.get("common.server.db.error"));
+        return Resp.response(RespCode.DB_SQL_ERROR);
     }
 
     @ExceptionHandler(value = {BusinessException.class})
@@ -45,7 +46,7 @@ public class CustomExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public final Resp handleArgumenteException(IllegalArgumentException ex) {
         logger.warn("请求参数异常 {}", serializeError(ex));
-        return Resp.response(HttpStatus.INTERNAL_SERVER_ERROR.value(), LocaleKit.resolverOrGet(ex.getMessage()));
+        return Resp.response(RespCode.PARAM_ERROR, LocaleKit.resolverOrGet(ex.getMessage()));
     }
 
 
@@ -53,14 +54,14 @@ public class CustomExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public final Resp handleRetryException(RetryException ex) {
         logger.warn("并发更新异常 {}", serializeError(ex));
-        return Resp.response(HttpStatus.INTERNAL_SERVER_ERROR.value(), LocaleKit.get("common.req.retry"));
+        return Resp.response(RespCode.RETRY_ERROR);
     }
 
     @ExceptionHandler(value = {LockException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public final Resp handleLockException(LockException ex) {
         logger.warn("幂等性异常 {}", serializeError(ex));
-        return Resp.response(HttpStatus.INTERNAL_SERVER_ERROR.value(), LocaleKit.get("common.req.fast"));
+        return Resp.response(RespCode.RETRY_LOCK_ERROR);
     }
 
 
@@ -69,7 +70,7 @@ public class CustomExceptionHandler {
     public final Resp handleGeneralException(Exception ex) {
         logger.error("其他异常", ex);
 
-        return Resp.response(HttpStatus.INTERNAL_SERVER_ERROR.value(), LocaleKit.get("common.server.error"));
+        return Resp.response(RespCode.SERVER_ERROR);
     }
 
     private String serializeError(Exception ex) {

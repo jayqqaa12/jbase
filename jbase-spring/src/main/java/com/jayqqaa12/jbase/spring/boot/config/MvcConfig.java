@@ -5,7 +5,6 @@ import com.alibaba.fastjson.parser.ParserConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import com.jayqqaa12.jbase.spring.boot.base.ConfigOrdered;
 import com.jayqqaa12.jbase.spring.mvc.converter.FastJsonConverter;
 import com.jayqqaa12.jbase.spring.mvc.converter.OrdinalToEnumConverterFactory;
 import com.jayqqaa12.jbase.spring.mvc.handler.ApiVersionRequestMappingHandlerMapping;
@@ -22,8 +21,6 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.AbstractResourceBasedMessageSource;
-import org.springframework.core.annotation.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -31,7 +28,6 @@ import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.tuple.StringToDateConverter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.LocaleResolver;
@@ -44,7 +40,6 @@ import java.util.List;
 import java.util.Locale;
 
 @Configuration
-@Order(ConfigOrdered.MVC)
 public class MvcConfig extends WebMvcConfigurationSupport {
 
     @Bean
@@ -122,11 +117,6 @@ public class MvcConfig extends WebMvcConfigurationSupport {
     @Bean
     @ConditionalOnBean(MessageSource.class)
     public LocaleKit localeKit(MessageSource messageSource, @Value("${config.lang:zh_CN}") Locale locale) {
-
-        if (messageSource instanceof AbstractResourceBasedMessageSource) {
-            AbstractResourceBasedMessageSource source = (AbstractResourceBasedMessageSource) messageSource;
-            source.addBasenames("message_common");
-        }
 
         LocaleKit kit = LocaleKit.of(messageSource);
         LocaleKit.setDefaultLocale(locale);

@@ -265,6 +265,6 @@ public class AuthenticationHelper {
             result.put("scene", scene);
             return result;
         }
-        throw new BusinessException(RespCode.INNER__CONTENT_SCAN_ERROR, "找不到内容监测返回类型");
+        throw new BusinessException(RespCode.INNER__CONTENT_SCAN_ERROR);
     }
 }

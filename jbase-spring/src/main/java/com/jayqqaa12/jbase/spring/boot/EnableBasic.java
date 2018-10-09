@@ -1,7 +1,7 @@
 package com.jayqqaa12.jbase.spring.boot;
 
 
-import com.jayqqaa12.jbase.spring.boot.config.FlywayConfig;
+import com.jayqqaa12.jbase.spring.boot.base.FlywayStrategy;
 import com.jayqqaa12.jbase.spring.boot.config.MybatisConfig;
 import com.jayqqaa12.jbase.spring.boot.config.MybatisPlusConfig;
 import com.jayqqaa12.jbase.spring.boot.config.RabbitConfig;
@@ -18,8 +18,8 @@ import java.lang.annotation.*;
 @Import({
         MybatisPlusConfig.class,
         MybatisConfig.class,
-        FlywayConfig.class,
         RabbitConfig.class,
+        FlywayStrategy.class
 
 })
 @EnableAsync(proxyTargetClass = true)

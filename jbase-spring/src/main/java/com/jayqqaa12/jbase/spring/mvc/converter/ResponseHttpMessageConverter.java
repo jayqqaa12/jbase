@@ -1,9 +1,6 @@
 package com.jayqqaa12.jbase.spring.mvc.converter;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.jayqqaa12.jbase.spring.exception.BusinessException;
-import com.jayqqaa12.jbase.spring.mvc.RespCode;
 import feign.Util;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
@@ -38,15 +35,20 @@ public class ResponseHttpMessageConverter extends AbstractHttpMessageConverter<O
 
     @Override
     protected Object readInternal(Class<?> clazz, HttpInputMessage inputMessage) throws IOException, HttpMessageNotReadableException {
-        String body = Util.toString(new InputStreamReader(inputMessage.getBody()));
 
-        JSONObject obj = JSON.parseObject(body);
-        Integer code=obj.getInteger("code");
-
-        if (code!=null&&code != RespCode.SUCCESS) {
-            throw new BusinessException(code );
+        if (clazz.isAssignableFrom(byte[].class)||clazz.isAssignableFrom(Byte[].class)) {
+            return Util.toByteArray(inputMessage.getBody());
         }
-        return JSON.parseObject(body,clazz);
+        String body = Util.toString(new InputStreamReader(inputMessage.getBody()));
+        
+//        JSONObject obj = JSON.parseObject(body);
+//        Integer code = obj.getInteger("code");
+//        if (code != null && code != RespCode.SUCCESS) {
+//            throw new BusinessException(code);
+//        }
+
+        return JSON.parseObject(body, clazz);
+
     }
 
     @Override
@@ -54,6 +56,8 @@ public class ResponseHttpMessageConverter extends AbstractHttpMessageConverter<O
 
 
     }
+
+
 
 
 }

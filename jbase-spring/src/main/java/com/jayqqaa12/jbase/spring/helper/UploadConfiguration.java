@@ -14,14 +14,14 @@ public class UploadConfiguration {
 
 
     @Bean
-    @ConditionalOnProperty({"config.aliyun.accessKeySecret", "config.aliyun.oss.url"})
+    @ConditionalOnProperty({"config.aliyun.oss.accessKey", "config.aliyun.oss.url"})
     public AliyunOssHelper aliyunOssHelper() {
         return new AliyunOssHelper();
     }
 
 
     @Bean
-    @ConditionalOnProperty({"config.aliyun.accessKeySecret", "config.aliyun.context.endpointHost"})
+    @ConditionalOnProperty({"config.aliyun.oss.accessKey", "config.aliyun.context.endpointHost"})
     public AuthenticationHelper authenticationHelper() {
         return new AuthenticationHelper();
     }

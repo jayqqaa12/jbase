@@ -19,16 +19,11 @@ public class MqttResp {
      * 时间戳
      */
     private Long timestamp;
-    /**
-     * 当前接口的版本号
-     */
-    private String  version;
 
     /**
      * 提示信息
      */
     private String  msg;
-
 
     private Object data;
 

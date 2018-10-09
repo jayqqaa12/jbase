@@ -46,10 +46,10 @@ public class AuthenticationHelper {
     private IClientProfile profile = null;
     private IAcsClient client = null;
 
-    @Value("${config.aliyun.accessKeyId}")
+    @Value("${config.aliyun.oss.accessKey}")
     private String accessKeyId;
 
-    @Value("${config.aliyun.accessKeySecret}")
+    @Value("${config.aliyun.oss.secretKey}")
     private String accessKeySecret;
 
 

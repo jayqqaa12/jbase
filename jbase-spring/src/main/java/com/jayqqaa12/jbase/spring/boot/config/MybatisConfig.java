@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
 /**
  * Created by 12 on 2018/1/26.
  */
-@DependsOn("flywayInitializer")
+//@DependsOn("flywayInitializer")
 @Configuration
 public class MybatisConfig {
 

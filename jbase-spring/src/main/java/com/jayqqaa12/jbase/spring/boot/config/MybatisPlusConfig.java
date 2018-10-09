@@ -8,10 +8,9 @@ import com.jayqqaa12.jbase.spring.boot.base.Profiles;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Profile;
 
-@DependsOn("flywayInitializer")
+//@DependsOn("flywayInitializer")
 @Configuration
 @ConditionalOnClass(MybatisConfiguration.class)
 public class MybatisPlusConfig {

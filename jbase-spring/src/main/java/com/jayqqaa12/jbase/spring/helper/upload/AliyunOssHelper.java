@@ -30,10 +30,10 @@ public class AliyunOssHelper {
     @Value("${config.aliyun.oss.endpoint}")
     private String endpoint;
 
-    @Value("${config.aliyun.accessKeyId}")
+    @Value("${config.aliyun.oss.accessKey}")
     private String accessKeyId;
 
-    @Value("${config.aliyun.accessKeySecret}")
+    @Value("${config.aliyun.oss.secretKey}")
     private String accessKeySecret;
 
 

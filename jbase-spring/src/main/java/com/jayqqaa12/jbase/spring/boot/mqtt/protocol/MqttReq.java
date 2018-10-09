@@ -14,23 +14,21 @@ public class MqttReq<T> {
      * 时间戳
      */
     private Long timestamp;
+    
     /**
      * 当前接口的版本号
      */
     private String  version;
 
     /**
-     * 一般跟业务进行绑定
-     * device-xx
-     * android-xx
-     * ios-xx
+     * 平台 device android ios
      */
-    private String  clientId;
+    private String  platform;
 
     /**
      * 设备唯一标示
      */
-    private String deviceId;
+    private String uniqueCode;
 
 
     private T data;

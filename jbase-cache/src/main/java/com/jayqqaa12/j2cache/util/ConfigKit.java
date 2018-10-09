@@ -24,16 +24,20 @@ public class ConfigKit {
     }
 
     public static Properties initFromConfig() {
-        if (props == null) props = new Properties();
-
+        Properties   props2 = new Properties();
         try (InputStream configStream = getConfigStream()) {
-            props.load(configStream);
-            return props;
+            props2.load(configStream);
+
+            if(props!=null) {
+                props.forEach((k,v)->{
+                    props2.put(k,v);
+                });
+            }
+            return props2;
         } catch (Exception e) {
             throw new CacheException("Cannot find " + CONFIG_FILE + " !!!");
         }
     }
-
 
 
     /**

@@ -19,7 +19,7 @@ import java.util.List;
 @Component
 public class MqttReceiver {
 
-    @Autowired
+    @Autowired(required = false)
     List<MqttHandler> handlerList;
 
 
@@ -34,6 +34,7 @@ public class MqttReceiver {
             log.info("receiver byte len {}", payload.length);
 
             try {
+                if (handlerList == null) return;
 
                 for (MqttHandler mqttHandler : handlerList) {
                     TopicMapping topicMapping = mqttHandler.getClass().getAnnotation(TopicMapping.class);

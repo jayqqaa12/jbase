@@ -2,7 +2,7 @@ package com.jayqqaa12.jbase.spring.boot.base;
 
 import lombok.extern.slf4j.Slf4j;
 import org.flywaydb.core.Flyway;
-import org.flywaydb.core.internal.dbsupport.FlywaySqlScriptException;
+import org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException;
 import org.springframework.boot.autoconfigure.flyway.FlywayMigrationStrategy;
 import org.springframework.stereotype.Component;
 

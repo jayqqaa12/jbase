@@ -11,7 +11,7 @@
     <parent>
         <groupId>com.jayqqaa12</groupId>
         <artifactId>jbase</artifactId>
-        <version>1.0.0</version>
+        <version>2.0.0</version>
     </parent>
 
 
@@ -30,10 +30,12 @@
             <version>3.5</version>
         </dependency>
 
+        
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>23.0</version>
+            <scope>provided</scope>
         </dependency>
 
 
@@ -71,21 +73,7 @@
         </dependency>
 
 
-        <!-- shiro -->
-        <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-            <version>1.8.3</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-all</artifactId>
-            <version>1.2.3</version>
-            <scope>provided</scope>
-        </dependency>
-
+        
 
         <!-- commons -->
 
@@ -119,14 +107,7 @@
       
 
         <!-- log -->
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.1.5</version>
-            <scope>provided</scope>
-        </dependency>
-
+ 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -134,8 +115,8 @@
             <scope>provided</scope>
         </dependency>
 
- 
- 
+
+
 
         <dependency>
             <groupId>com.mortennobel</groupId>

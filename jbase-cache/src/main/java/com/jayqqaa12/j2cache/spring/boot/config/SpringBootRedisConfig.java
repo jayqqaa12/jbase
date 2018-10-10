@@ -1,11 +1,12 @@
 package com.jayqqaa12.j2cache.spring.boot.config;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by 12 on 2017/9/21.
  */
+@ConditionalOnProperty(value = "config.j2cache.enable",havingValue = "true")
 @ConfigurationProperties(prefix = "spring.redis")
 public class SpringBootRedisConfig {
 

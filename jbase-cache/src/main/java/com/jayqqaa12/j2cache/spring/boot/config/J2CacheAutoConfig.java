@@ -3,7 +3,6 @@ package com.jayqqaa12.j2cache.spring.boot.config;
 import com.jayqqaa12.j2cache.J2Cache;
 import com.jayqqaa12.j2cache.util.ConfigKit;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +16,6 @@ import java.util.Properties;
  * Created by 12 on 2017/9/20.
  */
 @Configuration
-@ConditionalOnClass(J2Cache.class)
 @EnableConfigurationProperties({SpringBootRedisConfig.class})
 @EnableAspectJAutoProxy(exposeProxy = true, proxyTargetClass = true)
 @ComponentScan("com.jayqqaa12.j2cache.spring")

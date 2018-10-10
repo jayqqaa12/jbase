@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
 
+
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
@@ -16,7 +17,7 @@ import java.lang.annotation.*;
         FiegnConfig.class,
 })
 @EnableBasic
-@EnableCache
+@EnableDb
 public @interface EnableWeb {
 
 }

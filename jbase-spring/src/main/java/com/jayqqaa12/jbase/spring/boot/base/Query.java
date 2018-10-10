@@ -2,8 +2,7 @@
 
 package com.jayqqaa12.jbase.spring.boot.base;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import org.apache.commons.lang3.StringUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.util.Map;
 
@@ -22,17 +21,17 @@ public class Query<T> extends Page<T> {
                 , Integer.parseInt(params.getOrDefault(LIMIT, 10).toString()));
 
         String orderByField = params.getOrDefault(ORDER_BY_FIELD, "").toString();
-        if (StringUtils.isNotEmpty(orderByField)) {
-            this.setOrderByField(orderByField);
-        }
 
         Boolean isAsc = Boolean.parseBoolean(params.getOrDefault(IS_ASC, Boolean.TRUE).toString());
-        this.setAsc(isAsc);
+
+        if (isAsc) this.setAsc(orderByField);
+        else this.setDesc(orderByField);
 
         params.remove(PAGE);
         params.remove(LIMIT);
         params.remove(ORDER_BY_FIELD);
         params.remove(IS_ASC);
-        this.setCondition(params);
+
+        this.condition().putAll(params);
     }
 }

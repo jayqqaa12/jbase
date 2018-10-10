@@ -44,6 +44,7 @@ public class RedisCacheProvider implements CacheProvider {
             props.forEach((k, v) -> props2.put((String) k, (String) v));
             BeanUtils.populate(poolConfig, props2);
 
+
             String hosts = props.getProperty("redis.hosts");
             String mode = props.getProperty("redis.mode");
             String cluster_name = props.getProperty("redis.cluster.name");

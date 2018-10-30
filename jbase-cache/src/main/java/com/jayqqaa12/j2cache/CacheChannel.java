@@ -12,7 +12,7 @@ import static com.jayqqaa12.j2cache.CacheConstans.LEVEL1;
 import static com.jayqqaa12.j2cache.CacheConstans.LEVEL2;
 
 
-public  abstract class CacheChannel {
+public abstract class CacheChannel {
     private final static Logger log = LoggerFactory.getLogger(CacheChannel.class);
 
 
@@ -108,7 +108,8 @@ public  abstract class CacheChannel {
     public void set(String region, Object key, Object value, int seconds, boolean notify) {
         if (key != null) {
             if (value == null)
-                remove(region, key);
+//                remove(region, key);
+                value = new Object();//fixme 如果值为空 填充null对象 而不是删除了
             else {
                 if (notify) sendEvictCmd(region, key);// 清除原有的一级缓存的内容
                 CacheProviderHolder.set(LEVEL1, region, key, value, seconds);
@@ -192,7 +193,9 @@ public  abstract class CacheChannel {
     public void set(int level, String region, Object key, Object value, int seconds, boolean notify) {
         if (key != null) {
             if (value == null)
-                remove(region, key);
+                value = new Object();//fixme 如果值为空 填充null对象 而不是删除了
+//                remove(region, key);
+
             else {
                 if (notify) sendEvictCmd(region, key);// 清除原有的一级缓存的内容
                 CacheProviderHolder.set(level, region, key, value, seconds);
@@ -311,14 +314,12 @@ public  abstract class CacheChannel {
      * @param region : Cache region name
      * @param key    : of key
      */
-    public abstract void sendEvictCmd(String region, Object key)  ;
+    public abstract void sendEvictCmd(String region, Object key);
 
     /**
      * 关闭到通道的连接
      */
-    public abstract void close() ;
-
-
+    public abstract void close();
 
 
 }

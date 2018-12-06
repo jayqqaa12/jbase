@@ -11,7 +11,7 @@
     <parent>
         <groupId>com.jayqqaa12</groupId>
         <artifactId>jbase</artifactId>
-        <version>1.0.0</version>
+        <version>1.5.0</version>
     </parent>
 
 

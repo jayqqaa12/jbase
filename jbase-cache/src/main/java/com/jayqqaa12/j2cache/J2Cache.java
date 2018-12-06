@@ -224,6 +224,8 @@ public class J2Cache {
     }
 
     public static <T> T get2(Object key) {
+
+
         return (T) cache().get(LEVEL2, key);
     }
 

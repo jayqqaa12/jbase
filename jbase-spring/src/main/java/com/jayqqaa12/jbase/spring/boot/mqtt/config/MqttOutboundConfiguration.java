@@ -12,12 +12,13 @@ import org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 @Configuration
 @ConditionalOnBean(MqttProperties.class)
 public class MqttOutboundConfiguration {
     @Autowired
     private MqttProperties mqttProperties;
-
 
     @Bean
     @ServiceActivator(inputChannel = "mqttOutboundChannel")
@@ -29,12 +30,16 @@ public class MqttOutboundConfiguration {
         factory.setCleanSession(false);
         factory.setPersistence(new MemoryPersistence());
 
+
         factory.setUserName(mqttProperties.getOutbound().getUsername());
         factory.setPassword(mqttProperties.getOutbound().getPassword());
 
+        String clientId = mqttProperties.getOutbound().getClientId() + ThreadLocalRandom.current().nextInt(1000);
 
         MqttPahoMessageHandler messageHandler =
-                new MqttPahoMessageHandler(mqttProperties.getOutbound().getClientId(), factory);
+                new MqttPahoMessageHandler(clientId, factory);
+
+
         messageHandler.setAsync(true);
         messageHandler.setDefaultQos(mqttProperties.getOutbound().getQos());
         messageHandler.setDefaultRetained(false);

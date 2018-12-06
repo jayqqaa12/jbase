@@ -11,13 +11,15 @@ public class MqttMessageConverter extends DefaultPahoMessageConverter {
 
     protected byte[] messageToMqttBytes(Message<?> message) {
         Object payload = message.getPayload();
+
         if (!(payload instanceof byte[] || payload instanceof String)) {
             payload= JSON.toJSONString(payload);
         }
+
         byte[] payloadBytes;
         if (payload instanceof String) {
             try {
-                payloadBytes = ((String) payload).getBytes(Charset.defaultCharset());
+                payloadBytes = ((String) payload).getBytes(Charset.forName("UTF-8"));
             }
             catch (Exception e) {
                 throw new MessageConversionException("failed to convert Message to object", e);

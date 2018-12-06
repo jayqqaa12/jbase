@@ -5,6 +5,7 @@ import com.jayqqaa12.jbase.spring.boot.base.FlywayStrategy;
 import com.jayqqaa12.jbase.spring.boot.config.MybatisConfig;
 import com.jayqqaa12.jbase.spring.boot.config.MybatisPlusConfig;
 import com.jayqqaa12.jbase.spring.boot.config.RabbitConfig;
+import com.jayqqaa12.jbase.spring.helper.ProfileHelper;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -19,7 +20,8 @@ import java.lang.annotation.*;
         MybatisPlusConfig.class,
         MybatisConfig.class,
         RabbitConfig.class,
-        FlywayStrategy.class
+        FlywayStrategy.class,
+        ProfileHelper.class
 
 })
 @EnableAsync(proxyTargetClass = true)

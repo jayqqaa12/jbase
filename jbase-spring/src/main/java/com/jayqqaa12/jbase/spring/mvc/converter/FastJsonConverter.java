@@ -15,10 +15,8 @@ public class FastJsonConverter extends FastJsonHttpMessageConverter {
 
     public FastJsonConverter() {
         setSupportedMediaTypes(Arrays.asList(
-                MediaType.valueOf("text/json;charset=UTF-8"),
-                MediaType.valueOf("application/json;charset=UTF-8"),
-                MediaType.valueOf("application/javascript;charset=UTF-8"),
-                MediaType.valueOf("text/html;charset=UTF-8")
+                new MediaType[]{MediaType.APPLICATION_JSON,
+                new MediaType("application", "*+json")}
         ));
     }
 

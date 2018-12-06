@@ -13,8 +13,11 @@ public class JsonCacheSerializer implements CacheSerializer  {
 
 	private static final SerializerFeature[] features = {
 			SerializerFeature.WriteEnumUsingToString,
-			SerializerFeature.SortField, SerializerFeature.SkipTransientField,
-			SerializerFeature.WriteClassName };
+			SerializerFeature.SortField,
+			SerializerFeature.SkipTransientField,
+			SerializerFeature.WriteClassName
+
+	};
 
 	private static final Feature[] DEFAULT_PARSER_FEATURE = {
 			Feature.AutoCloseSource, Feature.InternFieldNames,
@@ -24,6 +27,7 @@ public class JsonCacheSerializer implements CacheSerializer  {
 
 	@Override
 	public byte[] serialize(Object t)  {
+
 		return JSON.toJSONBytes(t, features);
 	}
 

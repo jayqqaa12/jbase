@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.jayqqaa12</groupId>
     <artifactId>jbase-cache</artifactId>
-    <version>0.9.1</version>
+    <version>${jbase.cache.version}</version>
     <packaging>jar</packaging>
 
     <parent>
         <groupId>com.jayqqaa12</groupId>
         <artifactId>jbase</artifactId>
-        <version>2.0.0</version>
+        <version>2.0.1</version>
     </parent>
 
     <!--  依赖的jar包 -->
@@ -90,12 +90,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-            <version>1.8.3</version>
-            <scope>provided</scope>
-        </dependency>
 
 
         <!-- EHCACHE -->

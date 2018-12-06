@@ -3,6 +3,7 @@
 package com.jayqqaa12.jbase.spring.boot.base;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.google.common.collect.Maps;
 
 import java.util.Map;
 
@@ -15,6 +16,8 @@ public class Query<T> extends Page<T> {
     private static final String LIMIT = "limit";
     private static final String ORDER_BY_FIELD = "orderByField";
     private static final String IS_ASC = "isAsc";
+
+    private Map map =Maps.newHashMap();
 
     public Query(Map<String, Object> params) {
         super(Integer.parseInt(params.getOrDefault(PAGE, 1).toString())
@@ -31,7 +34,11 @@ public class Query<T> extends Page<T> {
         params.remove(LIMIT);
         params.remove(ORDER_BY_FIELD);
         params.remove(IS_ASC);
-
         this.condition().putAll(params);
+    }
+
+    @Override
+    public Map<Object, Object> condition() {
+        return map;
     }
 }

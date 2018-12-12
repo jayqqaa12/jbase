@@ -1,5 +1,6 @@
 package com.jayqqaa12.jbase.spring.boot.mqtt.config;
 
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -24,12 +25,16 @@ public class MqttOutboundConfiguration {
     @ServiceActivator(inputChannel = "mqttOutboundChannel")
     public MessageHandler mqttOutbound() {
 
+        
+
         String[] serverURIs = mqttProperties.getOutbound().getUrls().split(",");
         DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
         factory.setServerURIs(serverURIs);
         factory.setCleanSession(false);
         factory.setPersistence(new MemoryPersistence());
 
+        //最大缓存消息，设置太小会导致同一时间不能发送太多消息
+        factory.getConnectionOptions().setMaxInflight(1000000);
 
         factory.setUserName(mqttProperties.getOutbound().getUsername());
         factory.setPassword(mqttProperties.getOutbound().getPassword());
@@ -45,6 +50,7 @@ public class MqttOutboundConfiguration {
         messageHandler.setDefaultRetained(false);
 
         messageHandler.setConverter(new MqttMessageConverter());
+
 
         return messageHandler;
     }

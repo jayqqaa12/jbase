@@ -63,6 +63,7 @@ public class MqttInboundConfiguration {
         adapter.setQos(mqttProperties.getInbound().getQos());
         adapter.setOutputChannel(mqttInputChannel());
 
+
         return adapter;
     }
 

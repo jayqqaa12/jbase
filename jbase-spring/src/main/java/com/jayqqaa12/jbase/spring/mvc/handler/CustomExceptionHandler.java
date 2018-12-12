@@ -6,21 +6,18 @@ import com.jayqqaa12.jbase.spring.exception.RetryException;
 import com.jayqqaa12.jbase.spring.mvc.Resp;
 import com.jayqqaa12.jbase.spring.mvc.RespCode;
 import com.jayqqaa12.jbase.spring.mvc.i18n.LocaleKit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
-import java.util.concurrent.atomic.AtomicInteger;
 
 
 @ControllerAdvice(annotations = {RestController.class, Controller.class})
 @ResponseBody
+@Slf4j
 public class CustomExceptionHandler {
-
-    protected final Logger logger = LoggerFactory.getLogger(CustomExceptionHandler.class);
 
     /**
      * 操作数据库出现异常
@@ -28,7 +25,7 @@ public class CustomExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(SQLException.class)
     public Resp handleException(SQLException e) {
-        logger.error("操作数据库出现异常:", e);
+        log.error("操作数据库出现异常:", e);
         return Resp.response(RespCode.DB_SQL_ERROR);
     }
 
@@ -36,8 +33,7 @@ public class CustomExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 
     public final Resp handleBusinessException(BusinessException ex) {
-        logger.warn("业务异常 {}", serializeError(ex));
-
+        log.warn("业务异常 {}", (ex));
         return Resp.response(ex.getCode(), ex.getMessage());
     }
 
@@ -45,22 +41,21 @@ public class CustomExceptionHandler {
     @ExceptionHandler(value = {IllegalArgumentException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public final Resp handleArgumenteException(IllegalArgumentException ex) {
-        logger.warn("请求参数异常 {}", serializeError(ex));
+        log.warn("请求参数异常 {}", (ex));
         return Resp.response(RespCode.PARAM_ERROR, LocaleKit.resolverOrGet(ex.getMessage()));
     }
-
 
     @ExceptionHandler(value = {RetryException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public final Resp handleRetryException(RetryException ex) {
-        logger.warn("并发更新异常 {}", serializeError(ex));
+        log.warn("并发更新异常 {}", (ex));
         return Resp.response(RespCode.RETRY_ERROR);
     }
 
     @ExceptionHandler(value = {LockException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public final Resp handleLockException(LockException ex) {
-        logger.warn("幂等性异常 {}", serializeError(ex));
+        log.warn("幂等性异常 {}", (ex));
         return Resp.response(RespCode.RETRY_LOCK_ERROR);
     }
 
@@ -68,37 +63,11 @@ public class CustomExceptionHandler {
     @ExceptionHandler(value = {Exception.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public final Resp handleGeneralException(Exception ex) {
-        logger.error("其他异常", ex);
+        log.error("其他异常", ex);
 
         return Resp.response(RespCode.SERVER_ERROR);
     }
 
-    private String serializeError(Exception ex) {
-
-        StringBuffer sb = new StringBuffer();
-
-        sb.append(System.lineSeparator());
-
-        sb.append("\t").append(ex.getClass().getName()).append(":").append(ex.getMessage()).append(System.lineSeparator());
-
-        AtomicInteger index = new AtomicInteger();
-        for (StackTraceElement element : ex.getStackTrace()) {
-
-
-            sb.append("\t\tat ").append(element.getClassName()).append(".").append(element.getMethodName());
-
-            if (element.getLineNumber() >= 0) {
-                sb.append("(").append(element.getLineNumber()).append(")");
-            }
-
-            sb.append(System.lineSeparator());
-            if (index.incrementAndGet() > 10) {
-                break;
-            }
-        }
-
-        return sb.toString();
-    }
-
+    
 
 }

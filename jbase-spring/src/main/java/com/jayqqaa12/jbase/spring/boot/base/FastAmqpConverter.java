@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.support.converter.AbstractJsonMessageConverter;
-import org.springframework.amqp.support.converter.DefaultClassMapper;
 import org.springframework.amqp.support.converter.MessageConversionException;
 
 import java.io.IOException;
@@ -18,7 +17,7 @@ public class FastAmqpConverter extends AbstractJsonMessageConverter {
     private Logger logger = LoggerFactory.getLogger(FastAmqpConverter.class);
 
     public FastAmqpConverter() {
-        this.setClassMapper(new DefaultClassMapper());
+        this.setClassMapper(new FastAmqpClassMapper());
     }
 
     @Override

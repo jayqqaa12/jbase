@@ -47,7 +47,8 @@ public class JsonTypeHandler<T extends Object> extends BaseTypeHandler<T> {
         try {
             if (object instanceof Map) return JSON.toJSONString(object);
 
-            return JSON.toJSONString(object, SerializerFeature.WriteClassName);
+            return JSON.toJSONString(object, SerializerFeature.WriteClassName,
+                    SerializerFeature.DisableCircularReferenceDetect);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

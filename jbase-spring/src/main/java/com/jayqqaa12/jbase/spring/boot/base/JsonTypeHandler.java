@@ -50,7 +50,7 @@ public class JsonTypeHandler<T extends Object> extends BaseTypeHandler<T> {
             return JSON.toJSONString(object, SerializerFeature.WriteClassName,
                     SerializerFeature.DisableCircularReferenceDetect);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+              throw new RuntimeException(e);
         }
     }
 

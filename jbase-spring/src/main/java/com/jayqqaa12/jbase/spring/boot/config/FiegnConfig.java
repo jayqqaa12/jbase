@@ -47,7 +47,9 @@ public class FiegnConfig {
         return (requestTemplate) -> {
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder
                     .getRequestAttributes();
+            if (attributes == null) return;
             HttpServletRequest request = attributes.getRequest();
+            if(request==null)return;
             Enumeration<String> headerNames = request.getHeaderNames();
             if (headerNames != null) {
                 while (headerNames.hasMoreElements()) {
@@ -56,6 +58,7 @@ public class FiegnConfig {
                     requestTemplate.header(name, values);
                 }
             }
+
         };
     }
 
@@ -68,7 +71,7 @@ public class FiegnConfig {
                     String body = Util.toString(response.body().asReader());
                     Resp req = JSON.parseObject(body, Resp.class);
                     if (req.getCode() != RespCode.SUCCESS) {
-                        return new BusinessException(req.getCode());
+                        return new BusinessException(req.getCode(), req.getMsg(), null);
                     }
                 }
             } catch (IOException e) {

@@ -1,9 +1,5 @@
 package com.jayqqaa12.jbase.spring.boot.config;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.parser.ParserConfig;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.jayqqaa12.jbase.spring.mvc.converter.FastJsonConverter;
 import com.jayqqaa12.jbase.spring.mvc.converter.OrdinalToEnumConverterFactory;
@@ -12,18 +8,12 @@ import com.jayqqaa12.jbase.spring.mvc.handler.CustomExceptionHandler;
 import com.jayqqaa12.jbase.spring.mvc.handler.GlobalExceptionHandler;
 import com.jayqqaa12.jbase.spring.mvc.i18n.LocaleKit;
 import com.jayqqaa12.jbase.spring.mvc.inteceptor.EffectInterceptor;
-import com.jayqqaa12.jbase.spring.serialize.json.PageDeserializer;
-import com.jayqqaa12.jbase.spring.serialize.json.PageableDeserializer;
-import com.jayqqaa12.jbase.spring.serialize.json.SortDeserializer;
+import com.jayqqaa12.jbase.spring.mvc.inteceptor.HeaderLocaleChangeInterceptor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -43,27 +33,13 @@ import java.util.Locale;
 @Configuration
 public class MvcConfig extends WebMvcConfigurationSupport {
 
+
     @Bean
     public FastJsonHttpMessageConverter fastJsonHttpMessageConverters() {
 
-        ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
-        ParserConfig.getGlobalInstance().putDeserializer(Pageable.class, new PageableDeserializer());
-        ParserConfig.getGlobalInstance().putDeserializer(Page.class, new PageDeserializer());
-        ParserConfig.getGlobalInstance().putDeserializer(Sort.class, new SortDeserializer());
 
 
-        JSON.DEFAULT_GENERATE_FEATURE = SerializerFeature.config(JSON.DEFAULT_GENERATE_FEATURE, SerializerFeature.WriteEnumUsingName, false);
-
-        FastJsonConverter fastConverter = new FastJsonConverter();
-        FastJsonConfig fastJsonConfig = new FastJsonConfig();
-        fastJsonConfig.setSerializerFeatures(
-                SerializerFeature.IgnoreErrorGetter,
-                SerializerFeature.BrowserSecure,
-                SerializerFeature.BrowserCompatible
-        );
-
-        fastConverter.setFastJsonConfig(fastJsonConfig);
-        return fastConverter;
+        return new FastJsonConverter();
     }
 
 
@@ -115,8 +91,15 @@ public class MvcConfig extends WebMvcConfigurationSupport {
     }
 
 
+
+
+
     @Bean
-    @ConditionalOnBean(MessageSource.class)
+    public HeaderLocaleChangeInterceptor headerLocaleChangeInterceptor(){
+        return new HeaderLocaleChangeInterceptor();
+    }
+
+    @Bean
     public LocaleKit localeKit(MessageSource messageSource, @Value("${config.lang:zh_CN}") Locale locale) {
 
         LocaleKit kit = LocaleKit.of(messageSource);
@@ -140,11 +123,10 @@ public class MvcConfig extends WebMvcConfigurationSupport {
 
 
     @Bean
-    public HttpPutFormContentFilter putFilter()   {
+    public HttpPutFormContentFilter putFilter() {
 
         return new HttpPutFormContentFilter();
     }
-
 
 
 //    @Override
@@ -161,6 +143,8 @@ public class MvcConfig extends WebMvcConfigurationSupport {
 //        registry.addInterceptor(new AuthInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(new EffectInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(localeChangeInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(headerLocaleChangeInterceptor()).addPathPatterns("/**");
+
     }
 
     @Override

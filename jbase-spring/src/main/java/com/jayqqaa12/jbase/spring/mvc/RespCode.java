@@ -27,9 +27,12 @@ public abstract class RespCode {
     public static final int REQ_METHOD_PUT = 1306;  //  | 请求必须是PUT请求 |
     public static final int REQ_METHOD_DELETE = 1307;  //  | 请求必须是DELETE请求 |
 
+    public static final int REQ_JSON_FORMAT_ERROR=1310;// JSON 解析异常
+
 
     // 引用外部 SDK 相关错误  1500-1599
     public static final int INNER__CONTENT_SCAN_ERROR = 1500;    //没有配置图片检测类型
+
 
 
     // 1600-1999 内部模块异常

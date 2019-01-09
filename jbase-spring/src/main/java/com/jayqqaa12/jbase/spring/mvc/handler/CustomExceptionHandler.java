@@ -1,5 +1,6 @@
 package com.jayqqaa12.jbase.spring.mvc.handler;
 
+import com.alibaba.fastjson.JSONException;
 import com.jayqqaa12.jbase.exception.LockException;
 import com.jayqqaa12.jbase.spring.exception.BusinessException;
 import com.jayqqaa12.jbase.spring.exception.RetryException;
@@ -60,6 +61,13 @@ public class CustomExceptionHandler {
     }
 
 
+    @ExceptionHandler(value = {JSONException.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public final Resp handleJsonException(JSONException ex) {
+        log.warn("json异常 {}", (ex));
+        return Resp.response(RespCode.REQ_JSON_FORMAT_ERROR);
+    }
+
     @ExceptionHandler(value = {Exception.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public final Resp handleGeneralException(Exception ex) {
@@ -68,6 +76,6 @@ public class CustomExceptionHandler {
         return Resp.response(RespCode.SERVER_ERROR);
     }
 
-    
+
 
 }

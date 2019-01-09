@@ -15,7 +15,8 @@ public class BusinessException extends RuntimeException {
         this(code, LocaleKit.MSG_PREFIX + code, null);
     }
 
-    BusinessException(int code, String msg, Throwable e) {
+    public BusinessException(int code, String msg, Throwable e) {
+
         super(msg, e);
         this.code = code;
         this.msg = msg;
@@ -28,6 +29,8 @@ public class BusinessException extends RuntimeException {
     @Override
     public String getMessage() {
 
-        return LocaleKit.resolverOrGet(this.code, this.msg);
+        if (msg.startsWith(LocaleKit.MSG_PREFIX))
+            return LocaleKit.resolverOrGet(this.code, this.msg);
+        else return msg;
     }
 }

@@ -35,8 +35,10 @@ public class RegularKit {
     }
 
     // 昵称
-    public static boolean checkNickName(String userName) {
-        String reg = "^[a-zA-Z0-9\u4e00-\u9fa5]{1,8}$";
+    public static boolean checkNickName(String userName,int max) {
+        if(max<1)throw  new IllegalArgumentException();
+
+        String reg = "^[a-zA-Z0-9\u4e00-\u9fa5]{1,"+max+"}$";
         return Pattern.compile(reg).matcher(userName).matches();
     }
 

@@ -24,7 +24,6 @@
     </modules>
 
     <properties>
-        <jbase.util.version>1.0.2</jbase.util.version>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -32,11 +31,11 @@
         <spring-cloud.version>Finchley.SR1</spring-cloud.version>
         <zookeeper-version>3.4.6</zookeeper-version>
 
-        <jbase.util.version>2.0.1</jbase.util.version>
-        <jbase.spring.version>2.0.7</jbase.spring.version>
+        <jbase.util.version>2.0.6</jbase.util.version>
+        <jbase.spring.version>2.0.19</jbase.spring.version>
         <jbase.cache.version>2.0.1</jbase.cache.version>
 
-        <fastjson-version>1.2.38</fastjson-version>
+         <fastjson-version>1.2.38</fastjson-version>
         <mybatisplus-spring-boot-starter.version>3.0.4</mybatisplus-spring-boot-starter.version>
     </properties>
 

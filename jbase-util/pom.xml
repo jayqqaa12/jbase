@@ -15,6 +15,12 @@
     </parent>
 
 
+    <properties>
+        <guava.version>23.0</guava.version>
+        <hutool.version>4.3.2</hutool.version>
+    </properties>
+
+
     <dependencies>
 
         <!-- 必备的jar 自动导入 -->
@@ -31,10 +37,15 @@
         </dependency>
 
         <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>23.0</version>
-            <scope>provided</scope>
+            <version>${guava.version}</version>
         </dependency>
 
 
@@ -72,8 +83,6 @@
         </dependency>
 
 
-
-
         <!-- commons -->
 
         <dependency>
@@ -103,7 +112,6 @@
             <scope>provided</scope>
         </dependency>
 
-      
 
         <!-- log -->
 
@@ -114,8 +122,6 @@
             <scope>provided</scope>
         </dependency>
 
- 
- 
 
         <dependency>
             <groupId>com.mortennobel</groupId>
@@ -132,9 +138,6 @@
         </dependency>
 
     </dependencies>
- 
-
-
 
 
 </project>

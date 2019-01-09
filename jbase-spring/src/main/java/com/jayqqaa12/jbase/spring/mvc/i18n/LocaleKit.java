@@ -67,9 +67,8 @@ public class LocaleKit {
 
     private static String internalResolver(String code, Locale locale, Object... args) {
 
-        if (messageSource == null) {
-            return null;
-        }
+        if (messageSource == null) return "messageSource not init ";
+
 
         if (args == null || args.length == 0) {
             args = PARAM_HOLDER;

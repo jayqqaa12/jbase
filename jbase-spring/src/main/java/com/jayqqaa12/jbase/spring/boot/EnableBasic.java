@@ -6,6 +6,7 @@ import com.jayqqaa12.jbase.spring.helper.ProfileHelper;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.lang.annotation.*;
@@ -17,6 +18,7 @@ import java.lang.annotation.*;
         RabbitConfig.class,
         ProfileHelper.class
 })
+@EnableScheduling
 @EnableAsync(proxyTargetClass = true)
 @EnableTransactionManagement
 @EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)

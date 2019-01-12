@@ -31,7 +31,7 @@
         <spring-cloud.version>Finchley.SR1</spring-cloud.version>
         <zookeeper-version>3.4.6</zookeeper-version>
 
-        <jbase.util.version>2.0.6</jbase.util.version>
+        <jbase.util.version>2.0.8</jbase.util.version>
         <jbase.spring.version>2.0.19</jbase.spring.version>
         <jbase.cache.version>2.0.1</jbase.cache.version>
 

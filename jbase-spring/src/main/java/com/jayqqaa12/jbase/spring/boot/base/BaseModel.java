@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.ToString;
-import lombok.experimental.Accessors;
 import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
@@ -16,7 +15,6 @@ import java.io.Serializable;
  * Created by 12 on 2018/1/23.
  */
 @Data
-@Accessors(chain = true)
 @ToString(callSuper = true)
 public abstract class BaseModel implements Serializable {
 
@@ -25,6 +23,15 @@ public abstract class BaseModel implements Serializable {
     @TableId(type = IdType.ID_WORKER)
     protected Long id;
 
+    /**
+     * 加个方法方便链式调用
+     * @param id
+     * @return
+     */
+    public BaseModel settId(Long id){
+        this.id=id;
+        return this;
+    }
 
 
     public enum Status {

@@ -26,8 +26,6 @@ public class HeaderLocaleChangeInterceptor extends LocaleChangeInterceptor {
             try {
                 localeResolver.setLocale(request, response,  StringUtils.parseLocaleString(newLocale));
             } catch (IllegalArgumentException ex) {
-
-                throw ex;
             }
         }
         return true;

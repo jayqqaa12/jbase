@@ -8,11 +8,15 @@ import com.jayqqaa12.jbase.spring.mvc.Resp;
 import com.jayqqaa12.jbase.spring.mvc.RespCode;
 import com.jayqqaa12.jbase.spring.mvc.i18n.LocaleKit;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import java.sql.SQLException;
+import java.util.Set;
 
 
 @ControllerAdvice(annotations = {RestController.class, Controller.class})
@@ -46,6 +50,24 @@ public class CustomExceptionHandler {
         return Resp.response(RespCode.PARAM_ERROR, LocaleKit.resolverOrGet(ex.getMessage()));
     }
 
+    @ExceptionHandler(value = {ConstraintViolationException.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Resp handlerValidatorException(ConstraintViolationException e) {
+        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+
+        ConstraintViolation violation = violations.stream().findFirst().get();
+        String msg = violation.getMessage();
+
+        if (!msg.contains(LocaleKit.MSG_PREFIX)) {
+            String param = ((PathImpl) violation.getPropertyPath()).getLeafNode().asString();
+            msg = param + " " + msg;
+        }
+
+        log.info("参数验证异常 {}", LocaleKit.get(msg));
+
+        return Resp.response(RespCode.PARAM_ERROR, msg);
+    }
+
     @ExceptionHandler(value = {RetryException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public final Resp handleRetryException(RetryException ex) {
@@ -75,7 +97,6 @@ public class CustomExceptionHandler {
 
         return Resp.response(RespCode.SERVER_ERROR);
     }
-
 
 
 }

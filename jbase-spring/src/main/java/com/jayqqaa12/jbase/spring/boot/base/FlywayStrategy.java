@@ -13,6 +13,12 @@ import org.springframework.stereotype.Component;
  * 需要数据库升级完才能加载数据 所以在需要的地方加上
  *
  * @DependsOn("flywayInitializer")
+ *
+ *
+ * 注意只处理sql出错的情况，如果已经执行过的文件是不能修改的！
+ * 如果出现修改了文件的情况，应该还原文件，并增加新版本的sql
+ *
+ *
  */
 @Slf4j
 @Component

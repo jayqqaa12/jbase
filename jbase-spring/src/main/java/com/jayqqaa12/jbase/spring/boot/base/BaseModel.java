@@ -36,10 +36,23 @@ public abstract class BaseModel implements Serializable {
 
     public enum Status {
         CLOSE, OPEN;
+        public static  Status valueOf(int v) {
+            for (Status status : values()) {
+                if(status.ordinal()==v)return status;
+            }
+            throw  new IllegalStateException(" error param enum for status");
+        }
     }
 
     public enum Deleted {
-        FALSE, TRUE
+        FALSE, TRUE;
+
+        public static  Deleted valueOf(int v) {
+            for (Deleted deleted : values()) {
+                if(deleted.ordinal()==v)return deleted;
+            }
+            throw  new IllegalStateException(" error param enum for deleted");
+        }
     }
 
 }

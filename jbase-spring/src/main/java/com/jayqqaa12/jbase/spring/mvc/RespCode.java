@@ -46,6 +46,7 @@ public abstract class RespCode {
 
 
 
+
     public static final int VALIDATE_CODE_VALIDATE_ERROR =1700;  //验证码错误
     public static final int VALIDATE_CODE_PAST_DUE =1701;         //验证码过期
 

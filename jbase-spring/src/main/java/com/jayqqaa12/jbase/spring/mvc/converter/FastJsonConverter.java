@@ -28,6 +28,13 @@ public class FastJsonConverter extends FastJsonHttpMessageConverter {
         ParserConfig.getGlobalInstance().putDeserializer(Pageable.class, new PageableDeserializer());
         ParserConfig.getGlobalInstance().putDeserializer(Page.class, new PageDeserializer());
         ParserConfig.getGlobalInstance().putDeserializer(Sort.class, new SortDeserializer());
+
+//        ParserConfig.getGlobalInstance().putDeserializer(BaseModel.Deleted.class,
+//                new EnumDeserializer());
+//        ParserConfig.getGlobalInstance().putDeserializer(BaseModel.Status.class,
+//                new EnumDeserializer());
+
+
         ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
 
         JSON.DEFAULT_GENERATE_FEATURE = SerializerFeature.config(JSON.DEFAULT_GENERATE_FEATURE, SerializerFeature.WriteEnumUsingName, false);

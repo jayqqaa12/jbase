@@ -56,16 +56,16 @@ public class LocaleKit {
 
         final Locale locale = getLocale();
 
-        return placeholderHelper.replacePlaceholders(message, s -> internalResolver(s, locale, args));
+        return placeholderHelper.replacePlaceholders(message, s -> get(s, locale, args));
     }
 
     public static String get(String code, Object... args) {
 
-        return internalResolver(code, getLocale(), args);
+        return get(code, getLocale(), args);
     }
 
 
-    private static String internalResolver(String code, Locale locale, Object... args) {
+    public static String get(String code, Locale locale, Object... args) {
 
         if (messageSource == null) return "messageSource not init ";
 

@@ -3,7 +3,7 @@
 // (powered by Fernflower decompiler)
 //
 
-package com.jayqqaa12.jbase.util;
+package com.jayqqaa12.jbase.util.http;
 
 
 import org.apache.commons.lang3.StringUtils;

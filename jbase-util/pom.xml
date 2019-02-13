@@ -23,6 +23,20 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.14</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>cn.jpush.api</groupId>
+            <artifactId>jpush-client</artifactId>
+            <version>3.3.7</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- 必备的jar 自动导入 -->
 
         <dependency>
@@ -137,6 +151,8 @@
             <scope>provided</scope>
         </dependency>
 
+
+        
     </dependencies>
 
 

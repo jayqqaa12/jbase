@@ -9,8 +9,11 @@ import com.jayqqaa12.jbase.spring.mvc.RespCode;
 import com.jayqqaa12.jbase.spring.mvc.i18n.LocaleKit;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.internal.engine.path.PathImpl;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindException;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ConstraintViolation;
@@ -67,6 +70,25 @@ public class CustomExceptionHandler {
 
         return Resp.response(RespCode.PARAM_ERROR, msg);
     }
+
+
+    @ExceptionHandler(value = {BindException.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Resp handlerBindException(BindException e) {
+
+        ObjectError objectError=   e.getAllErrors().stream().findFirst().get();
+        String msg = objectError.getDefaultMessage();
+
+        if (!msg.contains(LocaleKit.MSG_PREFIX)) {
+            DefaultMessageSourceResolvable resolvable= (DefaultMessageSourceResolvable) objectError.getArguments()[0];
+            String param = resolvable.getDefaultMessage();
+            msg = param + " " + msg;
+        }
+        log.info("参数验证异常 {}", LocaleKit.get(msg));
+
+        return Resp.response(RespCode.PARAM_ERROR, msg);
+    }
+
 
     @ExceptionHandler(value = {RetryException.class})
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

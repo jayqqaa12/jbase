@@ -8,11 +8,15 @@ import java.io.File;
 import java.util.Properties;
 
 /**
+ *
+ *
  * 邮件发送工具类.
  * <p>此类依赖于javax.mail包. 将发送E-mail的代码进行了封装简化.
  *
+ * 使用hutool mailutil 替代
  */
 @SuppressWarnings("unused")
+@Deprecated
 public final class EmlKit {
     private MimeMessage message;
     private Multipart mp = new MimeMultipart();

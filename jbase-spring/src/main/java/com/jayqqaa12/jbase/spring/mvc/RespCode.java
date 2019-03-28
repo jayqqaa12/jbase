@@ -50,6 +50,11 @@ public abstract class RespCode {
     public static final int VALIDATE_CODE_VALIDATE_ERROR =1700;  //验证码错误
     public static final int VALIDATE_CODE_PAST_DUE =1701;         //验证码过期
 
+    public static final int SMS_ERROR=1702; //发送失败
+
+    public static final int SMS_LIMIT=1703;                //超过限制
+    public static final int SMS_PHONE_ERROR=1704;//手机号错误
+
 
 
     //2000+ 业务模块自定义异常 继承这个类 最好定义在一个公共模块里防止 冲突

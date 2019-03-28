@@ -28,9 +28,10 @@ public abstract class BaseModel implements Serializable {
      * @param id
      * @return
      */
-    public BaseModel settId(Long id){
+    public  <T>T settId(Long id){
         this.id=id;
-        return this;
+        
+        return (T)this;
     }
 
 

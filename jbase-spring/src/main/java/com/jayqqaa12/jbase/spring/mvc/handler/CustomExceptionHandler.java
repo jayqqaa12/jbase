@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ConstraintViolation;
@@ -63,10 +64,26 @@ public class CustomExceptionHandler {
 
         if (!msg.contains(LocaleKit.MSG_PREFIX)) {
             String param = ((PathImpl) violation.getPropertyPath()).getLeafNode().asString();
-            msg = param + " " + msg;
-        }
+            log.info("参数 {} 验证异常 {}", param, msg);
+        } else log.info("参数验证异常 {}", LocaleKit.get(msg));
 
-        log.info("参数验证异常 {}", LocaleKit.get(msg));
+        return Resp.response(RespCode.PARAM_ERROR, msg);
+    }
+
+
+    @ExceptionHandler(value = {MethodArgumentNotValidException.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Resp handlerValidatorException(MethodArgumentNotValidException e) {
+
+        ObjectError objectError = e.getBindingResult().getAllErrors().stream().findFirst().get();
+        String msg = objectError.getDefaultMessage();
+
+        if (!msg.contains(LocaleKit.MSG_PREFIX)) {
+            DefaultMessageSourceResolvable resolvable = (DefaultMessageSourceResolvable) objectError.getArguments()[0];
+            String param = resolvable.getDefaultMessage();
+            log.info("参数 {} 验证异常 {}", param, msg);
+        } else log.info("参数验证异常 {}", LocaleKit.get(msg));
+
 
         return Resp.response(RespCode.PARAM_ERROR, msg);
     }
@@ -76,15 +93,14 @@ public class CustomExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Resp handlerBindException(BindException e) {
 
-        ObjectError objectError=   e.getAllErrors().stream().findFirst().get();
+        ObjectError objectError = e.getAllErrors().stream().findFirst().get();
         String msg = objectError.getDefaultMessage();
 
         if (!msg.contains(LocaleKit.MSG_PREFIX)) {
-            DefaultMessageSourceResolvable resolvable= (DefaultMessageSourceResolvable) objectError.getArguments()[0];
+            DefaultMessageSourceResolvable resolvable = (DefaultMessageSourceResolvable) objectError.getArguments()[0];
             String param = resolvable.getDefaultMessage();
-            msg = param + " " + msg;
-        }
-        log.info("参数验证异常 {}", LocaleKit.get(msg));
+            log.info("参数 {} 验证异常 {}", param, msg);
+        } else log.info("参数验证异常 {}", LocaleKit.get(msg));
 
         return Resp.response(RespCode.PARAM_ERROR, msg);
     }

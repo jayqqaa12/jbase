@@ -44,7 +44,7 @@ public class PushUtil {
         try {
             PushResult result = jpushClient.sendPush(payload);
 
-            LOG.info("push {} finish get push result {} " ,push,result);
+            LOG.info("push {} finish get push result {} ", push, result);
 
         } catch (APIConnectionException e) {
             LOG.error("Connection error. Should retry later. ", e);
@@ -64,6 +64,8 @@ public class PushUtil {
 
         JsonObject jsonObject = new JsonObject();
         push.getData().forEach((k, v) -> {
+            if (v == null) return;
+            
             if (v instanceof Boolean)
                 jsonObject.addProperty(k, (Boolean) v);
             else if (v instanceof String)
@@ -87,11 +89,11 @@ public class PushUtil {
                         .setAlert(push.getContent())
                         .addPlatformNotification(AndroidNotification.newBuilder()
                                 .setTitle(push.getTitle())
-                                .addExtra("data",jsonObject)
+                                .addExtra("data", jsonObject)
                                 .build())
                         .addPlatformNotification(IosNotification.newBuilder()
                                 .incrBadge(1)  //ios 角标的数字标示消息数量
-                                .addExtra("data",jsonObject)
+                                .addExtra("data", jsonObject)
                                 .build())
                         .build())
 

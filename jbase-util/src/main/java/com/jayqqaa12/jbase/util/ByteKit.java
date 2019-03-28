@@ -37,4 +37,13 @@ public class ByteKit {
         return (num & (mask));//111011
     }
 
+
+
+    public static int set(int num, int i,int value) {
+        if(value>0)return set1(num,i);
+        else return set0(num,i);
+    }
+
+
+
 }

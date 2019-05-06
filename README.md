@@ -3,16 +3,16 @@
 
 一些工具类和 常用框架的扩展
 
-常用工具类无依赖
+支持 spring-boot spring-cloud
 
 
-常用框架支持
+模块
+- jbase-cache 多级缓存组件
+- jbase-spring spring 扩展组件
+- jbase-util 常用工具类
 
-jfinal
 
-TODO
 
-spring  spring-boot
 
 
 

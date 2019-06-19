@@ -87,12 +87,11 @@ spain  是否自旋等待  默认true  如果false的话就会直接返回 否�
 
 5. 做为KEY的对象 一定要实现 序列化接口 和 equal hashcode方法 否则无法判断是否为相同的key 导致无法存取对象
 
+6.集群redis环境的分布式锁待验证
 
 
 ### redis 集群设置
 
-
-### 集成spring 
 
  
 

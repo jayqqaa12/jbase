@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -161,15 +160,7 @@ public class CacheProviderHolder {
         }
     }
 
-
-    public final static void batchSet(int level, String region, Map<?, ?> data, int seconds) {
-        if (data != null && !data.isEmpty()) {
-            Cache cache = getCache(level, region);
-            if (cache != null)
-                cache.batchSet(region, data, seconds);
-        }
-    }
-
+ 
 
     public final static Object exprie(int level, String region, Object key, int seconds) {
         if (key != null) {
@@ -198,10 +189,5 @@ public class CacheProviderHolder {
         return new ArrayList<>();
     }
 
-    public static <T> List<T> batchGet(int level, String region) {
-        Cache cache = getCache(level, region);
-        if (cache != null)
-            return cache.batchGet(region);
-        return new ArrayList<>();
-    }
+   
 }

@@ -3,7 +3,6 @@ package com.jayqqaa12.j2cache;
 import com.jayqqaa12.j2cache.util.CacheException;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  */
@@ -38,17 +37,7 @@ public interface Cache {
      */
     void set(String region, Object key, Object value, int seconds) throws CacheException;
 
-    void batchSet(String region, Map<?, ?> data, int seconds) throws CacheException;
-
-    /**
-     * batch get the hash
-     *
-     * @param region
-     * @return
-     * @throws CacheException
-     */
-    <T>  List<T>  batchGet(String region) throws CacheException;
-
+   
     /**
      * @param key Cache key
      *            Remove an item from the of

@@ -117,27 +117,8 @@ public  abstract class CacheChannel {
         }
     }
 
-
-    public void batchSet(int level, Map<?, ?> data) {
-        batchSet(level, CacheConstans.NUllRegion, data, CacheConstans.DEFAULT_TIME);
-    }
-
-    public void batchSet(int level, String region, Map<?, ?> data) {
-        batchSet(level, region, data, CacheConstans.DEFAULT_TIME);
-    }
-
-    public void batchSet(int level, String region, Map<?, ?> data, int seconds) {
-        if (data != null && !data.isEmpty()) {
-            CacheProviderHolder.batchSet(level, region, data, seconds);
-        }
-    }
-
-
-    public <T> List<T> batchGet(int level, String region) {
-
-        return CacheProviderHolder.batchGet(level, region);
-    }
-
+ 
+  
 
     /**
      * 写入缓存

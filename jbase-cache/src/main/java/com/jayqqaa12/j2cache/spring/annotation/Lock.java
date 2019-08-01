@@ -13,6 +13,7 @@ import java.lang.annotation.Target;
 public @interface Lock {
 
     String key();
+
     int lockExpire();
 
     /**
@@ -20,11 +21,5 @@ public @interface Lock {
      * @return
      */
     boolean spain() default true ;
-
-    /**
-     * 每次自旋等待时间
-     * @return
-     */
-    int spainWaitMillSec() default 20;
 
 }

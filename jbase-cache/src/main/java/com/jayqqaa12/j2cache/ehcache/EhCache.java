@@ -23,7 +23,6 @@ import net.sf.ehcache.Element;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class EhCache implements Cache {
 
@@ -88,30 +87,7 @@ public class EhCache implements Cache {
         }
     }
 
-    /**
-     * ehcache 批量写入跟平常的一样
-     * @param region
-     * @param data
-     * @param seconds
-     * @throws CacheException
-     */
-    @Override
-    public void batchSet(String region, Map<?, ?> data, int seconds) throws CacheException {
-
-        data.forEach((k,v)->{
-            set(region,k,v,seconds);
-        });
-    }
-
-    @Override
-    public <T> List<T> batchGet(String region) throws CacheException {
-        List list = new ArrayList();
-        getCache(region).getAll(keys(region)).forEach((k, v) -> {
-            if (v != null) list.add(v.getObjectValue());
-        });
-        return list;
-    }
-
+   
 
     @Override
     public void remove(String region, Object key) throws CacheException {

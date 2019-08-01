@@ -166,54 +166,7 @@ public class RedisCache implements Cache {
     }
 
 
-    @Override
-    public void batchSet(String region, Map<?, ?> data, int seconds) throws CacheException {
-
-        //FIXME 
-//        if (data == null || data.isEmpty())
-//            return;
-//        else if (region == null) {
-//            bastchSet(data, seconds);
-//        } else {
-//            try  {
-//                Pipeline p =  reidsClient.get().pipelined();
-//                for (Object k : data.keySet()) {
-//                    if (k == null) continue;
-//                    Object v = data.get(k);
-//                    if (v == null) remove(region, k);
-//                    p.hset(region.getBytes(), getHashKeyBytes(k), SerializationUtils.serialize(v));
-//                }
-//
-//                p.sync();
-//            } catch (Exception e) {
-//                throw new CacheException(e);
-//            }
-//        }
-    }
-
-    @Override
-    public <T> List<T> batchGet(String region) throws CacheException {
-
-        List<T> list = new ArrayList();
-        if (region == null) return list;
-//
-//        try  {
-//            reidsClient.get().hgetAll(region).forEach((k, v) -> {
-//                Object obj = null;
-//                try {
-//                    obj = SerializationUtils.deserialize(v.getBytes());
-//                } catch (IOException e) {
-//                    throw new CacheException(e);
-//                }
-//                if (obj != null) list.add((T) obj);
-//            });
-//        } catch (Exception e) {
-//            throw new CacheException(e);
-//        }
-
-        return list;
-    }
-
+   
 
     /**
      * 设置超时时间
@@ -242,27 +195,7 @@ public class RedisCache implements Cache {
         }
     }
 
-    public void bastchSet(Map<?, ?> data, int seconds) {
 
-        if (data == null || data.isEmpty()) return;
-//        else {
-//            try (Jedis cache = RedisConnConfig.getPool().getResource()) {
-//                Pipeline p = cache.pipelined();
-//                for (Object k : data.keySet()) {
-//                    if (k == null) continue;
-//                    Object v = data.get(k);
-//                    if (v == null) remove(k);
-//                    //为缓解缓存击穿 l2 缓存时间增加一点时间
-//                    if (seconds > 0)
-//                        p.setex(getKeyBytes(k), (int) (seconds * 1.1), SerializationUtils.serialize(v));
-//                    else p.set(getKeyBytes(k), SerializationUtils.serialize(v));
-//                }
-//                p.sync();
-//            } catch (Exception e) {
-//                throw new CacheException(e);
-//            }
-//        }
-    }
 
 
     /**

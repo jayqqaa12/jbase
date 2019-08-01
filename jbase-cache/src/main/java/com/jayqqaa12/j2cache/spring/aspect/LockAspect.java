@@ -43,7 +43,7 @@ public class LockAspect implements Ordered {
             key =LOCK+ keyParser.buildKey(lock.key(), invocation).toString();
 
             if (lock.spain()) {
-                getLock = j2Cache.lock().spinLock(key, lock.lockExpire(), lock.spainWaitMillSec());
+                getLock = j2Cache.lock().spinLock(key, lock.lockExpire() );
             } else {
                 getLock = j2Cache.lock().isLock(key, lock.lockExpire());
             }

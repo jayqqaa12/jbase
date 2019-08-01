@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.Map;
 
 import static com.jayqqaa12.j2cache.CacheConstans.LEVEL1;
 import static com.jayqqaa12.j2cache.CacheConstans.LEVEL2;
@@ -127,14 +126,16 @@ public class J2Cache {
         try {
             Object obj = cache().get(region, key);
             if (obj == null) {
-//                if(lock)lock().spinLock(region+key,100);
-                obj = data.load();
-                cache().set(region, key, obj, sec, false);
+                if (lock) lock().spinLock(region + key, 999);
+                obj = cache().get(region, key);
+                if(obj==null){
+                    obj = data.load();
+                    cache().set(region, key, obj, sec, false);
+                }
             }
-
             return (T) obj;
         } finally {
-//            if(lock)lock().unlock(region+key);
+            if (lock) lock().unlock(region + key);
         }
     }
 
@@ -235,46 +236,6 @@ public class J2Cache {
 
     public void set(String region, Object key, Object value) {
         cache().set(region, key, value, true);
-    }
-
-
-    public void batchSet(Map<?, ?> data) {
-
-        cache().batchSet(LEVEL1, data);
-        cache().batchSet(LEVEL2, data);
-    }
-
-    public void batchSet(String region, Map<?, ?> data) {
-        cache().batchSet(LEVEL1, region, data);
-        cache().batchSet(LEVEL2, region, data);
-    }
-
-    public void batchSet(String region, Map<?, ?> data, int seconds) {
-        cache().batchSet(LEVEL1, region, data, seconds);
-        cache().batchSet(LEVEL2, region, data, seconds);
-    }
-
-    public void batchSet2(Map<?, ?> data) {
-        cache().batchSet(LEVEL2, data);
-    }
-
-    public void batchSet2(String region, Map<?, ?> data) {
-        cache().batchSet(LEVEL2, region, data);
-    }
-
-
-    public void batchSet2(String region, Map<?, ?> data, int seconds) {
-        cache().batchSet(LEVEL2, region, data, seconds);
-    }
-
-
-    public <T> List<T> batchGet1(String region) {
-
-        return cache().batchGet(LEVEL1, region);
-    }
-
-    public <T> List<T> batchGet2(String region) {
-        return cache().batchGet(LEVEL2, region);
     }
 
 

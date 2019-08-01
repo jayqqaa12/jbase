@@ -1,14 +1,14 @@
 package com.jayqqaa12.j2cache.spring.boot.config;
 
 import com.jayqqaa12.j2cache.J2Cache;
+import com.jayqqaa12.j2cache.spring.aspect.CacheAspect;
+import com.jayqqaa12.j2cache.spring.aspect.CacheClearAspect;
+import com.jayqqaa12.j2cache.spring.aspect.LockAspect;
 import com.jayqqaa12.j2cache.util.ConfigKit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.*;
 
 import java.util.Properties;
 
@@ -18,7 +18,13 @@ import java.util.Properties;
 @Configuration
 @EnableConfigurationProperties({SpringBootRedisConfig.class})
 @EnableAspectJAutoProxy(exposeProxy = true, proxyTargetClass = true)
-@ComponentScan("com.jayqqaa12.j2cache.spring")
+@Import({
+        CacheAspect.class,
+        CacheClearAspect.class,
+        LockAspect.class,
+        SpringBootRedisConfig.class
+
+})
 public class J2CacheAutoConfig {
 
     @Autowired

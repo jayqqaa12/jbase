@@ -1,10 +1,8 @@
 package com.jayqqaa12.jbase.spring.boot.config;
 
-import com.jayqqaa12.jbase.spring.boot.base.FastAmqpConverter;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -12,10 +10,10 @@ import org.springframework.context.annotation.Configuration;
 @EnableRabbit
 public class RabbitConfig {
 
-    @Bean
-    public FastAmqpConverter fastAmqpConverter() {
-        return new FastAmqpConverter();
-    }
+//    @Bean
+//    public FastAmqpConverter fastAmqpConverter() {
+//        return new FastAmqpConverter();
+//    }
 
     //
 //

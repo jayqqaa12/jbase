@@ -1,6 +1,7 @@
 package com.jayqqaa12.j2cache.spring.boot.config;
 
 import com.jayqqaa12.j2cache.J2Cache;
+import com.jayqqaa12.j2cache.spring.SpelKeyGenerator;
 import com.jayqqaa12.j2cache.spring.aspect.CacheAspect;
 import com.jayqqaa12.j2cache.spring.aspect.CacheClearAspect;
 import com.jayqqaa12.j2cache.spring.aspect.LockAspect;
@@ -22,6 +23,7 @@ import java.util.Properties;
         CacheAspect.class,
         CacheClearAspect.class,
         LockAspect.class,
+        SpelKeyGenerator.class,
         SpringBootRedisConfig.class
 
 })

@@ -8,7 +8,6 @@ import com.jayqqaa12.j2cache.spring.annotation.Cache;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -28,11 +27,9 @@ public class CacheAspect {
     private J2Cache j2Cache;
 
 
-    @Pointcut("@annotation(com.jayqqaa12.j2cache.spring.annotation.Cache)")
-    public void aspect() {
-    }
 
-    @Around("aspect()&&@annotation(cache)")
+
+    @Around("@annotation(cache)")
     public Object interceptor(ProceedingJoinPoint invocation, Cache cache) throws Throwable {
         Object result = null;
         Object key = null;

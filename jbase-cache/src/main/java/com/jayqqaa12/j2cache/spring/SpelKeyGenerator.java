@@ -1,7 +1,7 @@
 package com.jayqqaa12.j2cache.spring;
 
 import org.apache.commons.lang3.StringUtils;
-import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.core.ParameterNameDiscoverer;
@@ -25,7 +25,7 @@ public class SpelKeyGenerator {
      * @return
      * @throws NoSuchMethodException
      */
-    public Object buildKey(String key, ProceedingJoinPoint invocation) throws NoSuchMethodException {
+    public Object buildKey(String key, JoinPoint invocation) throws NoSuchMethodException {
 
         if (key.indexOf("#") == -1) {// 如果不是表达式，直接返回字符串
             return key;

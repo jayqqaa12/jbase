@@ -12,7 +12,7 @@ import static com.jayqqaa12.j2cache.CacheConstans.LEVEL1;
 import static com.jayqqaa12.j2cache.CacheConstans.LEVEL2;
 
 
-public  abstract class CacheChannel {
+public abstract class CacheChannel {
     private final static Logger log = LoggerFactory.getLogger(CacheChannel.class);
 
 
@@ -44,6 +44,8 @@ public  abstract class CacheChannel {
      * cached object or null
      */
     public Object get(String region, Object key) {
+
+
         Object obj = null;
         if (key != null) {
             obj = CacheProviderHolder.get(LEVEL1, region, key);
@@ -55,6 +57,8 @@ public  abstract class CacheChannel {
                 }
             }
         }
+        log.debug("cache region={} key={} get {} ", region, key, obj);
+
         return obj;
     }
 
@@ -83,6 +87,9 @@ public  abstract class CacheChannel {
         if (key != null) {
             obj = CacheProviderHolder.get(level, region, key);
         }
+
+        log.debug("cache region={} key={} get {} ", region, key, obj);
+
         return obj;
     }
 
@@ -114,11 +121,12 @@ public  abstract class CacheChannel {
                 CacheProviderHolder.set(LEVEL1, region, key, value, seconds);
                 CacheProviderHolder.set(LEVEL2, region, key, value, seconds);
             }
+
+            log.debug("cache  region={} key={} set {} ", region, key, value);
+
         }
     }
 
- 
-  
 
     /**
      * 写入缓存
@@ -178,6 +186,9 @@ public  abstract class CacheChannel {
                 if (notify) sendEvictCmd(region, key);// 清除原有的一级缓存的内容
                 CacheProviderHolder.set(level, region, key, value, seconds);
             }
+
+            log.debug("cache  region={} key={} set {} ", region, key, value);
+
         }
     }
 
@@ -214,6 +225,9 @@ public  abstract class CacheChannel {
         sendEvictCmd(CacheConstans.NUllRegion, key);
         CacheProviderHolder.remove(LEVEL1, CacheConstans.NUllRegion, key);
         CacheProviderHolder.remove(LEVEL2, CacheConstans.NUllRegion, key);
+
+        log.debug("cache  key={} remove {} ", key);
+
     }
 
     /**
@@ -248,6 +262,9 @@ public  abstract class CacheChannel {
         CacheProviderHolder.remove(LEVEL1, region, key); // 删除一级缓存
         CacheProviderHolder.remove(LEVEL2, region, key); // 删除二级缓存
         sendEvictCmd(region, key); // 发送广播
+
+        log.debug("cache region={} key={} remove {} ", region, key);
+
     }
 
 
@@ -292,14 +309,12 @@ public  abstract class CacheChannel {
      * @param region : Cache region name
      * @param key    : of key
      */
-    public abstract void sendEvictCmd(String region, Object key)  ;
+    public abstract void sendEvictCmd(String region, Object key);
 
     /**
      * 关闭到通道的连接
      */
-    public abstract void close() ;
-
-
+    public abstract void close();
 
 
 }

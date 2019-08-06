@@ -33,7 +33,7 @@
 
         <jbase.util.version>2.2.0</jbase.util.version>
         <jbase.spring.version>2.2.0</jbase.spring.version>
-        <jbase.cache.version>2.2.0</jbase.cache.version>
+        <jbase.cache.version>2.2.6</jbase.cache.version>
 
         <fastjson-version>1.2.38</fastjson-version>
         <mybatisplus-spring-boot-starter.version>3.0.4</mybatisplus-spring-boot-starter.version>

@@ -23,10 +23,6 @@ public class CacheProviderHolder {
     private static CacheProvider l2Provider;
 
 
-
-
-
-
     protected synchronized static void init(Properties props) {
         try {
             if (l1Provider != null && l2Provider != null) return;
@@ -90,8 +86,9 @@ public class CacheProviderHolder {
         if (key != null) {
             Cache cache = getCache(level, region);
             if (cache != null)
-                return cache.get(region, key);
+               return cache.get(region, key);
         }
+
         return null;
     }
 
@@ -160,7 +157,6 @@ public class CacheProviderHolder {
         }
     }
 
- 
 
     public final static Object exprie(int level, String region, Object key, int seconds) {
         if (key != null) {
@@ -189,5 +185,5 @@ public class CacheProviderHolder {
         return new ArrayList<>();
     }
 
-   
+
 }

@@ -1,5 +1,6 @@
 package com.jayqqaa12.j2cache;
 
+import com.alibaba.fastjson.parser.ParserConfig;
 import com.jayqqaa12.j2cache.redis.RedisPubSubClusterPolicy;
 import com.jayqqaa12.j2cache.util.CacheException;
 import com.jayqqaa12.j2cache.util.ConfigKit;
@@ -33,6 +34,8 @@ public class J2Cache {
     }
 
     private void init() {
+        ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
+
         CacheProviderHolder.init(ConfigKit.initFromConfig());
         RedisPubSubClusterPolicy policy = new RedisPubSubClusterPolicy(CacheConstans.REDIS_CHANNEL, CacheProviderHolder.getRedisClient());
         policy.connect();

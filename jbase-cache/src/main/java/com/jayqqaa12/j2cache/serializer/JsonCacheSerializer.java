@@ -23,7 +23,8 @@ public class JsonCacheSerializer implements CacheSerializer  {
 			Feature.AutoCloseSource, Feature.InternFieldNames,
 			Feature.AllowUnQuotedFieldNames, Feature.AllowSingleQuotes,
 			Feature.AllowArbitraryCommas, Feature.SortFeidFastMatch,
-			Feature.IgnoreNotMatch };
+			Feature.IgnoreNotMatch
+	};
 
 	@Override
 	public byte[] serialize(Object t)  {

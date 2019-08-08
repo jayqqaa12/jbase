@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 public class RedisCache implements Cache {
@@ -185,7 +184,7 @@ public class RedisCache implements Cache {
             try {
                 //为缓解缓存击穿 l2 缓存时间增加一点时间
                 if (seconds > 0)
-                    reidsClient.get().setex(getKeyBytes(key), (int) (seconds * 1.1), SerializationUtils.serialize(value));
+                    reidsClient.get().setex(getKeyBytes(key),  (seconds ), SerializationUtils.serialize(value));
                 else reidsClient.get().set(getKeyBytes(key), SerializationUtils.serialize(value));
             } catch (Exception e) {
                 throw new CacheException(e);

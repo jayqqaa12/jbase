@@ -4,6 +4,7 @@ package com.jayqqaa12.j2cache.spring.aspect;
 import com.jayqqaa12.j2cache.J2Cache;
 import com.jayqqaa12.j2cache.spring.SpelKeyGenerator;
 import com.jayqqaa12.j2cache.spring.annotation.CacheClear;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
  */
 @Aspect
 @Service
+@Slf4j
 public class CacheClearAspect {
 
     @Autowired
@@ -43,6 +45,11 @@ public class CacheClearAspect {
         j2Cache.remove(region, key);
         Object result = invocation.proceed();
         j2Cache.remove(region, key);
+
+
+        if (key.toString().contains("null")) {
+            log.info("cache remove but key is null  key={},method={}",key,invocation.toString());
+        }
 
         return result;
 

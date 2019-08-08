@@ -50,7 +50,6 @@ public abstract class CacheChannel {
         if (key != null) {
             obj = CacheProviderHolder.get(LEVEL1, region, key);
             if (obj == null) {
-                log.debug("can't found level 1 of use level 2 ");
                 obj = CacheProviderHolder.get(LEVEL2, region, key);
                 if (obj != null) {
                     CacheProviderHolder.set(LEVEL1, region, key, obj, CacheConstans.DEFAULT_TIME);

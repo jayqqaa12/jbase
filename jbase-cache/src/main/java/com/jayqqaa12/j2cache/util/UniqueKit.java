@@ -8,8 +8,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 
 /**
  * Created by 12 on 2017/7/17.
@@ -19,7 +17,6 @@ public class UniqueKit {
     public static final int JVM_PID = getJvmPid();
 
     public static final String MAC_ADDR = getLocalMac();
-
 
 
     private static final int getJvmPid() {
@@ -57,11 +54,9 @@ public class UniqueKit {
                 }
             }
             return sb.toString();
-        } catch (UnknownHostException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (SocketException e) {
-            e.printStackTrace();
+            return "";
         }
-        return "";
     }
 }

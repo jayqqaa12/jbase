@@ -4,6 +4,7 @@ package com.jayqqaa12.jbase.spring.boot.base;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Maps;
+import org.springframework.util.StringUtils;
 
 import java.util.Map;
 
@@ -27,8 +28,11 @@ public class Query<T> extends Page<T> {
 
         Boolean isAsc = Boolean.parseBoolean(params.getOrDefault(IS_ASC, Boolean.TRUE).toString());
 
-        if (isAsc) this.setAsc(orderByField);
-        else this.setDesc(orderByField);
+        if(!StringUtils.isEmpty(orderByField)) {
+            if (isAsc) this.setAsc(orderByField);
+            else this.setDesc(orderByField);
+        }
+        
 
         params.remove(PAGE);
         params.remove(LIMIT);

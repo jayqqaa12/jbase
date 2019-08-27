@@ -3,6 +3,7 @@ package com.jayqqaa12.jbase.spring.mvc;
 import com.jayqqaa12.j2cache.J2Cache;
 import com.jayqqaa12.jbase.spring.mvc.i18n.LocaleKit;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -15,6 +16,7 @@ import java.util.Locale;
  * @create: 2019-01-21 10:05
  **/
 @Component
+@ConditionalOnClass(J2Cache.class)
 public class LangHelper {
 
 

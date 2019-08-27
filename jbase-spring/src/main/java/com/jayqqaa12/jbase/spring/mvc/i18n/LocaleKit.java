@@ -6,9 +6,7 @@ import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.util.PropertyPlaceholderHelper;
 import org.springframework.util.StringUtils;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -91,11 +89,12 @@ public class LocaleKit {
         return locale == null ? DEFAULT_LOCALE : locale;
     }
 
-    public static Locale getLocale(HttpServletRequest request) {
-        Locale locale = RequestContextUtils.getLocale(request);
 
-        return locale == null ? DEFAULT_LOCALE : locale;
-    }
+//    public static Locale getLocale(HttpServletRequest request) {
+//        Locale locale = RequestContextUtils.getLocale(request);
+//
+//        return locale == null ? DEFAULT_LOCALE : locale;
+//    }
 
     public static void setDefaultLocale(Locale locale){
         DEFAULT_LOCALE = locale;

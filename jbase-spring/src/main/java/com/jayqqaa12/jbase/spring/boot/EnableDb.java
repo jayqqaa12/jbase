@@ -1,7 +1,6 @@
 package com.jayqqaa12.jbase.spring.boot;
 
 
-import com.jayqqaa12.jbase.spring.boot.base.FlywayStrategy;
 import com.jayqqaa12.jbase.spring.boot.config.MybatisConfig;
 import com.jayqqaa12.jbase.spring.boot.config.MybatisPlusConfig;
 import org.springframework.context.annotation.Import;
@@ -15,7 +14,7 @@ import java.lang.annotation.*;
 @Import({
         MybatisPlusConfig.class,
         MybatisConfig.class,
-        FlywayStrategy.class
+//        FlywayStrategy.class
 })
 @EnableTransactionManagement
 public @interface EnableDb {

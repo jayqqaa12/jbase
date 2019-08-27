@@ -15,6 +15,10 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
+
+/**
+ * 跟dubbo有冲突
+ */
 @Configurable
 public class RestConfig {
 

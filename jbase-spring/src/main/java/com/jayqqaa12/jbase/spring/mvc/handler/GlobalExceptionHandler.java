@@ -23,10 +23,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             switch (status) {
                 case NOT_FOUND:
                     body = Resp.response(RespCode.RESOURCE_NOT_FOUND);
-                    break;
-                case BAD_REQUEST:
-                    body = Resp.response(RespCode.BAD_REQ);
-                    break;
+                    break; 
                 case INTERNAL_SERVER_ERROR:
                     body = Resp.response(RespCode.SERVER_ERROR);
                     break;

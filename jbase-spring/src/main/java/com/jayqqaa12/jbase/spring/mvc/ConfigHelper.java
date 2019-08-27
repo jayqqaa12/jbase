@@ -6,6 +6,7 @@ import com.jayqqaa12.j2cache.J2Cache;
 import com.jayqqaa12.jbase.spring.boot.base.Query;
 import com.jayqqaa12.jbase.util.Ret;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
  * @create: 2019-01-02 15:16
  **/
 @Component
+@ConditionalOnClass(J2Cache.class)
 public class ConfigHelper {
 
     public static final String KEY_PRE = "config";

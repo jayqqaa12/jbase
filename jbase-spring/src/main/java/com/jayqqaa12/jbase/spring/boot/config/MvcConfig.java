@@ -1,7 +1,5 @@
 package com.jayqqaa12.jbase.spring.boot.config;
 
-import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import com.jayqqaa12.jbase.spring.mvc.converter.FastJsonConverter;
 import com.jayqqaa12.jbase.spring.mvc.converter.OrdinalToEnumConverterFactory;
 import com.jayqqaa12.jbase.spring.mvc.handler.ApiVersionRequestMappingHandlerMapping;
 import com.jayqqaa12.jbase.spring.mvc.handler.CustomExceptionHandler;
@@ -16,14 +14,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.format.FormatterRegistry;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
-import org.springframework.web.filter.HttpPutFormContentFilter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
@@ -31,16 +26,22 @@ import java.util.List;
 import java.util.Locale;
 
 @Configuration
-public class MvcConfig extends WebMvcConfigurationSupport {
+public class MvcConfig  implements WebMvcConfigurer {
 
 
-    @Bean
-    public FastJsonHttpMessageConverter fastJsonHttpMessageConverters() {
-
-
-
-        return new FastJsonConverter();
-    }
+    //fastjson 出现不兼容的情况
+//    @Bean
+//    public FastJsonHttpMessageConverter fastJsonHttpMessageConverters() {
+//
+//        return new FastJsonConverter();
+//    }
+//    @Override
+//    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+//
+//        converters.removeIf(httpMessageConverter -> httpMessageConverter instanceof MappingJackson2HttpMessageConverter);
+//
+//        converters.add(fastJsonHttpMessageConverters());
+//    }
 
 
     @Bean
@@ -59,20 +60,8 @@ public class MvcConfig extends WebMvcConfigurationSupport {
         return new ApiVersionRequestMappingHandlerMapping();
     }
 
-//    @Bean
-//    public ServletRegistrationBean dispatcherRegistration(DispatcherServlet dispatcherServlet) {
-//        ServletRegistrationBean registration = new ServletRegistrationBean(dispatcherServlet);
-//        registration.addUrlMappings("/");
-//        return registration;
-//    }
 
-    @Override
-    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
 
-        converters.removeIf(httpMessageConverter -> httpMessageConverter instanceof MappingJackson2HttpMessageConverter);
-
-        converters.add(fastJsonHttpMessageConverters());
-    }
 
     @Bean
     public LocaleResolver localeResolver() {
@@ -116,17 +105,15 @@ public class MvcConfig extends WebMvcConfigurationSupport {
     }
 
 
-    @Override
-    protected void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
         argumentResolvers.add(new PageableHandlerMethodArgumentResolver());
     }
 
 
-    @Bean
-    public HttpPutFormContentFilter putFilter() {
-
-        return new HttpPutFormContentFilter();
-    }
+//    @Bean
+//    public HttpPutFormContentFilter putFilter() {
+//        return new HttpPutFormContentFilter();
+//    }
 
 
 //    @Override
@@ -138,7 +125,7 @@ public class MvcConfig extends WebMvcConfigurationSupport {
 
 
     @Override
-    protected void addInterceptors(InterceptorRegistry registry) {
+    public void addInterceptors(InterceptorRegistry registry) {
         //以后改为权限控制 由api-gateway控制
 //        registry.addInterceptor(new AuthInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(new EffectInterceptor()).addPathPatterns("/**");
@@ -148,7 +135,7 @@ public class MvcConfig extends WebMvcConfigurationSupport {
     }
 
     @Override
-    protected void addFormatters(FormatterRegistry registry) {
+    public void addFormatters(FormatterRegistry registry) {
         registry.removeConvertible(String.class, Enum.class);
         registry.addConverterFactory(new OrdinalToEnumConverterFactory());
     }

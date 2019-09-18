@@ -1,9 +1,9 @@
 package com.jayqqaa12.jbase.spring.boot.config;
 
 import com.jayqqaa12.jbase.spring.mvc.converter.OrdinalToEnumConverterFactory;
-import com.jayqqaa12.jbase.spring.mvc.handler.ApiVersionRequestMappingHandlerMapping;
-import com.jayqqaa12.jbase.spring.mvc.handler.CustomExceptionHandler;
-import com.jayqqaa12.jbase.spring.mvc.handler.GlobalExceptionHandler;
+import com.jayqqaa12.jbase.spring.mvc.version.ApiVersionRequestMappingHandlerMapping;
+import com.jayqqaa12.jbase.spring.mvc.exception.CustomExceptionHandler;
+import com.jayqqaa12.jbase.spring.mvc.exception.GlobalExceptionHandler;
 import com.jayqqaa12.jbase.spring.mvc.i18n.LocaleKit;
 import com.jayqqaa12.jbase.spring.mvc.inteceptor.EffectInterceptor;
 import com.jayqqaa12.jbase.spring.mvc.inteceptor.HeaderLocaleChangeInterceptor;

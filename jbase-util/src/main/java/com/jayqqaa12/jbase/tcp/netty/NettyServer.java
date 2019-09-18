@@ -37,10 +37,10 @@ public abstract class NettyServer {
                 }
             });
             channel = b.bind(port).sync().channel();
-            logger.info("行情发送服务器 初始化完成");
+            logger.info(" netty server port {} start ", port);
 
         } catch (InterruptedException e) {
-            logger.warn("行情发送服务器 出错...", e);
+            logger.warn(" netty server start {} error", port, e);
         }
     }
 
@@ -48,7 +48,7 @@ public abstract class NettyServer {
     protected abstract void addChannelHandler(ChannelPipeline pipeline);
 
 
-    public void destroy() throws Exception {
+    public void destroy() {
         try {
 
 

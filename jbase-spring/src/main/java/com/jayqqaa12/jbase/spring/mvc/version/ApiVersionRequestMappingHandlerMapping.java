@@ -1,7 +1,6 @@
-package com.jayqqaa12.jbase.spring.mvc.handler;
+package com.jayqqaa12.jbase.spring.mvc.version;
 
 
-import com.jayqqaa12.jbase.spring.mvc.annotation.ApiVersion;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
@@ -38,13 +37,10 @@ public class ApiVersionRequestMappingHandlerMapping extends RequestMappingHandle
         if (apiVersion == null) {
             return null;
         }
+        
+        return new ApiVersionCondition(apiVersion.model(), apiVersion.value()
+                , getRangeVersion(apiVersion.compatibly()), getRangeVersion(apiVersion.incompatible()));
 
-        ApiVersionCondition condition = new ApiVersionCondition(apiVersion.model(), apiVersion.value());
-
-        condition.setCompatibly(getRangeVersion(apiVersion.compatibly()));
-        condition.setIncompatibly(getRangeVersion(apiVersion.incompatible()));
-
-        return condition;
     }
 
     private ApiVersionCondition.CompareVersion getRangeVersion(String rangeVersion) {
@@ -105,7 +101,7 @@ public class ApiVersionRequestMappingHandlerMapping extends RequestMappingHandle
     }
 
     public String[] toStringArray(Collection<String> collection) {
-        return collection == null ? null :  collection.toArray(new String[collection.size()]);
+        return collection == null ? null : collection.toArray(new String[collection.size()]);
     }
 
 }

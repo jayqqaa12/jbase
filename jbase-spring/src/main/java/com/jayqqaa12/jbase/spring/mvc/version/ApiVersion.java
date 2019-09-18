@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.spring.mvc.annotation;
+package com.jayqqaa12.jbase.spring.mvc.version;
 
 
 import org.springframework.web.bind.annotation.Mapping;
@@ -7,8 +7,6 @@ import java.lang.annotation.*;
 
 /**
  * 所有的接口默认是使用  兼容模式  在进行处理。
- * 如果客户端的版本 大于 指定版本，会检查不兼容的版本，如果是那么久返回404 ；
- * 如果客户端的版本 小于 指定版本，会检查
  */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)

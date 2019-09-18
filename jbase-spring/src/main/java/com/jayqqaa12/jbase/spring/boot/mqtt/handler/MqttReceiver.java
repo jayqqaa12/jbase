@@ -64,7 +64,7 @@ public class MqttReceiver {
                     }
                 }
             } catch (Exception e) {
-                log.info("mqtt handler error {}", e);
+                log.info("mqtt exception error {}", e);
             }
         };
     }

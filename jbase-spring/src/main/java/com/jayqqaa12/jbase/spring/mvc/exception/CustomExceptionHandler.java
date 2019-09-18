@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.spring.mvc.handler;
+package com.jayqqaa12.jbase.spring.mvc.exception;
 
 import com.alibaba.fastjson.JSONException;
 import com.jayqqaa12.jbase.exception.LockException;

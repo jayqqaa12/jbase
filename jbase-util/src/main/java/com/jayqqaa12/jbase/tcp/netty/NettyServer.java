@@ -36,12 +36,18 @@ public abstract class NettyServer {
                     addChannelHandler(pipeline);
                 }
             });
+            config(b);
+
             channel = b.bind(port).sync().channel();
             logger.info(" netty server port {} start ", port);
 
         } catch (InterruptedException e) {
             logger.warn(" netty server start {} error", port, e);
         }
+    }
+
+    protected void config(ServerBootstrap bootstrap) {
+
     }
 
 

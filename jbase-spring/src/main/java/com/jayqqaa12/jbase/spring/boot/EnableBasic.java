@@ -1,7 +1,6 @@
 package com.jayqqaa12.jbase.spring.boot;
 
 
-import com.jayqqaa12.jbase.spring.boot.config.RabbitConfig;
 import com.jayqqaa12.jbase.spring.helper.ProfileHelper;
 import com.jayqqaa12.jbase.spring.mvc.ConfigHelper;
 import com.jayqqaa12.jbase.spring.mvc.LangHelper;
@@ -17,7 +16,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Import({
-        RabbitConfig.class,
         ProfileHelper.class ,
         ConfigHelper.class,
         LangHelper.class,

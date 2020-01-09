@@ -15,6 +15,8 @@ public abstract class RespCode {
     public static final int PARAM_ERROR=1102; //参数异常
     public static final int RETRY_ERROR =1103; // 重试异常
     public static final int RETRY_LOCK_ERROR=1104;// 幂等性异常
+    public static final int SERVER_BLOCK=1105;//服务限流
+    public static final int SERVER_DEGRADE=1106;//服务降级
 
     
     // 1300-1399 请求相关异常

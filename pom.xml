@@ -32,9 +32,9 @@
         <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
 
         <zookeeper-version>3.4.6</zookeeper-version>
-        <jbase.util.version>2.2.3</jbase.util.version>
-        <jbase.spring.version>2.2.12</jbase.spring.version>
-        <jbase.cache.version>2.2.16</jbase.cache.version>
+        <jbase.util.version>2.2.4</jbase.util.version>
+        <jbase.spring.version>2.2.14</jbase.spring.version>
+        <jbase.cache.version>2.2.17</jbase.cache.version>
 
         <fastjson-version>1.2.59</fastjson-version>
         <mybatisplus-spring-boot-starter.version>3.0.4</mybatisplus-spring-boot-starter.version>

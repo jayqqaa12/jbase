@@ -1,6 +1,5 @@
 package com.jayqqaa12.jbase.tcp.netty;
 
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.timeout.IdleStateEvent;
@@ -17,9 +16,12 @@ public class NettyHeartHandler extends ChannelInboundHandlerAdapter {
 
     private static final Logger LOG = LoggerFactory.getLogger(NettyHeartHandler.class);
     private final HeartMsg heartMsg;
+    private final Integer timeoutSecond ;
 
+    public NettyHeartHandler(HeartMsg heartMsg,Integer timeoutSecond) {
 
-    public NettyHeartHandler(HeartMsg heartMsg) {
+        this.timeoutSecond=timeoutSecond;
+
         this.heartMsg = heartMsg;
     }
 
@@ -31,7 +33,7 @@ public class NettyHeartHandler extends ChannelInboundHandlerAdapter {
             IdleStateEvent e = (IdleStateEvent) evt;
             switch (e.state()) {
                 case READER_IDLE:
-                    onIdeled(ctx.channel());
+                    onIdeled(ctx);
                     break;
                 case WRITER_IDLE:
 
@@ -45,20 +47,18 @@ public class NettyHeartHandler extends ChannelInboundHandlerAdapter {
     }
 
 
-    private void onIdeled(Channel channel) {
+    private void onIdeled(ChannelHandlerContext ctx) {
 
-        Long lastTime = (Long) channel.attr(AttributeKey.valueOf("heart")).get();
+        Long lastTime = (Long) ctx.channel().attr(AttributeKey.valueOf("heart")).get();
 
-
-        if (lastTime != null && System.currentTimeMillis() - lastTime >= 30 * 1000) {
-
-            LOG.info("wait for heart timeout close the channel {}", channel);
-            channel.attr(AttributeKey.valueOf("heart")).set(null);
-            channel.close();
+        if (lastTime != null && System.currentTimeMillis() - lastTime >= timeoutSecond * 1000) {
+            LOG.info("wait for heart timeout close the channel {}", ctx);
+            ctx.channel().attr(AttributeKey.valueOf("heart")).set(null);
+            ctx.close();
         } else {
-            LOG.info("send heart .. {}", channel);
-            if (lastTime == null) channel.attr(AttributeKey.valueOf("heart")).set(System.currentTimeMillis());
-            channel.writeAndFlush(heartMsg.msg());
+            LOG.info("send heart .. {}", ctx);
+            if (lastTime == null) ctx.channel().attr(AttributeKey.valueOf("heart")).set(System.currentTimeMillis());
+            ctx.writeAndFlush(heartMsg.msg());
         }
     }
 

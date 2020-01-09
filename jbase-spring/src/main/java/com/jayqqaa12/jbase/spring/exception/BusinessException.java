@@ -15,6 +15,14 @@ public class BusinessException extends RuntimeException {
         this(code, LocaleKit.MSG_PREFIX + code, null);
     }
 
+
+    public BusinessException(int code, String msg) {
+        super(msg);
+        this.code = code;
+        this.msg = msg;
+    }
+    
+
     public BusinessException(int code, String msg, Throwable e) {
 
         super(msg, e);

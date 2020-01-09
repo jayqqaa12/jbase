@@ -21,7 +21,7 @@ public abstract class NettyClient {
 
     private static final Logger LOG = LoggerFactory.getLogger(NettyClient.class);
 
-    private volatile boolean start ;
+    private volatile boolean start;
     protected NioEventLoopGroup workGroup;
     protected Channel channel;
     protected Bootstrap bootstrap;
@@ -43,7 +43,7 @@ public abstract class NettyClient {
                 channel = futureListener.channel();
                 LOG.info("Connect to server successfully!");
             } else {
-                LOG.info("Failed to connect to server, try connect after 10s {}",futureListener.cause());
+                LOG.info("Failed to connect to server, try connect after 10s {}", futureListener.cause());
                 futureListener.channel().eventLoop().schedule(() -> {
                     doConnect();
                 }, 10, TimeUnit.SECONDS);
@@ -54,24 +54,31 @@ public abstract class NettyClient {
 
     public void start(ChannelInitializer<SocketChannel> channelInitializer) {
         try {
-            start=true;
+            start = true;
             LOG.info("start netty client");
             bootstrap = new Bootstrap();
             workGroup = new NioEventLoopGroup(2);
             bootstrap.group(workGroup)
                     .channel(NioSocketChannel.class)
                     .handler(channelInitializer);
+            config(bootstrap);
+
             doConnect();
 
         } catch (Exception e) {
-            LOG.info("start netty client fail {}",e);
+            LOG.info("start netty client fail {}", e);
         }
     }
 
 
+    protected void config(Bootstrap bootstrap) {
+
+    }
+
+
     public void doConnect() {
-        if (channel != null && channel.isActive()&&!start) return;
-        LOG.info("start connect to service  address= {}",addr);
+        if (channel != null && channel.isActive() && !start) return;
+        LOG.info("start connect to service  address= {}", addr);
         ChannelFuture future = bootstrap.connect(addr);
         future.addListener(channelFutureListener);
     }
@@ -79,7 +86,7 @@ public abstract class NettyClient {
 
     public void shutdown() throws Exception {
         try {
-            start=false;
+            start = false;
             if (channel != null && channel.isActive()) channel.close().sync();
             if (workGroup != null) workGroup.shutdownGracefully().sync();
 

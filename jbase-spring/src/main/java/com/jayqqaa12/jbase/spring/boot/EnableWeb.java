@@ -11,8 +11,6 @@ import java.lang.annotation.*;
 @Documented
 @Import({
         MvcConfig.class,
-//        RestConfig.class,
-//        FiegnConfig.class,
 })
 @EnableBasic
 @EnableDb

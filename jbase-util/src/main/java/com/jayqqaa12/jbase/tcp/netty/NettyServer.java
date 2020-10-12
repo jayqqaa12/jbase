@@ -69,7 +69,7 @@ public abstract class NettyServer {
             }
 
         } catch (Exception e) {
-            logger.warn("行情发送服务器 关闭出错...", e);
+            logger.warn("服务器 关闭出错...", e);
         }
     }
 }

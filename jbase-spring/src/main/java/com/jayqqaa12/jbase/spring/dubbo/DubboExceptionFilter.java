@@ -12,6 +12,12 @@ import org.apache.dubbo.rpc.service.GenericService;
 
 import java.lang.reflect.Method;
 
+
+/**
+ *
+ * RpcException 转为BusinessException
+ * 
+ */
 @Activate(
         group = {"provider"}
 )

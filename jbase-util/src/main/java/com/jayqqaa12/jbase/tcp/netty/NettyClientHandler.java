@@ -26,7 +26,7 @@ public abstract class NettyClientHandler<T> extends SimpleChannelInboundHandler<
 
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-        LOG.info("客户端连接断开 触发重连 ");
+        LOG.info("客户端连接断开 触发重连 {} ",ctx.channel());
        if(client!=null)  client.doConnect();
     }
 
@@ -34,7 +34,7 @@ public abstract class NettyClientHandler<T> extends SimpleChannelInboundHandler<
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         super.channelActive(ctx);
-        LOG.info("客户端连接成功 ");
+        LOG.info("客户端连接成功 {}",ctx.channel());
     }
 
     @Override

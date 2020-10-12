@@ -26,7 +26,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.14</version>
         </dependency>
 
 
@@ -88,14 +87,7 @@
         </dependency>
 
 
-        <!-- mail -->
-        <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>1.4.1</version>
-            <scope>provided</scope>
-        </dependency>
-
+        
 
         <!-- commons -->
 

@@ -1,7 +1,6 @@
 package com.jayqqaa12.jbase.spring.mvc.exception;
 
 import com.alibaba.fastjson.JSONException;
-import com.jayqqaa12.jbase.exception.LockException;
 import com.jayqqaa12.jbase.spring.exception.BusinessException;
 import com.jayqqaa12.jbase.spring.exception.RetryException;
 import com.jayqqaa12.jbase.spring.mvc.Resp;
@@ -113,12 +112,13 @@ public class CustomExceptionHandler {
         return Resp.response(RespCode.RETRY_ERROR);
     }
 
-    @ExceptionHandler(value = {LockException.class})
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public final Resp handleLockException(LockException ex) {
-        log.warn("幂等性异常 {}", (ex));
-        return Resp.response(RespCode.RETRY_LOCK_ERROR);
-    }
+    
+//    @ExceptionHandler(value = {LockException.class})
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    public final Resp handleLockException(LockException ex) {
+//        log.warn("幂等性异常 {}", (ex));
+//        return Resp.response(RespCode.RETRY_LOCK_ERROR);
+//    }
 
 
     @ExceptionHandler(value = {JSONException.class})

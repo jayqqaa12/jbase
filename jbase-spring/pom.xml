@@ -21,12 +21,12 @@
 
 
         <!-- j2cache beat  -->
-        <dependency>
-            <groupId>com.jayqqaa12</groupId>
-            <artifactId>jbase-cache</artifactId>
-            <version>${jbase.cache.version}</version>
-            <scope>provided</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.jayqqaa12</groupId>-->
+<!--            <artifactId>jbase-cache</artifactId>-->
+<!--            <version>${jbase.cache.version}</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
 
  
         <dependency>
@@ -66,14 +66,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-            <optional>true</optional>
-
-        </dependency>
-
+ 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -120,7 +113,6 @@
             <artifactId>spring-integration-mqtt</artifactId>
             <optional>true</optional>
         </dependency>
-
 
 
         <dependency>

@@ -2,8 +2,6 @@ package com.jayqqaa12.jbase.spring.boot;
 
 
 import com.jayqqaa12.jbase.spring.helper.ProfileHelper;
-import com.jayqqaa12.jbase.spring.mvc.ConfigHelper;
-import com.jayqqaa12.jbase.spring.mvc.LangHelper;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -17,8 +15,8 @@ import java.lang.annotation.*;
 @Documented
 @Import({
         ProfileHelper.class ,
-        ConfigHelper.class,
-        LangHelper.class,
+//        ConfigHelper.class,
+//        LangHelper.class,
 })
 @EnableScheduling
 @EnableAsync(proxyTargetClass = true)

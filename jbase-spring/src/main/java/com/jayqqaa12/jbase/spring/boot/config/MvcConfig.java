@@ -122,7 +122,7 @@ public class MvcConfig  implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         //以后改为权限控制 由api-gateway控制
 //        registry.addInterceptor(new AuthInterceptor()).addPathPatterns("/**");
-        registry.addInterceptor(new EffectInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(new EffectInterceptor()).addPathPatterns("/**"); 
         registry.addInterceptor(localeChangeInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(headerLocaleChangeInterceptor()).addPathPatterns("/**");
 

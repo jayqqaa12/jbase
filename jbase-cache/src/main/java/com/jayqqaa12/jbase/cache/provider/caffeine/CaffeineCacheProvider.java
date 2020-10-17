@@ -12,7 +12,10 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 
-public class CaffeineProvider implements CacheProvider {
+/**
+ * @author jayqqaa12 
+ */
+public class CaffeineCacheProvider implements CacheProvider {
 
   private CacheConfig cacheConfig;
 
@@ -30,7 +33,8 @@ public class CaffeineProvider implements CacheProvider {
   }
 
   @Override
-  public Cache buildCache(String region, int expire) {
+  public Cache
+  buildCache(String region, int expire) {
     CaffeineConfig config = cacheConfig.getCaffeineConfig().getOrDefault(region, defualtConfig);
 
     return newCache(region, config.getSize(), expire);

@@ -13,7 +13,7 @@ public class CacheConfig {
   /**
    * 缓存提供者 可选
    * <p>
-   * com.jayqqaa12.jbase.cache.provider.NullCacheProvider com.jayqqaa12.jbase.cache.provider.caffeine.CaffeineProvider
+   * com.jayqqaa12.jbase.cache.provider.NullCacheProvider com.jayqqaa12.jbase.cache.provider.caffeine.CaffeineCacheProvider
    * com.jayqqaa12.jbase.cache.provider.lettuce.LettuceCacheProvider
    * <p>
    * 根据加入顺序确定缓存级别 可自定义CacheProvider 进行扩展
@@ -43,8 +43,9 @@ public class CacheConfig {
 
   @Data
   public static class CaffeineConfig {
-    private int size=10_000;
-    private int expire=0;
+
+    private int size = 10_000;
+    private int expire = 0;
 
   }
 
@@ -56,12 +57,11 @@ public class CacheConfig {
      */
     private String namespace = CacheConst.NAMESPACE;
     /**
-     * single 单点
-     * cluster 集群
+     * single 单点 cluster 集群
      */
     private String schema = CacheConst.REDIS_MODE_SINGLE;
-    private String hosts = "127.0.0.1";
-    private String password;
+    private String hosts = "127.0.0.1:6379";
+    private String password = "";
     private int database = 0;
     private int maxTotal = 100;
     private int maxIdle = 10;

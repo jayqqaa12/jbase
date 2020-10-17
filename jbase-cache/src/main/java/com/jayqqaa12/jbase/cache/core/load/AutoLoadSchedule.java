@@ -1,11 +1,15 @@
 package com.jayqqaa12.jbase.cache.core.load;
 
+import com.jayqqaa12.jbase.cache.core.JbaseCache;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -23,15 +27,16 @@ public class AutoLoadSchedule implements Runnable {
     scheduledExecutorService = new ScheduledThreadPoolExecutor(1);
     scheduledExecutorService.scheduleAtFixedRate(this, 1, 1, TimeUnit.SECONDS);
 
-    executorService = new ThreadPoolExecutor(threadSize, threadSize, 60, TimeUnit.SECONDS,
-        new ArrayBlockingQueue<>(1000));
-
+    executorService = new ThreadPoolExecutor(threadSize, threadSize,
+        0L, TimeUnit.MILLISECONDS,
+        new LinkedBlockingQueue<>(1000), (r) -> new Thread(r, "Thread-Jbase-Cache-Auto-Load"));
   }
+
 
   public void shutdown() {
     autoLoadPool.clear();
     executorService.shutdown();
-    executorService.shutdown();
+    scheduledExecutorService.shutdown();
   }
 
 
@@ -44,24 +49,30 @@ public class AutoLoadSchedule implements Runnable {
           try {
             log.info("start auto load data  key {}@{}", autoLoadObject.getKey(),
                 autoLoadObject.getRegion());
+
             autoLoadObject.setLock(true);
-            autoLoadObject.getJbaseCache().get(autoLoadObject.getRegion(),
-                autoLoadObject.getKey(), autoLoadObject.getFunction(),
+
+            autoLoadObject.getJbaseCache().set(autoLoadObject.getRegion(),
+                autoLoadObject.getKey(), autoLoadObject.getFunction().get(),
                 autoLoadObject.getExpire());
+
             autoLoadObject.setLastUpdateTime(System.currentTimeMillis());
 
           } catch (Exception e) {
+            e.printStackTrace();
             log.error("auto load data error {}", e);
           } finally {
             autoLoadObject.setLock(false);
           }
+
         });
       } else {
         // 清理很久没有调用的
-        if (autoLoadObject.getLastUpdateTime() > MAX_IDLE_TIME && autoLoadObject.isExpire()) {
+        if (System.currentTimeMillis() - autoLoadObject.getLastUpdateTime() > MAX_IDLE_TIME
+            && autoLoadObject.isExpire()) {
           remove(autoLoadObject.getRegion(), autoLoadObject.getKey());
 
-          log.info("clear idle obj  key {}@{}", autoLoadObject.getKey(),
+          log.info("remove idle obj  key {}@{}", autoLoadObject.getKey(),
               autoLoadObject.getRegion());
         }
       }
@@ -70,11 +81,10 @@ public class AutoLoadSchedule implements Runnable {
 
 
   public void add(AutoLoadObject autoLoadObject) {
-    // expire<=0 的表示不过期 不自动加载
-    if (autoLoadObject.getExpire() > 0) {
+    // expire<=120 不自动加载
+    if (autoLoadObject.getExpire() >= 120) {
       autoLoadPool.put(autoLoadObject);
     }
-
   }
 
 
@@ -82,4 +92,12 @@ public class AutoLoadSchedule implements Runnable {
     autoLoadPool.remove(region, key);
   }
 
+  public void refresh(String region, String key) {
+    AutoLoadObject autoLoadObject = autoLoadPool.get(region, key);
+
+    if (autoLoadObject != null) {
+      autoLoadObject.setLastRequestTime(System.currentTimeMillis());
+    }
+
+  }
 }

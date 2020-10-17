@@ -16,6 +16,7 @@ public class AutoLoadPool {
     AutoLoadObject object = autoLoadObjectMap.getOrDefault(key, autoLoadObject);
     object.setExpire(autoLoadObject.getExpire());
     object.setLastRequestTime(System.currentTimeMillis());
+    object.setLastUpdateTime(System.currentTimeMillis());
 
   }
 
@@ -23,6 +24,11 @@ public class AutoLoadPool {
     autoLoadObjectMap.remove(key + '@' + region);
   }
 
+
+  public AutoLoadObject get(String region, String key) {
+
+    return autoLoadObjectMap.get(key + '@' + region);
+  }
 
   public void clear() {
     autoLoadObjectMap.clear();
@@ -33,4 +39,6 @@ public class AutoLoadPool {
 
     return autoLoadObjectMap.values();
   }
+
+
 }

@@ -4,6 +4,9 @@ import com.jayqqaa12.jbase.cache.core.Cache;
 import com.jayqqaa12.jbase.cache.core.CacheObject;
 import com.jayqqaa12.jbase.cache.util.CacheException;
 
+/**
+ * @author jayqqaa12 
+ */
 public class CaffeineCache implements Cache {
 
   private  com.github.benmanes.caffeine.cache.Cache<String, CacheObject> cache;

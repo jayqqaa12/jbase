@@ -15,10 +15,6 @@
     </parent>
 
 
-    <properties>
-        <guava.version>23.0</guava.version>
-        <hutool.version>4.3.2</hutool.version>
-    </properties>
 
 
     <dependencies>

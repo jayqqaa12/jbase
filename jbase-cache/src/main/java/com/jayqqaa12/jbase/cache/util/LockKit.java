@@ -10,19 +10,19 @@ public class LockKit {
 
 
   public static ReentrantLock getLock(String region, String key) {
-
     String lockKey = key + '@' + region;
 
-    lockMap.computeIfAbsent(lockKey, k -> new ReentrantLock());
-
-    return lockMap.get(lockKey);
+    return lockMap.computeIfAbsent(lockKey, k -> new ReentrantLock());
 
   }
 
   public static void returnLock(String region, String key) {
     String lockKey = key + '@' + region;
 
-    lockMap.remove(lockKey).unlock();
+    ReentrantLock lock = lockMap.remove(lockKey);
+    if (lock != null) {
+      lock.unlock();
+    }
   }
 
 

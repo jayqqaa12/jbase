@@ -8,13 +8,16 @@ import com.jayqqaa12.jbase.cache.notify.Notify;
 import com.jayqqaa12.jbase.cache.provider.CacheProviderGroup;
 import com.jayqqaa12.jbase.cache.util.CacheException;
 import com.jayqqaa12.jbase.cache.util.LockKit;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Cache操作入口类
  */
 
+@Slf4j
 public class JbaseCache {
 
   private CacheProviderGroup provider;
@@ -45,30 +48,34 @@ public class JbaseCache {
   }
 
 
-  public <T> T get(String region, String key, Function<String, Object> function)
+  public <T> T get(String region, String key, Supplier<Object> function)
       throws CacheException {
 
     return get(region, key, function, 0);
   }
 
-  public <T> T get(String region, String key, Function<String, Object> function, int expire)
+  public <T> T get(String region, String key, Supplier<Object> function, int expire)
       throws CacheException {
 
-    CacheObject<T> cacheObject = get(region, key);
+    T obj = get(region, key);
 //    有数据就直接返回
-    if (cacheObject != null) {
-      return cacheObject.getValue();
+    if (obj != null) {
+      return obj;
     }
 
     try {
       LockKit.getLock(region, key).lock();
-      cacheObject = get(region, key);
+      obj = get(region, key);
       //    double check
-      if (cacheObject != null) {
-        return cacheObject.getValue();
+      if (obj != null) {
+        return obj;
       }
-      Object value = function.apply(key);
+
+      Object value = function.get();
       set(region, key, value, expire);
+      
+      log.info("get from load data key= {}@{} ",key,region);
+
       //添加auto load
 
       autoLoadSchdule.add(AutoLoadObject.builder()
@@ -86,11 +93,13 @@ public class JbaseCache {
   public <T> T get(String region, String key) throws CacheException {
 
     CacheObject<T> cacheObject = provider.getLevel1Provider(region).get(key);
-    // 1级有数据就直接返回
-    if (cacheObject != null) {
-      return cacheObject.getValue();
-    }
+
     try {
+      // 1级有数据就直接返回
+      if (cacheObject != null) {
+        return cacheObject.getValue();
+      }
+      
       LockKit.getLock(region, key).lock();
       // double check
       cacheObject = provider.getLevel1Provider(region).get(key);
@@ -107,6 +116,7 @@ public class JbaseCache {
         return cacheObject.getValue();
       }
     } finally {
+      autoLoadSchdule.refresh(region,key);
       LockKit.returnLock(region, key);
     }
     //如果为空就加载数据
@@ -124,8 +134,8 @@ public class JbaseCache {
         .key(key).region(region)
         .value(value).build();
 
-    provider.getLevel1Provider(region).set(key, cacheObject, expire);
-    provider.getLevel2Provider(region).set(key, cacheObject, expire);
+    provider.getLevel1Provider(region, expire).set(key, cacheObject, expire);
+    provider.getLevel2Provider(region, expire).set(key, cacheObject, expire);
 
     //notify other
     notify.send(new Command(Command.OPT_EVICT_KEY, region, key));

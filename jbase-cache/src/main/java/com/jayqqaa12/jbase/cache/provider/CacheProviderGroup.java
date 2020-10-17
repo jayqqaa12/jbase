@@ -2,7 +2,6 @@ package com.jayqqaa12.jbase.cache.provider;
 
 import com.jayqqaa12.jbase.cache.core.Cache;
 import com.jayqqaa12.jbase.cache.core.CacheConfig;
-import com.jayqqaa12.jbase.cache.core.CacheConst;
 import com.jayqqaa12.jbase.cache.util.CacheException;
 import lombok.Data;
 
@@ -38,13 +37,29 @@ public class CacheProviderGroup {
 
   }
 
-  public Cache getLevel1Provider(String region)   {
-
+  public Cache getLevel1Provider(String region) {
     return cacheProviders.get(LEVEL1).buildCache(region);
   }
 
-  public Cache getLevel2Provider(String region)   {
+  public Cache getLevel2Provider(String region) {
     return cacheProviders.get(LEVEL2).buildCache(region);
+  }
+
+
+  public Cache getLevel1Provider(String region, Integer expire) {
+
+    if (expire <= 0) {
+      return getLevel1Provider(region);
+    }
+    return cacheProviders.get(LEVEL1).buildCache(region, expire);
+  }
+
+  public Cache getLevel2Provider(String region, Integer expire) {
+
+    if (expire <= 0) {
+      return getLevel2Provider(region);
+    }
+    return cacheProviders.get(LEVEL2).buildCache(region, expire);
   }
 
 

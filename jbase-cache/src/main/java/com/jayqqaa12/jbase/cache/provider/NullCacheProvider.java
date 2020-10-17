@@ -6,7 +6,7 @@ import com.jayqqaa12.jbase.cache.provider.CacheProvider;
 
 public class NullCacheProvider implements CacheProvider {
 
-  public static final NullCache cache=new NullCache();
+  private static final NullCache cache=new NullCache();
 
   @Override
   public void init(CacheConfig cacheConfig) {

@@ -9,6 +9,7 @@ import com.jayqqaa12.jbase.cache.provider.CacheProviderGroup;
 import com.jayqqaa12.jbase.cache.util.CacheException;
 import com.jayqqaa12.jbase.cache.util.LockKit;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.time.StopWatch;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -25,6 +26,10 @@ public class JbaseCache {
   private Notify notify;
 
   private AutoLoadSchedule autoLoadSchdule;
+
+  private JbaseCache(){
+
+  }
 
 
   public static JbaseCache build(CacheConfig cacheConfig) {
@@ -71,13 +76,14 @@ public class JbaseCache {
         return obj;
       }
 
+      StopWatch stopWatch = new StopWatch();
+      stopWatch.start();
       Object value = function.get();
       set(region, key, value, expire);
-      
-      log.info("get from load data key= {}@{} ",key,region);
 
+      stopWatch.stop();
+      log.info("get from load data key= {}@{} cost time={}ms ",key,region,stopWatch.getTime());
       //添加auto load
-
       autoLoadSchdule.add(AutoLoadObject.builder()
           .jbaseCache(this)
           .key(key).region(region).expire(expire).function(function)
@@ -97,6 +103,8 @@ public class JbaseCache {
     try {
       // 1级有数据就直接返回
       if (cacheObject != null) {
+
+        log.debug("get data from level 1  key={}@{}",region,key);
         return cacheObject.getValue();
       }
       
@@ -105,6 +113,7 @@ public class JbaseCache {
       cacheObject = provider.getLevel1Provider(region).get(key);
       // 1级有数据就直接返回
       if (cacheObject != null) {
+        log.debug("get data from level 1  key={}@{}",region,key);
         return cacheObject.getValue();
       }
 
@@ -113,6 +122,7 @@ public class JbaseCache {
       //不为空写入1级缓存
       if (cacheObject != null) {
         provider.getLevel1Provider(region).set(key, cacheObject);
+        log.debug("get data from level 2  key={}@{}",region,key);
         return cacheObject.getValue();
       }
     } finally {

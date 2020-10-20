@@ -1,5 +1,7 @@
 package com.jayqqaa12.jbase.cache.core.load;
 
+import static com.jayqqaa12.jbase.cache.core.CacheConst.REFRESH_MIN_TIME;
+
 import com.jayqqaa12.jbase.cache.core.JbaseCache;
 import lombok.Builder;
 import lombok.Data;
@@ -30,17 +32,17 @@ public class AutoLoadObject {
 
   private JbaseCache jbaseCache;
 
-  private boolean isLock;
+  private volatile boolean isLock;
 
   /**
    * 最后更新时间
    */
-  private Long lastUpdateTime;
+  private volatile Long lastUpdateTime;
 
   /**
    * 最后一次请求时间 如果没有请求就不刷新缓存
    */
-  private Long lastRequestTime;
+  private volatile Long lastRequestTime;
 
 
   /**
@@ -51,7 +53,7 @@ public class AutoLoadObject {
   public boolean canAutoLoad() {
 
     return !isLock
-        && expire > 120
+        && expire > REFRESH_MIN_TIME
         &&
         (System.currentTimeMillis() - lastRequestTime < expire * 1000) &&
         (System.currentTimeMillis() - lastUpdateTime > expire * 900);

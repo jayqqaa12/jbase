@@ -13,6 +13,8 @@ public class CacheConst {
 
   public static final String REDIS_MODE_SINGLE="single";
   public static final String REDIS_MODE_CLUSTER="cluster";
+
+  public static final int REFRESH_MIN_TIME=60;
   
   
 

@@ -24,9 +24,9 @@ public class FastJsonCacheSerializer implements CacheSerializer {
   };
 
   @Override
-  public byte[] serialize(Object t) {
+  public byte[] serialize(CacheObject obj) {
 
-    return JSON.toJSONBytes(t, features);
+    return JSON.toJSONBytes(obj, features);
   }
 
   @Override

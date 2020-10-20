@@ -1,7 +1,10 @@
 package com.jayqqaa12.jbase.cache.core.load;
 
+import static com.jayqqaa12.jbase.cache.core.CacheConst.REFRESH_MIN_TIME;
+
 import com.jayqqaa12.jbase.cache.core.JbaseCache;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.time.StopWatch;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -47,14 +50,19 @@ public class AutoLoadSchedule implements Runnable {
         executorService.execute(() -> {
           //如果可加载 就进行加载
           try {
-            log.info("start auto load data  key {}@{}", autoLoadObject.getKey(),
-                autoLoadObject.getRegion());
-
             autoLoadObject.setLock(true);
 
+            StopWatch stopWatch = new StopWatch();
+
+            stopWatch.start();
+            // 分布式场景可能加载多次，节点不多的情况下问题不大
             autoLoadObject.getJbaseCache().set(autoLoadObject.getRegion(),
                 autoLoadObject.getKey(), autoLoadObject.getFunction().get(),
                 autoLoadObject.getExpire());
+
+            stopWatch.stop();
+            log.info("auto load data  key {}@{} cost time {}ms", autoLoadObject.getKey(),
+                autoLoadObject.getRegion(), stopWatch.getTime());
 
             autoLoadObject.setLastUpdateTime(System.currentTimeMillis());
 
@@ -81,8 +89,8 @@ public class AutoLoadSchedule implements Runnable {
 
 
   public void add(AutoLoadObject autoLoadObject) {
-    // expire<=120 不自动加载
-    if (autoLoadObject.getExpire() >= 120) {
+    // expire<= REFRESH_MIN_TIME 不自动加载
+    if (autoLoadObject.getExpire() >= REFRESH_MIN_TIME) {
       autoLoadPool.put(autoLoadObject);
     }
   }

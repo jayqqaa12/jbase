@@ -23,12 +23,7 @@ public class CacheConfig {
   private String cacheSerializerClass = "com.jayqqaa12.jbase.cache.serializer.FastJsonCacheSerializer";
   private String notifyClass = "com.jayqqaa12.jbase.cache.notify.NullNotify";
   private String notifyTopic = CacheConst.DEFAULT_TOPIC;
-
-  /**
-   * 没有值的时候，是否缓存空对象
-   */
-  private boolean cacheNull = true;
-
+ 
   /**
    * 自动加载的线程数
    */
@@ -39,6 +34,9 @@ public class CacheConfig {
   private String redisMode = CacheConst.REDIS_MODE_SINGLE;
 
   private LettuceConfig lettuceConfig = new LettuceConfig();
+
+  private  KafkaConfig kafkaConfig =new KafkaConfig();
+  
   private Map<String, CaffeineConfig> caffeineConfig = new HashMap<>();
 
   @Data
@@ -48,6 +46,16 @@ public class CacheConfig {
     private int expire = 0;
 
   }
+
+  @Data
+  public  static  class  KafkaConfig{
+
+
+  }
+
+
+
+
 
   @Data
   public class LettuceConfig {

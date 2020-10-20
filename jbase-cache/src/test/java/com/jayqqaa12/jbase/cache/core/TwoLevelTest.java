@@ -1,12 +1,13 @@
 package com.jayqqaa12.jbase.cache.core;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import com.google.common.collect.Lists;
 import com.jayqqaa12.jbase.cache.provider.NullCacheProvider;
 import com.jayqqaa12.jbase.cache.provider.caffeine.CaffeineCacheProvider;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.Before;
+import com.jayqqaa12.jbase.cache.provider.lettuce.LettuceCacheProvider;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import redis.embedded.RedisServer;
 
@@ -16,24 +17,44 @@ import java.util.concurrent.TimeUnit;
  * @author 12, {@literal <shuai.wang@leyantech.com>}
  * @date 2020-10-12.
  */
-@Slf4j
-public class CaffeineTest {
+public class TwoLevelTest {
 
-  private JbaseCache jbaseCache;
+  private static JbaseCache jbaseCache;
 
-  @Before
-  public void init() {
+  private static RedisServer redisServer;
+
+  @BeforeClass
+  public static void init() {
+
+    redisServer=   RedisServer.builder()
+        .port(8888)
+        .setting("bind localhost")
+        .build() ;
 
     CacheConfig cacheConfig = new CacheConfig();
 
     cacheConfig.setProviderClassList(
-        Lists.newArrayList(NullCacheProvider.class.getName(),
-            CaffeineCacheProvider.class.getName()
+        Lists.newArrayList(CaffeineCacheProvider.class.getName(),
+            LettuceCacheProvider.class.getName()
         ));
 
-    this.jbaseCache = JbaseCache.build(cacheConfig);
+    cacheConfig.getLettuceConfig().setHosts("localhost:8888");
 
+    // 使用内嵌redis
+
+    jbaseCache = JbaseCache.build(cacheConfig);
+
+    redisServer.start();
   }
+
+
+  @AfterClass
+  public static void stop(){
+
+    jbaseCache.stop();
+    redisServer.stop();
+  }
+
 
   @Test
   public void testSimple() throws InterruptedException {
@@ -48,12 +69,11 @@ public class CaffeineTest {
 
     assertEquals(value, "value");
 
-  }
 
+  }
 
   @Test
   public void testTimeout() throws InterruptedException {
-
     // test timeout
 
     jbaseCache.set("test-timeout", "timeout", "timeout", 3);
@@ -68,20 +88,5 @@ public class CaffeineTest {
 
   }
 
-  @Test
-  public void testAutoLoad() throws InterruptedException {
-
-    String value = jbaseCache.get("auto-load", "time", () -> "value", 120);
-
-    for (int i = 0; i < 100; i++) {
-      //大于 REFRESH_MIN_TIME 才会触发auto load
-      value = jbaseCache.get("auto-load", "time");
-
-      assertEquals(value, "value");
-
-      TimeUnit.SECONDS.sleep(2);
-    }
-
-  }
 
 }

@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public interface CacheSerializer {
 
-    byte[] serialize(Object obj) throws IOException;
+    byte[] serialize(CacheObject obj) throws IOException;
 
     CacheObject deserialize(byte[] bytes) throws IOException;
 

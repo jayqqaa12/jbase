@@ -26,6 +26,7 @@
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
+      <scope>provided</scope>
     </dependency>
 
 
@@ -48,6 +49,7 @@
       <groupId>com.github.ben-manes.caffeine</groupId>
       <artifactId>caffeine</artifactId>
       <version>2.6.2</version>
+      <scope>provided</scope>
     </dependency>
 
 
@@ -55,6 +57,7 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-autoconfigure</artifactId>
+      <optional>true</optional>
     </dependency>
 
     <dependency>

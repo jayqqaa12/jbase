@@ -6,6 +6,7 @@ import com.jayqqaa12.jbase.cache.core.JbaseCache;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.StopWatch;
 
+import java.util.Optional;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,12 +22,14 @@ public class AutoLoadSchedule implements Runnable {
 
   public static final long MAX_IDLE_TIME = 60 * 1000 * 10;
   private final AutoLoadPool autoLoadPool;
+  private final JbaseCache cache;
   private ScheduledExecutorService scheduledExecutorService;
   private ExecutorService executorService;
 
 
-  public AutoLoadSchedule(int threadSize) {
+  public AutoLoadSchedule(int threadSize, JbaseCache cache) {
     this.autoLoadPool = new AutoLoadPool();
+    this.cache = cache;
     scheduledExecutorService = new ScheduledThreadPoolExecutor(1);
     scheduledExecutorService.scheduleAtFixedRate(this, 1, 1, TimeUnit.SECONDS);
 
@@ -53,10 +56,10 @@ public class AutoLoadSchedule implements Runnable {
             autoLoadObject.setLock(true);
 
             StopWatch stopWatch = new StopWatch();
-
             stopWatch.start();
             // 分布式场景可能加载多次，节点不多的情况下问题不大
-            autoLoadObject.getJbaseCache().set(autoLoadObject.getRegion(),
+
+            cache.set(autoLoadObject.getRegion(),
                 autoLoadObject.getKey(), autoLoadObject.getFunction().get(),
                 autoLoadObject.getExpire());
 

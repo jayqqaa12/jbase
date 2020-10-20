@@ -3,9 +3,11 @@ package com.jayqqaa12.jbase.cache.core.load;
 import static com.jayqqaa12.jbase.cache.core.CacheConst.REFRESH_MIN_TIME;
 
 import com.jayqqaa12.jbase.cache.core.JbaseCache;
+import com.jayqqaa12.jbase.cache.util.LambdaExceptionUtil.SupplierWithExceptions;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.ProceedingJoinPoint;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -22,15 +24,11 @@ public class AutoLoadObject {
   //主动传入的加载方法
   private Supplier<Object> function;
 
-  //AOP的 切面方法 AOP的时候来回调方法
-//  private ProceedingJoinPoint joinPoint;
-
   /**
    * 过期时长 单位：秒
    */
   private int expire;
 
-  private JbaseCache jbaseCache;
 
   private volatile boolean isLock;
 

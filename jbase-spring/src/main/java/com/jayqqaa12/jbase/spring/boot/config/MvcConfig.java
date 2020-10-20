@@ -28,7 +28,7 @@ import java.util.Locale;
 public class MvcConfig  implements WebMvcConfigurer {
 
 
-    //fastjson 出现不兼容的情况
+    //fastjson 出现不兼容的情况 改用 jackson
 //    @Bean
 //    public FastJsonHttpMessageConverter fastJsonHttpMessageConverters() {
 //

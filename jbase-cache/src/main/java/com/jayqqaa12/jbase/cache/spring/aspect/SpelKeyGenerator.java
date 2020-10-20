@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.cache.spring;
+package com.jayqqaa12.jbase.cache.spring.aspect;
 
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;

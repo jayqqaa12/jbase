@@ -50,6 +50,9 @@ public class CacheConfig {
   @Data
   public  static  class  KafkaConfig{
 
+    private String host;
+    private String groupId= CacheConst.DEFAULT_TOPIC;
+
 
   }
 

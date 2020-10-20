@@ -1,9 +1,13 @@
 package com.jayqqaa12.jbase.cache.spring.aspect;
 
 
+import static com.jayqqaa12.jbase.cache.util.LambdaExceptionUtil.rethrowFunction;
+import static com.jayqqaa12.jbase.cache.util.LambdaExceptionUtil.rethrowSupplier;
+
 import com.jayqqaa12.jbase.cache.core.JbaseCache;
-import com.jayqqaa12.jbase.cache.spring.SpelKeyGenerator;
+import com.jayqqaa12.jbase.cache.core.load.AutoLoadObject;
 import com.jayqqaa12.jbase.cache.spring.annotation.Cache;
+import com.jayqqaa12.jbase.cache.util.LambdaExceptionUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -24,14 +28,22 @@ public class CacheAspect {
 
   @Around("@annotation(cache)")
   public Object interceptor(ProceedingJoinPoint invocation, Cache cache) throws Throwable {
-    Object result = null;
     String region = StringUtils.isEmpty(cache.region()) ? null : cache.region();
     String key = SpelKeyGenerator.buildKey(cache.key(), invocation);
-    result = j2Cache.get(region, key);
+    Object result = j2Cache.get(region, key);
     if (result == null) {
       result = invocation.proceed();
       j2Cache.set(region, key, result, cache.expire());
     }
+
+    if (cache.autoLoad()) {
+      //添加auto load
+      j2Cache.getAutoLoadSchdule().add(AutoLoadObject.builder()
+          .key(key).region(region).expire(cache.expire())
+          .function(rethrowSupplier(() -> invocation.proceed()))
+          .build());
+    }
+
     return result;
   }
 

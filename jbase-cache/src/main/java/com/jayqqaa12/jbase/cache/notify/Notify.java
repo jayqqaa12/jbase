@@ -1,6 +1,11 @@
 package com.jayqqaa12.jbase.cache.notify;
 
+import com.jayqqaa12.jbase.cache.core.CacheConfig;
+import com.jayqqaa12.jbase.cache.provider.CacheProviderGroup;
+
 public interface Notify {
+
+  void init(CacheConfig cacheConfig, CacheProviderGroup cache) throws ClassNotFoundException, Exception;
 
 
   /**
@@ -10,12 +15,8 @@ public interface Notify {
    */
   void send(Command command);
 
-  /**
-   *
-   * 接受通知删除本地cache
-   *
-   */
-  void receive(Command command);
+
+  void stop();
 
 
 

@@ -20,8 +20,8 @@ public abstract class SerializerCache implements Cache {
   public CacheObject get(String key) throws CacheException {
     try {
       byte[] bytes = getByte(key);
-      return cacheSerializer.deserialize(bytes);
-    } catch (IOException e) {
+      return (CacheObject) cacheSerializer.deserialize(bytes);
+    } catch (Exception e) {
       throw new CacheException(key + " deserialize error ", e);
     }
   }
@@ -32,7 +32,7 @@ public abstract class SerializerCache implements Cache {
   public void set(String key, CacheObject value) throws CacheException {
     try {
       setByte(key, cacheSerializer.serialize(value),0);
-    } catch (IOException e) {
+    } catch (Exception e) {
       throw new CacheException(key + " serialize error ", e);
     }
 
@@ -44,7 +44,7 @@ public abstract class SerializerCache implements Cache {
 
     try {
       setByte(key, cacheSerializer.serialize(value), expire);
-    } catch (IOException e) {
+    } catch (Exception e) {
       throw new CacheException(key + " serialize error ", e);
     }
   }

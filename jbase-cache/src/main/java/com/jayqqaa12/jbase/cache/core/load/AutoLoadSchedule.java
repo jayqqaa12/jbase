@@ -70,7 +70,6 @@ public class AutoLoadSchedule implements Runnable {
             autoLoadObject.setLastUpdateTime(System.currentTimeMillis());
 
           } catch (Exception e) {
-            e.printStackTrace();
             log.error("auto load data error {}", e);
           } finally {
             autoLoadObject.setLock(false);

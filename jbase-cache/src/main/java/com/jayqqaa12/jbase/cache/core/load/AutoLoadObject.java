@@ -2,14 +2,9 @@ package com.jayqqaa12.jbase.cache.core.load;
 
 import static com.jayqqaa12.jbase.cache.core.CacheConst.REFRESH_MIN_TIME;
 
-import com.jayqqaa12.jbase.cache.core.JbaseCache;
-import com.jayqqaa12.jbase.cache.util.LambdaExceptionUtil.SupplierWithExceptions;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.ProceedingJoinPoint;
-
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 @Data

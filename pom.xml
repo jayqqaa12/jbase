@@ -33,7 +33,7 @@
 
     <jbase.util.version>2.2.5</jbase.util.version>
     <jbase.spring.version>2.2.15</jbase.spring.version>
-    <jbase.cache.version>3.0.0</jbase.cache.version>
+    <jbase.cache.version>1.0.0</jbase.cache.version>
 
     <fastjson-version>1.2.59</fastjson-version>
     <lombok.version>1.16.14</lombok.version>

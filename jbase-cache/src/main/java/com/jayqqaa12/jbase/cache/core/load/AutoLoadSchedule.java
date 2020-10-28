@@ -2,6 +2,7 @@ package com.jayqqaa12.jbase.cache.core.load;
 
 import static com.jayqqaa12.jbase.cache.core.CacheConst.REFRESH_MIN_TIME;
 
+import com.jayqqaa12.jbase.cache.core.CacheObject;
 import com.jayqqaa12.jbase.cache.core.JbaseCache;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.StopWatch;
@@ -48,42 +49,50 @@ public class AutoLoadSchedule implements Runnable {
 
   @Override
   public void run() {
-    for (AutoLoadObject autoLoadObject : autoLoadPool.values()) {
-      if (autoLoadObject.canAutoLoad()) {
+    for (AutoLoadObject obj : autoLoadPool.values()) {
+      if (obj.canAutoLoad()) {
         executorService.execute(() -> {
           //如果可加载 就进行加载
           try {
-            autoLoadObject.setLock(true);
+            obj.setLock(true);
+
+            // 先重新加载2级缓存的 如果也快到期了再加载数据源
+
+            CacheObject cacheObject = cache.getProvider().getLevel2Provider(obj.getRegion())
+                .get(obj.getKey());
+
+            if (cacheObject != null && !cacheObject.canAutoLoad()) {
+
+              cache.getProvider().getLevel1Provider(obj.getRegion(), cacheObject.getExpire())
+                  .set(obj.getKey(), cacheObject);
+
+              log.info("auto load data from level 2 key {}@{}", obj.getKey(), obj.getRegion());
+              return;
+            }
 
             StopWatch stopWatch = new StopWatch();
             stopWatch.start();
-            // 分布式场景可能加载多次，节点不多的情况下问题不大
-
-            cache.set(autoLoadObject.getRegion(),
-                autoLoadObject.getKey(), autoLoadObject.getFunction().get(),
-                autoLoadObject.getExpire());
-
+            cache.set(obj.getRegion(),
+                obj.getKey(), obj.getFunction().get(),
+                obj.getExpire());
             stopWatch.stop();
-            log.info("auto load data  key {}@{} cost time {}ms", autoLoadObject.getKey(),
-                autoLoadObject.getRegion(), stopWatch.getTime());
+            log.info("auto load data from data source  key {}@{} cost time {}ms", obj.getKey(),
+                obj.getRegion(), stopWatch.getTime());
 
-            autoLoadObject.setLastUpdateTime(System.currentTimeMillis());
+            obj.setLastUpdateTime(System.currentTimeMillis());
 
           } catch (Exception e) {
             log.error("auto load data error {}", e);
           } finally {
-            autoLoadObject.setLock(false);
+            obj.setLock(false);
           }
 
         });
       } else {
         // 清理很久没有调用的
-        if (System.currentTimeMillis() - autoLoadObject.getLastUpdateTime() > MAX_IDLE_TIME
-            && autoLoadObject.isExpire()) {
-          remove(autoLoadObject.getRegion(), autoLoadObject.getKey());
-
-          log.info("remove idle obj  key {}@{}", autoLoadObject.getKey(),
-              autoLoadObject.getRegion());
+        if (System.currentTimeMillis() - obj.getLastUpdateTime() > MAX_IDLE_TIME
+            && obj.isExpire()) {
+          remove(obj.getRegion(), obj.getKey());
         }
       }
     }
@@ -100,6 +109,8 @@ public class AutoLoadSchedule implements Runnable {
 
   public void remove(String region, String key) {
     autoLoadPool.remove(region, key);
+
+    log.info("remove auto load obj  key {}@{}", key, region);
   }
 
   public void refresh(String region, String key) {

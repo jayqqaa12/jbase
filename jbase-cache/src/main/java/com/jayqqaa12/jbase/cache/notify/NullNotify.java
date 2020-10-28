@@ -1,12 +1,12 @@
 package com.jayqqaa12.jbase.cache.notify;
 
 import com.jayqqaa12.jbase.cache.core.CacheConfig;
-import com.jayqqaa12.jbase.cache.provider.CacheProviderGroup;
+import com.jayqqaa12.jbase.cache.core.JbaseCache;
 
 public class NullNotify implements Notify{
 
   @Override
-  public void init(CacheConfig cacheConfig, CacheProviderGroup cache) {
+  public void init(CacheConfig cacheConfig, JbaseCache cache) {
     
   }
 

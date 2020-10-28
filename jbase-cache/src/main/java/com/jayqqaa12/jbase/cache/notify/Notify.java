@@ -1,11 +1,11 @@
 package com.jayqqaa12.jbase.cache.notify;
 
 import com.jayqqaa12.jbase.cache.core.CacheConfig;
-import com.jayqqaa12.jbase.cache.provider.CacheProviderGroup;
+import com.jayqqaa12.jbase.cache.core.JbaseCache;
 
 public interface Notify {
 
-  void init(CacheConfig cacheConfig, CacheProviderGroup cache) throws ClassNotFoundException, Exception;
+  void init(CacheConfig cacheConfig, JbaseCache cache) throws ClassNotFoundException, Exception;
 
 
   /**

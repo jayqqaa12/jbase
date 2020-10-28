@@ -12,7 +12,6 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.StopWatch;
 
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -41,7 +40,7 @@ public class JbaseCache {
 
     try {
       cache.notify = (Notify) Class.forName(cacheConfig.getNotifyClass()).newInstance();
-      cache.notify.init(cacheConfig, cache.provider);
+      cache.notify.init(cacheConfig, cache);
     } catch (Exception e) {
       throw new CacheException("nonexistent notify class ");
     }
@@ -86,7 +85,7 @@ public class JbaseCache {
       set(region, key, value, expire);
 
       stopWatch.stop();
-      log.info("get from load data key= {}@{} cost time={}ms ", key, region, stopWatch.getTime());
+      log.info("get from load data by data source key= {}@{} cost time={}ms ", key, region, stopWatch.getTime());
       //添加auto load
       autoLoadSchdule.add(AutoLoadObject.builder()
           .key(key).region(region).expire(expire).function(function)
@@ -124,7 +123,7 @@ public class JbaseCache {
       cacheObject = provider.getLevel2Provider(region).get(key);
       //不为空写入1级缓存
       if (cacheObject != null) {
-        provider.getLevel1Provider(region).set(key, cacheObject);
+        provider.getLevel1Provider(region,cacheObject.getExpire()).set(key, cacheObject);
         log.debug("get data from level 2  key={}@{}", region, key);
         return cacheObject.getValue();
       }
@@ -145,6 +144,7 @@ public class JbaseCache {
 
     CacheObject cacheObject = CacheObject.builder()
         .key(key).region(region)
+        .loadTime(System.currentTimeMillis())
         .value(value).build();
 
     provider.getLevel1Provider(region, expire).set(key, cacheObject, expire);
@@ -160,9 +160,41 @@ public class JbaseCache {
     provider.getLevel2Provider(region).delete(key);
 
     //notify other
-    notify.send(new Command(Command.OPT_EVICT_KEY, region, key));
+    notify.send(new Command(Command.OPT_CLEAR_KEY, region, key));
   }
 
+
+  public void handlerCommand(Command command) {
+    if (command.isLocal()) {
+      return;
+    }
+    
+    provider.getLevel1Provider(command.getRegion())
+        .delete(command.getKeys());
+
+    switch (command.getOperator()) {
+      case Command.OPT_CLEAR_KEY:
+        
+        autoLoadSchdule.remove(command.getRegion(), command.getKeys());
+
+      case Command.OPT_EVICT_KEY:
+
+        CacheObject cacheObject = provider.getLevel2Provider(command.getRegion())
+            .get(command.getKeys());
+
+        //如果不是快过期的数据就放入一级缓存
+        if (cacheObject != null&& !cacheObject.canAutoLoad()) {
+          provider.getLevel1Provider(command.getRegion(),cacheObject.getExpire())
+              .set(command.getKeys(), cacheObject, cacheObject.getExpire());
+
+          log.debug("receive OPT_EVICT_KEY reload level1 cache from level 2  key={}@{} ",
+              command.getKeys(), command.getRegion());
+        }
+
+        break;
+
+    }
+  }
 
 }
 

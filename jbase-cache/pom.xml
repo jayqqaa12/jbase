@@ -59,6 +59,13 @@
       <scope>provided</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.rocketmq</groupId>
+      <artifactId>rocketmq-client</artifactId>
+      <version>4.5.1</version>
+      <scope>provided</scope>
+    </dependency>
+
 
     <!-- Compile dependencies -->
     <dependency>

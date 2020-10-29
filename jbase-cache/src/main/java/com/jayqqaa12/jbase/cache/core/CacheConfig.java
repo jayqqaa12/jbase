@@ -21,9 +21,7 @@ public class CacheConfig {
   private List<String> providerClassList = new ArrayList<>();
 
   private String cacheSerializerClass = "com.jayqqaa12.jbase.cache.serializer.FastJsonCacheSerializer";
-  private String notifyClass = "com.jayqqaa12.jbase.cache.notify.NullNotify";
-  private String notifyTopic = CacheConst.DEFAULT_TOPIC;
- 
+
   /**
    * 自动加载的线程数
    */
@@ -35,8 +33,8 @@ public class CacheConfig {
 
   private LettuceConfig lettuceConfig = new LettuceConfig();
 
-  private  KafkaConfig kafkaConfig =new KafkaConfig();
-  
+  private NotifyConfig notifyConfig = new NotifyConfig();
+
   private Map<String, CaffeineConfig> caffeineConfig = new HashMap<>();
 
   @Data
@@ -48,16 +46,16 @@ public class CacheConfig {
   }
 
   @Data
-  public  static  class  KafkaConfig{
+  public static class NotifyConfig {
+
+    private String notifyClass = "com.jayqqaa12.jbase.cache.notify.NullNotify";
+    private String notifyTopic = CacheConst.DEFAULT_TOPIC;
 
     private String host;
-    private String groupId= CacheConst.DEFAULT_TOPIC;
+    private String groupId = CacheConst.DEFAULT_TOPIC;
 
 
   }
-
-
-
 
 
   @Data

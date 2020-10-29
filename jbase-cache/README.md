@@ -6,7 +6,7 @@
 
 - lettuce
 - caffeine
-- kafka
+- kafka/rocketmq
 
 **解决缓存三大问题**
 

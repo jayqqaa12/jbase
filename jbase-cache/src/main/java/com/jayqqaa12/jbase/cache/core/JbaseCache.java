@@ -39,7 +39,7 @@ public class JbaseCache {
     cache.autoLoadSchdule = new AutoLoadSchedule(cacheConfig.getAutoLoadThreadCount(), cache);
 
     try {
-      cache.notify = (Notify) Class.forName(cacheConfig.getNotifyClass()).newInstance();
+      cache.notify = (Notify) Class.forName(cacheConfig.getNotifyConfig().getNotifyClass()).newInstance();
       cache.notify.init(cacheConfig, cache);
     } catch (Exception e) {
       throw new CacheException("nonexistent notify class ");

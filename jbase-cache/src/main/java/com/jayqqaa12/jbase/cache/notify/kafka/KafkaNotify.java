@@ -1,11 +1,9 @@
 package com.jayqqaa12.jbase.cache.notify.kafka;
 
 import com.jayqqaa12.jbase.cache.core.CacheConfig;
-import com.jayqqaa12.jbase.cache.core.CacheObject;
 import com.jayqqaa12.jbase.cache.core.JbaseCache;
 import com.jayqqaa12.jbase.cache.notify.Command;
 import com.jayqqaa12.jbase.cache.notify.Notify;
-import com.jayqqaa12.jbase.cache.provider.CacheProviderGroup;
 import com.jayqqaa12.jbase.cache.serializer.CacheSerializer;
 import com.jayqqaa12.jbase.cache.util.UniqueKit;
 import lombok.extern.slf4j.Slf4j;
@@ -45,19 +43,19 @@ public class KafkaNotify implements Notify, Runnable {
   @Override
   public void init(CacheConfig cacheConfig, JbaseCache cache)
       throws Exception {
-    this.topic = cacheConfig.getNotifyTopic();
+    this.topic = cacheConfig.getNotifyConfig().getNotifyTopic();
     this.cacheSerializer = (CacheSerializer) Class
         .forName(cacheConfig.getCacheSerializerClass()).newInstance();
     this.cache=cache;
 
     Map<String, Object> configs = new HashMap<>();
-    configs.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, cacheConfig.getKafkaConfig().getHost());
+    configs.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, cacheConfig.getNotifyConfig().getHost());
     configs.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
     configs.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteBufferDeserializer.class);
     configs.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
     configs.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
     configs.put(ConsumerConfig.GROUP_ID_CONFIG,
-        cacheConfig.getKafkaConfig().getGroupId() + "-" + UniqueKit.JVM_PID);
+        cacheConfig.getNotifyConfig().getGroupId() + "-" + UniqueKit.JVM_PID);
 
     consumer = new KafkaConsumer<>(configs);
     consumer.subscribe(Arrays.asList(topic));

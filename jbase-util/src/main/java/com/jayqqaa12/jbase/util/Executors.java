@@ -32,9 +32,6 @@ public class Executors {
         return java.util.concurrent.Executors.newScheduledThreadPool(workerNum, new MyThreadFactory(poolName));
     }
 
-//    public static ExecutorService newCachedThreadPool(String poolName) {
-//        return java.util.concurrent.Executors.newCachedThreadPool(new MyThreadFactory(poolName));
-//    }
 
     public static ExecutorService newSingleThreadExecutor(String poolName) {
         return java.util.concurrent.Executors.newSingleThreadExecutor(new MyThreadFactory(poolName));

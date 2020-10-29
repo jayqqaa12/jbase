@@ -9,7 +9,7 @@ import java.util.function.Supplier;
  * @author zhengqi.guo, zhengqi.guo@leyantech.com.
  * @date 2019-06-13.
  */
-public final class LambdaExceptionUtil {
+public final class LambdaExceptionKit {
 
 
   @FunctionalInterface

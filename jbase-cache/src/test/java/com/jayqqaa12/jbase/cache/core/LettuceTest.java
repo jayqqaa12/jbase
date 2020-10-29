@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import com.google.common.collect.Lists;
 import com.jayqqaa12.jbase.cache.provider.NullCacheProvider;
 import com.jayqqaa12.jbase.cache.provider.lettuce.LettuceCacheProvider;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -19,14 +20,16 @@ import java.util.concurrent.TimeUnit;
 public class LettuceTest {
 
   private static JbaseCache jbaseCache;
+  private static RedisServer redisServer;
 
+  
   @BeforeClass
   public static void init() {
 
-    RedisServer.builder()
-        .port(6666)
+    redisServer = RedisServer.builder()
+        .port(7777)
         .setting("bind localhost")
-        .build().start();
+        .build() ;
 
     CacheConfig cacheConfig = new CacheConfig();
 
@@ -35,13 +38,23 @@ public class LettuceTest {
             LettuceCacheProvider.class.getName()
         ));
 
-    cacheConfig.getLettuceConfig().setHosts("localhost:6666");
+    cacheConfig.getLettuceConfig().setHosts("localhost:7777");
 
     // 使用内嵌redis
 
+    redisServer.start();
     jbaseCache = JbaseCache.build(cacheConfig);
 
   }
+
+
+  @AfterClass
+  public static void stop() {
+
+    jbaseCache.stop();
+    redisServer.stop();
+  }
+
 
   @Test
   public void testSimple() throws InterruptedException {

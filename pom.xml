@@ -6,9 +6,31 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.jayqqaa12</groupId>
   <artifactId>jbase</artifactId>
-  <version>2.2.2</version>
+  <version>4.0.0</version>
   <packaging>pom</packaging>
 
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:git@github.com:jayqqaa12/jbase.git</connection>
+    <developerConnection>scm:git:git@github.com:jayqqaa12/jbase.git</developerConnection>
+    <url>https://github.com/jayqqaa12/jbase</url>
+  </scm>
+
+  <developers>
+    <developer>
+      <name>jayqqaa12</name>
+      <email>476335667@qq.com</email>
+      <organization>https://github.com/jayqqaa12</organization>
+      <timezone>+8</timezone>
+    </developer>
+  </developers>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -31,8 +53,8 @@
     <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
     <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
 
-    <jbase.util.version>2.2.5</jbase.util.version>
-    <jbase.spring.version>2.2.15</jbase.spring.version>
+    <jbase.util.version>2.3.0</jbase.util.version>
+    <jbase.spring.version>2.3.0</jbase.spring.version>
     <jbase.cache.version>1.0.0</jbase.cache.version>
 
     <fastjson-version>1.2.59</fastjson-version>
@@ -74,15 +96,52 @@
         </configuration>
       </plugin>
 
+
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.7</version>
+        <extensions>true</extensions>
+        <configuration>
+          <!-- 这里的id必须要和全局配置中的release id 一致 -->
+          <serverId>sonatype_releases</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <!-- 如果希望发布后自动执行close和release操作，此处可以调整为true -->
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
+      </plugin>
+
+
+      <!-- Javadoc -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9.1</version>
         <configuration>
-          <attach>true</attach>
+          <show>private</show>
+          <nohelp>true</nohelp>
+          <charset>UTF-8</charset>
+          <encoding>UTF-8</encoding>
+          <docencoding>UTF-8</docencoding>
+          <additionalparam>-Xdoclint:none</additionalparam>
         </configuration>
         <executions>
           <execution>
             <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- 生成java source.jar -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.2.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
             <goals>
               <goal>jar-no-fork</goal>
             </goals>
@@ -90,25 +149,43 @@
         </executions>
       </plugin>
 
+      <!-- 生成asc 校验文件 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.5</version>
+        <executions>
+          <execution>
+            <!-- 必须和配置中的gpg校验id一致 -->
+            <id>gpg</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
+
 
   </build>
 
 
   <distributionManagement>
     <repository>
-      <id>releases</id>
-      <url>
-        http://47.102.44.192:8081/nexus/content/repositories/releases/
-      </url>
+      <!-- 这里的id必须要和全局配置中的release id 一致 -->
+      <id>sonatype_releases</id>
+      <name>Nexus Release Repository</name>
+      <!-- 这里就是在创建issue成功后，对方回复的release发布地址-->
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
     </repository>
     <snapshotRepository>
-      <id>public</id>
-      <url>
-        http://47.102.44.192:8081/nexus/content/repositories/snapshots/
-      </url>
+      <!-- 这里的id必须要和全局配置中的snapshot id 一致 -->
+      <id>sonatype_snapshots</id>
+      <name>Nexus Snapshot Repository</name>
+      <!-- 这里就是在创建issue成功后，对方回复的snapshot发布地址-->
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
-
   </distributionManagement>
 
 

@@ -26,7 +26,6 @@ public class RedisConfig {
         template.setKeySerializer(new StringRedisSerializer());
         template.setDefaultSerializer(new RedisJsonSerializer<>());
         template.afterPropertiesSet();
-//        UserUtil.setCache(template);
         return template;
     }
 

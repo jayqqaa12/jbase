@@ -67,21 +67,21 @@ public class CaffeineTest {
     assertEquals(value, null);
 
   }
-
-  @Test
-  public void testAutoLoad() throws InterruptedException {
-
-    String value = jbaseCache.get("auto-load", "time", () -> "value", 120);
-
-    for (int i = 0; i < 100; i++) {
-      //大于 REFRESH_MIN_TIME 才会触发auto load
-      value = jbaseCache.get("auto-load", "time");
-
-      assertEquals(value, "value");
-
-      TimeUnit.SECONDS.sleep(2);
-    }
-
-  }
+//
+//  @Test
+//  public void testAutoLoad() throws InterruptedException {
+//
+//    String value = jbaseCache.get("auto-load", "time", () -> "value", 120);
+//
+//    for (int i = 0; i < 100; i++) {
+//      //大于 REFRESH_MIN_TIME 才会触发auto load
+//      value = jbaseCache.get("auto-load", "time");
+//
+//      assertEquals(value, "value");
+//
+//      TimeUnit.SECONDS.sleep(2);
+//    }
+//
+//  }
 
 }

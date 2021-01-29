@@ -1,5 +1,6 @@
 package com.jayqqaa12.jbase.spring.boot.mqtt.config;
 
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.internal.security.SSLSocketFactoryFactory;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,25 +19,29 @@ import java.util.concurrent.ThreadLocalRandom;
 @Configuration
 @ConditionalOnBean(MqttProperties.class)
 public class MqttInboundConfiguration {
-    @Autowired
-    private MqttProperties mqttProperties;
 
-    @Bean
-    public MessageChannel mqttInputChannel() {
-        return new DirectChannel();
-    }
+  @Autowired
+  private MqttProperties mqttProperties;
 
-    @Bean
-    public MessageProducer inbound() {
+  @Bean
+  public MessageChannel mqttInputChannel() {
+    return new DirectChannel();
+  }
 
-        DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
-        factory.setServerURIs(mqttProperties.getInbound().getUrls());
-        factory.setPersistence(new MemoryPersistence());
-        factory.setUserName(mqttProperties.getOutbound().getUsername());
-        factory.setPassword(mqttProperties.getOutbound().getPassword());
+  @Bean
+  public MessageProducer inbound() {
 
+    DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
+    factory.setPersistence(new MemoryPersistence());
 
-        //
+    MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
+    mqttConnectOptions.setServerURIs(new String[]{mqttProperties.getInbound().getUrls()});
+    mqttConnectOptions.setUserName(mqttProperties.getInbound().getUsername());
+    mqttConnectOptions.setPassword(mqttProperties.getInbound().getPassword().toCharArray());
+
+    factory.setConnectionOptions(mqttConnectOptions);
+
+    //
 //        Properties sslClientProps = new Properties();
 //        sslClientProps.setProperty(SSLSocketFactoryFactory.SSLPROTOCOL, mqttProperties.getProtocol());
 //        sslClientProps.setProperty(SSLSocketFactoryFactory.KEYSTORE, mqttProperties.getKeyStore());
@@ -48,24 +53,23 @@ public class MqttInboundConfiguration {
 //
 //        factory.setSslProperties(sslClientProps);
 
+    String[] inboundTopics = mqttProperties.getInbound().getTopics().split(",");
 
-        String[] inboundTopics = mqttProperties.getInbound().getTopics().split(",");
+    String clientId =
+        mqttProperties.getInbound().getClientId() + ThreadLocalRandom.current().nextInt(1000);
 
-        String clientId = mqttProperties.getInbound().getClientId() + ThreadLocalRandom.current().nextInt(1000);
+    MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter(
+        clientId, factory, inboundTopics);
 
-        MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter(
-                clientId, factory, inboundTopics);
+    DefaultPahoMessageConverter converter = new DefaultPahoMessageConverter();
+    converter.setPayloadAsBytes(true);
+    adapter.setCompletionTimeout(5000);
+    adapter.setConverter(converter);
+    adapter.setQos(mqttProperties.getInbound().getQos());
+    adapter.setOutputChannel(mqttInputChannel());
 
-        DefaultPahoMessageConverter converter = new DefaultPahoMessageConverter();
-        converter.setPayloadAsBytes(true);
-        adapter.setCompletionTimeout(5000);
-        adapter.setConverter(converter);
-        adapter.setQos(mqttProperties.getInbound().getQos());
-        adapter.setOutputChannel(mqttInputChannel());
-
-
-        return adapter;
-    }
+    return adapter;
+  }
 
 
 }

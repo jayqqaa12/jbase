@@ -8,7 +8,6 @@ import com.jayqqaa12.jbase.spring.mvc.converter.ResponseHttpMessageConverter;
 import feign.*;
 import feign.codec.Decoder;
 import feign.codec.ErrorDecoder;
-import feign.hystrix.HystrixFeign;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.cloud.openfeign.support.ResponseEntityDecoder;
@@ -26,7 +25,7 @@ import java.util.Enumeration;
  * Created by 12 on 2017/12/2.
  */
 @Configuration
-@ConditionalOnClass({Feign.class, HystrixFeign.class})
+@ConditionalOnClass({Feign.class})
 public class FiegnConfig {
 
     @Bean

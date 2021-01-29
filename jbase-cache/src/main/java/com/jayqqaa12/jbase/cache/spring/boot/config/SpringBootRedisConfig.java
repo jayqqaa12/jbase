@@ -12,6 +12,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "spring.redis")
 public class SpringBootRedisConfig {
 
+
+  private Integer port;
   private String host;
   private String password;
   private Integer database;

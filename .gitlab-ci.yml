@@ -1,0 +1,17 @@
+stages:
+  - test
+  - deploy
+
+
+.sonar:
+  extends: .sonar-template
+  image: registry.leyantech.com/base-images/maven:latest
+  variables:
+    MAVEN_OPTS: -Dmaven.repo.local=/cache/maven.repository
+  script:
+    - start-sonar-analysis.sh
+
+include:
+  - template: sonar.gitlab-ci.yml
+  - template: publish_jar.gitlab-ci.yml
+

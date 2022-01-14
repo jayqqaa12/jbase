@@ -1,4 +1,4 @@
-# jbase for quick build java web 
+# jbase for quick build java project  
 
 
 一些工具类和 常用框架的扩展

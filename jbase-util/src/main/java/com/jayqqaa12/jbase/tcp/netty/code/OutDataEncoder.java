@@ -6,7 +6,6 @@ import io.netty.handler.codec.MessageToByteEncoder;
 
 import java.io.File;
 
-import com.jayqqaa12.jbase.util.FsKit;
 
 public class OutDataEncoder extends MessageToByteEncoder<OutData> {
 
@@ -36,9 +35,6 @@ public class OutDataEncoder extends MessageToByteEncoder<OutData> {
 			else if (obj instanceof byte[]) out.writeBytes( (byte [])obj  );
 			else if (obj instanceof String) out.writeBytes(((String) obj).getBytes());
 
-			else if (obj instanceof File) {
-				out.writeBytes(FsKit.getBytesFromFile((File) obj));
-			}
 
 		}
 

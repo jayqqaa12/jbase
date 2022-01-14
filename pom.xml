@@ -72,7 +72,7 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      
+
       <dependency>
         <groupId>com.alibaba</groupId>
         <artifactId>fastjson</artifactId>
@@ -101,7 +101,6 @@
           <target>1.8</target>
         </configuration>
       </plugin>
-
 
 
       <plugin>
@@ -152,58 +151,71 @@
       </plugin>
 
 
-<!--      <plugin>-->
-<!--        <groupId>org.sonatype.plugins</groupId>-->
-<!--        <artifactId>nexus-staging-maven-plugin</artifactId>-->
-<!--        <version>1.6.7</version>-->
-<!--        <extensions>true</extensions>-->
-<!--        <configuration>-->
-<!--          &lt;!&ndash; 这里的id必须要和全局配置中的release id 一致 &ndash;&gt;-->
-<!--          <serverId>sonatype_releases</serverId>-->
-<!--          <nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
-<!--          &lt;!&ndash; 如果希望发布后自动执行close和release操作，此处可以调整为true &ndash;&gt;-->
-<!--          <autoReleaseAfterClose>true</autoReleaseAfterClose>-->
-<!--        </configuration>-->
-<!--      </plugin>-->
+      <!--      <plugin>-->
+      <!--        <groupId>org.sonatype.plugins</groupId>-->
+      <!--        <artifactId>nexus-staging-maven-plugin</artifactId>-->
+      <!--        <version>1.6.7</version>-->
+      <!--        <extensions>true</extensions>-->
+      <!--        <configuration>-->
+      <!--          &lt;!&ndash; 这里的id必须要和全局配置中的release id 一致 &ndash;&gt;-->
+      <!--          <serverId>sonatype_releases</serverId>-->
+      <!--          <nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
+      <!--          &lt;!&ndash; 如果希望发布后自动执行close和release操作，此处可以调整为true &ndash;&gt;-->
+      <!--          <autoReleaseAfterClose>true</autoReleaseAfterClose>-->
+      <!--        </configuration>-->
+      <!--      </plugin>-->
 
       <!-- 生成asc 校验文件 -->
-<!--      <plugin>-->
-<!--        <groupId>org.apache.maven.plugins</groupId>-->
-<!--        <artifactId>maven-gpg-plugin</artifactId>-->
-<!--        <version>1.5</version>-->
-<!--        <executions>-->
-<!--          <execution>-->
-<!--            &lt;!&ndash; 必须和配置中的gpg校验id一致 &ndash;&gt;-->
-<!--            <id>gpg</id>-->
-<!--            <phase>verify</phase>-->
-<!--            <goals>-->
-<!--              <goal>sign</goal>-->
-<!--            </goals>-->
-<!--          </execution>-->
-<!--        </executions>-->
-<!--      </plugin>-->
+      <!--      <plugin>-->
+      <!--        <groupId>org.apache.maven.plugins</groupId>-->
+      <!--        <artifactId>maven-gpg-plugin</artifactId>-->
+      <!--        <version>1.5</version>-->
+      <!--        <executions>-->
+      <!--          <execution>-->
+      <!--            &lt;!&ndash; 必须和配置中的gpg校验id一致 &ndash;&gt;-->
+      <!--            <id>gpg</id>-->
+      <!--            <phase>verify</phase>-->
+      <!--            <goals>-->
+      <!--              <goal>sign</goal>-->
+      <!--            </goals>-->
+      <!--          </execution>-->
+      <!--        </executions>-->
+      <!--      </plugin>-->
     </plugins>
 
 
   </build>
 
 
-<!--  <distributionManagement>-->
-<!--    <repository>-->
-<!--      &lt;!&ndash; 这里的id必须要和全局配置中的release id 一致 &ndash;&gt;-->
-<!--      <id>sonatype_releases</id>-->
-<!--      <name>Nexus Release Repository</name>-->
-<!--      &lt;!&ndash; 这里就是在创建issue成功后，对方回复的release发布地址&ndash;&gt;-->
-<!--      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>-->
-<!--    </repository>-->
-<!--    <snapshotRepository>-->
-<!--      &lt;!&ndash; 这里的id必须要和全局配置中的snapshot id 一致 &ndash;&gt;-->
-<!--      <id>sonatype_snapshots</id>-->
-<!--      <name>Nexus Snapshot Repository</name>-->
-<!--      &lt;!&ndash; 这里就是在创建issue成功后，对方回复的snapshot发布地址&ndash;&gt;-->
-<!--      <url>https://oss.sonatype.org/content/repositories/snapshots</url>-->
-<!--    </snapshotRepository>-->
-<!--  </distributionManagement>-->
+  <!--  <distributionManagement>-->
+  <!--    <repository>-->
+  <!--      &lt;!&ndash; 这里的id必须要和全局配置中的release id 一致 &ndash;&gt;-->
+  <!--      <id>sonatype_releases</id>-->
+  <!--      <name>Nexus Release Repository</name>-->
+  <!--      &lt;!&ndash; 这里就是在创建issue成功后，对方回复的release发布地址&ndash;&gt;-->
+  <!--      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>-->
+  <!--    </repository>-->
+  <!--    <snapshotRepository>-->
+  <!--      &lt;!&ndash; 这里的id必须要和全局配置中的snapshot id 一致 &ndash;&gt;-->
+  <!--      <id>sonatype_snapshots</id>-->
+  <!--      <name>Nexus Snapshot Repository</name>-->
+  <!--      &lt;!&ndash; 这里就是在创建issue成功后，对方回复的snapshot发布地址&ndash;&gt;-->
+  <!--      <url>https://oss.sonatype.org/content/repositories/snapshots</url>-->
+  <!--    </snapshotRepository>-->
+  <!--  </distributionManagement>-->
+
+  <distributionManagement>
+    <repository>
+      <id>nexus</id>
+      <name>Releases</name>
+      <url>https://nexus.leyantech.com/repository/maven-releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>nexus</id>
+      <name>Snapshot</name>
+      <url>https://nexus.leyantech.com/repository/maven-snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
 
 
 </project>

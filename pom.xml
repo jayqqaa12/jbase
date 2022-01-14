@@ -103,19 +103,6 @@
       </plugin>
 
 
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.7</version>
-        <extensions>true</extensions>
-        <configuration>
-          <!-- 这里的id必须要和全局配置中的release id 一致 -->
-          <serverId>sonatype_releases</serverId>
-          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-          <!-- 如果希望发布后自动执行close和release操作，此处可以调整为true -->
-          <autoReleaseAfterClose>true</autoReleaseAfterClose>
-        </configuration>
-      </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -163,6 +150,21 @@
           </execution>
         </executions>
       </plugin>
+
+
+<!--      <plugin>-->
+<!--        <groupId>org.sonatype.plugins</groupId>-->
+<!--        <artifactId>nexus-staging-maven-plugin</artifactId>-->
+<!--        <version>1.6.7</version>-->
+<!--        <extensions>true</extensions>-->
+<!--        <configuration>-->
+<!--          &lt;!&ndash; 这里的id必须要和全局配置中的release id 一致 &ndash;&gt;-->
+<!--          <serverId>sonatype_releases</serverId>-->
+<!--          <nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
+<!--          &lt;!&ndash; 如果希望发布后自动执行close和release操作，此处可以调整为true &ndash;&gt;-->
+<!--          <autoReleaseAfterClose>true</autoReleaseAfterClose>-->
+<!--        </configuration>-->
+<!--      </plugin>-->
 
       <!-- 生成asc 校验文件 -->
 <!--      <plugin>-->

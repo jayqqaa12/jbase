@@ -1,10 +1,10 @@
 package com.jayqqaa12.jbase.spring.boot;
 
 
-import com.jayqqaa12.jbase.spring.boot.mqtt.config.MqttInboundConfiguration;
-import com.jayqqaa12.jbase.spring.boot.mqtt.config.MqttOutboundConfiguration;
-import com.jayqqaa12.jbase.spring.boot.mqtt.config.MqttProperties;
-import com.jayqqaa12.jbase.spring.boot.mqtt.handler.MqttReceiver;
+import com.jayqqaa12.jbase.spring.mqtt.config.MqttInboundConfiguration;
+import com.jayqqaa12.jbase.spring.mqtt.config.MqttOutboundConfiguration;
+import com.jayqqaa12.jbase.spring.mqtt.config.MqttProperties;
+import com.jayqqaa12.jbase.spring.mqtt.handler.MqttReceiver;
 import org.springframework.context.annotation.Import;
 import org.springframework.integration.annotation.IntegrationComponentScan;
 
@@ -18,7 +18,7 @@ import java.lang.annotation.*;
         MqttOutboundConfiguration.class,
         MqttReceiver.class
 })
-@IntegrationComponentScan("com.jayqqaa12.jbase.spring.boot.mqtt")
+@IntegrationComponentScan("com.jayqqaa12.jbase.spring.mqtt")
 public @interface EnableMqtt {
 
 }

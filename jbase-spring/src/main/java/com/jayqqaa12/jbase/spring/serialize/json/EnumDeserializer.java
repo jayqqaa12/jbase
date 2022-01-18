@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.DefaultJSONParser;
 import com.alibaba.fastjson.parser.JSONToken;
 import com.alibaba.fastjson.parser.deserializer.ObjectDeserializer;
-import com.jayqqaa12.jbase.spring.boot.base.BaseModel;
+import com.jayqqaa12.jbase.spring.db.BaseModel;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Type;

@@ -1,10 +1,8 @@
 package com.jayqqaa12.jbase.spring.boot.config;
 
-import com.alibaba.fastjson.JSON;
-import com.jayqqaa12.jbase.spring.exception.BusinessException;
-import com.jayqqaa12.jbase.spring.mvc.Resp;
-import com.jayqqaa12.jbase.spring.mvc.RespCode;
-import com.jayqqaa12.jbase.spring.mvc.converter.ResponseHttpMessageConverter;
+import com.jayqqaa12.jbase.spring.feign.FeignReqInterceptor;
+import com.jayqqaa12.jbase.spring.feign.ResponseHttpMessageConverter;
+import com.jayqqaa12.jbase.spring.feign.CustomErrorDecoder;
 import feign.*;
 import feign.codec.Decoder;
 import feign.codec.ErrorDecoder;
@@ -18,7 +16,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.Enumeration;
 
 /**
@@ -28,57 +25,20 @@ import java.util.Enumeration;
 @ConditionalOnClass({Feign.class})
 public class FiegnConfig {
 
-    @Bean
-    public ErrorDecoder errorDecoder() {
-        return new CustomErrorDecoder();
-    }
-
-
-    @Bean
-    public Decoder feignDecoder() {
-        return new ResponseEntityDecoder(new SpringDecoder(() -> new HttpMessageConverters(new ResponseHttpMessageConverter())));
-    }
-
-
-    //feign请求把 header带上
-    @Bean
-    public RequestInterceptor headerInterceptor() {
-        return (requestTemplate) -> {
-            ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder
-                    .getRequestAttributes();
-            if (attributes == null) return;
-            HttpServletRequest request = attributes.getRequest();
-            if(request==null)return;
-            Enumeration<String> headerNames = request.getHeaderNames();
-            if (headerNames != null) {
-                while (headerNames.hasMoreElements()) {
-                    String name = headerNames.nextElement();
-                    String values = request.getHeader(name);
-                    requestTemplate.header(name, values);
-                }
-            }
-
-        };
-    }
-
-
-    public class CustomErrorDecoder implements ErrorDecoder {
-
-        public Exception decode(String s, Response response) {
-            try {
-                if (response.body() != null) {
-                    String body = Util.toString(response.body().asReader());
-                    Resp req = JSON.parseObject(body, Resp.class);
-                    if (req.getCode() != RespCode.SUCCESS) {
-                        return new BusinessException(req.getCode(), req.getMsg(), null);
-                    }
-                }
-            } catch (IOException e) {
-                return e;
-            }
-            return new Exception("UNKOWN ERROR");
-        }
-    }
+  @Bean
+  public ErrorDecoder errorDecoder() {
+    return new CustomErrorDecoder();
+  }
+  @Bean
+  public Decoder feignDecoder() {
+    return new ResponseEntityDecoder(
+        new SpringDecoder(() -> new HttpMessageConverters(new ResponseHttpMessageConverter())));
+  }
+  //feign请求把 header带上
+  @Bean
+  public RequestInterceptor headerInterceptor() {
+    return new FeignReqInterceptor();
+  }
 
 
 }

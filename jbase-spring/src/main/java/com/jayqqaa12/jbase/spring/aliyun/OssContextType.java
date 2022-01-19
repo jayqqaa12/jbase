@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.spring.util.upload;
+package com.jayqqaa12.jbase.spring.aliyun;
 
 import java.util.HashMap;
 

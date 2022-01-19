@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.spring.util.upload;
+package com.jayqqaa12.jbase.spring.aliyun;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

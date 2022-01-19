@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.spring.boot;
+package com.jayqqaa12.jbase.spring.mqtt;
 
 
 import com.jayqqaa12.jbase.spring.mqtt.config.MqttInboundConfiguration;

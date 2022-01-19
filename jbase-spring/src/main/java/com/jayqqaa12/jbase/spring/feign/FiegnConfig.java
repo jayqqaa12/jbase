@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.spring.boot.config;
+package com.jayqqaa12.jbase.spring.feign;
 
 import com.jayqqaa12.jbase.spring.feign.FeignReqInterceptor;
 import com.jayqqaa12.jbase.spring.feign.ResponseHttpMessageConverter;

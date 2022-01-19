@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.spring.util.upload;
+package com.jayqqaa12.jbase.spring.aliyun;
 
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.ObjectMetadata;

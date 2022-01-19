@@ -1,8 +1,5 @@
-package com.jayqqaa12.jbase.spring.util;
+package com.jayqqaa12.jbase.spring.aliyun;
 
-import com.jayqqaa12.jbase.spring.util.upload.AliyunOssHelper;
-import com.jayqqaa12.jbase.spring.util.upload.AuthenticationHelper;
-import com.jayqqaa12.jbase.spring.util.upload.ImageHelper;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;

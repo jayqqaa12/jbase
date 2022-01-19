@@ -1,7 +1,6 @@
-package com.jayqqaa12.jbase.spring.boot;
+package com.jayqqaa12.jbase.spring.aliyun;
 
 
-import com.jayqqaa12.jbase.spring.util.UploadConfiguration;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;

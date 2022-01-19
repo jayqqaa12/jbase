@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.spring.boot.config;
+package com.jayqqaa12.jbase.spring.feign;
 
 import com.alibaba.fastjson.JSON;
 import com.jayqqaa12.jbase.spring.exception.BusinessException;

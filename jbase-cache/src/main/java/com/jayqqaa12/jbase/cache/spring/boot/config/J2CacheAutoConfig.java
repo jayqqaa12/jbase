@@ -2,7 +2,7 @@ package com.jayqqaa12.jbase.cache.spring.boot.config;
 
 import com.jayqqaa12.jbase.cache.core.CacheConfig;
 import com.jayqqaa12.jbase.cache.core.JbaseCache;
-import com.jayqqaa12.jbase.cache.provider.caffeine.CaffeineCacheProvider;
+import com.jayqqaa12.jbase.cache.provider.NullCacheProvider;
 import com.jayqqaa12.jbase.cache.provider.redission.RedissonCacheProvider;
 import com.jayqqaa12.jbase.cache.spring.aspect.CacheAspect;
 import com.jayqqaa12.jbase.cache.spring.aspect.CacheClearArrayAspect;
@@ -43,7 +43,7 @@ public class J2CacheAutoConfig {
   @ConditionalOnMissingBean
   public CacheConfig cacheConfig() {
     CacheConfig cacheConfig = new CacheConfig();
-    cacheConfig.getProviderClassList().add(CaffeineCacheProvider.class.getName());
+    cacheConfig.getProviderClassList().add(NullCacheProvider.class.getName());
     cacheConfig.getProviderClassList().add(RedissonCacheProvider.class.getName());
     return cacheConfig;
   }

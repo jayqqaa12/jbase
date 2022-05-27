@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.jayqqaa12</groupId>
   <artifactId>jbase</artifactId>
-  <version>4.0.0</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <licenses>
@@ -48,9 +48,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <jbase.util.version>2.5.0</jbase.util.version>
-    <jbase.spring.version>${spring-boot.version}</jbase.spring.version>
-    <jbase.cache.version>1.0.0</jbase.cache.version>
+    <jbase.util.version>${version}</jbase.util.version>
+    <jbase.spring.version>${version}</jbase.spring.version>
+    <jbase.cache.version>${version}</jbase.cache.version>
 
     <fastjson-version>1.2.59</fastjson-version>
     <lombok.version>1.16.14</lombok.version>

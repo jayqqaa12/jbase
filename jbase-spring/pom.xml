@@ -7,13 +7,13 @@
   <artifactId>jbase-spring</artifactId>
   <packaging>jar</packaging>
   <name>jbase-spring</name>
-  <version>${jbase.spring.version}</version>
+  <version>1.0.0-SNAPSHOT</version>
 
 
   <parent>
     <groupId>com.jayqqaa12</groupId>
     <artifactId>jbase</artifactId>
-    <version>4.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
   </parent>
 
 

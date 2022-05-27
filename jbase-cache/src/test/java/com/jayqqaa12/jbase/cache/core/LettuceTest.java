@@ -6,7 +6,6 @@ import com.google.common.collect.Lists;
 import com.jayqqaa12.jbase.cache.provider.NullCacheProvider;
 import com.jayqqaa12.jbase.cache.provider.lettuce.LettuceCacheProvider;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import redis.embedded.RedisServer;
@@ -38,7 +37,7 @@ public class LettuceTest {
             LettuceCacheProvider.class.getName()
         ));
 
-    cacheConfig.getLettuceConfig().setHosts("localhost:7777");
+    cacheConfig.getRedisConfig().setHosts("localhost:7777");
 
     // 使用内嵌redis
 

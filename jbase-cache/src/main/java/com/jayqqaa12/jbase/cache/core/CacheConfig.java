@@ -31,7 +31,7 @@ public class CacheConfig {
 
   private String redisMode = CacheConst.REDIS_MODE_SINGLE;
 
-  private LettuceConfig lettuceConfig = new LettuceConfig();
+  private RedisConfig redisConfig = new RedisConfig();
 
   private NotifyConfig notifyConfig = new NotifyConfig();
 
@@ -59,7 +59,7 @@ public class CacheConfig {
 
 
   @Data
-  public class LettuceConfig {
+  public class RedisConfig {
 
     /**
      * 命名空间 可以用来区分不同 项目

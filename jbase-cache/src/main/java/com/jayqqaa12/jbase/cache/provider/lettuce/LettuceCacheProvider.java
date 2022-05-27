@@ -43,14 +43,14 @@ public class LettuceCacheProvider implements CacheProvider {
   public void init(CacheConfig cacheConfig) {
     this.cacheConfig = cacheConfig;
 
-    String hosts = cacheConfig.getLettuceConfig().getHosts();
+    String hosts = cacheConfig.getRedisConfig().getHosts();
 
-    int database = cacheConfig.getLettuceConfig().getDatabase();
-    String password = cacheConfig.getLettuceConfig().getPassword();
+    int database = cacheConfig.getRedisConfig().getDatabase();
+    String password = cacheConfig.getRedisConfig().getPassword();
 
-    int clusterTopologyRefresh = cacheConfig.getLettuceConfig().getClusterTopologyRefresh();
+    int clusterTopologyRefresh = cacheConfig.getRedisConfig().getClusterTopologyRefresh();
 
-    if (REDIS_MODE_CLUSTER.equalsIgnoreCase(cacheConfig.getLettuceConfig().getSchema())) {
+    if (REDIS_MODE_CLUSTER.equalsIgnoreCase(cacheConfig.getRedisConfig().getSchema())) {
       List<RedisURI> redisURIs = new ArrayList<>();
       String[] hostArray = hosts.split(",");
       for (String host : hostArray) {
@@ -82,16 +82,16 @@ public class LettuceCacheProvider implements CacheProvider {
     }
 
     try {
-      redisClient.setDefaultTimeout(Duration.ofMillis(cacheConfig.getLettuceConfig().getTimeout()));
+      redisClient.setDefaultTimeout(Duration.ofMillis(cacheConfig.getRedisConfig().getTimeout()));
     } catch (Exception e) {
       log.warn("Failed to set default timeout, using default 10000 milliseconds.", e);
     }
 
     //connection pool configurations
     GenericObjectPoolConfig poolConfig = new GenericObjectPoolConfig();
-    poolConfig.setMaxTotal(cacheConfig.getLettuceConfig().getMaxTotal());
-    poolConfig.setMaxIdle(cacheConfig.getLettuceConfig().getMaxIdle());
-    poolConfig.setMinIdle(cacheConfig.getLettuceConfig().getMinIdle());
+    poolConfig.setMaxTotal(cacheConfig.getRedisConfig().getMaxTotal());
+    poolConfig.setMaxIdle(cacheConfig.getRedisConfig().getMaxIdle());
+    poolConfig.setMinIdle(cacheConfig.getRedisConfig().getMinIdle());
 
     pool = ConnectionPoolSupport.createGenericObjectPool(() -> {
       if (redisClient instanceof RedisClient) {
@@ -116,7 +116,7 @@ public class LettuceCacheProvider implements CacheProvider {
 
     CacheSerializer cacheSerializer = (CacheSerializer) Class
         .forName(cacheConfig.getCacheSerializerClass()).newInstance();
-    String namespace = this.cacheConfig.getLettuceConfig().getNamespace();
+    String namespace = this.cacheConfig.getRedisConfig().getNamespace();
 
     return regions
         .computeIfAbsent(namespace + ":" + region,

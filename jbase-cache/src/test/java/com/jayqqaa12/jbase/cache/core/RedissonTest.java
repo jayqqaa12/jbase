@@ -3,8 +3,8 @@ package com.jayqqaa12.jbase.cache.core;
 import static org.junit.Assert.assertEquals;
 
 import com.google.common.collect.Lists;
-import com.jayqqaa12.jbase.cache.provider.caffeine.CaffeineCacheProvider;
-import com.jayqqaa12.jbase.cache.provider.lettuce.LettuceCacheProvider;
+import com.jayqqaa12.jbase.cache.provider.NullCacheProvider;
+import com.jayqqaa12.jbase.cache.provider.redission.RedissonCacheProvider;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -16,16 +16,16 @@ import java.util.concurrent.TimeUnit;
  * @author 12, {@literal <shuai.wang@leyantech.com>}
  * @date 2020-10-12.
  */
-public class TwoLevelTest {
+public class RedissonTest {
 
   private static JbaseCache jbaseCache;
-
   private static RedisServer redisServer;
 
+  
   @BeforeClass
   public static void init() {
 
-    redisServer=   RedisServer.builder()
+    redisServer = RedisServer.builder()
         .port(8888)
         .setting("bind localhost")
         .build() ;
@@ -33,22 +33,22 @@ public class TwoLevelTest {
     CacheConfig cacheConfig = new CacheConfig();
 
     cacheConfig.setProviderClassList(
-        Lists.newArrayList(CaffeineCacheProvider.class.getName(),
-            LettuceCacheProvider.class.getName()
+        Lists.newArrayList(NullCacheProvider.class.getName(),
+            RedissonCacheProvider.class.getName()
         ));
 
     cacheConfig.getRedisConfig().setHosts("localhost:8888");
 
     // 使用内嵌redis
 
+    redisServer.start();
     jbaseCache = JbaseCache.build(cacheConfig);
 
-    redisServer.start();
   }
 
 
   @AfterClass
-  public static void stop(){
+  public static void stop() {
 
     jbaseCache.stop();
     redisServer.stop();
@@ -77,7 +77,8 @@ public class TwoLevelTest {
 
     jbaseCache.set("test-timeout", "timeout", "timeout", 3);
 
-    String value = jbaseCache.get("test-timeout", "timeout");
+    String
+        value = jbaseCache.get("test-timeout", "timeout");
     assertEquals(value, "timeout");
 
     TimeUnit.SECONDS.sleep(4);

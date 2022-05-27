@@ -3,15 +3,18 @@ package com.jayqqaa12.jbase.cache.spring.boot.config;
 import com.jayqqaa12.jbase.cache.core.CacheConfig;
 import com.jayqqaa12.jbase.cache.core.JbaseCache;
 import com.jayqqaa12.jbase.cache.provider.caffeine.CaffeineCacheProvider;
-import com.jayqqaa12.jbase.cache.provider.lettuce.LettuceCacheProvider;
-import com.jayqqaa12.jbase.cache.spring.aspect.SpelKeyGenerator;
+import com.jayqqaa12.jbase.cache.provider.redission.RedissonCacheProvider;
 import com.jayqqaa12.jbase.cache.spring.aspect.CacheAspect;
 import com.jayqqaa12.jbase.cache.spring.aspect.CacheClearArrayAspect;
 import com.jayqqaa12.jbase.cache.spring.aspect.CacheClearAspect;
+import com.jayqqaa12.jbase.cache.spring.aspect.SpelKeyGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.Import;
 
 
 /**
@@ -41,7 +44,7 @@ public class J2CacheAutoConfig {
   public CacheConfig cacheConfig() {
     CacheConfig cacheConfig = new CacheConfig();
     cacheConfig.getProviderClassList().add(CaffeineCacheProvider.class.getName());
-    cacheConfig.getProviderClassList().add(LettuceCacheProvider.class.getName());
+    cacheConfig.getProviderClassList().add(RedissonCacheProvider.class.getName());
     return cacheConfig;
   }
 
@@ -50,10 +53,10 @@ public class J2CacheAutoConfig {
   @ConditionalOnMissingBean
   public JbaseCache jbaseCache(CacheConfig cacheConfig) {
 
-    cacheConfig.getLettuceConfig()
+    cacheConfig.getRedisConfig()
         .setHosts(springBootRedisConfig.getHost() + ":" + springBootRedisConfig.getPort());
-    cacheConfig.getLettuceConfig().setDatabase(springBootRedisConfig.getDatabase());
-    cacheConfig.getLettuceConfig().setPassword(springBootRedisConfig.getPassword());
+    cacheConfig.getRedisConfig().setDatabase(springBootRedisConfig.getDatabase());
+    cacheConfig.getRedisConfig().setPassword(springBootRedisConfig.getPassword());
 
     return JbaseCache.build(cacheConfig);
   }

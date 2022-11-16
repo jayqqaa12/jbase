@@ -3,7 +3,6 @@ package com.jayqqaa12.jbase.cache.provider;
 import com.jayqqaa12.jbase.cache.core.Cache;
 import com.jayqqaa12.jbase.cache.core.CacheConfig;
 import com.jayqqaa12.jbase.cache.util.CacheException;
-import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;

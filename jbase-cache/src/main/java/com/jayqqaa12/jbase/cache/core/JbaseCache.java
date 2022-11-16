@@ -9,9 +9,11 @@ import com.jayqqaa12.jbase.cache.provider.CacheProviderGroup;
 import com.jayqqaa12.jbase.cache.util.CacheException;
 import com.jayqqaa12.jbase.cache.util.LockKit;
 import lombok.Data;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.StopWatch;
 
+import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 /**
@@ -39,7 +41,8 @@ public class JbaseCache {
     cache.autoLoadSchdule = new AutoLoadSchedule(cacheConfig.getAutoLoadThreadCount(), cache);
 
     try {
-      cache.notify = (Notify) Class.forName(cacheConfig.getNotifyConfig().getNotifyClass()).newInstance();
+      cache.notify = (Notify) Class.forName(cacheConfig.getNotifyConfig().getNotifyClass())
+          .newInstance();
       cache.notify.init(cacheConfig, cache);
     } catch (Exception e) {
       throw new CacheException("nonexistent notify class ");
@@ -56,6 +59,7 @@ public class JbaseCache {
   }
 
 
+  @SneakyThrows
   public <T> T get(String region, String key, Supplier<Object> function)
       throws CacheException {
 
@@ -63,7 +67,7 @@ public class JbaseCache {
   }
 
   public <T> T get(String region, String key, Supplier<Object> function, int expire)
-      throws CacheException {
+      throws CacheException, InterruptedException {
 
     T obj = get(region, key);
 //    有数据就直接返回
@@ -71,8 +75,9 @@ public class JbaseCache {
       return obj;
     }
 
+    boolean lock = false;
     try {
-      LockKit.getLock(region, key).lock();
+      lock = LockKit.getLock(region, key).tryLock(10, TimeUnit.SECONDS);
       obj = get(region, key);
       //    double check
       if (obj != null) {
@@ -85,7 +90,8 @@ public class JbaseCache {
       set(region, key, value, expire);
 
       stopWatch.stop();
-      log.info("get from load data by data source key= {}@{} cost time={}ms ", key, region, stopWatch.getTime());
+      log.info("get from load data by data source key= {}@{} cost time={}ms ", key, region,
+          stopWatch.getTime());
       //添加auto load
       autoLoadSchdule.add(AutoLoadObject.builder()
           .key(key).region(region).expire(expire).function(function)
@@ -93,15 +99,19 @@ public class JbaseCache {
 
       return (T) value;
     } finally {
-      LockKit.returnLock(region, key);
+      if (lock) {
+        LockKit.returnLock(region, key);
+      }
     }
   }
 
 
+  @SneakyThrows
   public <T> T get(String region, String key) throws CacheException {
 
     CacheObject<T> cacheObject = provider.getLevel1Provider(region).get(key);
 
+    boolean lock = false;
     try {
       // 1级有数据就直接返回
       if (cacheObject != null) {
@@ -110,7 +120,7 @@ public class JbaseCache {
         return cacheObject.getValue();
       }
 
-      LockKit.getLock(region, key).lock();
+      lock = LockKit.getLock(region, key).tryLock(10, TimeUnit.SECONDS);
       // double check
       cacheObject = provider.getLevel1Provider(region).get(key);
       // 1级有数据就直接返回
@@ -123,13 +133,15 @@ public class JbaseCache {
       cacheObject = provider.getLevel2Provider(region).get(key);
       //不为空写入1级缓存
       if (cacheObject != null) {
-        provider.getLevel1Provider(region,cacheObject.getExpire()).set(key, cacheObject);
+        provider.getLevel1Provider(region, cacheObject.getExpire()).set(key, cacheObject);
         log.debug("get data from level 2  key={}@{}", region, key);
         return cacheObject.getValue();
       }
     } finally {
       autoLoadSchdule.refresh(region, key);
-      LockKit.returnLock(region, key);
+      if (lock) {
+        LockKit.returnLock(region, key);
+      }
     }
     //如果为空就加载数据
 
@@ -168,13 +180,13 @@ public class JbaseCache {
     if (command.isLocal()) {
       return;
     }
-    
+
     provider.getLevel1Provider(command.getRegion())
         .delete(command.getKeys());
 
     switch (command.getOperator()) {
       case Command.OPT_CLEAR_KEY:
-        
+
         autoLoadSchdule.remove(command.getRegion(), command.getKeys());
 
       case Command.OPT_EVICT_KEY:
@@ -183,8 +195,8 @@ public class JbaseCache {
             .get(command.getKeys());
 
         //如果不是快过期的数据就放入一级缓存
-        if (cacheObject != null&& !cacheObject.canAutoLoad()) {
-          provider.getLevel1Provider(command.getRegion(),cacheObject.getExpire())
+        if (cacheObject != null && !cacheObject.canAutoLoad()) {
+          provider.getLevel1Provider(command.getRegion(), cacheObject.getExpire())
               .set(command.getKeys(), cacheObject, cacheObject.getExpire());
 
           log.debug("receive OPT_EVICT_KEY reload level1 cache from level 2  key={}@{} ",

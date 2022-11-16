@@ -16,7 +16,7 @@ public class SpringBootRedisConfig {
   private Integer port;
   private String host;
   private String password;
-  private Integer database;
+  private int database;
 
 
 }

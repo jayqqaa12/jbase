@@ -7,12 +7,12 @@
   <artifactId>jbase-util</artifactId>
   <packaging>jar</packaging>
   <name>jbase-util</name>
-  <version>${jbase.util.version}</version>
+  <version>1.0.0-SNAPSHOT</version>
 
   <parent>
     <groupId>com.jayqqaa12</groupId>
     <artifactId>jbase</artifactId>
-    <version>4.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
   </parent>
 
 

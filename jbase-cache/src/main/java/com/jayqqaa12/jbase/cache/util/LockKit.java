@@ -1,5 +1,7 @@
 package com.jayqqaa12.jbase.cache.util;
 
+import lombok.SneakyThrows;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantLock;
@@ -9,6 +11,7 @@ public class LockKit {
   private static Map<String, ReentrantLock> lockMap = new ConcurrentHashMap<>();
 
 
+  @SneakyThrows
   public static ReentrantLock getLock(String region, String key) {
     String lockKey = key + '@' + region;
 
@@ -16,6 +19,7 @@ public class LockKit {
 
   }
 
+  @SneakyThrows
   public static void returnLock(String region, String key) {
     String lockKey = key + '@' + region;
 

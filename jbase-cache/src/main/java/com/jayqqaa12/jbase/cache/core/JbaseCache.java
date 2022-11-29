@@ -77,7 +77,7 @@ public class JbaseCache {
 
     boolean lock = false;
     try {
-      lock = LockKit.getLock(region, key).tryLock(10, TimeUnit.SECONDS);
+      lock = LockKit.getLock(region, key).tryLock(3, TimeUnit.SECONDS);
       obj = get(region, key);
       //    double check
       if (obj != null) {
@@ -120,7 +120,7 @@ public class JbaseCache {
         return cacheObject.getValue();
       }
 
-      lock = LockKit.getLock(region, key).tryLock(10, TimeUnit.SECONDS);
+      lock = LockKit.getLock(region, key).tryLock(3, TimeUnit.SECONDS);
       // double check
       cacheObject = provider.getLevel1Provider(region).get(key);
       // 1级有数据就直接返回

@@ -2,10 +2,13 @@
 
 package com.jayqqaa12.jbase.spring.db;
 
+import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Maps;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,8 +32,12 @@ public class Query<T> extends Page<T> {
         Boolean isAsc = Boolean.parseBoolean(params.getOrDefault(IS_ASC, Boolean.TRUE).toString());
 
         if(!StringUtils.isEmpty(orderByField)) {
-            if (isAsc) this.setAsc(orderByField);
-            else this.setDesc(orderByField);
+            List<OrderItem> orders = new ArrayList<>();
+            OrderItem orderItem = new OrderItem();
+            orderItem.setColumn(orderByField);
+            orderItem.setAsc(isAsc);
+            orders.add(orderItem);
+            this.setOrders(orders);
         }
         
 
@@ -41,8 +48,8 @@ public class Query<T> extends Page<T> {
         this.condition().putAll(params);
     }
 
-    @Override
-    public Map<Object, Object> condition() {
+    @SuppressWarnings("unchecked")
+    public Map<String, Object> condition() {
         return map;
     }
 }

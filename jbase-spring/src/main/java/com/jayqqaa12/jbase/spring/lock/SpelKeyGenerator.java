@@ -1,4 +1,4 @@
-package com.jayqqaa12.jbase.cache.spring.aspect;
+package com.jayqqaa12.jbase.spring.lock;
 
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
@@ -41,6 +41,7 @@ public class SpelKeyGenerator {
 
     MethodSignature signature = (MethodSignature) invocation.getSignature();
     Method method = signature.getMethod();
+
     Class<?>[] parameterTypes = method.getParameterTypes();
     ParameterNameDiscoverer parameterNameDiscoverer = new DefaultParameterNameDiscoverer();
     String[] parameterNames = parameterNameDiscoverer.getParameterNames(

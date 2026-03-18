@@ -1,10 +1,9 @@
 package com.jayqqaa12.jbase.spring.mvc.version;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.web.servlet.mvc.condition.AbstractRequestCondition;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.*;
 
 public final class ApiVersionRequestCondition extends AbstractRequestCondition<ApiVersionRequestCondition> {
@@ -82,9 +81,12 @@ public final class ApiVersionRequestCondition extends AbstractRequestCondition<A
     }
 
     @Data
-    @AllArgsConstructor
     public static class ApiVersionExpression implements Comparable<ApiVersionExpression> {
         private ApiVersion version;
+
+        public ApiVersionExpression(ApiVersion version) {
+            this.version = version;
+        }
 
         @Override
         public int compareTo(ApiVersionExpression o) {

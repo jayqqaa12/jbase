@@ -6,7 +6,8 @@ import com.jayqqaa12.jbase.spring.exception.RetryException;
 import com.jayqqaa12.jbase.spring.mvc.Resp;
 import com.jayqqaa12.jbase.spring.mvc.RespCode;
 import com.jayqqaa12.jbase.spring.mvc.i18n.LocaleKit;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.hibernate.validator.internal.engine.path.PathImpl;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
@@ -16,16 +17,17 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import java.sql.SQLException;
 import java.util.Set;
 
 
 @ControllerAdvice(annotations = {RestController.class, Controller.class})
 @ResponseBody
-@Slf4j
 public class CustomExceptionHandler {
+
+    private static final Logger log = LoggerFactory.getLogger(CustomExceptionHandler.class);
 
     /**
      * 操作数据库出现异常

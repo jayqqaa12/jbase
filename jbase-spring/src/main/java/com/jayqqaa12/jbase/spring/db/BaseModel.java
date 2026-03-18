@@ -23,7 +23,7 @@ public abstract class BaseModel implements Serializable {
     @JSONField(serializeUsing = ToStringSerializer.class)
     @Id
     @JsonSerialize(using = JacksonToStringSerializer.class)
-    @TableId(type = IdType.ID_WORKER)
+    @TableId(type = IdType.ASSIGN_ID)
     protected Long id;
 
     /**

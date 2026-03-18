@@ -7,24 +7,29 @@ import lombok.Data;
 @Data
 public class Resp {
     private int code;
-     String msg;
+    private String msg;
     private Object data;
 
 
     public  Resp(){
     }
 
-    private Resp(int code, String msg) {
+    private Resp(int code, String msg, Object data) {
         this.code = code;
         this.msg = msg;
+        this.data = data;
     }
 
     public static Resp response(int code) {
-        return new Resp(code, LocaleKit.resolverOrGet(code, null));
+        return new Resp(code, LocaleKit.resolverOrGet(code, null), null);
     }
 
     public static Resp response(int code, String msg) {
-        return new Resp(code, LocaleKit.resolverOrGet(code, msg));
+        return new Resp(code, LocaleKit.resolverOrGet(code, msg), null);
+    }
+
+    public static Resp response(int code, String msg, Object data) {
+        return new Resp(code, LocaleKit.resolverOrGet(code, msg), data);
     }
 
 
@@ -38,10 +43,9 @@ public class Resp {
     }
 
     public static Resp error(String msg) {
-        return new Resp(RespCode.SERVER_ERROR, LocaleKit.resolverOrGet(RespCode.SERVER_ERROR, msg));
+        return new Resp(RespCode.SERVER_ERROR, LocaleKit.resolverOrGet(RespCode.SERVER_ERROR, msg), null);
     }
 
-   
 
 
 

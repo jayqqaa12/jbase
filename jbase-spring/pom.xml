@@ -19,6 +19,11 @@
 
   <dependencies>
 
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+    </dependency>
 
     <dependency>
       <groupId>com.jayqqaa12</groupId>
@@ -53,7 +58,7 @@
 
     <dependency>
       <groupId>com.baomidou</groupId>
-      <artifactId>mybatis-plus-boot-starter</artifactId>
+      <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
       <version>${mybatisplus-spring-boot-starter.version}</version>
       <optional>true</optional>
     </dependency>
@@ -64,6 +69,30 @@
       <artifactId>spring-boot-starter-data-redis</artifactId>
       <optional>true</optional>
 
+    </dependency>
+
+    <dependency>
+      <groupId>org.redisson</groupId>
+      <artifactId>redisson-spring-boot-starter</artifactId>
+      <version>3.25.2</version>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.integration</groupId>
+      <artifactId>spring-integration-redis</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>jakarta.validation</groupId>
+      <artifactId>jakarta.validation-api</artifactId>
+      <version>3.0.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
     </dependency>
 
 
@@ -78,29 +107,31 @@
       <optional>true</optional>
     </dependency>
 
-
-
-
-
-
-
-    <!--spring cloud base-->
-
-
     <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-openfeign</artifactId>
+      <groupId>org.springframework.kafka</groupId>
+      <artifactId>spring-kafka</artifactId>
       <optional>true</optional>
     </dependency>
 
-
-    <!--ablibaba-->
-
     <dependency>
-      <groupId>com.alibaba.cloud</groupId>
-      <artifactId>spring-cloud-starter-dubbo</artifactId>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>1.5.5.Final</version>
       <optional>true</optional>
     </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-collections4</artifactId>
+      <version>4.4</version>
+    </dependency>
+
+
+
+
+
+
+
 
  
 
@@ -132,26 +163,7 @@
 
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <version>${spring-cloud.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>com.alibaba.cloud</groupId>
-        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-        <version>${spring-cloud-alibaba.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
-
     </dependencies>
-
-
   </dependencyManagement>
 
 

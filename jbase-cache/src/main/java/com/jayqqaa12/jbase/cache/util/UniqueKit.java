@@ -1,38 +1,17 @@
 package com.jayqqaa12.jbase.cache.util;
 
-import sun.management.VMManagement;
-
-import java.lang.management.ManagementFactory;
-import java.lang.management.RuntimeMXBean;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.util.UUID;
 
 /**
  * Created by 12 on 2017/7/17.
  */
 public class UniqueKit {
 
-    public static final int JVM_PID = getJvmPid();
+    public static final int JVM_PID = ProcessHandle.current().pid() != 0 ? (int) ProcessHandle.current().pid() : -1;
 
     public static final String MAC_ADDR = getLocalMac();
-
-
-    private static final int getJvmPid() {
-        try {
-            RuntimeMXBean runtime = ManagementFactory.getRuntimeMXBean();
-            Field jvm = runtime.getClass().getDeclaredField("jvm");
-            jvm.setAccessible(true);
-            VMManagement mgmt = (VMManagement) jvm.get(runtime);
-            Method pidMethod = mgmt.getClass().getDeclaredMethod("getProcessId");
-            pidMethod.setAccessible(true);
-            int pid = (Integer) pidMethod.invoke(mgmt);
-            return pid;
-        } catch (Exception e) {
-            return -1;
-        }
-    }
 
 
     private static String getLocalMac() {
@@ -55,8 +34,7 @@ public class UniqueKit {
             }
             return sb.toString();
         } catch (Exception e) {
-            e.printStackTrace();
-            return "";
+            return UUID.randomUUID().toString();
         }
     }
 }
